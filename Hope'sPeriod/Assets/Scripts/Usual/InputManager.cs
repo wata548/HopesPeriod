@@ -1,9 +1,14 @@
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
+using System;
+using System.IO;
 using System.Collections.Generic;
 using System.Data;
 using System.Runtime.InteropServices.WindowsRuntime;
 using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.UIElements;
+using System.Reflection;
 
 public enum KeyTypes { 
 
@@ -18,7 +23,10 @@ public enum KeyTypes {
 
 public class KeyState {
 
+    [JsonProperty]
     private readonly KeyCode key;
+
+    [JsonProperty]
     private readonly float REQUIRED_HOLD_TIME;
 
     private bool    isClick = false;
@@ -56,6 +64,7 @@ public class KeyState {
     }
 
     public bool Click() => isClick;
+    public bool Pressing() => isHold;
     public bool Hold() => (currentHoldTime >= REQUIRED_HOLD_TIME);
     public bool Up() => isUp;
     
@@ -69,38 +78,25 @@ public class KeyState {
 
 public class InputManager : MonoBehaviour
 {
+
+//==================================================| Field 
+
     public static InputManager Instance { get; private set; } = null;
 
     public Dictionary<KeyTypes, KeyState> KeyMapper { get; private set; } = new();
 
-    private void Awake() {
-        
-        if(Instance == null) {
+//==================================================| Method
 
-            Instance = this;
-        }
+    #region CheckState
+
+    private bool ExsistCheck(KeyTypes type) {
+
+        return KeyMapper.ContainsKey(type);
     }
 
-    void Update()
-    {
-        //* Update each Key's state
-        foreach(KeyState state in KeyMapper.Values) {
-
-            state.StateUpdate();
-        }
-
-    }
-
-    //* Change Key Mapping
-    public void NewKeySetting(Dictionary<KeyTypes, KeyState> newKeyMapper) {
-
-        KeyMapper = newKeyMapper;
-    }
-
-    //* Check State
     public bool Click(KeyTypes type) {
-        
-        if(!KeyMapper.ContainsKey(type)) {
+
+        if (!ExsistCheck(type)) {
 
             return false;
         }
@@ -111,7 +107,7 @@ public class InputManager : MonoBehaviour
 
     public bool Hold(KeyTypes type) {
 
-        if (!KeyMapper.ContainsKey(type)) {
+        if (!ExsistCheck(type)) {
 
             return false;
         }
@@ -122,12 +118,103 @@ public class InputManager : MonoBehaviour
 
     public bool Up(KeyTypes type) {
 
-        if (!KeyMapper.ContainsKey(type)) {
+        if (!ExsistCheck(type)) {
 
             return false;
         }
 
         return KeyMapper[type].Up();
 
+    }
+
+    public bool Pressing(KeyTypes type) {
+
+        if (!ExsistCheck(type)) {
+
+            return false;
+        }
+
+        return KeyMapper[type].Pressing();
+
+    }
+
+    #endregion
+
+    #region ConvertJson
+
+    public void SerializeJson(string fileName) {
+
+        if (fileName == "Default" || fileName == "DefaultArrow") {
+
+            Debug.Log("You cann't use this name");
+
+            return;
+        }
+
+        string path = $"Assets\\Resources\\KeyBindSetting\\{fileName}.json";
+
+        JsonSerializerSettings settings = new JsonSerializerSettings {
+            Formatting = Formatting.Indented,
+            Converters = new List<JsonConverter> { new StringEnumConverter() }
+        };
+
+        string json;
+        json = JsonConvert.SerializeObject(KeyMapper, settings);
+
+        File.WriteAllText(path, json);
+
+        Debug.Log(json);
+    }
+
+    // Change Key Mapping
+    public void KeySettingLoad(Dictionary<KeyTypes, KeyState> newKeyMapper) {
+
+        KeyMapper = newKeyMapper;
+    }
+
+    public Dictionary<KeyTypes, KeyState> DeserializeJson(string fileName) {
+
+        string path = $"Assets\\Resources\\KeyBindSetting\\{fileName}.json";
+
+        JsonSerializerSettings settings = new JsonSerializerSettings {
+            Converters = new List<JsonConverter> { new StringEnumConverter() }
+        };
+
+        if (!File.Exists(path)) {
+
+            throw new Exception("This file is not exsist. Please check file name");
+        }
+
+        string json = File.ReadAllText(path);
+
+        var newSetting = JsonConvert.DeserializeObject<Dictionary<KeyTypes, KeyState>>(json, settings);
+        return newSetting;
+    }
+
+    #endregion
+
+//==================================================| Unity Logic
+
+    private void Awake() {
+        
+        // Singleton pattern
+        if(Instance == null) {
+
+            Instance = this;
+        }
+
+        DeserializeJson("DefaultArrow");
+    }
+
+    void Update()
+    {
+        //* Update each Key's state
+        foreach(KeyState state in KeyMapper.Values) {
+
+            state.StateUpdate();
+        }
+
+        //* testCode
+        //Debug.Log($"Click: {Click(KeyTypes.UP)}, Pressing: {Pressing(KeyTypes.UP)}, Hold: {Hold(KeyTypes.UP)}, UP: {Up(KeyTypes.UP)}");
     }
 }
