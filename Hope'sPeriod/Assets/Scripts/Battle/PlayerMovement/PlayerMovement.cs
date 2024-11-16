@@ -34,46 +34,44 @@ public class PlayerMovement
 
         foreach(Direction checkDirection in Enum.GetValues(typeof(Direction))) {
 
-            if(DirectionInfo.Contain(frictionDirection, checkDirection)) {
+            if(!DirectionInfo.Contain(frictionDirection, checkDirection)) {
 
-                int symbol = 0;
+                continue;
+            }
 
-                Vector2 checkDirectionVector = DirectionInfo.ConvertVector(checkDirection); 
+            Vector2 checkDirectionVector = DirectionInfo.ConvertVector(checkDirection); 
 
-                if(checkDirection >= Direction.LEFT) {
+            int symbol = 0;
+            ref float checkVelocitysAxis = ref velocity.x;
 
-                    //* I can't decide between those. but many people say second is more well. (I can't admit it)
-                    //symbol = (checkDirectionVector.x >= 0 ? 1 : -1);
-                    symbol = Convert.ToInt32(Mathf.Sign(checkDirectionVector.x));
-                    if(symbol * velocity.x > 0) {
+            //* Check checkDirection's symbol and save axis info
+            if(checkDirection >= Direction.LEFT) {
 
-                        if(velocity.x <= trashhold) {
+                //* I can't decide between those. but many people say second is more well. (I can't admit it)
+                //symbol = (checkDirectionVector.x >= 0 ? 1 : -1);
+                symbol = Convert.ToInt32(Mathf.Sign(checkDirectionVector.x));
 
-                            velocity.x = 0;
-                        }
+                checkVelocitysAxis = ref velocity.x;
+            }
 
-                        else {
+            else {
 
-                            velocity.x *= fritionPower;
-                        }
-                    }
+                symbol = Convert.ToInt32(Mathf.Sign(checkDirectionVector.y));
+
+                checkVelocitysAxis = velocity.y;
+            }
+
+            //* calculate friction
+            if (symbol * checkVelocitysAxis > 0) {
+
+                if (checkVelocitysAxis <= trashhold) {
+
+                    checkVelocitysAxis = 0;
                 }
 
                 else {
 
-                    symbol = Convert.ToInt32(Mathf.Sign(checkDirectionVector.y));
-                    if (symbol * velocity.y > 0) {
-
-                        if (velocity.y <= trashhold) {
-
-                            velocity.y = 0;
-                        }
-
-                        else {
-
-                            velocity.y *= fritionPower;
-                        }
-                    }
+                    checkVelocitysAxis *= fritionPower;
                 }
             }
         }
