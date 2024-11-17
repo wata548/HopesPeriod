@@ -24,7 +24,7 @@ public enum KeyTypes {
 public class KeyState {
 
     [JsonProperty]
-    private readonly KeyCode key;
+    public readonly KeyCode key;
 
     [JsonProperty]
     private readonly float REQUIRED_HOLD_TIME;
@@ -171,6 +171,11 @@ public class InputManager : MonoBehaviour
 
         KeyMapper = newKeyMapper;
     }
+    public void KeySettingLoad(string fileName) {
+
+        var newSettig = DeserializeJson(fileName);
+        KeySettingLoad(newSettig);
+    }
 
     public Dictionary<KeyTypes, KeyState> DeserializeJson(string fileName) {
 
@@ -203,7 +208,7 @@ public class InputManager : MonoBehaviour
             Instance = this;
         }
 
-        DeserializeJson("DefaultArrow");
+        KeySettingLoad("Default");
     }
 
     void Update()

@@ -5,19 +5,23 @@ using UnityEngine;
 public class PlayerMovement
 {
     
-    Vector2 CalculateDirection(Direction moveableDirection) {
+    public static Vector2 CalculateDirection(Direction moveableDirection) {
 
-        Direction movementDirection = 0;
+        Direction movementDirection = Direction.NONE;
 
         foreach(Direction checkDirectrion in Enum.GetValues(typeof(Direction))) {
+
+            if(checkDirectrion == Direction.NONE) {
+
+                continue;
+            }
 
             KeyTypes checkKey = DirectionInfo.MatchKey(checkDirectrion);
 
             bool isClick = InputManager.Instance.Pressing(checkKey);
 
             if (isClick) {
-
-                moveableDirection |= checkDirectrion;
+                movementDirection |= checkDirectrion;
             }
         }
 
@@ -28,7 +32,7 @@ public class PlayerMovement
 
     }
 
-    Vector2 CalculateFrictionPercent(Direction frictionDirection, Vector2 velocity, float fritionPower, float trashhold) {
+    public static Vector2 CalculateFrictionPercent(Direction frictionDirection, Vector2 velocity, float fritionPower = 0.5f, float trashhold = 0.01f) {
 
         fritionPower = Mathf.Abs(fritionPower);
 
@@ -58,7 +62,7 @@ public class PlayerMovement
 
                 symbol = Convert.ToInt32(Mathf.Sign(checkDirectionVector.y));
 
-                checkVelocitysAxis = velocity.y;
+                checkVelocitysAxis = ref velocity.y;
             }
 
             //* calculate friction

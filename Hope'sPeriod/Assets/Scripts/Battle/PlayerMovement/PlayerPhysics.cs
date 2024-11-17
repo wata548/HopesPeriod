@@ -2,16 +2,22 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
+[Serializable]
 [Flags]
 public enum Direction {
 
+    NONE = 0b0000,
     UP = 0b1000,
     DOWN = 0b0100,
     LEFT = 0b0010,
     RIGHT = 0b0001
 }
 
+//* static class
 class DirectionInfo {
+
+    public const Direction NONE = 0b0000;
+    public const Direction ALL =  (Direction)0b1111;
 
     private static readonly Dictionary<Direction, Direction> OPPOSITE_DIRECTION = new() {
 
@@ -51,7 +57,7 @@ class DirectionInfo {
 
             if(Contain(dir, checkDirection)) {
 
-                result += DIRRECTION_VECTOR[dir];
+                result += DIRRECTION_VECTOR[checkDirection];
             }
 
         }
@@ -86,18 +92,22 @@ class DirectionInfo {
 
 
 
-
+[RequireComponent(typeof(Rigidbody2D))]
 public class PlayerPhysics : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
+    Rigidbody2D playerRigidbody = null;
+
+
+    private void Awake() {
+
+        if (playerRigidbody == null) {
+
+            playerRigidbody = GetComponent<Rigidbody2D>();
+        }
     }
 
-    // Update is called once per frame
     void Update()
     {
-        
+        playerRigidbody.linearVelocity = PlayerMovement.CalculateDirection(DirectionInfo.ALL);
     }
 }
