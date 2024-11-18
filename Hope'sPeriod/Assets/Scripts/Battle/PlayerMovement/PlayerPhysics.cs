@@ -14,6 +14,8 @@ public class PlayerPhysics : MonoBehaviour
     float frictionRatio = 0.5f;
     float frictionPower = 20;
 
+    Vector2 playerVelocity = Vector2.zero;
+
     private void Awake() {
 
         if (playerRigidbody == null) {
@@ -26,24 +28,23 @@ public class PlayerPhysics : MonoBehaviour
 
     void Update()
     {
-        Vector2 velocity    = playerRigidbody.linearVelocity;
-        Vector2 input       = power * PlayerMovement.CalculateDirection(moveableDirection);
+        Vector2 input = power * PlayerMovement.CalculateDirection(moveableDirection);
 
-        
-        if (input == Vector2.zero) {
 
-            if(velocity == Vector2.zero) {
-                return;
-            }
+        bool isMoving = playerVelocity != Vector2.zero;
+
+        if (isMoving && input == Vector2.zero) {
 
             float ratio = frictionPower * frictionRatio * Time.deltaTime;
-            velocity = PlayerMovement.CalculateFrictionPercent(frictionDirection, velocity, ratio);
+            playerVelocity = PlayerMovement.CalculateFrictionPercent(frictionDirection, playerVelocity, ratio);
         }
 
-        else {
-            velocity = input;
+        else if(input != Vector2.zero){
+            playerVelocity = input;
         }
 
-        playerRigidbody.linearVelocity = velocity;
+        var gravity = PlayerGravity.CalculateGravity(Direction.LEFT);
+
+        playerRigidbody.linearVelocity = playerVelocity + gravity;
     }
 }

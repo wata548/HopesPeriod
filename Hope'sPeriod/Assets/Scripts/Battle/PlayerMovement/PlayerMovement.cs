@@ -49,7 +49,7 @@ public class PlayerMovement
             ref float checkVelocitysAxis = ref velocity.x;
 
             //* Check checkDirection's symbol and save axis info
-            if(checkDirection >= Direction.LEFT) {
+            if(DirectionInfo.Contain(DirectionInfo.HORIZONTAL, checkDirection)) {
 
                 //* I can't decide between those. but many people say second is more well. (I can't admit it)
                 //symbol = (checkDirectionVector.x >= 0 ? 1 : -1);

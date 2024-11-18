@@ -3,7 +3,7 @@ using UnityEngine;
 
 class ContactInfo {
 
-    public static Direction contact = DirectionInfo.NONE;
+    private static Direction contact = DirectionInfo.NONE;
 
     public static bool Check(Direction dir) {
 

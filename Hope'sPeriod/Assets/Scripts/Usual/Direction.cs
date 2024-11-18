@@ -16,8 +16,10 @@ public enum Direction {
 //* static class
 class DirectionInfo {
 
-    public const Direction NONE = 0b0000;
-    public const Direction ALL = (Direction)0b1111;
+    public const Direction NONE         = (Direction)0b0000;
+    public const Direction ALL          = (Direction)0b1111;
+    public const Direction VERTICAL     = (Direction)0b0011;
+    public const Direction HORIZONTAL   = (Direction)0b1100;
 
     struct DirectionInfos {
 
@@ -41,9 +43,9 @@ class DirectionInfo {
         {Direction.RIGHT,   new(Direction.RIGHT,    Vector2.right,  KeyTypes.RIGHT)}
     };
 
-    public static bool Contain(Direction target, Direction check) {
+    public static bool Contain(Direction standard, Direction check) {
 
-        return Convert.ToByte(target & check) != 0;
+        return Convert.ToByte(standard & check) != 0;
     }
 
     public static Vector2 ConvertVector(Direction dir) {
