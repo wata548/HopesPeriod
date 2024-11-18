@@ -55,7 +55,7 @@ public class KeyState {
             }
         }
 
-        else if(Input.GetKeyUp(key)) {
+        else if(isHold) {
 
             isHold = false;
             currentHoldTime = 0;

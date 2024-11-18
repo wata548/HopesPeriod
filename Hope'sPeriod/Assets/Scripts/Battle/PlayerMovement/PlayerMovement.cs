@@ -68,13 +68,12 @@ public class PlayerMovement
             //* calculate friction
             if (symbol * checkVelocitysAxis > 0) {
 
-                if (checkVelocitysAxis <= trashhold) {
+                if (Mathf.Abs(checkVelocitysAxis) <= trashhold) {
 
                     checkVelocitysAxis = 0;
                 }
 
                 else {
-
                     checkVelocitysAxis *= fritionPower;
                 }
             }
