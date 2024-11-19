@@ -16,6 +16,13 @@ public class PlayerMovement
                 continue;
             }
 
+            //* If player conttact on wall, Don't need calculate power
+            if(ContactInfo.Check(checkDirectrion)) {
+
+                continue;
+            }
+
+            //* Find key and check input
             KeyTypes checkKey = DirectionInfo.MatchKey(checkDirectrion);
 
             bool isClick = InputManager.Instance.Pressing(checkKey);

@@ -9,6 +9,8 @@ public class PlayerPhysics : MonoBehaviour
 
     Direction moveableDirection = DirectionInfo.ALL;
     Direction frictionDirection = DirectionInfo.ALL;
+    Direction gravityDirection  = DirectionInfo.NONE;
+
 
     float power = 5f;
     float frictionRatio = 0.5f;
@@ -18,12 +20,13 @@ public class PlayerPhysics : MonoBehaviour
 
     private void Awake() {
 
+        SettingCollider.SetCollider(gameObject);
+
         if (playerRigidbody == null) {
 
             playerRigidbody = GetComponent<Rigidbody2D>();
         }
 
-        SettingCollider.SetCollider(gameObject);
     }
 
     void Update()
@@ -43,7 +46,7 @@ public class PlayerPhysics : MonoBehaviour
             playerVelocity = input;
         }
 
-        var gravity = PlayerGravity.CalculateGravity(Direction.LEFT);
+        var gravity = PlayerGravity.CalculateGravity(gravityDirection);
 
         playerRigidbody.linearVelocity = playerVelocity + gravity;
     }

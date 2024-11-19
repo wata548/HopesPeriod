@@ -37,15 +37,27 @@ class DirectionInfo {
 
     private static readonly Dictionary<Direction, DirectionInfos> matchDirectionInfos = new() {
 
-        {Direction.UP,      new(Direction.UP,       Vector2.up,     KeyTypes.UP)},
-        {Direction.DOWN,    new(Direction.DOWN,     Vector2.down,   KeyTypes.DOWN)},
-        {Direction.LEFT,    new(Direction.LEFT,     Vector2.left,   KeyTypes.LEFT)},
-        {Direction.RIGHT,   new(Direction.RIGHT,    Vector2.right,  KeyTypes.RIGHT)}
+        {Direction.UP,      new(Direction.DOWN,     Vector2.up,     KeyTypes.UP)},
+        {Direction.DOWN,    new(Direction.UP,       Vector2.down,   KeyTypes.DOWN)},
+        {Direction.LEFT,    new(Direction.RIGHT,    Vector2.left,   KeyTypes.LEFT)},
+        {Direction.RIGHT,   new(Direction.LEFT,     Vector2.right,  KeyTypes.RIGHT)}
     };
 
     public static bool Contain(Direction standard, Direction check) {
 
         return Convert.ToByte(standard & check) != 0;
+    }
+
+    public static bool ContainOpposite(Direction dir) {
+
+        if(Contain(dir, Direction.LEFT) && Contain(dir, Direction.RIGHT)) {
+            return true;
+        }
+        if (Contain(dir, Direction.UP) && Contain(dir, Direction.DOWN)) {
+            return true;
+        }
+
+        return false;
     }
 
     public static Vector2 ConvertVector(Direction dir) {
