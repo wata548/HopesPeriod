@@ -1,8 +1,18 @@
+using System;
+using UnityEditor;
 using UnityEngine;
+using UnityEngine.Serialization;
 
-[CreateAssetMenu(fileName = "MPHealSkill", menuName = "Scriptable Objects/MPHealSkill")]
-public class MPHealSkill : ScriptableObject, ISkill {
+[Serializable]
+public enum PowerUpType {
 
+     PERCENT,
+     POWER
+};
+
+[CreateAssetMenu(menuName = "Skill/PowerUp")]
+public class PowerUpSkill : ScriptableObject, ISkill {
+     
      [SerializeField] private string koreanName;
      [SerializeField] private string info; 
      public string KoreanName => koreanName;
@@ -15,11 +25,15 @@ public class MPHealSkill : ScriptableObject, ISkill {
      
      [SerializeField] private float power;
      [SerializeField] private int duration; 
+     [SerializeField] private AccelerateType accelerateType; 
      [SerializeField] private float accelerate; 
      public float Power => power;
      public int Duration => duration;
+     public AccelerateType AccelerateType => accelerateType;
      public float Accelerate => accelerate;
-
+     
+     [SerializeField] private PowerUpType powerUpType;
      [SerializeField] private TargetType target;
      public TargetType TargetType => target;
+     public PowerUpType PowerUpType => powerUpType;
 }

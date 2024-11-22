@@ -8,5 +8,6 @@ public enum TargetType {
     LEFT,
     RIGHT,
     SELECT,
+    EVERY_ONE,
     ENEMY
 };

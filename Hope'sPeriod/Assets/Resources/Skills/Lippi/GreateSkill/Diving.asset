@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c79c1711613e2ee40a08c346e0e1a608, type: 3}
+  m_Name: Diving
+  m_EditorClassIdentifier: 
+  koreanName: "\uC7A0\uC218"
+  info: "3\uD134\uAC04 \uC801\uC758 \uBA38\uB9AC\uC5D0 \uAC70\uB300\uD55C \uBB3C\uBC29\uC6B8\uC744
+    \uC50C\uC6B4\uB2E4."
+  requireHP: 0
+  requireMP: 40
+  power: 25
+  duration: 3
+  accelerateType: 1
+  accelerate: 3
