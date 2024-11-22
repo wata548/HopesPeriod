@@ -31,18 +31,20 @@ public class PlayerPhysics : MonoBehaviour
 
     void Update()
     {
+        //* Input vector
         Vector2 input = power * PlayerMovement.CalculateDirection(moveableDirection);
-
 
         bool isMoving = playerVelocity != Vector2.zero;
 
         if (isMoving && input == Vector2.zero) {
 
+            //* Friction process
             float ratio = frictionPower * frictionRatio * Time.deltaTime;
             playerVelocity = PlayerMovement.CalculateFrictionPercent(frictionDirection, playerVelocity, ratio);
         }
 
-        else if(input != Vector2.zero){
+        else if(input != Vector2.zero) {
+
             playerVelocity = input;
         }
 

@@ -23,7 +23,7 @@ class ContactInfo {
 
 public class ContactChecker : MonoBehaviour
 {
-    Direction checkerDirection;
+    private Direction checkerDirection;
 
     public void SetDirection(Direction dir) {
 
@@ -32,11 +32,18 @@ public class ContactChecker : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision) {
 
-        ContactInfo.ContactIn(checkerDirection);
+        if(collision.CompareTag("Field") || collision.CompareTag("Structures")) {
+
+            ContactInfo.ContactIn(checkerDirection);
+        }
+
     }
 
     private void OnTriggerExit2D(Collider2D collision) {
 
-        ContactInfo.ContactOut(checkerDirection);
+        if (collision.CompareTag("Field") || collision.CompareTag("Structures")) {
+         
+            ContactInfo.ContactOut(checkerDirection);
+        }
     }
 }

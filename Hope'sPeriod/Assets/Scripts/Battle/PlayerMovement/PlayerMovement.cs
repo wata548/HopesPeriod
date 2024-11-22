@@ -16,23 +16,23 @@ public class PlayerMovement
                 continue;
             }
 
-            //* If player conttact on wall, Don't need calculate power
+            //* If player contact on wall, Don't need calculate power
             if(ContactInfo.Check(checkDirectrion)) {
 
                 continue;
             }
 
             //* Find key and check input
-            KeyTypes checkKey = DirectionInfo.MatchKey(checkDirectrion);
+            var checkKey = DirectionInfo.MatchKey(checkDirectrion);
 
-            bool isClick = InputManager.Instance.Pressing(checkKey);
+            var isClick = InputManager.Instance.Pressing(checkKey);
 
             if (isClick) {
                 movementDirection |= checkDirectrion;
             }
         }
 
-        Vector2 result = DirectionInfo.ConvertVector(movementDirection);
+        var result = DirectionInfo.ConvertVector(movementDirection);
         result = result.normalized;
 
         return result;
@@ -50,10 +50,10 @@ public class PlayerMovement
                 continue;
             }
 
-            Vector2 checkDirectionVector = DirectionInfo.ConvertVector(checkDirection); 
+            var checkDirectionVector = DirectionInfo.ConvertVector(checkDirection); 
 
             int symbol = 0;
-            ref float checkVelocitysAxis = ref velocity.x;
+            ref float checkVelocityAxis = ref velocity.x;
 
             //* Check checkDirection's symbol and save axis info
             if(DirectionInfo.Contain(DirectionInfo.HORIZONTAL, checkDirection)) {
@@ -62,27 +62,27 @@ public class PlayerMovement
                 //symbol = (checkDirectionVector.x >= 0 ? 1 : -1);
                 symbol = Convert.ToInt32(Mathf.Sign(checkDirectionVector.x));
 
-                checkVelocitysAxis = ref velocity.x;
+                checkVelocityAxis = ref velocity.x;
             }
 
             else {
 
                 symbol = Convert.ToInt32(Mathf.Sign(checkDirectionVector.y));
 
-                checkVelocitysAxis = ref velocity.y;
+                checkVelocityAxis = ref velocity.y;
             }
 
             //* calculate friction
-            if (symbol * checkVelocitysAxis > 0) {
+            if (symbol * checkVelocityAxis <= 0)
+                continue;
 
-                if (Mathf.Abs(checkVelocitysAxis) <= trashhold) {
+            if (Mathf.Abs(checkVelocityAxis) <= trashhold) {
 
-                    checkVelocitysAxis = 0;
-                }
-
-                else {
-                    checkVelocitysAxis *= fritionPower;
-                }
+                checkVelocityAxis = 0;
+            }
+            else {
+                
+                checkVelocityAxis *= fritionPower;
             }
         }
 

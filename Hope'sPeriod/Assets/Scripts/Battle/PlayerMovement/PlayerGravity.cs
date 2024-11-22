@@ -4,9 +4,9 @@ using UnityEngine;
 public class PlayerGravity
 {
 
-    static float gravityPower = 10f;
+    private static float gravityPower = 10f;
 
-    static float gravityScale = 0;
+    private static float gravityScale = 0;
 
     public static void SetPower(float power) {
 
@@ -21,7 +21,7 @@ public class PlayerGravity
         }
 
 
-        Vector2 result = Vector2.zero;
+        var result = Vector2.zero;
         gravityScale += gravityPower * Time.deltaTime;
         
         //* It check player's velocity influenced by gravity
@@ -29,16 +29,14 @@ public class PlayerGravity
 
         foreach(Direction checkDirection in Enum.GetValues(typeof(Direction))) {
 
-            if(!DirectionInfo.Contain(gravityDirection, checkDirection)) {
-
+            if(!DirectionInfo.Contain(gravityDirection, checkDirection)) 
                 continue;
-            }
-            
-            if(!ContactInfo.Check(checkDirection)) {
 
-                result += DirectionInfo.ConvertVector(checkDirection) * gravityScale;
-                check = true;
-            }
+            if (ContactInfo.Check(checkDirection)) 
+                continue;
+
+            result += DirectionInfo.ConvertVector(checkDirection) * gravityScale;
+            check = true;
 
         }
 
