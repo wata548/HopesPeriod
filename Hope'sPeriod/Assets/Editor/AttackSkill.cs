@@ -13,7 +13,7 @@ public class AttackSkill : ScriptableObject, ISkill {
           AssetDatabase.CreateAsset(newInstance, "Assets/Resources/Skills/NewSkill.asset");
           AssetDatabase.Refresh();
      }*/
-     
+    
      [SerializeField] private string koreanName;
      [SerializeField] private string info; 
      public string KoreanName => koreanName;
@@ -33,4 +33,5 @@ public class AttackSkill : ScriptableObject, ISkill {
      public float Accelerate => accelerate;
      public AccelerateType AccelerateType => accelerateType;
 }
+
 

@@ -25,7 +25,7 @@ public class PlayerGravity
         gravityScale += gravityPower * Time.deltaTime;
         
         //* It check player's velocity influenced by gravity
-        bool check = false;
+        var check = false;
 
         foreach(Direction checkDirection in Enum.GetValues(typeof(Direction))) {
 
