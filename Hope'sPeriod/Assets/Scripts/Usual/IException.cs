@@ -16,3 +16,15 @@
             : base(
                 $"Out of range. this range is {startRange} ~ {endRange}, but you try to access {index}. +{moreInfo}") {}
     }
+
+    public class ForgetSetUpInspector : Exception {
+
+        public ForgetSetUpInspector(Type type, string name)
+            : base($"You seem to forget setup {type.Name}: {name}") {}
+
+        public ForgetSetUpInspector(Type type)
+            : base($"You seem to forget setup {type.FullName}") {}
+
+        public ForgetSetUpInspector(string info)
+            : base($"You seem to forget setup {info}") {}
+    }

@@ -13,11 +13,12 @@ public abstract class ControleEachCharacterInfo {
     public float CurrentMp { get; private set; }
     public bool Dead { get; private set; }
 
-public float Attract { get; private set; } = 0;
+    public float Attract { get; private set; } = 0;
+    
     private Queue<float> rememberAttract = new();
     private readonly int rememberCount = 5;
 
-    public float AlphaAttract { get; private set; } = 0; 
+    public float SkillAttract{ get; private set; } = 0; 
     //==================================================| Method 
     public void AddAbstract(float power) {
 
