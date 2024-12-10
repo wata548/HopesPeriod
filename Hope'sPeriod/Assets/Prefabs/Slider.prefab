@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6241937195542193767}
+  - component: {fileID: 2919439181755969951}
   m_Layer: 0
   m_Name: Slider
   m_TagString: Untagged
@@ -34,6 +35,19 @@ Transform:
   - {fileID: 5255408469282083616}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2919439181755969951
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1344607908980494357}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4042f6fa7a84513409028c35ff3aae72, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  handle: {fileID: 4101298013903844832}
 --- !u!1 &4101298013903844832
 GameObject:
   m_ObjectHideFlags: 0
