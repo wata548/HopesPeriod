@@ -12,11 +12,14 @@ public static class UsualVector
 
     public static Vector2 Inclination(Vector2 startPos, Vector2 endPos) { 
         
-        float dx = startPos.x - endPos.x;
-        float dy = startPos.y - endPos.y;
+        float dx = endPos.x - startPos.x;
+        float dy = endPos.y - startPos.y;
        
         Vector2 inclination = new Vector2(dx, dy);
-        return inclination.normalized;
+        inclination = inclination.normalized;
+        Debug.Log(inclination);
+
+        return inclination;
     }
 
     public static Vector2Int ToVector2Int(this Vector3 v) {
@@ -35,4 +38,7 @@ public static class UsualVector
         
         return new Vector3Int(x, y, z);
     }
+
+    public static Vector2 ToVec2(this Vector3 vector) => new(vector.x, vector.y);
+    public static Vector3 ToVec3(this Vector2 vector) => new(vector.x, vector.y, 0);
 }

@@ -3,9 +3,9 @@ using UnityEngine;
 
 public abstract class BaseEnemy: BasicMovement, IDamageAble {
 
-    public float Damage { get; private set; }
+    public abstract float Damage { get; protected set; }
 
     public abstract override void Move();
-    public abstract float ContactPlayer();
+    //public abstract float ContactPlayer();
     
 }
