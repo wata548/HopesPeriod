@@ -4,8 +4,17 @@ using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
 public class Tracer : BaseEnemy {
-    public override float Damage { get; protected set; } = 10;
 
+
+    void Disactive(GameObject target) {
+
+        target.SetActive(false);
+    }
+    
+    public override float Damage { get; protected set; } = 10;
+    public override ContactStrategy Strategy { get; protected set; } = new TriggerType();
+    public override GameObject ProcessTarget { get; protected set; }
+    
     [SerializeField] private GameObject playerSet = null;
     [SerializeField] private float speed = 2;
     
@@ -33,6 +42,7 @@ public class Tracer : BaseEnemy {
 
     }
 
+    private Vector2 before = Vector2.zero;
     public override void Move() {
 
         SetPlayer();
@@ -41,14 +51,16 @@ public class Tracer : BaseEnemy {
         var destination = player.transform.localPosition.ToVec2();
         var velo = LinearMoveVelo(pos, destination, speed);
 
+        velo = Vector2.Lerp(before, velo, Time.deltaTime);
+        before = velo;
         enemy.linearVelocity = velo;
     }
 
     private void Awake() {
 
-        if (enemy == null) {
-            enemy = GetComponent<Rigidbody2D>();
-        }
+        enemy ??= GetComponent<Rigidbody2D>();
+        Strategy.SetProcess(Disactive);
+        ProcessTarget = gameObject;
     }
 
     void Update() {
