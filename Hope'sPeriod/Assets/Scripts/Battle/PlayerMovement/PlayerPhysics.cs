@@ -34,11 +34,12 @@ public class PlayerPhysics : MonoBehaviour
         //* Input vector
         Vector2 input = power * PlayerMovement.CalculateDirection(moveableDirection);
 
-        bool isMoving = playerVelocity != Vector2.zero;
+        bool isMoving = !UsualVector.Approximately(playerVelocity, Vector2.zero);
+        bool isInput = UsualVector.Approximately(input, Vector2.zero);
+        
+        if (isMoving && isInput) {
 
-        if (isMoving && input == Vector2.zero) {
-
-            //* Friction process
+            //* Friction process // <-- why fucking  didn't seperate process?
             float ratio = frictionPower * frictionRatio * Time.deltaTime;
             playerVelocity = PlayerMovement.CalculateFrictionPercent(frictionDirection, playerVelocity, ratio);
         }

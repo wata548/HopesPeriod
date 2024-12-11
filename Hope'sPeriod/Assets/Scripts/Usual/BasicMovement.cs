@@ -1,3 +1,4 @@
+using UnityEditor.SceneManagement;
 using UnityEngine;
 
 
@@ -12,10 +13,14 @@ public abstract class BasicMovement : MonoBehaviour {
     }
 
     public virtual Vector2 LinearMoveVelo(Vector2 startPos, Vector2 endPos, float speed) {
+
+        var dis = (startPos - endPos).Distance();
         
         Vector2 deltaVelocity = UsualVector.Inclination(startPos, endPos);
+        deltaVelocity = deltaVelocity.normalized;
         deltaVelocity *= speed;
-
+        
+        
         return deltaVelocity;
     }
   

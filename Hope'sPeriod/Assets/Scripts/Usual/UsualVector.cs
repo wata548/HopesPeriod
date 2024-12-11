@@ -10,14 +10,25 @@ public static class UsualVector
         return xAxisCheck && yAxisCheck;
     }
 
+    public static float Distance(this Vector2 v) {
+        float disSquare = v.x * v.x + v.y * v.y;
+        float dis = Mathf.Sqrt(disSquare);
+
+        return dis;
+    }
+    public static Vector2 Abs(this Vector2 v) {
+        return new(Mathf.Abs(v.x), Mathf.Abs(v.y));
+    }
+
+    public static Vector3 Abs(this Vector3 v) {
+        return new(Mathf.Abs(v.x), Mathf.Abs(v.y), Mathf.Abs(v.z));
+    }
     public static Vector2 Inclination(Vector2 startPos, Vector2 endPos) { 
         
         float dx = endPos.x - startPos.x;
         float dy = endPos.y - startPos.y;
        
         Vector2 inclination = new Vector2(dx, dy);
-        inclination = inclination.normalized;
-        Debug.Log(inclination);
 
         return inclination;
     }

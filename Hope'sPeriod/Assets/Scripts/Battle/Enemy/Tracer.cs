@@ -4,12 +4,12 @@ using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
 public class Tracer : BaseEnemy {
-
     public override float Damage { get; protected set; } = 10;
 
     [SerializeField] private GameObject playerSet = null;
+    [SerializeField] private float speed = 2;
+    
     private static GameObject player = null;
-
     private Rigidbody2D enemy = null;
     
     
@@ -28,7 +28,7 @@ public class Tracer : BaseEnemy {
 
         if (playerSet.IsUnityNull())
             throw new ForgetSetUpInspector("player object");
-        
+
         player = playerSet;
 
     }
@@ -39,7 +39,7 @@ public class Tracer : BaseEnemy {
 
         var pos = transform.localPosition.ToVec2();
         var destination = player.transform.localPosition.ToVec2();
-        var velo = LinearMoveVelo(pos, destination, 1f);
+        var velo = LinearMoveVelo(pos, destination, speed);
 
         enemy.linearVelocity = velo;
     }
