@@ -10,17 +10,18 @@ public class Tracer : BaseEnemy {
 
         target.SetActive(false);
     }
-    
+
     public override float Damage { get; protected set; } = 10;
-    public override ContactStrategy Strategy { get; protected set; } = new TriggerType();
-    public override GameObject ProcessTarget { get; protected set; }
+    public override IMovementStrategy MovementStrategy { get; protected set; } = new TracingMovement();
+    public override ContactStrategy ContactStrategy { get; protected set; } = new TriggerType();
+
+    public override GameObject Player{ get; protected set; }
     
     [SerializeField] private GameObject playerSet = null;
     [SerializeField] private float speed = 2;
     
     private static GameObject player = null;
     private Rigidbody2D enemy = null;
-    
     
     private void SetPlayer(GameObject player) {
 
@@ -35,9 +36,6 @@ public class Tracer : BaseEnemy {
         if (!player.IsUnityNull())
             return;
 
-        if (playerSet.IsUnityNull())
-            throw new ForgetSetUpInspector("player object");
-
         player = playerSet;
 
     }
@@ -49,18 +47,17 @@ public class Tracer : BaseEnemy {
 
         var pos = transform.localPosition.ToVec2();
         var destination = player.transform.localPosition.ToVec2();
-        var velo = LinearMoveVelo(pos, destination, speed);
+        var velo = MovementStrategy.Velocity(destination, pos, speed);
 
         velo = Vector2.Lerp(before, velo, Time.deltaTime);
         before = velo;
         enemy.linearVelocity = velo;
-    }
-
+    } 
     private void Awake() {
 
         enemy ??= GetComponent<Rigidbody2D>();
-        Strategy.SetProcess(Disactive);
-        ProcessTarget = gameObject;
+        ContactStrategy.SetProcess(Disactive);
+        Player = gameObject;
     }
 
     void Update() {

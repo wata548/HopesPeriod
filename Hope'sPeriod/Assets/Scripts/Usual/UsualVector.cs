@@ -23,7 +23,7 @@ public static class UsualVector
     public static Vector3 Abs(this Vector3 v) {
         return new(Mathf.Abs(v.x), Mathf.Abs(v.y), Mathf.Abs(v.z));
     }
-    public static Vector2 Inclination(Vector2 startPos, Vector2 endPos) { 
+    public static Vector2 Inclination(this Vector2 startPos, Vector2 endPos) { 
         
         float dx = endPos.x - startPos.x;
         float dy = endPos.y - startPos.y;
