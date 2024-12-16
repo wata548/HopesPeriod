@@ -8,6 +8,7 @@ public class Tracer : BaseEnemy {
 
     void Disactive(GameObject target) {
 
+        Debug.Log("fuck");
         target.SetActive(false);
     }
 

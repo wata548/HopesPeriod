@@ -37,13 +37,6 @@ public class ContactChecker : MonoBehaviour
 
             ContactInfo.ContactIn(checkerDirection);
         }
-
-        BaseEnemy enemy = collision.GetComponent<BaseEnemy>();
-        if (enemy != null) {
-
-            Debug.Log(enemy.Damage);
-        }
-
     } 
     private void OnTriggerExit2D(Collider2D collision) {
 

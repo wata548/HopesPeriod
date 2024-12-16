@@ -1,22 +1,28 @@
 using UnityEngine;
 
-public class Invincibility {
+public class Invincibility : MonoBehaviour {
 
    //==================================================| Field 
     public static Invincibility Instance { get; private set; } = null;
-    private float invincibilityTime = 1.2f;
-    private float currentTime = 0;
-    private bool invincibility = false;
-
+    public float CurrentTime { get; private set; } = 0;
+    public float InvincibilityTime { get; private set; }= 1.2f;
+    public bool OnInvincibility { get; private set; } = false; 
+    
     //==================================================| Method
     public void Init(float invincibilityTime = 1.2f) {
-        this.invincibilityTime = invincibilityTime;
-        currentTime = 0;
-        invincibility = false;
+        this.InvincibilityTime = invincibilityTime;
+        CurrentTime = 0;
+        OnInvincibility = false;
     }
-    public void TurnOn() {
-        invincibility = true;
-        currentTime = 0;
+    public bool TurnOn() {
+
+        if (OnInvincibility)
+            return false;
+        
+        OnInvincibility = true;
+        CurrentTime = 0;
+
+        return true;
     } 
     private void SetSingleton() {
 
@@ -27,15 +33,15 @@ public class Invincibility {
     
     private bool UpdateTime() {
 
-        if (!invincibility) {
+        if (!OnInvincibility) {
             return false;
         }
 
-        currentTime += Time.deltaTime;
-        if (currentTime >= invincibilityTime) {
-            invincibility = false;
+        CurrentTime += Time.deltaTime;
+        if (CurrentTime >= InvincibilityTime) {
+            OnInvincibility = false;
         }
-        return invincibility;
+        return OnInvincibility;
     }
 
    //==================================================| UnityLogic 
