@@ -4,10 +4,10 @@ using UnityEngine;
 public static class UsualVector
 {
     public static bool Approximately(Vector2 v1, Vector2 v2) {
-        bool xAxisCheck = Mathf.Approximately(v1.x, v2.x);
-        bool yAxisCheck = Mathf.Approximately(v1.y, v2.y);
+        bool isXApproximately = Mathf.Approximately(v1.x, v2.x);
+        bool isYApproximately = Mathf.Approximately(v1.y, v2.y);
         
-        return xAxisCheck && yAxisCheck;
+        return isXApproximately && isYApproximately;
     }
 
     public static float Distance(this Vector2 v) {

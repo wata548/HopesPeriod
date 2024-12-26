@@ -22,13 +22,13 @@ public class SettingCollider
 
         pos = new Vector2(distance, 0);
         size = new Vector2(CHECK_COLLIDER_RANGE, PLAYER_SIZE - SPARE_LENGTH);
-        GenerateContactChecker(player, pos, size, Direction.RIGHT);
-        GenerateContactChecker(player, -pos, size, Direction.LEFT);
+        GenerateContactChecker(player, pos, size, Direction.Right);
+        GenerateContactChecker(player, -pos, size, Direction.Left);
 
         pos = new Vector2(0, distance);
         size = new Vector2(PLAYER_SIZE - SPARE_LENGTH, CHECK_COLLIDER_RANGE);
-        GenerateContactChecker(player, pos, size, Direction.UP);
-        GenerateContactChecker(player, -pos, size, Direction.DOWN);
+        GenerateContactChecker(player, pos, size, Direction.Up);
+        GenerateContactChecker(player, -pos, size, Direction.Down);
 
     }
 

@@ -7,10 +7,9 @@ public class PlayerPhysics : MonoBehaviour
 {
     Rigidbody2D playerRigidbody = null;
 
-    Direction moveableDirection = DirectionInfo.ALL;
-    Direction frictionDirection = DirectionInfo.ALL;
-    Direction gravityDirection  = DirectionInfo.NONE;
-
+    Direction moveableDirection = DirectionInfo.All;
+    Direction frictionDirection = DirectionInfo.All;
+    Direction gravityDirection  = Direction.None;
 
     float power = 5f;
     float frictionRatio = 0.5f;
@@ -29,17 +28,20 @@ public class PlayerPhysics : MonoBehaviour
 
     }
 
-    void Update()
-    {
+    private MoveComposite a = new CompoDefault();
+    void Update() {
+
+        playerRigidbody.linearVelocity = a.Play(playerRigidbody.linearVelocity, Vector2.zero);
+        /*
         //* Input vector
         Vector2 input = power * PlayerMovement.CalculateDirection(moveableDirection);
 
         bool isMoving = !UsualVector.Approximately(playerVelocity, Vector2.zero);
-        bool isInput = UsualVector.Approximately(input, Vector2.zero);
-        
-        if (isMoving && isInput) {
+        bool isInput = !UsualVector.Approximately(input, Vector2.zero);
 
-            //* Friction process // <-- why fucking  didn't seperate process?
+        if (isMoving && !isInput) {
+
+            //* Friction process
             float ratio = frictionPower * frictionRatio * Time.deltaTime;
             playerVelocity = PlayerMovement.CalculateFrictionPercent(frictionDirection, playerVelocity, ratio);
         }
@@ -52,5 +54,6 @@ public class PlayerPhysics : MonoBehaviour
         var gravity = PlayerGravity.CalculateGravity(gravityDirection);
 
         playerRigidbody.linearVelocity = playerVelocity + gravity;
+        */
     }
 }

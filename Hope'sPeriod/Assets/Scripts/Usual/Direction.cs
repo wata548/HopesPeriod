@@ -6,20 +6,19 @@ using UnityEngine;
 [Flags]
 public enum Direction {
 
-    NONE    = 0b0000,
-    UP      = 0b0001,
-    DOWN    = 0b0010,
-    LEFT    = 0b0100,
-    RIGHT   = 0b1000
+    None    = 0b0000,
+    Up      = 0b0001,
+    Down    = 0b0010,
+    Left    = 0b0100,
+    Right   = 0b1000
 }
 
 //* static class
 class DirectionInfo {
 
-    public const Direction NONE         = (Direction)0b0000;
-    public const Direction ALL          = (Direction)0b1111;
-    public const Direction VERTICAL     = (Direction)0b0011;
-    public const Direction HORIZONTAL   = (Direction)0b1100;
+    public const Direction All          = (Direction)0b1111;
+    public const Direction Vertical     = (Direction)0b0011;
+    public const Direction Horizontal   = (Direction)0b1100;
 
     struct DirectionInfos {
 
@@ -37,10 +36,10 @@ class DirectionInfo {
 
     private static readonly Dictionary<Direction, DirectionInfos> matchDirectionInfos = new() {
 
-        {Direction.UP,      new(Direction.DOWN,     Vector2.up,     KeyTypes.UP)},
-        {Direction.DOWN,    new(Direction.UP,       Vector2.down,   KeyTypes.DOWN)},
-        {Direction.LEFT,    new(Direction.RIGHT,    Vector2.left,   KeyTypes.LEFT)},
-        {Direction.RIGHT,   new(Direction.LEFT,     Vector2.right,  KeyTypes.RIGHT)}
+        {Direction.Up,      new(Direction.Down,     Vector2.up,     KeyTypes.UP)},
+        {Direction.Down,    new(Direction.Up,       Vector2.down,   KeyTypes.DOWN)},
+        {Direction.Left,    new(Direction.Right,    Vector2.left,   KeyTypes.LEFT)},
+        {Direction.Right,   new(Direction.Left,     Vector2.right,  KeyTypes.RIGHT)}
     };
 
     public static bool Contain(Direction standard, Direction check) {
@@ -50,10 +49,10 @@ class DirectionInfo {
 
     public static bool ContainOpposite(Direction dir) {
 
-        if(Contain(dir, Direction.LEFT) && Contain(dir, Direction.RIGHT)) {
+        if(Contain(dir, Direction.Left) && Contain(dir, Direction.Right)) {
             return true;
         }
-        if (Contain(dir, Direction.UP) && Contain(dir, Direction.DOWN)) {
+        if (Contain(dir, Direction.Up) && Contain(dir, Direction.Down)) {
             return true;
         }
 

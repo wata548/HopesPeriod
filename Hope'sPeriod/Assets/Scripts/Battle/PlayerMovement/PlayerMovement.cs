@@ -7,11 +7,11 @@ public class PlayerMovement
     
     public static Vector2 CalculateDirection(Direction moveableDirection) {
 
-        Direction movementDirection = Direction.NONE;
+        Direction movementDirection = Direction.None;
 
         foreach(Direction checkDirectrion in Enum.GetValues(typeof(Direction))) {
 
-            if(checkDirectrion == Direction.NONE) {
+            if(checkDirectrion == Direction.None) {
 
                 continue;
             }
@@ -56,7 +56,7 @@ public class PlayerMovement
             ref float checkVelocityAxis = ref velocity.x;
 
             //* Check checkDirection's symbol and save axis info
-            if(DirectionInfo.Contain(DirectionInfo.HORIZONTAL, checkDirection)) {
+            if(DirectionInfo.Contain(DirectionInfo.Horizontal, checkDirection)) {
 
                 //* I can't decide between those. but many people say second is more well. (I can't admit it)
                 //symbol = (checkDirectionVector.x >= 0 ? 1 : -1);
