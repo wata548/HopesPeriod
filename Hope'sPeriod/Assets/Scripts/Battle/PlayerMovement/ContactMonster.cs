@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-public class ContactMoster : MonoBehaviour {
+public class ContactMonster : MonoBehaviour {
      
      private bool Contact(GameObject contact) {
           
@@ -15,7 +15,7 @@ public class ContactMoster : MonoBehaviour {
                return false;
           }
 
-          Debug.Log("fuck Damage");
+          Debug.Log("Damaged");
           return true;
      } 
      

@@ -1,9 +1,8 @@
 using System;
 using UnityEngine;
 
-public class PlayerGravity
-{
-
+public class PlayerGravity {
+    
     private static float gravityPower = 10f;
 
     private static float gravityScale = 0;
