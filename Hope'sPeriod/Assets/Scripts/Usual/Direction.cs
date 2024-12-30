@@ -14,7 +14,7 @@ public enum Direction {
 }
 
 //* static class
-class DirectionInfo {
+static class DirectionInfo {
 
     public const Direction All          = (Direction)0b1111;
     public const Direction Vertical     = (Direction)0b0011;
@@ -42,30 +42,31 @@ class DirectionInfo {
         {Direction.Right,   new(Direction.Left,     Vector2.right,  KeyTypes.RIGHT)}
     };
 
-    public static bool Contain(Direction standard, Direction check) {
+    public static bool Contain(this Direction standard, Direction check) {
 
         return Convert.ToByte(standard & check) != 0;
     }
 
-    public static bool ContainOpposite(Direction dir) {
+    public static bool ContainOpposite(this Direction dir) {
 
-        if(Contain(dir, Direction.Left) && Contain(dir, Direction.Right)) {
+        if(dir.Contain(Direction.Left & Direction.Right)) {
+            
             return true;
         }
-        if (Contain(dir, Direction.Up) && Contain(dir, Direction.Down)) {
+        if (dir.Contain(Direction.Up & Direction.Down)) {
             return true;
         }
 
         return false;
     }
 
-    public static Vector2 ConvertVector(Direction dir) {
+    public static Vector2 ConvertVector(this Direction dir) {
 
         Vector2 result = Vector2.zero;
 
         foreach (Direction checkDirection in Enum.GetValues(typeof(Direction))) {
 
-            if (Contain(dir, checkDirection)) {
+            if (dir.Contain(checkDirection)) {
 
                 result += matchDirectionInfos[checkDirection].vector;
             }
@@ -75,13 +76,13 @@ class DirectionInfo {
         return result;
     }
 
-    public static Direction OppositeDirection(Direction dir) {
+    public static Direction OppositeDirection(this Direction dir) {
 
         Direction result = 0;
 
         foreach (Direction checkDirection in Enum.GetValues(typeof(Direction))) {
 
-            if (Contain(dir, checkDirection)) {
+            if (dir.Contain(checkDirection)) {
 
                 result |= matchDirectionInfos[dir].opposite;
             }
@@ -90,7 +91,7 @@ class DirectionInfo {
         return result;
     }
 
-    public static KeyTypes MatchKey(Direction dir) {
+    public static KeyTypes MatchKey(this Direction dir) {
 
         if (!matchDirectionInfos.ContainsKey(dir)) {
             throw new Exception("This dirction didn't correspond to any key");

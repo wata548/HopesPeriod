@@ -11,10 +11,7 @@ public static class UsualVector
     }
 
     public static float Distance(this Vector2 v) {
-        float disSquare = v.x * v.x + v.y * v.y;
-        float dis = Mathf.Sqrt(disSquare);
-
-        return dis;
+        return v.magnitude;
     }
     public static Vector2 Abs(this Vector2 v) {
         return new(Mathf.Abs(v.x), Mathf.Abs(v.y));

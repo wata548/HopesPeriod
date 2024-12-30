@@ -7,24 +7,39 @@ using UnityEngine.UIElements;
 using VInspector.Libs;
 using Vector2 = UnityEngine.Vector2;
 
-public abstract class CompositeBase : MoveComposite {
+public class CompositeGroupBase : MoveComposite {
     public override int Priority { get; protected set; } = 100;
     public override Direction Apply { get; set; } = Direction.None;
     public override float Power { get; set; } = 0;
 
+    public override GameObject Owner { get; protected set; }
+    
     private SortedSet<MoveComposite> composites = new();
+    private SettingCollider Collider = null;
 
-    public override Vector2 Play(Vector2 beforeVelo, Vector2 currentVelo) {
+    public CompositeGroupBase(GameObject owner) : base(owner) {}
 
+    public override Vector2 Play(Vector2 currentVelo, Vector2 nextVelo, Direction contactInfo = Direction.None) {
+
+        if (Collider != null)
+            contactInfo = this.Collider.ContactInfo.Contact;
+        
         foreach (var composite in composites) {
 
-            currentVelo = composite.Play(beforeVelo, currentVelo);
+            nextVelo = composite.Play(currentVelo, nextVelo, contactInfo);
         }
 
-        return currentVelo;
+        return nextVelo;
     }
 
-    public void SetPower<T>(float power) where T : MoveComposite {
+    public CompositeGroupBase SetCollider(SettingCollider colliderSetting, GameObject target) {
+
+        Collider = colliderSetting;
+        Collider.SetCollider(target);
+        return this;
+    }
+    
+    public CompositeGroupBase SetPower<T>(float power) where T : MoveComposite {
 
         foreach (var composite in GetType<T>()) {
         
@@ -33,6 +48,8 @@ public abstract class CompositeBase : MoveComposite {
         
         GetType<T>()
             .Select(T => T.Power = power);
+
+        return this;
     }
 
     public List<float> GetPower<T>() where T : MoveComposite {
@@ -42,28 +59,34 @@ public abstract class CompositeBase : MoveComposite {
             .ToList();
     }
 
-    public void SetApply<T>(Direction apply) where T : MoveComposite {
+    public CompositeGroupBase SetApply<T>(Direction apply) where T : MoveComposite {
 
         foreach (var composite in GetType<T>()) {
         
             composite.Apply = apply;
         }
+
+        return this;
     }
 
-    public void AddApply<T>(Direction apply) where T : MoveComposite {
+    public CompositeGroupBase AddApply<T>(Direction apply) where T : MoveComposite {
 
         foreach (var composite in GetType<T>()) {
 
             composite.Apply |= apply;
         }
+
+        return this;
     }
 
-    public void ExtractApply<T>(Direction apply) where T : MoveComposite {
+    public CompositeGroupBase ExtractApply<T>(Direction apply) where T : MoveComposite {
         
         foreach (var composite in GetType<T>()) {
         
             composite.Apply |= ~apply;
         }
+
+        return this;
     }
 
     public List<Direction> GetApply<T>() where T : MoveComposite {
@@ -73,7 +96,7 @@ public abstract class CompositeBase : MoveComposite {
             .ToList();
     }
 
-    private List<T> GetType<T>() where T : MoveComposite {
+    public List<T> GetType<T>() where T : MoveComposite {
 
         List<T> list = composites
             .OfType<T>()
@@ -83,8 +106,10 @@ public abstract class CompositeBase : MoveComposite {
     }
 
 
-    public void AddComposite(MoveComposite composite) {
+    public CompositeGroupBase AddComposite(MoveComposite composite) {
 
+        composite.SetOwner(Owner);
         composites.Add(composite);
+        return this;
     }
 }

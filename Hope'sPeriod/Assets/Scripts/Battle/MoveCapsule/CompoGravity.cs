@@ -6,13 +6,14 @@ public sealed class CompoGravity : MoveComposite {
     public override int Priority { get; protected set; } = 10;
     public override Direction Apply { get; set; } = Direction.Down;
     public override float Power { get; set; } = 10;
+    public override GameObject Owner { get; protected set; }
 
     private float gravityScale = 0;
 
-
-    public override Vector2 Play(Vector2 beforeVelo, Vector2 currentVelo) {
+    public CompoGravity(GameObject owner): base(owner) {}
+    public override Vector2 Play(Vector2 currentVelo, Vector2 nextVelo, Direction contactInfo) {
      
-        if (DirectionInfo.ContainOpposite(Apply)) {
+        if (Apply.ContainOpposite()) {
         
             throw new Exception("This Direction is not correct");
         }
@@ -25,13 +26,13 @@ public sealed class CompoGravity : MoveComposite {
         
         foreach(Direction checkDirection in Enum.GetValues(typeof(Direction))) {
         
-            if(!DirectionInfo.Contain(Apply, checkDirection)) 
+            if(!Apply.Contain(checkDirection)) 
                 continue;
         
-            if (ContactInfo.Check(checkDirection)) 
+            if (contactInfo.Contain(checkDirection)) 
                 continue;
         
-            result += DirectionInfo.ConvertVector(checkDirection) * gravityScale;
+            result += checkDirection.ConvertVector() * gravityScale;
             check = true;
         
         }
@@ -41,7 +42,7 @@ public sealed class CompoGravity : MoveComposite {
             gravityScale = 0;
         }
         
-        return currentVelo + result;
+        return nextVelo + result;
     }
     
 }

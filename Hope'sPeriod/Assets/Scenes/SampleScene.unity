@@ -430,7 +430,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerSet: {fileID: 727463207}
-  speed: 2
+  speed: 6
 --- !u!50 &720071657
 Rigidbody2D:
   serializedVersion: 5
@@ -522,7 +522,7 @@ Transform:
   m_GameObject: {fileID: 720071655}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.5436053, y: 1.684982, z: -1}
+  m_LocalPosition: {x: -0.603, y: 1.713, z: -1}
   m_LocalScale: {x: 0.4, y: 0.4, z: 0.4}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -686,9 +686,9 @@ Transform:
   m_GameObject: {fileID: 727463207}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.748, y: -0.46499982, z: -1}
+  m_LocalPosition: {x: 0, y: 0, z: -1}
   m_LocalScale: {x: 0.7, y: 0.7, z: 0.7}
-  m_ConstrainProportionsScale: 1
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -910,7 +910,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerSet: {fileID: 727463207}
-  speed: 2
+  speed: 6
 --- !u!50 &980281369
 Rigidbody2D:
   serializedVersion: 5
@@ -1087,7 +1087,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerSet: {fileID: 727463207}
-  speed: 2
+  speed: 6
 --- !u!50 &1269335661
 Rigidbody2D:
   serializedVersion: 5
@@ -1490,7 +1490,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerSet: {fileID: 727463207}
-  speed: 2
+  speed: 6
 --- !u!50 &1737931219
 Rigidbody2D:
   serializedVersion: 5
@@ -1582,7 +1582,7 @@ Transform:
   m_GameObject: {fileID: 1737931217}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 7.82, y: 1.684982, z: -1}
+  m_LocalPosition: {x: -0.76, y: -2.03, z: -1}
   m_LocalScale: {x: 0.4, y: 0.4, z: 0.4}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -1950,7 +1950,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerSet: {fileID: 727463207}
-  speed: 2
+  speed: 6
 --- !u!50 &2028014877
 Rigidbody2D:
   serializedVersion: 5

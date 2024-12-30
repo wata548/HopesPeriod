@@ -9,9 +9,10 @@ public class ControleCharacterInfo: MonoBehaviour {
     public static ControleCharacterInfo Instance { get; private set; } = null;
     
     private int characterCount = 0;
-    private const int MAXIMUM_CHARACTER_COUNT = 3;
-    private ControleEachCharacterInfo[] characterInfos = new ControleEachCharacterInfo[3];
-    private const float INVINCIBILITY_TIME = 1.2f;
+    private const int MaximumCharacterCount = 3;
+    private readonly ControleEachCharacterInfo[] characterInfos = new ControleEachCharacterInfo[3];
+    private const float InvincibilityTime = 1.2f;
+    
     #region Singleton 
     void SetSingleton() {
         
@@ -21,21 +22,21 @@ public class ControleCharacterInfo: MonoBehaviour {
     }
     
     #endregion
-    
     //==================================================| Method 
     public bool DamageDistribute(float power) {
 
-        // find who used skill 
+        // find who use attract skill 
         var useAttrackSkillplayer = 
             characterInfos
                 .Take(characterCount)
-                .Max();
+                .OrderByDescending(character => character.Attract)
+                .First();
 
-        // check anyone didn't use skill
+        // check no one used skill
         bool skillUse = !Mathf.Approximately(useAttrackSkillplayer.Attract, 0);
         if (skillUse) {
 
-            // attract skill is always ratio, never show upper 1.
+            // attract skill is always ratio, must (ratio <= 1).
             if (useAttrackSkillplayer.Attract > 1) {
 
                 throw new OutOfRange(0, 1, useAttrackSkillplayer.Attract);
@@ -74,7 +75,7 @@ public class ControleCharacterInfo: MonoBehaviour {
     }
     public bool AddCharacter(ControleEachCharacterInfo character) {
         
-        if (characterCount >= MAXIMUM_CHARACTER_COUNT) {
+        if (characterCount >= MaximumCharacterCount) {
 
             return false;
         }

@@ -2,47 +2,41 @@ using System;
 using Unity.VisualScripting;
 using UnityEngine;
 
-class ContactInfo {
 
-    private static Direction contact = Direction.None;
 
-    public static bool Check(Direction dir) {
-
-        return Convert.ToByte(contact & dir) != 0;
-    }
-
-    public static void ContactIn(Direction dir) {
-
-        contact |= dir;
-    }
-
-    public static void ContactOut(Direction dir) {
-
-        contact ^= dir;
-    }
-}
-
-public class ContactChecker : MonoBehaviour
-{
+public class ContactChecker : MonoBehaviour {
+    private ContactInfo contactInfo = null;
     private Direction checkerDirection;
 
-    public void SetDirection(Direction dir) {
+    public ContactChecker SetDirection(Direction dir) {
 
         checkerDirection = dir;
+        return this;
     }
 
+    public ContactChecker SetContactInfo(ContactInfo contactInfo) {
+        this.contactInfo = contactInfo;
+        return this;
+    }
+    
     private void OnTriggerEnter2D(Collider2D collision) {
 
+        if (contactInfo == null)
+            return;
+        
         if(collision.CompareTag("Field") || collision.CompareTag("Structures")) {
 
-            ContactInfo.ContactIn(checkerDirection);
+            contactInfo.ContactIn(checkerDirection);
         }
     } 
     private void OnTriggerExit2D(Collider2D collision) {
 
+        if (contactInfo == null)
+            return;
+        
         if (collision.CompareTag("Field") || collision.CompareTag("Structures")) {
          
-            ContactInfo.ContactOut(checkerDirection);
+            contactInfo.ContactOut(checkerDirection);
         }
     }
 }

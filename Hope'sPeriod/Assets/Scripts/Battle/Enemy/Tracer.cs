@@ -9,11 +9,11 @@ public class Tracer : BaseEnemy {
     void Disactive(GameObject target) {
 
         Debug.Log("fuck");
-        target.SetActive(false);
+        gameObject.SetActive(false);
     }
 
     public override float Damage { get; protected set; } = 10;
-    public override IMovementStrategy MovementStrategy { get; protected set; } = new TracingMovement();
+    public override CompositeGroupBase MoveComposite { get; protected set; }
     public override ContactStrategy ContactStrategy { get; protected set; } = new TriggerType();
 
     public override GameObject Player{ get; protected set; }
@@ -46,19 +46,21 @@ public class Tracer : BaseEnemy {
 
         SetPlayer();
 
-        var pos = transform.localPosition.ToVec2();
-        var destination = player.transform.localPosition.ToVec2();
-        var velo = MovementStrategy.Velocity(destination, pos, speed);
-
-        velo = Vector2.Lerp(before, velo, Time.deltaTime);
-        before = velo;
+        var velo = MoveComposite.Play(enemy.linearVelocity, Vector2.zero);
         enemy.linearVelocity = velo;
     } 
     private void Awake() {
 
+        MoveComposite = new CompositeGroupBase(gameObject)
+            .AddComposite(new CompoTrace(null));
+        
+        MoveComposite.SetPower<CompoTrace>(speed)
+            .GetType<CompoTrace>()[0]
+            .SetTarget(playerSet);
+        
         enemy ??= GetComponent<Rigidbody2D>();
         ContactStrategy.SetProcess(Disactive);
-        Player = gameObject;
+        Player = playerSet;
     }
 
     void Update() {

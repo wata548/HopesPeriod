@@ -3,45 +3,44 @@ using UnityEngine;
 
 public class SettingCollider
 {
-    const float PLAYER_SIZE          = 0.7f;
-    const float CHECK_COLLIDER_RANGE = 0.05f;
-    const float SPARE_LENGTH         = 0.05f;
+    private const float RealSize            = 0.8f;
+    private const float CheckColliderRange  = 0.05f;
+    private const float SpareLength         = 0.05f;
+    public ContactInfo ContactInfo { get; private set; } = new();
     
-    public static void SetCollider(GameObject player) {
-
+    public void SetCollider(GameObject player) {
 
         //* Generate player's collider
         var playerCollider = player.AddComponent<BoxCollider2D>();
-        playerCollider.size = Vector2.one * PLAYER_SIZE;
+        playerCollider.size = Vector2.one * RealSize;
 
         //* Generate contact checker
         Vector2 pos;
         Vector2 size;
 
-        float distance = PLAYER_SIZE / 2 + CHECK_COLLIDER_RANGE / 2;
+        float distance = RealSize / 2 + CheckColliderRange / 2;
 
         pos = new Vector2(distance, 0);
-        size = new Vector2(CHECK_COLLIDER_RANGE, PLAYER_SIZE - SPARE_LENGTH);
+        size = new Vector2(CheckColliderRange, RealSize - SpareLength);
         GenerateContactChecker(player, pos, size, Direction.Right);
         GenerateContactChecker(player, -pos, size, Direction.Left);
 
         pos = new Vector2(0, distance);
-        size = new Vector2(PLAYER_SIZE - SPARE_LENGTH, CHECK_COLLIDER_RANGE);
+        size = new Vector2(RealSize - SpareLength, CheckColliderRange);
         GenerateContactChecker(player, pos, size, Direction.Up);
         GenerateContactChecker(player, -pos, size, Direction.Down);
 
     }
 
     //* It make gameObject that will check state(associate the wall)
-    private static GameObject GenerateContactChecker(GameObject player, Vector2 pos, Vector2 size, Direction dir) {
+    private GameObject GenerateContactChecker(GameObject player, Vector2 pos, Vector2 size, Direction dir) {
 
         GameObject checker = new();
         checker.name = $"{Enum.GetName(typeof(Direction), dir)}contactChecker";
 
-
         Transform checkerTransform = checker.transform;
         checkerTransform.parent = player.transform;
-        checkerTransform.localPosition = Vector2.zero;
+        checkerTransform.position = Vector2.zero;
         checkerTransform.localScale = Vector2.one;
 
         var checkerCollider = checker.AddComponent<BoxCollider2D>();
@@ -50,8 +49,10 @@ public class SettingCollider
         checkerCollider.size = size;
         checkerCollider.offset = pos;
 
+        
         checker.AddComponent<ContactChecker>()
-            .SetDirection(dir);
+            .SetDirection(dir)
+            .SetContactInfo(this.ContactInfo);
 
         return checker;
     }

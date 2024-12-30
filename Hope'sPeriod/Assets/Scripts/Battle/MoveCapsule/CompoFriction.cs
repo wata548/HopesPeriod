@@ -7,50 +7,52 @@ public sealed class CompoFriction : MoveComposite {
         
     public override int Priority { get; protected set; } = 7;
     public override Direction Apply { get; set; } = DirectionInfo.All;
-    public override float Power { get; set; } = 60f;
-    public float Ratio { get; protected set; } = 0.8f;
+    public override float Power { get; set; } = 20f;
+    public override GameObject Owner { get; protected set; }
 
     public float trashhold = 0.1f;
 
-    public override Vector2 Play(Vector2 beforeVelo, Vector2 currentVelo) {
+    public CompoFriction(GameObject owner) : base(owner) {}
+    
+    public override Vector2 Play(Vector2 currentVelo, Vector2 nextVelo, Direction contactInfo) {
 
         //check state
-        if (!UsualVector.Approximately(currentVelo, Vector2.zero)) {
+        if (!UsualVector.Approximately(nextVelo, Vector2.zero)) {
 
-            return currentVelo;
+            return nextVelo;
         }
             
 
-        if (UsualVector.Approximately(beforeVelo, Vector2.zero))
+        if (UsualVector.Approximately(currentVelo, Vector2.zero))
             return Vector2.zero;
         
         //apply
-        float frictionPower = Power * Ratio * Time.deltaTime;
+        float frictionPower = Power * Time.deltaTime;
         frictionPower = Mathf.Abs(frictionPower);
         
         foreach(Direction checkDirection in Enum.GetValues(typeof(Direction))) {
             
-            if(!DirectionInfo.Contain(Apply, checkDirection)) {
+            if(!Apply.Contain(checkDirection)) {
             
                 continue;
             }
             
-            var checkDirectionVector = DirectionInfo.ConvertVector(checkDirection); 
+            var checkDirectionVector = checkDirection.ConvertVector(); 
             
             int symbol = 0;
-            ref float checkVelocityAxis = ref beforeVelo.x;
+            ref float checkVelocityAxis = ref currentVelo.x;
             
             //* Check checkDirection's symbol and save axis info
-            if(DirectionInfo.Contain(DirectionInfo.Horizontal, checkDirection)) {
+            if(DirectionInfo.Horizontal.Contain(checkDirection)) {
                 symbol = Convert.ToInt32(Mathf.Sign(checkDirectionVector.x));
             
-                checkVelocityAxis = ref beforeVelo.x;
+                checkVelocityAxis = ref currentVelo.x;
             }
             
             else {
                 symbol = Convert.ToInt32(Mathf.Sign(checkDirectionVector.y));
             
-                checkVelocityAxis = ref beforeVelo.y;
+                checkVelocityAxis = ref currentVelo.y;
             }
             
             //* calculate friction
@@ -69,6 +71,6 @@ public sealed class CompoFriction : MoveComposite {
             }
         }
             
-        return beforeVelo;
+        return currentVelo;
     }
 }

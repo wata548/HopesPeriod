@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class ContactMonster : MonoBehaviour {
      
+     //TODO: Invincibilty is not staic
      private bool Contact(GameObject contact) {
           
           var checkDamage = contact.GetComponent<IDamageAble>();
