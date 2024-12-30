@@ -11,17 +11,11 @@ public abstract class BaseEnemy: MonoBehaviour, IDamageAble {
     public abstract void Move();
     protected virtual void OnCollisionEnter2D(Collision2D other) {
         
-        if (other.transform.CompareTag("Player")) {
-            
-            ContactStrategy.ColliderContact(Player);
-        }
+        ContactStrategy.ColliderContact(other.gameObject);
     }
 
     protected virtual void OnTriggerEnter2D(Collider2D other) {
         
-        if (other.transform.CompareTag("Player")) {
-            
-            ContactStrategy.TriggerContact(Player);
-        }
+        ContactStrategy.TriggerContact(other.gameObject);
     }
 }

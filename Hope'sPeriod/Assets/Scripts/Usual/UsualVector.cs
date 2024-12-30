@@ -10,6 +10,18 @@ public static class UsualVector
         return isXApproximately && isYApproximately;
     }
 
+    public static float InnerProduction(this Vector2 v1, Vector2 v2) {
+        return v1.x * v2.x + v1.y * v2.y;
+    }
+
+    public static float GetDegree(this Vector2 v) {
+        return Mathf.Atan2(v.y, v.x) * Mathf.Rad2Deg;
+    }
+
+    public static Vector2 GetVector(this float degree) {
+        
+        return new(Mathf.Cos(degree * Mathf.Deg2Rad), Mathf.Sin(degree * Mathf.Deg2Rad));
+    }
     public static float Distance(this Vector2 v) {
         return v.magnitude;
     }

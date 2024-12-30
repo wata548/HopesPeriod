@@ -8,8 +8,8 @@ public class Tracer : BaseEnemy {
 
     void Disactive(GameObject target) {
 
-        Debug.Log("fuck");
-        gameObject.SetActive(false);
+        if(target.transform.CompareTag("Player"))
+            gameObject.SetActive(false);
     }
 
     public override float Damage { get; protected set; } = 10;
@@ -19,7 +19,7 @@ public class Tracer : BaseEnemy {
     public override GameObject Player{ get; protected set; }
     
     [SerializeField] private GameObject playerSet = null;
-    [SerializeField] private float speed = 2;
+    [SerializeField] private float speed = 6;
     
     private static GameObject player = null;
     private Rigidbody2D enemy = null;
@@ -60,11 +60,17 @@ public class Tracer : BaseEnemy {
         
         enemy ??= GetComponent<Rigidbody2D>();
         ContactStrategy.SetProcess(Disactive);
-        Player = playerSet;
+        Player ??= playerSet;
+
+        enemy.linearVelocity = (Player.transform.position - transform.position).normalized * speed;
     }
 
     void Update() {
         
         Move();
+    }
+
+    private void OnContact() {
+        
     }
 }

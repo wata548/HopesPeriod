@@ -9,8 +9,9 @@ public sealed class CompoTrace : MoveComposite {
 
     public override Direction Apply { get; set; } = Direction.None;
     public override float Power { get; set; } = 2;
-    private float ratio = 0.5f;
-
+    private float limitAngle = 2f;
+    private float ditectRange = 3f;
+    
     private GameObject target = null;
     public override GameObject Owner { get; protected set; }
 
@@ -22,15 +23,29 @@ public sealed class CompoTrace : MoveComposite {
     }
     
     public override Vector2 Play(Vector2 currentVelo, Vector2 nextVelo, Direction contactInfo) {
-        
+
         if(target.IsUnityNull()) 
             return Vector2.zero;
 
-        var direction = target.transform.position - Owner.transform.position;
-        direction = direction.normalized * Power;
-        currentVelo = currentVelo.normalized;
+        var v1 = (target.transform.position - Owner.transform.position).ToVec2();
 
-        nextVelo = Vector2.Lerp(currentVelo, direction, Time.deltaTime * 60 * ratio);
-        return nextVelo;
+        if (v1.magnitude > ditectRange) {
+            return currentVelo;
+        }
+        v1 = v1.normalized;
+        
+        Vector2 v2 = (currentVelo.GetDegree() + limitAngle).GetVector();
+        if (v1.InnerProduction(currentVelo) > v2.InnerProduction(currentVelo)) {
+            return v1 * Power;
+        }
+        else {
+            Vector2 v3 = (currentVelo.GetDegree() - limitAngle).GetVector();
+            if (v2.InnerProduction(v1) > v3.InnerProduction(v1)) {
+                return v2 * Power;
+            }
+            else {
+                return v3 * Power;
+            }
+        }
     }
 }
