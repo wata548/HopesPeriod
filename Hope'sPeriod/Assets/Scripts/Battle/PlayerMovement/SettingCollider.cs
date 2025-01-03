@@ -40,7 +40,7 @@ public class SettingCollider
 
         Transform checkerTransform = checker.transform;
         checkerTransform.parent = player.transform;
-        checkerTransform.position = Vector2.zero;
+        checkerTransform.localPosition = Vector2.zero;
         checkerTransform.localScale = Vector2.one;
 
         var checkerCollider = checker.AddComponent<BoxCollider2D>();

@@ -1,9 +1,12 @@
 using System;
+using System.Numerics;
 using UnityEngine;
+using Vector2 = UnityEngine.Vector2;
+using Vector3 = UnityEngine.Vector3;
 
 public static class UsualVector
 {
-    public static bool Approximately(Vector2 v1, Vector2 v2) {
+    public static bool Approximately(this Vector2 v1, Vector2 v2) {
         bool isXApproximately = Mathf.Approximately(v1.x, v2.x);
         bool isYApproximately = Mathf.Approximately(v1.y, v2.y);
         
@@ -61,4 +64,5 @@ public static class UsualVector
 
     public static Vector2 ToVec2(this Vector3 vector) => new(vector.x, vector.y);
     public static Vector3 ToVec3(this Vector2 vector) => new(vector.x, vector.y, 0);
+    public static Vector3 ToVec3(this Vector2 vector, float zCoor) => new(vector.x, vector.y, zCoor);
 }
