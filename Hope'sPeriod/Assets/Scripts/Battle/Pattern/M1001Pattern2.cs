@@ -7,6 +7,7 @@ using Vector2 = UnityEngine.Vector2;
 using Vector3 = UnityEngine.Vector3;
 
 //Trace bullet zen
+//Time: 0.5 * 15 + 3 = 10.5
 public class M1001Pattern2: EnemyPatternBase{
 
     public override bool End { get; protected set; } = false;
@@ -34,12 +35,13 @@ public class M1001Pattern2: EnemyPatternBase{
             newObject.transform.position = pos;
 
         }
+        yield return new WaitForSeconds(startMove * 2);
 
         End = false;
     }
 
     public override void StartPattern() {
 
-        StartCoroutine(WaitAndSpawn(0.5f, 10));
+        StartCoroutine(WaitAndSpawn(0.5f, 15));
     }
 };

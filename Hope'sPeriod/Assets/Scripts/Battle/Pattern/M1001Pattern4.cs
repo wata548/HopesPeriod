@@ -6,7 +6,7 @@ using Vector2 = UnityEngine.Vector2;
 using Vector3 = UnityEngine.Vector3;
 
 //Controle Player Gravity and Make Horizontal Attack
-//Time: 15
+//Time: 2 * (0.5 * 10 + 2.5) = 15
 public class M1001Pattern4: EnemyPatternBase {
 
     public override bool End { get; protected set; } = false;

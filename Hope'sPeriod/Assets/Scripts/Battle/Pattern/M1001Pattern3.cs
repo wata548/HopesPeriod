@@ -8,6 +8,7 @@ using Vector2 = UnityEngine.Vector2;
 using Vector3 = UnityEngine.Vector3;
 
 //Many needle drop
+//Time: 10(0.6 + 1) + 1 = 17
 public class M1001Pattern3: EnemyPatternBase{
 
     public override bool End { get; protected set; } = false;
@@ -49,6 +50,7 @@ public class M1001Pattern3: EnemyPatternBase{
 
         }
 
+        yield return new WaitForSeconds(1);
         End = false;
     }
 

@@ -12,8 +12,8 @@ public class M1001Object4: BaseEnemy {
     public override ContactStrategy ContactStrategy { get; protected set; } = null;
     public override float Damage { get; protected set; } = 10;
 
-    private float widthLength = 8;
-    private float heightLength = 4;
+    private const float WidthLength = 8;
+    private const float HeightLength = 3;
     private void Disactive(GameObject target) {
         if (target.transform.CompareTag("Player")) {
             Destroy(gameObject);
@@ -25,7 +25,7 @@ public class M1001Object4: BaseEnemy {
 
     public void SetPos(bool direction) {
 
-        var position = new Vector3((direction ? -1 : 1) * widthLength, Random.Range(-heightLength, heightLength), -1);
+        var position = new Vector3((direction ? -1 : 1) * WidthLength, Random.Range(-HeightLength, HeightLength), -1);
         transform.position = position;
 
         position.x *= -1;
@@ -49,10 +49,10 @@ public class M1001Object4: BaseEnemy {
 
     private void FixedUpdate() {
 
-        //var pos = transform.position;
-        //if (pos.x is <= -5.5f or >= 5.5f) {
-          //  Destroy(gameObject);
-        //}
+        var pos = transform.position;
+        if (pos.x is <= -10f or >= 10f) {
+            Destroy(gameObject);
+        }
     }
 
     public override void Move() {
