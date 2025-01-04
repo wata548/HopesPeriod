@@ -1,5 +1,7 @@
 using System;
+using System.Numerics;
 using UnityEngine;
+using Vector2 = UnityEngine.Vector2;
 
 public class SettingCollider
 {
@@ -9,29 +11,37 @@ public class SettingCollider
     public ContactInfo ContactInfo { get; private set; } = new();
 
     public SettingCollider(GameObject player) {
-        SetCollider(player);
+        SetCollider(player, Vector2.one, Vector2. zero);
     }
-    public void SetCollider(GameObject player) {
+
+    public SettingCollider(GameObject player, Vector2 defaultSize, Vector2 offset) {
+        SetCollider(player, defaultSize, offset);
+    }
+
+    public void SetCollider(GameObject player, Vector2 defaultSize, Vector2 offset) {
 
         //* Generate player's collider
         var playerCollider = player.AddComponent<BoxCollider2D>();
-        playerCollider.size = Vector2.one * RealSize;
+        playerCollider.size = RealSize * defaultSize;
+        playerCollider.offset = offset;
 
         //* Generate contact checker
         Vector2 pos;
         Vector2 size;
 
-        float distance = RealSize / 2 + CheckColliderRange / 2;
+        Vector2 distance = (RealSize / 2 * defaultSize);
+        distance.x += CheckColliderRange / 2;
+        distance.y += CheckColliderRange / 2;
 
-        pos = new Vector2(distance, 0);
-        size = new Vector2(CheckColliderRange, RealSize - SpareLength);
-        GenerateContactChecker(player, pos, size, Direction.Right);
-        GenerateContactChecker(player, -pos, size, Direction.Left);
+        pos = new Vector2(distance.x, 0);
+        size = new Vector2(CheckColliderRange, RealSize - SpareLength) * defaultSize;
+        GenerateContactChecker(player, pos + offset, size, Direction.Right);
+        GenerateContactChecker(player, -pos + offset, size, Direction.Left);
 
-        pos = new Vector2(0, distance);
-        size = new Vector2(RealSize - SpareLength, CheckColliderRange);
-        GenerateContactChecker(player, pos, size, Direction.Up);
-        GenerateContactChecker(player, -pos, size, Direction.Down);
+        pos = new Vector2(0, distance.y);
+        size = new Vector2(RealSize - SpareLength, CheckColliderRange) * defaultSize;
+        GenerateContactChecker(player, pos + offset, size, Direction.Up);
+        GenerateContactChecker(player, -pos + offset, size, Direction.Down);
 
     }
 
@@ -51,7 +61,6 @@ public class SettingCollider
 
         checkerCollider.size = size;
         checkerCollider.offset = pos;
-
         
         checker.AddComponent<ContactChecker>()
             .SetDirection(dir)

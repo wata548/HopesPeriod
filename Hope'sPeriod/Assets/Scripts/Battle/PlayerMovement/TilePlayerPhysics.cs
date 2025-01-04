@@ -1,7 +1,9 @@
 using System;
 using System.Collections.Generic;
+using System.Numerics;
 using Unity.VisualScripting;
 using UnityEngine;
+using Vector2 = UnityEngine.Vector2;
 
 [RequireComponent(typeof(Rigidbody2D))]
 public class TilePlayerPhysics : MonoBehaviour
@@ -23,13 +25,13 @@ public class TilePlayerPhysics : MonoBehaviour
 
         animation ??= GetComponent<PlayerAnimation>();
         movement = new CompositeGroupBase(gameObject)
+            .SetCollider(new SettingCollider(gameObject, new Vector2(1, 0.5f), new Vector2(0,-0.7f)))
             .AddComposite(new CompoInput(null))
             .AddComposite(new CompoFriction(null))
             .SetApply<CompoInput>(moveableDirection)
             .SetPower<CompoInput>(power)
             .SetApply<CompoFriction>(frictionDirection)
             .SetPower<CompoFriction>(frictionPower * frictionRatio);
-        movement.SetCollider(new SettingCollider(gameObject));
         
         if (playerRigidbody == null) {
 
