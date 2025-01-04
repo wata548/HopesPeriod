@@ -1,5 +1,6 @@
 using System;
 using System.Numerics;
+using Unity.VisualScripting;
 using UnityEngine;
 using Vector2 = UnityEngine.Vector2;
 using Vector3 = UnityEngine.Vector3;
@@ -65,4 +66,6 @@ public static class UsualVector
     public static Vector2 ToVec2(this Vector3 vector) => new(vector.x, vector.y);
     public static Vector3 ToVec3(this Vector2 vector) => new(vector.x, vector.y, 0);
     public static Vector3 ToVec3(this Vector2 vector, float zCoor) => new(vector.x, vector.y, zCoor);
+
+    public static Vector2 Add(this Vector2 vector, float a) => new Vector2(vector.x + a, vector.y + a);
 }

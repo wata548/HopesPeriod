@@ -6,9 +6,9 @@ using Random = UnityEngine.Random;
 using Vector2 = UnityEngine.Vector2;
 using Vector3 = UnityEngine.Vector3;
 
-public class M1001Pattern3: MonoBehaviour {
+public class M1001Pattern3: EnemyPatternBase{
 
-    public bool End { get; private set; } = false;
+    public override bool End { get; protected set; } = false;
     [SerializeField] private GameObject prefab;
     [SerializeField] private SpriteRenderer[] warning = new SpriteRenderer[3];
     private const float startMove = 1.5f;
@@ -48,14 +48,9 @@ public class M1001Pattern3: MonoBehaviour {
         End = false;
     }
 
-    public void StartPattern() {
+    public override void StartPattern() {
 
         StartCoroutine(WaitAndSpawn(0.5f, 100));
-    }
-
-    //test
-    private void Start() {
-        StartPattern();
     }
 
 };

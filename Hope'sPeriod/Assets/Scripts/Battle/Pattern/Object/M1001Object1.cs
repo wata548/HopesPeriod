@@ -2,11 +2,11 @@ using System;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
-public class M1001Pattern1: BaseEnemy {
+public class M1001Object1: BaseEnemy {
 
     void Collision(GameObject other) {
 
-        if (other.TryGetComponent<M1001Pattern1>(out M1001Pattern1 pattern)) {
+        if (other.TryGetComponent<M1001Object1>(out M1001Object1 pattern)) {
 
             Damage = activeDamage;
             

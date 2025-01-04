@@ -6,9 +6,9 @@ using Random = UnityEngine.Random;
 using Vector2 = UnityEngine.Vector2;
 using Vector3 = UnityEngine.Vector3;
 
-public class M1001Pattern2: MonoBehaviour {
+public class M1001Pattern2: EnemyPatternBase{
 
-    public bool End { get; private set; } = false;
+    public override bool End { get; protected set; } = false;
     [SerializeField] private GameObject prefab;
     private readonly Vector2 fieldRange = new Vector2(8.5f, 4.5f);
     private readonly Vector2 safeZoneRange = new Vector2(5.5f, 3f);
@@ -37,14 +37,8 @@ public class M1001Pattern2: MonoBehaviour {
         End = false;
     }
 
-    public void StartPattern() {
+    public override void StartPattern() {
 
         StartCoroutine(WaitAndSpawn(0.5f, 10));
     }
-
-    //test
-    private void Start() {
-        StartPattern();
-    }
-
 };
