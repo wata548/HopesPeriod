@@ -6,6 +6,7 @@ using Random = UnityEngine.Random;
 using Vector2 = UnityEngine.Vector2;
 using Vector3 = UnityEngine.Vector3;
 
+//Trace bullet zen
 public class M1001Pattern2: EnemyPatternBase{
 
     public override bool End { get; protected set; } = false;

@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using DG.Tweening;
 using UnityEngine;
@@ -6,6 +5,8 @@ using Random = UnityEngine.Random;
 using Vector2 = UnityEngine.Vector2;
 using Vector3 = UnityEngine.Vector3;
 
+//Controle Player Gravity and Make Horizontal Attack
+//Time: 15
 public class M1001Pattern4: EnemyPatternBase {
 
     public override bool End { get; protected set; } = false;
@@ -19,7 +20,7 @@ public class M1001Pattern4: EnemyPatternBase {
             .SetApply<CompoGravity>( direction ? Direction.Right : Direction.Left)
             .SetApply<CompoInput>(DirectionInfo.Vertical);
         
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < count / 2; i++) {
 
             yield return new WaitForSeconds(time);
             var newObject = Instantiate(prefab);
@@ -31,10 +32,10 @@ public class M1001Pattern4: EnemyPatternBase {
 
         direction = !direction;
         BaseEnemy.Player.GetComponent<PlayerPhysics>().Movement
-            .SetApply<CompoGravity>( direction ? Direction.Right : Direction.Left)
-            .SetApply<CompoInput>(DirectionInfo.Vertical);
-        
-        for (int i = 0; i < 10; i++) {
+            .SetApply<CompoGravity>(direction ? Direction.Right : Direction.Left);
+
+        yield return new WaitForSeconds(time * 5);
+        for (int i = 0; i < count / 2; i++) {
 
             yield return new WaitForSeconds(time);
             var newObject = Instantiate(prefab);
@@ -47,12 +48,13 @@ public class M1001Pattern4: EnemyPatternBase {
         BaseEnemy.Player.GetComponent<PlayerPhysics>().Movement
             .SetApply<CompoGravity>(Direction.None)
             .SetApply<CompoInput>(DirectionInfo.All);
+        yield return new WaitForSeconds(time * 5);
 
         End = false;
     }
 
     public override void StartPattern() {
         
-        StartCoroutine(WaitAndSpawn(0.5f, 100));
+        StartCoroutine(WaitAndSpawn(0.5f, 20));
     }
 };

@@ -5,10 +5,10 @@ using JetBrains.Annotations;
 using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
 
-public class MonsterBase: MonoBehaviour {
+public class Monster: MonoBehaviour {
 
     [SerializeField] private List<EnemyPatternBase> patterns = new();
-    public static MonsterBase Instance { get; private set; } = null;
+    public static Monster Instance { get; private set; } = null;
     
     [SerializeField] int maxHP;
     public int MaxHP {
@@ -21,7 +21,7 @@ public class MonsterBase: MonoBehaviour {
     private int index = 0;
     public bool IsPattern { get; private set; } = false;
     
-    private bool StartPattern() {
+    public bool StartPattern() {
 
         if (IsPattern)
             return false;
