@@ -17,11 +17,11 @@ public class PlayerPhysics : MonoBehaviour
 
     Vector2 playerVelocity = Vector2.zero;
 
-    private CompositeGroupBase movement;
+    public CompositeGroupBase Movement;
     private void Awake() {
 
-        movement = new CompoDefaultGroup(gameObject);
-        movement.SetCollider(new SettingCollider(), gameObject)
+        Movement = new CompoDefaultGroup(gameObject);
+        Movement.SetCollider(new SettingCollider(gameObject))
             .SetApply<CompoInput>(moveableDirection)
             .SetPower<CompoInput>(power)
             .SetApply<CompoFriction>(frictionDirection)
@@ -37,6 +37,6 @@ public class PlayerPhysics : MonoBehaviour
 
     void Update() {
 
-        playerRigidbody.linearVelocity = movement.Play(playerRigidbody.linearVelocity, Vector2.zero);
+        playerRigidbody.linearVelocity = Movement.Play(playerRigidbody.linearVelocity, Vector2.zero);
     }
 }

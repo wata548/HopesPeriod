@@ -7,7 +7,8 @@ using UnityEngine;
 public class TilePlayerPhysics : MonoBehaviour
 {
     Rigidbody2D playerRigidbody = null;
-
+    private PlayerAnimation animation = null;
+    
     Direction moveableDirection = DirectionInfo.All;
     Direction frictionDirection = DirectionInfo.All;
 
@@ -20,6 +21,7 @@ public class TilePlayerPhysics : MonoBehaviour
     private CompositeGroupBase movement;
     private void Awake() {
 
+        animation ??= GetComponent<PlayerAnimation>();
         movement = new CompositeGroupBase(gameObject)
             .AddComposite(new CompoInput(null))
             .AddComposite(new CompoFriction(null))
@@ -27,6 +29,7 @@ public class TilePlayerPhysics : MonoBehaviour
             .SetPower<CompoInput>(power)
             .SetApply<CompoFriction>(frictionDirection)
             .SetPower<CompoFriction>(frictionPower * frictionRatio);
+        movement.SetCollider(new SettingCollider(gameObject));
         
         if (playerRigidbody == null) {
 
@@ -37,6 +40,8 @@ public class TilePlayerPhysics : MonoBehaviour
 
     void Update() {
 
-        playerRigidbody.linearVelocity = movement.Play(playerRigidbody.linearVelocity, Vector2.zero);
+        var velocity = movement.Play(playerRigidbody.linearVelocity, Vector2.zero);
+        playerRigidbody.linearVelocity = velocity;
+        animation.SetAnimation(velocity);
     }
 }

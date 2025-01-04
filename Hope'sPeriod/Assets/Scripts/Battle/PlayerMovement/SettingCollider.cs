@@ -7,7 +7,10 @@ public class SettingCollider
     private const float CheckColliderRange  = 0.05f;
     private const float SpareLength         = 0.05f;
     public ContactInfo ContactInfo { get; private set; } = new();
-    
+
+    public SettingCollider(GameObject player) {
+        SetCollider(player);
+    }
     public void SetCollider(GameObject player) {
 
         //* Generate player's collider
@@ -33,7 +36,7 @@ public class SettingCollider
     }
 
     //* It make gameObject that will check state(associate the wall)
-    private GameObject GenerateContactChecker(GameObject player, Vector2 pos, Vector2 size, Direction dir) {
+   private GameObject GenerateContactChecker(GameObject player, Vector2 pos, Vector2 size, Direction dir) {
 
         GameObject checker = new();
         checker.name = $"{Enum.GetName(typeof(Direction), dir)}contactChecker";

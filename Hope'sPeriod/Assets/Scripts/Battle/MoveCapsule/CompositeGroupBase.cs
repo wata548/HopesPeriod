@@ -17,6 +17,15 @@ public class CompositeGroupBase : MoveComposite {
     private SortedSet<MoveComposite> composites = new();
     private SettingCollider Collider = null;
 
+    public Direction GetCollisionDir() {
+
+        if (Collider == null) {
+            return Direction.None;
+        }
+
+        return Collider.ContactInfo.Contact;
+    }
+    
     public CompositeGroupBase(GameObject owner) : base(owner) {}
 
     public override Vector2 Play(Vector2 currentVelo, Vector2 nextVelo, Direction contactInfo = Direction.None) {
@@ -32,10 +41,9 @@ public class CompositeGroupBase : MoveComposite {
         return nextVelo;
     }
 
-    public CompositeGroupBase SetCollider(SettingCollider colliderSetting, GameObject target) {
+    public CompositeGroupBase SetCollider(SettingCollider colliderSetting) {
 
         Collider = colliderSetting;
-        Collider.SetCollider(target);
         return this;
     }
     
