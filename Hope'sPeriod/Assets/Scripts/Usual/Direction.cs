@@ -36,10 +36,10 @@ static class DirectionInfo {
 
     private static readonly Dictionary<Direction, DirectionInfos> matchDirectionInfos = new() {
 
-        {Direction.Up,      new(Direction.Down,     Vector2.up,     KeyTypes.UP)},
-        {Direction.Down,    new(Direction.Up,       Vector2.down,   KeyTypes.DOWN)},
-        {Direction.Left,    new(Direction.Right,    Vector2.left,   KeyTypes.LEFT)},
-        {Direction.Right,   new(Direction.Left,     Vector2.right,  KeyTypes.RIGHT)}
+        {Direction.Up,      new(Direction.Down,     Vector2.up,     KeyTypes.Up)},
+        {Direction.Down,    new(Direction.Up,       Vector2.down,   KeyTypes.Down)},
+        {Direction.Left,    new(Direction.Right,    Vector2.left,   KeyTypes.Left)},
+        {Direction.Right,   new(Direction.Left,     Vector2.right,  KeyTypes.Right)}
     };
 
     public static bool Contain(this Direction standard, Direction check) {

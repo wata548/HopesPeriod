@@ -53,7 +53,8 @@ public enum GameState {
             }
 
             if (State == GameState.PlayerAttack) {
-                State = GameState.BeforeSkill;
+                BaseEnemy.Player.GetComponent<PlayerPhysics>().Movement.SetApply<CompoInput>(Direction.None);
+                //State = GameState.BeforeSkill;
             }
             
         }

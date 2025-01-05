@@ -2,6 +2,7 @@ using System;
 using Unity.VisualScripting;
 using UnityEngine;
 
+//It is sample model
 [RequireComponent(typeof(Rigidbody2D))]
 public class Tracer : BaseEnemy {
 

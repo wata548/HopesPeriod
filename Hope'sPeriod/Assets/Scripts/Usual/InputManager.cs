@@ -12,13 +12,13 @@ using System.Reflection;
 
 public enum KeyTypes { 
 
-    UP,
-    DOWN,
-    LEFT,
-    RIGHT,
-    JUMP,
-    SELECT,
-    INTERACTION
+    Up,
+    Down,
+    Left,
+    Right,
+    Jump,
+    Select,
+    Interaction
 }
 
 public class KeyState {
