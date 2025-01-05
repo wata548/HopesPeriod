@@ -31,11 +31,11 @@ public enum GameState {
                 State++;
             }
 
-            if (State == GameState.BeforeSkill) {
+            else if (State == GameState.BeforeSkill) {
                 State++;
             }
 
-            if (State == GameState.Skill) {
+            else if (State == GameState.Skill) {
 
                 if (!isPattern) {
                     
@@ -48,12 +48,13 @@ public enum GameState {
                 }
             }
 
-            if (State == GameState.AfterSkill) {
+            else if (State == GameState.AfterSkill) {
                 State++;
             }
 
-            if (State == GameState.PlayerAttack) {
-                BaseEnemy.Player.GetComponent<PlayerPhysics>().Movement.SetApply<CompoInput>(Direction.None);
+            else if (State == GameState.PlayerAttack) {
+                Player.Instance.Movement
+                    .SetApply<CompoInput>(Direction.None);
                 //State = GameState.BeforeSkill;
             }
             

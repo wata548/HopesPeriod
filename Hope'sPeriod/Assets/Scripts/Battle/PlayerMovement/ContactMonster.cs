@@ -12,10 +12,13 @@ public class ContactMonster : MonoBehaviour {
           }
          
           var damage = checkDamage.Damage;
+          if (damage <= 0)
+               return false;
           if (!Invincibility.Instance.TurnOn()) {
                return false;
           }
 
+          ControleCharacterInfo.Instance.DamageDistribute(damage);
           Debug.Log("Damaged");
           return true;
      } 

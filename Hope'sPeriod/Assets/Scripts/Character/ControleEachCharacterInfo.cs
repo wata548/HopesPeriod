@@ -2,12 +2,21 @@ using System;
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using NUnit.Framework.Constraints;
+using TMPro;
 
-public abstract class ControleEachCharacterInfo {
+public class ControleEachCharacterInfo: MonoBehaviour {
 
+
+    [SerializeField] private Slider hp;
+    [SerializeField] private Slider mp;
+    [SerializeField] private TMP_Text hpChange;
+    [SerializeField] private TMP_Text mpChange;
+    
     //==================================================| Properties and Fields 
-    public float MaximumHp { get; private set; }
-    public float CurrentHp { get; private set; }
+
+    public float MaximumHp { get; private set; } = 100;
+    public float CurrentHp { get; private set; } = 100;
 
     public float MaximumMp { get; private set; }
     public float CurrentMp { get; private set; }
@@ -39,6 +48,9 @@ public abstract class ControleEachCharacterInfo {
         }
 
         CurrentMp -= power;
+        mp.UpdateInfo(CurrentMp / MaximumMp);
+        mpChange.text = power.ToString();
+        mpChange.DOBlink(0.2f, 0.2f, 0.2f, 0.7f);
         return true;
     }
     
@@ -48,12 +60,16 @@ public abstract class ControleEachCharacterInfo {
 
         CurrentHp -= damage;
         
+        ShowDamage(damage);
         if (CurrentHp >= 0) {
-            
+
+            hp.UpdateInfo(CurrentHp / MaximumHp);
             return true;
         }
+
+        hp.UpdateInfo(0);
         
-        damage = 0;
+        CurrentHp = 0;
         Dead = true;
         return false;
     }
@@ -63,7 +79,16 @@ public abstract class ControleEachCharacterInfo {
             return false;
         }
 
+        ShowDamage(damage);
+        hp.UpdateInfo(CurrentHp / MaximumHp);
         CurrentHp -= damage;
         return true;
+    }
+
+    private void ShowDamage(float damage) {
+
+        Debug.Log($"get damage: {damage}");
+        hpChange.text = damage.ToString();
+        hpChange.DOBlink(0.2f, 0.2f, 0.2f, 0.7f);
     }
 }

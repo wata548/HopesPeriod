@@ -8,25 +8,29 @@ public class ControleCharacterInfo: MonoBehaviour {
     //==================================================| Field 
     public static ControleCharacterInfo Instance { get; private set; } = null;
     
-    private int characterCount = 0;
+    private int characterCount = 3;
     private const int MaximumCharacterCount = 3;
-    private readonly ControleEachCharacterInfo[] characterInfos = new ControleEachCharacterInfo[3];
+    [SerializeField] private ControleEachCharacterInfo[] characterInfos = new ControleEachCharacterInfo[3];
     private const float InvincibilityTime = 1.2f;
     
+    //==================================================| Method 
     #region Singleton 
     void SetSingleton() {
         
         if (Instance == null) {
             Instance = this;
         }
+        else if (Instance != this)
+            Destroy(this);
     }
     
     #endregion
-    //==================================================| Method 
     public bool DamageDistribute(float power) {
 
+        ShakeCamera.Instance.Shake(0.1f, 0.1f);
+        
         // find who use attract skill 
-        var useAttrackSkillplayer = 
+        var useAttrackSkillplayer =
             characterInfos
                 .Take(characterCount)
                 .OrderByDescending(character => character.Attract)
@@ -61,38 +65,21 @@ public class ControleCharacterInfo: MonoBehaviour {
             .ToArray();
         
         // sum attract
-        float sumAttract = checkCharacters.Sum(factor => factor.Attract);
+        float sumHP = checkCharacters.Sum(factor => factor.MaximumHp);
         
         foreach (var checkCharacter in checkCharacters) {
 
-            float eachPower = checkCharacter.Attract / sumAttract * power;
+            float eachPower = checkCharacter.MaximumHp / sumHP * power;
             eachPower = Mathf.Ceil(eachPower);
             checkCharacter.GetDamage(eachPower);
         }
         
+        return IsGameover();
+    }
+    public bool IsGameover() {
+
         bool gameover = characterInfos.Any(character => character.Dead == false);
         return gameover;
-    }
-    public bool AddCharacter(ControleEachCharacterInfo character) {
-        
-        if (characterCount >= MaximumCharacterCount) {
-
-            return false;
-        }
-
-        characterInfos[characterCount++] = character;
-        return true;
-    }
-
-    public bool ChangePosition(int index1, int index2) {
-            
-        if (Mathf.Max(index1, index2) >= characterCount) {
-            
-            return false;
-        }
-
-        (characterInfos[index1], characterInfos[index2]) = (characterInfos[index2], characterInfos[index1]);
-        return true;
     }
     
     //=================================================| UnityLogic 

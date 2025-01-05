@@ -9,20 +9,17 @@ public class Slider : MonoBehaviour{
    
     [SerializeField] private GameObject handle = null;
 
-    private float? handleScale = null;
+    private float handleScale = 1;
     private const float DURACTION = 0.5f;
     private Tween current = null;
     
     private float beforeRatio = 1f;
     private void CheckScale() {
 
-        if (handleScale != null)
-            return;
-        
         if (handle.IsUnityNull())
             throw new ForgetSetUpInspector("slider's handle Prefab");
 
-        handleScale ??= handle.transform.localScale.x;
+        handleScale = handle.transform.localScale.x;
     }
     
     public ChangeSliderState UpdateInfo(float ratio) {
@@ -46,7 +43,7 @@ public class Slider : MonoBehaviour{
             current.Kill();
         }
         
-        current = handle.transform.DOScaleX((handleScale ?? 1f) * ratio, DURACTION);
+        current = handle.transform.DOScaleX(handleScale * ratio, DURACTION);
 
         beforeRatio = ratio;
         return changeState;

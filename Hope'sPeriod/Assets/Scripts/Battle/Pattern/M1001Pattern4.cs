@@ -16,7 +16,7 @@ public class M1001Pattern4: EnemyPatternBase {
         End = true;
         
         bool direction = (Random.Range(0, 1 + 1) == 1);
-        BaseEnemy.Player.GetComponent<PlayerPhysics>().Movement
+        Player.Instance.Movement
             .SetApply<CompoGravity>( direction ? Direction.Right : Direction.Left)
             .SetApply<CompoInput>(DirectionInfo.Vertical);
         
@@ -31,7 +31,7 @@ public class M1001Pattern4: EnemyPatternBase {
         }
 
         direction = !direction;
-        BaseEnemy.Player.GetComponent<PlayerPhysics>().Movement
+        Player.Instance.Movement
             .SetApply<CompoGravity>(direction ? Direction.Right : Direction.Left);
 
         yield return new WaitForSeconds(time * 5);
@@ -45,7 +45,7 @@ public class M1001Pattern4: EnemyPatternBase {
 
         }
 
-        BaseEnemy.Player.GetComponent<PlayerPhysics>().Movement
+        Player.Instance.Movement
             .SetApply<CompoGravity>(Direction.None)
             .SetApply<CompoInput>(DirectionInfo.All);
         yield return new WaitForSeconds(time * 5);
