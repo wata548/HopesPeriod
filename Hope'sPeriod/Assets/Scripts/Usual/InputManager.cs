@@ -65,7 +65,16 @@ public class KeyState {
 
     public bool Click() => isClick;
     public bool Pressing() => isHold;
-    public bool Hold() => (currentHoldTime >= REQUIRED_HOLD_TIME);
+
+    public bool Hold() {
+        
+        bool check = (currentHoldTime >= REQUIRED_HOLD_TIME);
+        if (check) {
+            currentHoldTime = 0;
+        }
+
+        return check;
+    }
     public bool Up() => isUp;
     
 

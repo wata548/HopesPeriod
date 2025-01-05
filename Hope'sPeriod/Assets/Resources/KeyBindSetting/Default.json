@@ -1,29 +1,29 @@
 {
-  "UP": {
+  "Up": {
     "key": "W",
     "REQUIRED_HOLD_TIME": 0.5
   },
-  "DOWN": {
+  "Down": {
     "key": "S",
     "REQUIRED_HOLD_TIME": 0.5
   },
-  "LEFT": {
+  "Left": {
     "key": "A",
     "REQUIRED_HOLD_TIME": 0.5
   },
-  "RIGHT": {
+  "Right": {
     "key": "D",
     "REQUIRED_HOLD_TIME": 0.5
   },
-  "JUMP": {
+  "Jump": {
     "key": "Space",
     "REQUIRED_HOLD_TIME": 0.5
   },
-  "SELECT": {
+  "Select": {
     "key": "Return",
     "REQUIRED_HOLD_TIME": 0.5
   },
-  "INTERACTION": {
+  "Interaction": {
     "key": "Return",
     "REQUIRED_HOLD_TIME": 0.5
   }

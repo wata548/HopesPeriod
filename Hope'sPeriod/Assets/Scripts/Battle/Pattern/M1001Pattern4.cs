@@ -55,6 +55,7 @@ public class M1001Pattern4: EnemyPatternBase {
 
     public override void StartPattern() {
         
+        MapSizeManager.Instance.Default();
         StartCoroutine(WaitAndSpawn(0.5f, 20));
     }
 };

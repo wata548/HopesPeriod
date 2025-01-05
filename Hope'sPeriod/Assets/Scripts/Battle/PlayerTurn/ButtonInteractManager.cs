@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 using UnityEngine.Rendering;
+using System.Collections.Generic;
 
 public enum ButtonType{
     
@@ -9,14 +10,31 @@ public enum ButtonType{
     Shield = 2
 }
 
+
+public enum PlayerTurnState {
+    
+    SelectBehavior,
+    Attack,
+    Item,
+    Shield
+}
+
 public class ButtonInteractManager: MonoBehaviour {
 
-    [SerializeField] private ButtonInteract[] buttons = new ButtonInteract[3];
     public static ButtonInteractManager Instance { get; private set; } = null;
+    [SerializeField] private ButtonInteract[] buttons = new ButtonInteract[3];
+
+    private Dictionary<ButtonType, PlayerTurnState> matchButtonAndState = new() {
+        { ButtonType.Attack , PlayerTurnState.Attack},
+        { ButtonType.Item   , PlayerTurnState.Item},
+        { ButtonType.Shield , PlayerTurnState.Shield}
+    };
+    
+    private PlayerTurnState state = PlayerTurnState.SelectBehavior;
     private ButtonType selectType = ButtonType.Attack;
     private bool isActive = true;
     
-    public void Select(ButtonInteract target, ButtonType type) {
+    public void SelectButton(ButtonInteract target, ButtonType type) {
         foreach (var button in buttons) {
             button.EndAnimation();
         }
@@ -24,46 +42,64 @@ public class ButtonInteractManager: MonoBehaviour {
         selectType = type;
         target.StartAnimation();
     }
-    
-    private void Update() {
 
+    private void SelectBehavior() {
+
+        if (state != PlayerTurnState.SelectBehavior)
+            return;
+        
+        if(InputManager.Instance.Click(KeyTypes.Right) || InputManager.Instance.Hold(KeyTypes.Right)) {
+            if (selectType == ButtonType.Shield) {
+                SelectButton(buttons[(int)ButtonType.Attack], ButtonType.Attack);
+            }
+            else {
+                        
+                SelectButton(buttons[(int)selectType + 1], (ButtonType)((int)selectType + 1));
+            }
+        }
+        
+        if (InputManager.Instance.Click(KeyTypes.Left) || InputManager.Instance.Hold(KeyTypes.Left)) {
+            if (selectType == ButtonType.Attack) {
+                SelectButton(buttons[(int)ButtonType.Shield], ButtonType.Shield);
+            }
+            else {
+                                    
+                SelectButton(buttons[(int)selectType - 1], (ButtonType)((int)selectType - 1));
+            }
+        }
+    }
+
+    private void ButtonShowControle() {
+        
         if (GameFSM.Instance.State != GameState.PlayerAttack) {
             if (isActive) {
                 isActive = false;
-                
+                        
                 foreach (var button in buttons) {
                     button.gameObject.SetActive(false);
                 }
             }
             return;
         }
-
+        
         if (!isActive) {
-            
+                    
             isActive = true;
             foreach (var button in buttons) {
                 button.gameObject.SetActive(true);
             }
         }
-        
-        if(InputManager.Instance.Click(KeyTypes.Right)) {
-            if (selectType == ButtonType.Shield) {
-                Select(buttons[(int)ButtonType.Attack], ButtonType.Attack);
-            }
-            else {
-                
-                Select(buttons[(int)selectType + 1], (ButtonType)((int)selectType + 1));
-            }
-        }
+    }
+    
+    
+    private void Update() {
 
-        if (InputManager.Instance.Click(KeyTypes.Left)) {
-            if (selectType == ButtonType.Attack) {
-                Select(buttons[(int)ButtonType.Shield], ButtonType.Shield);
-            }
-            else {
-                            
-                Select(buttons[(int)selectType - 1], (ButtonType)((int)selectType - 1));
-            }
+        ButtonShowControle(); 
+        SelectBehavior();
+
+        if (InputManager.Instance.Click(KeyTypes.Select)) {
+
+            state = matchButtonAndState[selectType];
         }
     }
 

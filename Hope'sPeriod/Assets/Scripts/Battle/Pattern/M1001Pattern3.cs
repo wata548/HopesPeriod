@@ -56,6 +56,7 @@ public class M1001Pattern3: EnemyPatternBase{
 
     public override void StartPattern() {
 
+        MapSizeManager.Instance.Default();
         StartCoroutine(WaitAndSpawn(1, 10));
     }
 

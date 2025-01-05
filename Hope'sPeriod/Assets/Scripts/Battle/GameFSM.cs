@@ -1,4 +1,5 @@
 using System;
+using DG.Tweening;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -25,6 +26,7 @@ public enum GameState {
 
         public GameState State { get; private set; } = GameState.BattleStart;
         public bool isPattern = false;
+        public bool isPlayerTurnStart = false;
         private void Update() {
 
             if (State == GameState.BattleStart) {
@@ -53,8 +55,17 @@ public enum GameState {
             }
 
             else if (State == GameState.PlayerAttack) {
-                Player.Instance.Movement
-                    .SetApply<CompoInput>(Direction.None);
+
+                if (!isPlayerTurnStart) {
+                    isPlayerTurnStart = true;
+
+                    Player.Instance.Object.transform.DOLocalMove(new(0, 0, -1), 0.5f);
+                    MapSizeManager.Instance.Move(new(0, 0.35f, -0.7f));
+                    MapSizeManager.Instance.Resize(new(11, 6));
+                    
+                    Player.Instance.Movement
+                        .SetApply<CompoInput>(Direction.None);
+                }
                 //State = GameState.BeforeSkill;
             }
             

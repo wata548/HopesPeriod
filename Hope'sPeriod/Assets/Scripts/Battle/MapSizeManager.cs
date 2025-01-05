@@ -3,6 +3,7 @@ using System.Numerics;
 using DG.Tweening;
 using UnityEngine;
 using Vector2 = UnityEngine.Vector2;
+using Vector3 = UnityEngine.Vector3;
 
 public class MapSizeManager : MonoBehaviour {
 
@@ -11,7 +12,7 @@ public class MapSizeManager : MonoBehaviour {
     [SerializeField] private GameObject outline;
     private Vector2 defaultMapSize;
     private const float OutlineInterval = 0.2f;
-    private const float Duraction = 0.5f;
+    private const float Duration = 0.5f;
     
     private void Awake() {
 
@@ -22,15 +23,30 @@ public class MapSizeManager : MonoBehaviour {
             Destroy(this);
     }
 
+    public void Move(Vector3 pos) {
+
+        map.transform.DOLocalMove(pos, Duration).SetEase(Ease.InOutCubic);
+        outline.transform.DOLocalMove(pos, Duration).SetEase(Ease.InOutCubic);
+    }
+
+    public void Move() {
+        Move(Vector3.zero);
+    }
+    
     public void Resize(Vector2 size) {
 
-        map.transform.DOScale(size, Duraction);
-        outline.transform.DOScale(size.Add(OutlineInterval), Duraction);
+        map.transform.DOScale(size, Duration).SetEase(Ease.InOutCubic);
+        outline.transform.DOScale(size.Add(OutlineInterval), Duration).SetEase(Ease.InOutCubic);
     }
 
     public void Resize() {
         
-        map.transform.DOScale(defaultMapSize, Duraction);
-        outline.transform.DOScale(defaultMapSize.Add(OutlineInterval), Duraction);
+        map.transform.DOScale(defaultMapSize, Duration).SetEase(Ease.InOutCubic);
+        outline.transform.DOScale(defaultMapSize.Add(OutlineInterval), Duration).SetEase(Ease.InOutCubic);
+    }
+
+    public void Default() {
+        Resize();
+        Move();
     }
 }
