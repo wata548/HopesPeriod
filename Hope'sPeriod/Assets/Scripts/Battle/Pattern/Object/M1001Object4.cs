@@ -1,7 +1,6 @@
 using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Numerics;
-using System.Security.Cryptography;
 using UnityEngine;
 using Random = UnityEngine.Random;
 using Vector2 = UnityEngine.Vector2;
@@ -10,7 +9,7 @@ using Vector3 = UnityEngine.Vector3;
 public class M1001Object4: BaseEnemy {
     public override CompositeGroupBase MoveComposite { get; protected set; } = null;
     public override ContactStrategy ContactStrategy { get; protected set; } = null;
-    public override float Damage { get; protected set; } = 10;
+    public override float Damage { get; protected set; } = 5 * 3;
 
     private const float WidthLength = 8;
     private const float HeightLength = 3;

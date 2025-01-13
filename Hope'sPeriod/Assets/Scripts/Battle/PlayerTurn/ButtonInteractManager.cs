@@ -24,7 +24,7 @@ public class ButtonInteractManager: MonoBehaviour {
     public static ButtonInteractManager Instance { get; private set; } = null;
     [SerializeField] private ButtonInteract[] buttons = new ButtonInteract[3];
 
-    private Dictionary<ButtonType, PlayerTurnState> matchButtonAndState = new() {
+    private readonly Dictionary<ButtonType, PlayerTurnState> matchButtonAndState = new() {
         { ButtonType.Attack , PlayerTurnState.Attack},
         { ButtonType.Item   , PlayerTurnState.Item},
         { ButtonType.Shield , PlayerTurnState.Shield}
@@ -100,6 +100,10 @@ public class ButtonInteractManager: MonoBehaviour {
         if (InputManager.Instance.Click(KeyTypes.Select)) {
 
             state = matchButtonAndState[selectType];
+
+            //TODO: It just will submit code, it will be erased
+            state = PlayerTurnState.SelectBehavior;
+            GameFSM.Instance.SkipState();
         }
     }
 

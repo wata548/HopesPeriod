@@ -1,10 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Numerics;
 using UnityEngine;
-using UnityEngine.UIElements;
-using VInspector.Libs;
 using Vector2 = UnityEngine.Vector2;
 
 public class CompositeGroupBase : MoveComposite {

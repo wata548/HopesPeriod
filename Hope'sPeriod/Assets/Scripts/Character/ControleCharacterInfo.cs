@@ -27,7 +27,7 @@ public class ControleCharacterInfo: MonoBehaviour {
     #endregion
     public bool DamageDistribute(float power) {
 
-        ShakeCamera.Instance.Shake(0.1f, 0.1f);
+        ShakeCamera.Instance.Shake(0.2f, 0.1f);
         
         // find who use attract skill 
         var useAttrackSkillplayer =

@@ -25,16 +25,16 @@ public enum GameState {
         }
 
         public GameState State { get; private set; } = GameState.BattleStart;
-        public bool isPattern = false;
-        public bool isPlayerTurnStart = false;
+        private bool isPattern = false;
+        private bool isPlayerTurnStart = false;
         private void Update() {
 
             if (State == GameState.BattleStart) {
-                State++;
+                SkipState();
             }
 
             else if (State == GameState.BeforeSkill) {
-                State++;
+                SkipState();
             }
 
             else if (State == GameState.Skill) {
@@ -51,7 +51,7 @@ public enum GameState {
             }
 
             else if (State == GameState.AfterSkill) {
-                State++;
+                SkipState();
             }
 
             else if (State == GameState.PlayerAttack) {
@@ -61,13 +61,25 @@ public enum GameState {
 
                     Player.Instance.Object.transform.DOLocalMove(new(0, 0, -1), 0.5f);
                     MapSizeManager.Instance.Move(new(0, 0.35f, -0.7f));
-                    MapSizeManager.Instance.Resize(new(11, 6));
+                    MapSizeManager.Instance.Resize(new(13, 6));
                     
                     Player.Instance.Movement
                         .SetApply<CompoInput>(Direction.None);
                 }
-                //State = GameState.BeforeSkill;
             }
             
+        }
+
+        public void SkipState() {
+            if (State == GameState.PlayerAttack) {
+
+                isPlayerTurnStart = false;
+                Player.Instance.Movement
+                        .SetApply<CompoInput>(DirectionInfo.All);
+                State = GameState.BeforeSkill;
+            }
+            else {
+                State++;
+            }
         }
     }

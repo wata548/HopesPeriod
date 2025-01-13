@@ -1,3 +1,4 @@
+using DG.Tweening;
 using UnityEngine;
 
 public class Invincibility : MonoBehaviour {
@@ -18,6 +19,9 @@ public class Invincibility : MonoBehaviour {
 
         if (OnInvincibility)
             return false;
+
+        Player.Instance.Renderer.DOBlink(0.2f, 0.2f, 0.2f, 0.3f, 1f)
+            .OnComplete(() => Player.Instance.Renderer.DOBlink(0.2f, 0.2f, 0.2f, 0.3f, 1));
         
         OnInvincibility = true;
         CurrentTime = 0;

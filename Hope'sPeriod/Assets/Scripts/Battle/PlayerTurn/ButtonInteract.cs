@@ -13,7 +13,7 @@ public class ButtonInteract: MonoBehaviour, IPointerEnterHandler, IPointerExitHa
     private TMP_Text text;
     private const float InteractSize = 1.2f;
     private const float Duraction = 0.2f;
-    private readonly Color interactColor = Color.gray;
+    private readonly Color interactColor = Color.yellow;
     private Color defaultColor;
     private Vector3 defaultSize;
     private Tween animation = null;

@@ -5,7 +5,7 @@ using UnityEngine;
 public class M1001Object2: BaseEnemy {
     public override CompositeGroupBase MoveComposite { get; protected set; }
     public override ContactStrategy ContactStrategy { get; protected set; }
-    public override float Damage { get; protected set; } = 10;
+    public override float Damage { get; protected set; } = 10 * 3f;
 
     private void Disactive(GameObject target) {
         if (target.transform.CompareTag("Player")) {
@@ -13,7 +13,7 @@ public class M1001Object2: BaseEnemy {
         }
     }
     
-    private float speed = 10f;
+    private float speed = 10;
     private Rigidbody2D rigidbody2D = null;
     
     private void Start() {
