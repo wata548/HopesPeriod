@@ -44,9 +44,16 @@ public class M1001Pattern4: EnemyPatternBase {
 
         StartWarning(direction);
         yield return new WaitForSeconds(1f);
+
+        float defaultGravityPower = Player.Instance.Movement
+            .GetPower<CompoGravity>();
+        
         Player.Instance.Movement
             .SetApply<CompoGravity>( direction ? Direction.Right : Direction.Left)
+            .SetPower<CompoGravity>(115)
             .SetApply<CompoInput>(DirectionInfo.Vertical);
+
+        ShakeCamera.Instance.Shake(0.9f,0.35f).DOBeforeWait(0.43f);
         
         for (int i = 0; i < count / 2; i++) {
 
@@ -65,6 +72,7 @@ public class M1001Pattern4: EnemyPatternBase {
         
         Player.Instance.Movement
             .SetApply<CompoGravity>(direction ? Direction.Right : Direction.Left);
+        ShakeCamera.Instance.Shake(0.9f,0.35f).DOBeforeWait(0.45f);
         
         for (int i = 0; i < count / 2; i++) {
 
@@ -78,6 +86,7 @@ public class M1001Pattern4: EnemyPatternBase {
 
         Player.Instance.Movement
             .SetApply<CompoGravity>(Direction.None)
+            .SetPower<CompoGravity>(defaultGravityPower)
             .SetApply<CompoInput>(DirectionInfo.All);
         yield return new WaitForSeconds(time * 5);
 

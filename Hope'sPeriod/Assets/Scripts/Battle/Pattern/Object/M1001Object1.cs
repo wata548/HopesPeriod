@@ -28,7 +28,7 @@ public class M1001Object1: BaseEnemy {
 
         MoveComposite = new CompositeGroupBase(gameObject);
         MoveComposite.AddComposite(new CompoLinearPos(null));
-        MoveComposite.GetType<CompoLinearPos>()[0].SetTarget(new Vector2(0, 0));
+        MoveComposite.GetType<CompoLinearPos>().SetTarget(new Vector2(0, 0));
 
         rigidbody2D = GetComponent<Rigidbody2D>();
         rigidbody2D.bodyType = RigidbodyType2D.Static;

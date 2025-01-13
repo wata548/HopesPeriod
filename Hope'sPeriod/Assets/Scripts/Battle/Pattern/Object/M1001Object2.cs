@@ -24,7 +24,7 @@ public class M1001Object2: BaseEnemy {
             .SetPower<CompoLinear>(speed);
 
         rigidbody2D ??= GetComponent<Rigidbody2D>();
-        MoveComposite.GetType<CompoLinear>()[0].SetTarget(Player.transform.position);
+        MoveComposite.GetType<CompoLinear>().SetTarget(Player.transform.position);
     }
 
     private void FixedUpdate() {

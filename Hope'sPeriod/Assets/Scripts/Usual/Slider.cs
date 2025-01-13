@@ -1,3 +1,4 @@
+using System;
 using System.IO;
 using DG.Tweening;
 using Unity.VisualScripting;
@@ -21,11 +22,13 @@ public class Slider : MonoBehaviour{
 
         handleScale = handle.transform.localScale.x;
     }
-    
-    public ChangeSliderState UpdateInfo(float ratio) {
-        
+
+    public void Awake() {
         //Check set up
         CheckScale();
+    }
+
+    public ChangeSliderState UpdateInfo(float ratio) {
         
         ChangeSliderState changeState;
         

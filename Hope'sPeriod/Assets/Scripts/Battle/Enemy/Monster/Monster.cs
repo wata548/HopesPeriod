@@ -28,6 +28,7 @@ public class Monster: MonoBehaviour {
 
         IsPattern = true;
         index = Random.Range(0, patterns.Count);
+        Debug.Log(index);
         patterns[index].StartPattern();
 
         return true;

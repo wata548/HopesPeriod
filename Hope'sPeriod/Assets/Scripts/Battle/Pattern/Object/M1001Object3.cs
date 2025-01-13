@@ -25,7 +25,7 @@ public class M1001Object3: BaseEnemy {
         rigidbody2D ??= GetComponent<Rigidbody2D>();
         var position = transform.position;
         position.y = -10;
-        MoveComposite.GetType<CompoLinear>()[0].SetTarget(position);
+        MoveComposite.GetType<CompoLinear>().SetTarget(position);
     }
 
     private void FixedUpdate() {

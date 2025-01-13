@@ -28,7 +28,7 @@ public class M1001Object4: BaseEnemy {
         transform.position = position;
 
         position.x *= -1;
-        MoveComposite.GetType<CompoLinear>()[0]
+        MoveComposite.GetType<CompoLinear>()
             .SetTarget(position);
 
     }
