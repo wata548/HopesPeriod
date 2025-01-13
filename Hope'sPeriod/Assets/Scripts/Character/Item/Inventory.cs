@@ -5,21 +5,25 @@ using UnityEngine;
 
 public static class Inventory{
      
-     public static SortedDictionary<ItemFormat, int> Items{ get; private set; } = new();
+     public static SortedDictionary<int, int> Items{ get; private set; } = new();
 
-     public static void AddItem(ItemFormat item, int count) {
+     public static void AddItem(int item, int count) {
 
           if (!Items.TryAdd(item, count))
                Items[item] += count;
      }
 
-     public static void UseItem(ItemFormat item) {
+     public static bool UseItem(int code) {
 
-          if (!Items.ContainsKey(item))
-               throw new NullReferenceException($"This item is yet added, try add \"{item.Code}\"Item and retry");
+          if (!Items.ContainsKey(code))
+               throw new NullReferenceException($"This item is yet added, try add \"{code}\"Item and retry");
 
-          if (Items[item] > 0) {
-               Items[item]--;
+          if (Items[code] <= 0) {
+               return false;
           }
+
+          Items[code]--;
+          ItemInfo.UseItem(code);
+          return true;
      }
 }

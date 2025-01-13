@@ -14,6 +14,10 @@ public enum GameState {
 
     public class GameFSM: MonoBehaviour {
 
+        private readonly Vector3 selectPlayerPos = new(0, 0, -1);
+        private readonly Vector3 selectMapPos = new(0, 0.35f, -0.7f);
+        private readonly Vector2 selectMapScale = new(13, 6);
+        
         public static GameFSM Instance { get; private set; } = null;
 
         private void Awake() {
@@ -59,9 +63,9 @@ public enum GameState {
                 if (!isPlayerTurnStart) {
                     isPlayerTurnStart = true;
 
-                    Player.Instance.Object.transform.DOLocalMove(new(0, 0, -1), 0.5f);
-                    MapSizeManager.Instance.Move(new(0, 0.35f, -0.7f));
-                    MapSizeManager.Instance.Resize(new(13, 6));
+                    Player.Instance.Object.transform.DOLocalMove(selectPlayerPos, 0.5f);
+                    MapSizeManager.Instance.Move(selectMapPos);
+                    MapSizeManager.Instance.Resize(selectMapScale);
                     
                     Player.Instance.Movement
                         .SetApply<CompoInput>(Direction.None);
