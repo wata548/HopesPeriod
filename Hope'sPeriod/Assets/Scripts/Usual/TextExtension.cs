@@ -132,7 +132,7 @@ public static class TextExtension {
     public static string AddColor(this string context, Color color) {
         
         Debug.Log(color.ToString());
-        return AddColor($"#{ToHex(color.r)}{ToHex(color.g)}{ToHex(color.b)}{ToHex(color.a)}", context);
+        return context.AddColor($"#{ToHex(color.r)}{ToHex(color.g)}{ToHex(color.b)}{ToHex(color.a)}");
         
         string ToHex(float factor) {
         

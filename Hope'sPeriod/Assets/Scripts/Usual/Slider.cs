@@ -10,12 +10,10 @@ using UnityEngine.Serialization;
 public class Slider : MonoBehaviour{
    
     [SerializeField] private GameObject handle = null;
-    [SerializeField] private TMP_Text shower = null;
-    
+
     private float handleScale = 1;
     private const float DURACTION = 0.5f;
     private Tween current = null;
-    
     private float beforeRatio = 1f;
     private void CheckScale() {
 
@@ -30,6 +28,7 @@ public class Slider : MonoBehaviour{
         CheckScale();
     }
 
+    
     public ChangeSliderState UpdateInfo(float ratio) {
         
         ChangeSliderState changeState;
