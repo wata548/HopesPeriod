@@ -17,7 +17,7 @@ public enum Effect {
 public static class TextExtension {
 
 
-    private static Dictionary<Effect, Func<float, Vector3>> match = new() {
+    private static readonly Dictionary<Effect, Func<float, Vector3>> match = new() {
             { Effect.Flow, index => new Vector3(0, Mathf.Sin(index * 3f + Time.time) / 4f)},
             { Effect.Shake, index => new Vector3(Random.Range(-0.3f, 0.3f), Random.Range(-0.5f, 0.5f), 0) / 5f },
     };
@@ -28,7 +28,7 @@ public static class TextExtension {
         StartCoroutine(Typing(text,s, interval));
     }*/
         
-    public static IEnumerator Typing(TMP_Text text, string context, float interval) {
+    public static IEnumerator Typing(this TMP_Text text, string context, float interval) {
         
         bool tag = false;
         
@@ -124,12 +124,12 @@ public static class TextExtension {
     /// </summary>
     /// <param name="color"></param>
     /// <returns></returns>
-    public static string AddColor(string color, string context) {
+    public static string AddColor(this string context, string color) {
             
         return $"<color={color}>{context}</color>";
     }
     
-    public static string AddColor(Color color, string context) {
+    public static string AddColor(this string context, Color color) {
         
         Debug.Log(color.ToString());
         return AddColor($"#{ToHex(color.r)}{ToHex(color.g)}{ToHex(color.b)}{ToHex(color.a)}", context);
@@ -141,11 +141,11 @@ public static class TextExtension {
         }
     }
         
-    public static string AddEffect(Effect effect, string context) {
+    public static string AddEffect(this string context, Effect effect) {
         
         return $"<size=0%>[{effect}:</size>{context}<size=0%>]</size>";
     }
-    public static string AddEffect(string effect, string context) {
+    public static string AddEffect(this string context, string effect) {
             
         return AddEffect(effect.ToString(), context);
     }
