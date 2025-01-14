@@ -73,10 +73,10 @@ public class ControleEachCharacterInfo: MonoBehaviour {
             return true;
         }
 
+        CurrentHp = 0;
         ShowDamage(damage);
         Debug.Log("character dead");
         
-        CurrentHp = 0;
         Dead = true;
         return false;
     }
