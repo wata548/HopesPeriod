@@ -44,6 +44,13 @@ public static class ItemInfo {
     public static float HealsMp(int code) {
         return GetData(code).HealsMP;
     }
+    public static bool Revive(int code) {
+        return GetData(code).Revive;
+    }
+
+    public static bool ReviveAll(int code) {
+        return GetData(code).ReviveAll;
+    }
     #endregion
 
     public static bool NeedSelect(int code) {
@@ -54,7 +61,19 @@ public static class ItemInfo {
         return hp || mp;
     }
     
-    public static void UseItem(int code) {
+    public static void UseItem(int code, ControleCharacterInfo characters, ControleEachCharacterInfo user = null) {
         SetTable();
+
+        ItemDBData item = GetData(code);
+        
+        foreach (var characterInfo in characters.CharacterInfos) {
+            characterInfo.HealHp(item.HealsHP, item.ReviveAll);
+            characterInfo.HealMp(item.HealMP);
+        }
+        
+        if(user is not null) {
+            user.HealHp(item.HealHP, item.Revive);
+            user.HealMp(item.HealMP);
+        }
     }
 }

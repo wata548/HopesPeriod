@@ -30,6 +30,12 @@ namespace SpreadInfo {
         private int m_HealsHP;
         
         [UnityEngine.SerializeField()]
+        private bool m_Revive;
+        
+        [UnityEngine.SerializeField()]
+        private bool m_ReviveAll;
+        
+        [UnityEngine.SerializeField()]
         private int m_HealMP;
         
         [UnityEngine.SerializeField()]
@@ -62,6 +68,18 @@ namespace SpreadInfo {
         public int HealsHP {
             get {
                 return this.m_HealsHP;
+            }
+        }
+        
+        public bool Revive {
+            get {
+                return this.m_Revive;
+            }
+        }
+        
+        public bool ReviveAll {
+            get {
+                return this.m_ReviveAll;
             }
         }
         

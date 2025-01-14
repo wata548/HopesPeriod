@@ -11,6 +11,7 @@ public class ControleCharacterInfo: MonoBehaviour {
     private int characterCount = 3;
     private const int MaximumCharacterCount = 3;
     [SerializeField] private ControleEachCharacterInfo[] characterInfos = new ControleEachCharacterInfo[3];
+    public ControleEachCharacterInfo[] CharacterInfos => characterInfos;
     private const float InvincibilityTime = 1.2f;
     
     //==================================================| Method 

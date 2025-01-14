@@ -1,6 +1,7 @@
 using System;
 using System.IO;
 using DG.Tweening;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
@@ -9,7 +10,8 @@ using UnityEngine.Serialization;
 public class Slider : MonoBehaviour{
    
     [SerializeField] private GameObject handle = null;
-
+    [SerializeField] private TMP_Text shower = null;
+    
     private float handleScale = 1;
     private const float DURACTION = 0.5f;
     private Tween current = null;

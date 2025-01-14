@@ -48,30 +48,58 @@ public class ControleEachCharacterInfo: MonoBehaviour {
         }
 
         CurrentMp -= power;
-        mp.UpdateInfo(CurrentMp / MaximumMp);
-        mpChange.text = power.ToString();
-        mpChange.DOBlink(0.2f, 0.2f, 0.2f, 0.7f);
+
+        ShowUseMp(power, CurrentMp / MaximumMp);
         return true;
     }
+    public bool HealMp(float power) {
     
+        CurrentMp += power;
+        if (CurrentMp > MaximumHp)
+            CurrentMp = MaximumHp;
+                
+        ShowHealMp(power, CurrentMp / MaximumMp);
+        return true;
+    }
     public bool GetDamageable(float damage) => CurrentHp > damage;
 
     public bool GetDamage(float damage) {
 
         CurrentHp -= damage;
         
-        ShowDamage(damage);
         if (CurrentHp >= 0) {
 
-            hp.UpdateInfo(CurrentHp / MaximumHp);
+            ShowDamage(damage, CurrentHp / MaximumHp);
             return true;
         }
 
-        hp.UpdateInfo(0);
+        ShowDamage(damage, 0);
+        Debug.Log("character dead");
         
         CurrentHp = 0;
         Dead = true;
         return false;
+    }
+
+    public bool HealHp(float power, bool revive = false) {
+        if (!revive && CurrentHp <= 0)
+            return false;
+
+        if (revive && CurrentHp <= 0) {
+            //TODO: Revive Event
+        }
+        
+        CurrentHp += power;
+                
+        if (CurrentHp > MaximumHp) {
+
+            //If release this summary, Player can see how many heal actually
+            //power -= CurrentHp - MaximumHp;
+            CurrentHp = MaximumHp;
+        }
+        ShowHealHp(power, CurrentHp / MaximumHp);
+        
+        return true;
     }
     public bool GetSafeDamage(float damage) {
 
@@ -79,16 +107,38 @@ public class ControleEachCharacterInfo: MonoBehaviour {
             return false;
         }
 
-        ShowDamage(damage);
-        hp.UpdateInfo(CurrentHp / MaximumHp);
+        ShowDamage(damage, CurrentHp / MaximumHp);
         CurrentHp -= damage;
         return true;
     }
 
-    private void ShowDamage(float damage) {
+    private void ShowDamage(float damage, float ratio) {
 
-        Debug.Log($"get damage: {damage}");
+        hp.UpdateInfo(ratio);
+        Debug.Log($"Get damage: {damage}");
         hpChange.text = damage.ToString();
         hpChange.DOBlink(0.2f, 0.2f, 0.2f, 0.7f);
+    }
+    
+    private void ShowHealHp(float power, float ratio) {
+        
+        hp.UpdateInfo(ratio);
+        Debug.Log($"Heal hp: {power}");
+        hpChange.text = power.ToString();
+        hpChange.DOBlink(0.2f, 0.2f, 0.2f, 0.7f);
+    }
+    private void ShowUseMp(float power, float ratio) {
+    
+        mp.UpdateInfo(ratio);
+        Debug.Log($"Use Mp: {power}");
+        mpChange.text = power.ToString();
+        mpChange.DOBlink(0.2f, 0.2f, 0.2f, 0.7f);
+    }
+    private void ShowHealMp(float power, float ratio) {
+
+        mp.UpdateInfo(ratio);
+        Debug.Log($"Heal mp: {power}");
+        mpChange.text = power.ToString();
+        mpChange.DOBlink(0.2f, 0.2f, 0.2f, 0.7f);
     }
 }
