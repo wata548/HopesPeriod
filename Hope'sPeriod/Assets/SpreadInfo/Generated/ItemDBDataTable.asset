@@ -23,6 +23,8 @@ MonoBehaviour:
           25 \uD68C\uBCF5\uB41C\uB2E4."
         m_HealHP: 25
         m_HealsHP: 0
+        m_Revive: 0
+        m_ReviveAll: 0
         m_HealMP: 0
         m_HealsMP: 0
     - Key: 2002
@@ -34,6 +36,8 @@ MonoBehaviour:
           \uC0AC\uC6A9 \uC2DC \uC800\uD56D\uB825\uC774 25 \uD68C\uBCF5\uB41C\uB2E4."
         m_HealHP: 0
         m_HealsHP: 0
+        m_Revive: 0
+        m_ReviveAll: 0
         m_HealMP: 25
         m_HealsMP: 0
     - Key: 2003
@@ -45,6 +49,8 @@ MonoBehaviour:
           \uC0DD\uC874\uC758\uC9C0\uAC00 20 \uD68C\uBCF5\uB41C\uB2E4."
         m_HealHP: 0
         m_HealsHP: 20
+        m_Revive: 0
+        m_ReviveAll: 0
         m_HealMP: 0
         m_HealsMP: 0
     - Key: 2004
@@ -57,6 +63,8 @@ MonoBehaviour:
           \uD68C\uBCF5\uB41C\uB2E4."
         m_HealHP: 0
         m_HealsHP: 0
+        m_Revive: 0
+        m_ReviveAll: 0
         m_HealMP: 0
         m_HealsMP: 20
     - Key: 2005
@@ -68,6 +76,8 @@ MonoBehaviour:
           50 \uD68C\uBCF5\uB41C\uB2E4."
         m_HealHP: 50
         m_HealsHP: 0
+        m_Revive: 0
+        m_ReviveAll: 0
         m_HealMP: 0
         m_HealsMP: 0
     - Key: 2006
@@ -81,6 +91,8 @@ MonoBehaviour:
           \uC2DC \uC800\uD56D\uB825\uC774 50 \uD68C\uBCF5\uB41C\uB2E4."
         m_HealHP: 0
         m_HealsHP: 0
+        m_Revive: 0
+        m_ReviveAll: 0
         m_HealMP: 50
         m_HealsMP: 0
     - Key: 2007
@@ -93,6 +105,8 @@ MonoBehaviour:
           \uC0AC\uC6A9 \uBD88\uAC00."
         m_HealHP: 0
         m_HealsHP: 0
+        m_Revive: 0
+        m_ReviveAll: 0
         m_HealMP: 0
         m_HealsMP: 0
     - Key: 4001
@@ -106,6 +120,8 @@ MonoBehaviour:
           \uAC83 \uAC19\uB2E4."
         m_HealHP: 0
         m_HealsHP: 0
+        m_Revive: 0
+        m_ReviveAll: 0
         m_HealMP: 0
         m_HealsMP: 0
     - Key: 4002
@@ -118,6 +134,8 @@ MonoBehaviour:
           \uD544\uC694\uD558\uB2E4."
         m_HealHP: 0
         m_HealsHP: 0
+        m_Revive: 0
+        m_ReviveAll: 0
         m_HealMP: 0
         m_HealsMP: 0
     - Key: 4003
@@ -131,5 +149,7 @@ MonoBehaviour:
           \uAC83 \uAC19\uB2E4."
         m_HealHP: 0
         m_HealsHP: 0
+        m_Revive: 0
+        m_ReviveAll: 0
         m_HealMP: 0
         m_HealsMP: 0
