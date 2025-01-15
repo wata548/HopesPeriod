@@ -1,6 +1,5 @@
 using System;
 using SpreadInfo;
-using UnityEditor;
 using UnityEngine;
 
 public static class ItemInfo {
@@ -12,7 +11,7 @@ public static class ItemInfo {
         if (table is not null) return;
 
         string path = "Assets/SpreadInfo/Generated/ItemDBDataTable.asset";
-        table = AssetDatabase.LoadAssetAtPath<ItemDBDataTable>(path);
+        table = Resources.Load<ItemDBDataTable>(path);
     }
 
     private static ItemDBData GetData(int code) {

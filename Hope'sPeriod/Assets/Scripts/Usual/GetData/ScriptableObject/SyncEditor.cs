@@ -1,7 +1,7 @@
 using UnityEditor;
-using UnityEditor.PackageManager.UI;
 using UnityEngine;
 
+#if UNITY_EDITOR
 [CustomEditor(typeof(DataParser))]
 public class SyncEditor: Editor {
 
@@ -37,3 +37,4 @@ public class SyncEditor: Editor {
     }
 
 }
+#endif

@@ -4,10 +4,9 @@ using UnityEngine.Rendering;
 using System.Collections.Generic;
 
 public enum ButtonType{
-    
     Attack = 0,
     Item = 1,
-    Shield = 2
+    Shield = 2,
 }
 
 
@@ -24,7 +23,7 @@ public class ButtonInteractManager: MonoBehaviour {
     public static ButtonInteractManager Instance { get; private set; } = null;
     [SerializeField] private ButtonInteract[] buttons = new ButtonInteract[3];
 
-    private readonly Dictionary<ButtonType, PlayerTurnState> matchButtonAndState = new() {
+    public static readonly Dictionary<ButtonType, PlayerTurnState> MatchButtonAndState = new() {
         { ButtonType.Attack , PlayerTurnState.Attack},
         { ButtonType.Item   , PlayerTurnState.Item},
         { ButtonType.Shield , PlayerTurnState.Shield}
@@ -99,11 +98,7 @@ public class ButtonInteractManager: MonoBehaviour {
 
         if (InputManager.Instance.Click(KeyTypes.Select)) {
 
-            state = matchButtonAndState[selectType];
-
-            //TODO: It just will submit code, it will be erased
-            state = PlayerTurnState.SelectBehavior;
-            GameFSM.Instance.SkipState();
+            buttons[(int)selectType].Click();
         }
     }
 

@@ -26,13 +26,26 @@ public class ButtonInteract: MonoBehaviour, IPointerEnterHandler, IPointerExitHa
         defaultColor = text.color;
     }
 
+    private bool CheckInteractable() {
+
+        return GameFSM.Instance.PlayerTurnState == PlayerTurnState.SelectBehavior;
+    }
+    
     public void StartAnimation() {
+
+        if (!CheckInteractable())
+            return;
+        
         isOn = true;
         animation = text.transform.DOScale(defaultSize * InteractSize, Duraction);
         text.color = interactColor; 
     }
 
     public void EndAnimation() {
+        
+        if(!CheckInteractable()) 
+            return;
+        
         isOn = false;
         if (animation != null && animation.IsPlaying()) {
             animation.Kill();
@@ -56,5 +69,14 @@ public class ButtonInteract: MonoBehaviour, IPointerEnterHandler, IPointerExitHa
         if (!isOn) {
             ButtonInteractManager.Instance.SelectButton(this, type);
         }
+    }
+
+    public void Click() {
+
+        if (!CheckInteractable())
+            return;
+
+        var state = ButtonInteractManager.MatchButtonAndState[type];
+        GameFSM.Instance.SelectPlayerTurnState(state);
     }
 }
