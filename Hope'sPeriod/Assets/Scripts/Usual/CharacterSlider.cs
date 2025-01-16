@@ -14,11 +14,11 @@ public class CharacterSlider: Slider {
 
         float ratio = current / max;
         int count = (int)((ratio - Interval) / CharacterInterval);
+        
         string context = $"{current}/{max}";
-        context = new string(context?.Take(count)?.ToArray()).AddColor(Color.black) +
+        context = new string(context.Take(count)?.ToArray()).AddColor(Color.black) +
                   new string(context.Skip(count)?.ToArray()).AddColor(Color.white);
 
-        Debug.Log($"maintain: {context}");
         shower.text = context;
         return base.UpdateInfo(ratio);
     }

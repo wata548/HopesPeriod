@@ -131,7 +131,6 @@ public static class TextExtension {
     
     public static string AddColor(this string context, Color color) {
         
-        Debug.Log(color.ToString());
         return context.AddColor($"#{ToHex(color.r)}{ToHex(color.g)}{ToHex(color.b)}{ToHex(color.a)}");
         
         string ToHex(float factor) {
@@ -140,7 +139,27 @@ public static class TextExtension {
             return Convert.ToString(value, 16).PadLeft(2, '0');
         }
     }
-        
+
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="context"></param>
+    /// <param name="size">base on 100percent ex) 100, 150</param>
+    /// <returns></returns>
+    public static string SetSize(this string context, int size) {
+        return $"<size={size}%>{context}</size>";
+    }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="context"></param>
+    /// <param name="size">base on 1percent ex) 0.1f, 1f, 1.5f</param>
+    /// <returns></returns>
+    public static string SetSize(this string context, float size) {
+        return context.SetSize((int)(size * 100));
+    }
+    
     public static string AddEffect(this string context, Effect effect) {
         
         return $"<size=0%>[{effect}:</size>{context}<size=0%>]</size>";

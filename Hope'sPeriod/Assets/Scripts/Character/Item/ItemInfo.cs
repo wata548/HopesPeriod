@@ -1,22 +1,54 @@
 using System;
 using SpreadInfo;
 using UnityEngine;
+using UnityEngine.AddressableAssets;
+using System.Threading.Tasks;
+using UnityEngine.ResourceManagement.AsyncOperations;
+
+public enum CodeType {
+    Monster = 1,
+    Item,
+    Document,
+    Key,
+    SKill = 9
+};
 
 public static class ItemInfo {
 
+    public const int CodeDigit = 1000;
     private static ItemDBDataTable table = null;
 
-    private static void SetTable() {
+    public static bool CheckTable() {
 
-        if (table is not null) return;
+        if (table is null) return false;
+        return true;
+    } 
+    
+    public static bool SetTable() {
 
-        string path = "Assets/SpreadInfo/Generated/ItemDBDataTable.asset";
-        table = Resources.Load<ItemDBDataTable>(path);
+        if (table is not null) return true;
+        string path = "ItemTable";
+
+        Addressables.LoadAssetAsync<ItemDBDataTable>(path).Completed += handle => 
+        {
+            if (handle.Status == AsyncOperationStatus.Succeeded) {
+                Debug.Log($"{path} Load succeed");
+                table = handle.Result;
+            }
+            else {
+                Debug.Log($"{path} Fail to load");
+            }
+        };
+        
+        if (table is not null) return true;
+        return false;
     }
 
     private static ItemDBData GetData(int code) {
 
-        SetTable();
+        if (!SetTable())
+            return null;
+        
         if (table.DataTable.TryGetValue(code, out ItemDBData data)) {
             return data;
         }
@@ -26,29 +58,29 @@ public static class ItemInfo {
 
     #region Property
     public static string Name(int code) {
-        return GetData(code).Name;
+        return GetData(code)?.Name ?? "wait"; 
     }
     public static string Description(int code) {
-        return GetData(code).Description;
+        return GetData(code)?.Description ?? "wait";
     }
     public static float HealHp(int code) {
-        return GetData(code).HealHP;
+        return GetData(code)?.HealHP ?? -1;
     }
     public static float HealMp(int code) {
-        return GetData(code).HealMP;
+        return GetData(code)?.HealMP ?? -1;
     }
     public static float HealsHp(int code) {
-        return GetData(code).HealsHP;
+        return GetData(code)?.HealsHP ?? -1;
     }
     public static float HealsMp(int code) {
-        return GetData(code).HealsMP;
+        return GetData(code)?.HealsMP ?? -1;
     }
     public static bool Revive(int code) {
-        return GetData(code).Revive;
+        return GetData(code)?.Revive ?? false;
     }
 
     public static bool ReviveAll(int code) {
-        return GetData(code).ReviveAll;
+        return GetData(code)?.ReviveAll ?? false;
     }
     #endregion
 
