@@ -23,12 +23,22 @@ public class ItemButton: MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
     private bool needUpdate = false;
     private bool show = true;
     
-    private const float AppearTime = 0.3f; 
+    private const float AppearTime = 0.3f;
+
+    private void RefreshFloating() {
+        if (onMouse) {
+            Debug.Log("refresh");
+            startTime = Time.time;
+            floatingOn = false;
+            floatingInfo.TurnOff();
+        }
+    }
     
     public void SetCode(int code) {
 
+        RefreshFloating();
+        
         image.DOFade(1, 0);
-        Debug.Log($"Setting {code}");
 
         show = true;
         this.code = code;
@@ -37,14 +47,15 @@ public class ItemButton: MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
 
     public void NoneCode() {
 
+        RefreshFloating();
+        
         show = false;
-        Debug.Log(image.gameObject.name);
         image.DOFade(0,0);
         textInfo.text = "";
     }
     
     public void OnPointerEnter(PointerEventData eventData) {
-        
+
         startTime = Time.time;
         onMouse = true;
     }
@@ -79,12 +90,13 @@ public class ItemButton: MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
         if (!onMouse)
             return;
         
-        if (!floatingOn && Time.time - startTime >= AppearTime) {
+        if (show && !floatingOn && Time.time - startTime >= AppearTime) {
             floatingInfo.TurnOn();
             floatingOn = true;
         }
 
         floatingInfo.UpdatePivot(rect.position);
         floatingInfo.UpdatePosition();
+        floatingInfo.UpdateInfo(code);
     }
 }

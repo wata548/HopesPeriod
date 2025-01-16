@@ -39,29 +39,32 @@ public class InventoryManager: MonoBehaviour {
 
     private void UpdateItemButton() {
 
-        int index = 0;
-        int count = 0;
+        int buttonIndex = 0;
+        int itemIndex = 0;
         foreach (var item in Inventory.Items) {
 
+            //check item
             if ((CodeType)(item.Key / ItemInfo.CodeDigit) != CodeType.Item)
                 continue;
             
+            //check count
             if (item.Value <= 0)
                 continue;
             
-            count++;
+            itemIndex++;
 
-            if (count > ButtonCount * (currentPage - 1)) {
-                itemButtons[index].SetCode(item.Key);
-                index++;
+            //apply show item
+            if (itemIndex > ButtonCount * (currentPage - 1)) {
+                itemButtons[buttonIndex].SetCode(item.Key);
+                buttonIndex++;
             }
 
-            if (index >= ButtonCount)
+            if (buttonIndex >= ButtonCount)
                 break;
         }
 
-        Debug.Log(index);
-        for (int i = index; i < ButtonCount; i++) {
+        //overflow data process(show nothing)
+        for (int i = buttonIndex; i < ButtonCount; i++) {
             itemButtons[i].NoneCode();
         }
     }
