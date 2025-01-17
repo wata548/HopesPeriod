@@ -8,7 +8,7 @@ public class ControleCharacterInfo: MonoBehaviour {
     //==================================================| Field 
     public static ControleCharacterInfo Instance { get; private set; } = null;
     
-    private int characterCount = 3;
+    public int CharacterCount { get; private set; } = 3;
     private const int MaximumCharacterCount = 3;
     [SerializeField] private ControleEachCharacterInfo[] characterInfos = new ControleEachCharacterInfo[3];
     public ControleEachCharacterInfo[] CharacterInfos => characterInfos;
@@ -26,6 +26,11 @@ public class ControleCharacterInfo: MonoBehaviour {
     }
     
     #endregion
+
+    public bool Alive(int index) {
+        return !characterInfos[index].Dead;
+    }
+    
     public bool DamageDistribute(float power) {
 
         ShakeCamera.Instance.Shake(0.2f, 0.1f);
@@ -33,7 +38,7 @@ public class ControleCharacterInfo: MonoBehaviour {
         // find who use attract skill 
         var useAttrackSkillplayer =
             characterInfos
-                .Take(characterCount)
+                .Take(CharacterCount)
                 .OrderByDescending(character => character.Attract)
                 .First();
 

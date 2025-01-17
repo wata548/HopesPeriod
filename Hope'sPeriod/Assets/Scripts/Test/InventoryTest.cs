@@ -5,7 +5,6 @@ using SpreadInfo;
 
 public class InventoryTest: MonoBehaviour {
 
-    [SerializeField] private List<ItemButton> buttons = new();
     private void Start() {
 
         Inventory.AddItem(2005, 4);

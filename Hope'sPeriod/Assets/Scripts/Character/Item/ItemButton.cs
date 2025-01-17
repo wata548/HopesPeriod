@@ -99,4 +99,19 @@ public class ItemButton: MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
         floatingInfo.UpdatePosition();
         floatingInfo.UpdateInfo(code);
     }
+
+    public void Click() {
+        if(!show) return;
+
+        if (ItemInfo.NeedSelect(code)) {
+            
+            if (ItemInfo.Revive(code)) {
+                
+            }
+            else {
+                
+            }
+        }
+        Inventory.UseItem(code);
+    }
 }

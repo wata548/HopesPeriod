@@ -3,11 +3,13 @@ using System.Reflection;
 using TMPro;
 using UnityEngine;
 using System.Collections.Generic;
+using UnityEditor;
 
 public class InventoryManager: MonoBehaviour {
 
     [SerializeField] private TMP_Text page;
     private bool needUpdate = true;
+    private bool needFirstItemInfoUpdate = true;
     private int currentPage = 1;
     private int maximumPage = 1;
     private const int ButtonCount = 4;
@@ -37,8 +39,11 @@ public class InventoryManager: MonoBehaviour {
         }
     }
 
-    private void UpdateItemButton() {
+    private bool UpdateItemButton() {
 
+        if (!ItemInfo.CheckTable())
+            return false;
+        
         int buttonIndex = 0;
         int itemIndex = 0;
         foreach (var item in Inventory.Items) {
@@ -67,6 +72,8 @@ public class InventoryManager: MonoBehaviour {
         for (int i = buttonIndex; i < ButtonCount; i++) {
             itemButtons[i].NoneCode();
         }
+
+        return true;
     }
 
     public void NextPage() {
@@ -90,6 +97,10 @@ public class InventoryManager: MonoBehaviour {
 
     private void Update() {
 
+        if (needFirstItemInfoUpdate && UpdateItemButton()) {
+            needFirstItemInfoUpdate = false;
+        }
+        
         SetPageCount();
 
         if (Input.GetKeyDown(KeyCode.A)) {
