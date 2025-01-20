@@ -18,7 +18,8 @@ public enum KeyTypes {
     Right,
     Jump,
     Select,
-    Interaction
+    Interaction,
+    Cancel
 }
 
 public class KeyState {

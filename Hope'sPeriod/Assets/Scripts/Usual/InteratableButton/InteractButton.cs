@@ -11,18 +11,32 @@ public abstract class InteractButton: MonoBehaviour, IPointerEnterHandler, IPoin
     public int Index { get; set; }
     public InteractButtonManager Manager { get; set; } = null;
 
-    public bool IsMouseOn { get; private set; } = false;
-    public bool IsOn { get; set; } = false;
+    protected bool isMouseOn = false;
+    public bool IsOn { get; private set; } = false;
+
+    
+   //==================================================||Method 
+    public void SetIsOn(bool isOn) => IsOn = isOn;
+   
+    public virtual void OnPointerEnterExtra() {}
+    public virtual void OnPointerExitExtra() {}
+    public virtual void OnPointerMoveExtra() {}
     
     public void OnPointerEnter(PointerEventData eventData) {
 
+        if (!Manager.Interactable)
+            return;
+        
         IsOn = true;
         Manager.SelectButton(Index);
-        IsMouseOn = true;
+        isMouseOn = true;
+        OnPointerEnterExtra();
     }
 
     public void OnPointerExit(PointerEventData eventData) {
-
+        if (!Manager.Interactable)
+            return;
+        
         IsOn = false;
         Manager.SelectOut(this);
         if (Manager.Selecting == Index) {
@@ -30,44 +44,70 @@ public abstract class InteractButton: MonoBehaviour, IPointerEnterHandler, IPoin
             Manager.Selecting = -1;
             Manager.Before = -1;
         }
-        IsMouseOn = false;
+        isMouseOn = false;
+        OnPointerExitExtra();
     }
 
     public void OnPointerMove(PointerEventData eventData) {
-        if (!IsMouseOn)
+        
+        if (!Manager.Interactable)
+            return;
+        
+        if (!isMouseOn)
             return;
 
         OnPointerEnter(null);
+        OnPointerMoveExtra();
     }
     
+   //==================================================||Abstract Method 
     public abstract void Click();
 }
 
+/// <summary>
+/// <para>
+/// It use Unity Function: Awake
+/// </para>
+/// If you want to use Awake function, must include this
+/// <code>private void Awake(){ base.Awake(); }</code>  
+/// </summary>
 public abstract class InteractButtonManager: MonoBehaviour {
 
     [SerializeField] protected List<InteractButton> buttons;
 
+    //if it is false, you can't interact this
     public abstract bool Interactable { get; set; }
     public int Selecting { get; set; } = 0;
     public int Before { get; set; } = -1;
 
+   //==================================================||Method 
+    
     private void UpdateState() {
 
+        if (!Interactable)
+            return;
+        
         if (Before != -1) {
 
             if (buttons[Before].IsOn) {
                 
                 SelectOut(buttons[Before]);
+                buttons[Before].SetIsOn(false);
             }
             
         }
 
-        buttons[Selecting].IsOn = true;
+        buttons[Selecting].SetIsOn(true);
         SelectIn(buttons[Selecting]);
         Before = Selecting;
     }
 
+    //It used by button script
     public void SelectButton(int index) {
+        
+        if (!Interactable)
+            return;        
+        
         if (Selecting == index)
             return;
 
@@ -75,8 +115,11 @@ public abstract class InteractButtonManager: MonoBehaviour {
         UpdateState();
     }
     
+    //Controle function(if you want to control by keyboard or etc., You should use this function)  
     public void NextButton() {
-
+        if (!Interactable)
+            return;
+        
         Debug.Log(Selecting);
         
         Selecting++;
@@ -87,6 +130,8 @@ public abstract class InteractButtonManager: MonoBehaviour {
     }
 
     public void PriviousButton() {
+        if (!Interactable)
+            return;
         
         Debug.Log(Selecting);
         
@@ -97,10 +142,13 @@ public abstract class InteractButtonManager: MonoBehaviour {
         UpdateState();
     }
 
+    
+   //==================================================||Abstract Function 
     public abstract void SelectIn(InteractButton target);
     public abstract void SelectOut(InteractButton target);
     
-    private void Awake() {
+   //==================================================||Unity Function 
+    protected void Awake() {
 
         int index = 0;
         foreach (var button in buttons) {

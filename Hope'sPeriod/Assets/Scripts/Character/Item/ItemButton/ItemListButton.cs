@@ -7,7 +7,7 @@ using UnityEngine.EventSystems;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
 
-public class ItemButton: MonoBehaviour, IPointerEnterHandler, IPointerExitHandler {
+public class ItemListButton: InteractButtonUI, IPointerEnterHandler, IPointerExitHandler {
 
     //If you set one component's tempItemInfo, All component share this tempItemInfo 
     [SerializeField] private FloatingItemInfo tempFloatingInfo = null; 
@@ -21,7 +21,7 @@ public class ItemButton: MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
     private float startTime;
     private bool floatingOn = false;
     private bool needUpdate = false;
-    private bool show = true;
+    public bool Show { get; private set; } = true;
     
     private const float AppearTime = 0.3f;
 
@@ -40,7 +40,7 @@ public class ItemButton: MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
         
         image.DOFade(1, 0);
 
-        show = true;
+        Show = true;
         this.code = code;
         needUpdate = true;
     }
@@ -49,23 +49,25 @@ public class ItemButton: MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
 
         RefreshFloating();
         
-        show = false;
+        Show = false;
         image.DOFade(0,0);
         textInfo.text = "";
     }
     
-    public void OnPointerEnter(PointerEventData eventData) {
+   
+    public override void OnPointerEnterExtra() {
 
         startTime = Time.time;
         onMouse = true;
     }
 
-    public void OnPointerExit(PointerEventData eventData) {
+    public override void OnPointerExitExtra() {
 
         floatingInfo.TurnOff();
         floatingOn = false;
         onMouse = false;
     }
+    
 
     private void Awake() {
 
@@ -90,7 +92,7 @@ public class ItemButton: MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
         if (!onMouse)
             return;
         
-        if (show && !floatingOn && Time.time - startTime >= AppearTime) {
+        if (Show && !floatingOn && Time.time - startTime >= AppearTime) {
             floatingInfo.TurnOn();
             floatingOn = true;
         }
@@ -100,18 +102,23 @@ public class ItemButton: MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
         floatingInfo.UpdateInfo(code);
     }
 
-    public void Click() {
-        if(!show) return;
 
-        if (ItemInfo.NeedSelect(code)) {
+    public override void Click() {
+        if(!Show) return;
+
+        if (!ItemInfo.NeedSelect(code)) {
             
-            if (ItemInfo.Revive(code)) {
-                
-            }
-            else {
-                
-            }
+            Inventory.UseItem(code);
+            ItemListContext.Instance.UpdateItemButton();
+            ItemListContext.Instance.SetPageCount();
+            return;
         }
-        Inventory.UseItem(code);
+        
+        if (ItemInfo.Revive(code)) {
+                
+        }
+        else {
+                
+        }
     }
 }

@@ -86,20 +86,26 @@ public static class ItemInfo {
 
     public static bool NeedSelect(int code) {
 
-        SetTable();
+        if (!SetTable()) {
+            throw new Exception("Yet load table");
+            return false;
+        }
         bool hp = HealHp(code) != 0;
         bool mp = HealMp(code) != 0;
         return hp || mp;
     }
     
-    public static void UseItem(int code, ControleCharacterInfo characters, ControleEachCharacterInfo user = null) {
-        SetTable();
+    public static void UseItem(int code, ControleEachCharacterInfo user = null) {
+        if (!SetTable()) {
+            throw new Exception("Yet load table");
+            return;
+        }
 
         ItemDBData item = GetData(code);
         
-        foreach (var characterInfo in characters.CharacterInfos) {
-            characterInfo.HealHp(item.HealsHP, item.ReviveAll);
-            characterInfo.HealMp(item.HealMP);
+        foreach (var characterInfo in ControleCharacterInfo.Instance.CharacterInfos) {
+            if(item.HealHP != 0) characterInfo.HealHp(item.HealsHP, item.ReviveAll);
+            if(item.HealMP != 0) characterInfo.HealMp(item.HealMP);
         }
         
         if(user is not null) {

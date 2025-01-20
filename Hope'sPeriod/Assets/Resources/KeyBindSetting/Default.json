@@ -26,5 +26,9 @@
   "Interaction": {
     "key": "Return",
     "REQUIRED_HOLD_TIME": 0.5
+  },
+  "Cancel": {
+    "key": "Escape",
+    "REQUIRED_HOLD_TIME": 0.5
   }
 }

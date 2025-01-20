@@ -31,8 +31,12 @@ public class GameFSM: MonoBehaviour {
     public GameState State { get; private set; } = GameState.BattleStart;
     public PlayerTurnState PlayerTurnState { get; private set; } = PlayerTurnState.SelectBehavior;
     
+    //Check during pattern
     private bool isPattern = false;
-    private bool isPlayerTurnStart = false;
+    //when player turn if it's value is false, map and player position will be refreshed; 
+    private bool playerTurnStart = false;
+    private bool needPlayerTurnUpdate = true;
+    
     private void Update() {
 
         if (State == GameState.BattleStart) {
@@ -62,15 +66,43 @@ public class GameFSM: MonoBehaviour {
 
         else if (State == GameState.PlayerAttack) {
 
-            if (!isPlayerTurnStart) {
-                isPlayerTurnStart = true;
-
+            if (!playerTurnStart) {
+                playerTurnStart = true;
+                PlayerTurnState = PlayerTurnState.SelectBehavior;
+                
                 Player.Instance.Object.transform.DOLocalMove(selectPlayerPos, 0.5f);
                 MapSizeManager.Instance.Move(selectMapPos);
                 MapSizeManager.Instance.Resize(selectMapScale);
                     
                 Player.Instance.Movement
                     .SetApply<CompoInput>(Direction.None);
+            }
+
+            if (needPlayerTurnUpdate && PlayerTurnState != PlayerTurnState.SelectBehavior) {
+
+                needPlayerTurnUpdate = false;
+                
+                switch (PlayerTurnState) {
+                    
+                    case PlayerTurnState.Attack:
+                        break;
+                    case PlayerTurnState.Item:
+                        ItemListButtonManager.Instance.TurnOn();
+                        break;
+                    case PlayerTurnState.Shield:
+                        break;
+                    default:
+                        throw new OutOfRange(
+                            (int)PlayerTurnState.Attack, 
+                            (int)PlayerTurnState.Shield,
+                            (int)PlayerTurnState, 
+                            "PlayerTurnState must be Attack or Item or Shield"
+                        );
+                } 
+            }
+            if (PlayerTurnState != PlayerTurnState.SelectBehavior && InputManager.Instance.Click(KeyTypes.Cancel)) {
+                needPlayerTurnUpdate = true;
+                PlayerTurnState = PlayerTurnState.SelectBehavior;
             }
         }
             
@@ -99,7 +131,7 @@ public class GameFSM: MonoBehaviour {
     public void SkipState() {
         if (State == GameState.PlayerAttack) {
 
-            isPlayerTurnStart = false;
+            playerTurnStart = false;
             Player.Instance.Movement
                 .SetApply<CompoInput>(DirectionInfo.All);
             State = GameState.BeforeSkill;

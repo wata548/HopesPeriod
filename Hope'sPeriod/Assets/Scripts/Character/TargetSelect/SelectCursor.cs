@@ -1,19 +1,20 @@
 using System;
 using System.Dynamic;
+using UnityEditor.AddressableAssets.Build.BuildPipelineTasks;
 using UnityEngine;
 
 public class SelectCursor: MonoBehaviour {
 
     public static SelectCursor Instance { get; private set; } = null;
 
-    private int index = 0;
-    private bool isOn = false;
+    public int Index { get; private set; } = 0;
+    public bool IsOn { get; private set; }= false;
     private SpriteRenderer renderer = null;
     private readonly Vector2 defaultPosition = new(-2, 1.7f);
     private readonly Vector2 selectInterval = new(5.86f, 0);
 
     private void UpdateIndex() {
-        SetIndex(index);
+        SetIndex(Index);
     }
     
     public void SetIndex(int index) {
@@ -22,24 +23,24 @@ public class SelectCursor: MonoBehaviour {
         if (index > count)
             throw new OutOfRange(0, count, index);
 
-        this.index = index;
+        this.Index = index;
         transform.localPosition = defaultPosition + index * selectInterval;
     }
 
     private void AddIndex(bool aliveOnly = false) {
         
-        index++;
+        Index++;
         int count = ControleCharacterInfo.Instance.CharacterCount;
-        if (index >= count)
-            index = 0;
+        if (Index >= count)
+            Index = 0;
 
         if (aliveOnly) {
 
-            while (!ControleCharacterInfo.Instance.Alive(index)) {
+            while (!ControleCharacterInfo.Instance.Alive(Index)) {
                 
-                index++;
-                if (index >= count)
-                    index = 0;
+                Index++;
+                if (Index >= count)
+                    Index = 0;
             }
         }
         
@@ -47,32 +48,32 @@ public class SelectCursor: MonoBehaviour {
     }
 
     private void ExtractIndex(bool aliveOnly = false) {
-        index--;
+        Index--;
         int count = ControleCharacterInfo.Instance.CharacterCount;
-        if (index < 0)
-            index = count - 1;
+        if (Index < 0)
+            Index = count - 1;
 
         if (aliveOnly) {
 
-            while (!ControleCharacterInfo.Instance.Alive(index)) {
-                index--;
-                if (index < 0)
-                    index = count - 1;
+            while (!ControleCharacterInfo.Instance.Alive(Index)) {
+                Index--;
+                if (Index < 0)
+                    Index = count - 1;
             }
         }
         UpdateIndex();
     }
     
-    private void TurnOn() {
+    public void TurnOn() {
         
-        index = 0;
-        isOn = true;
+        Index = 0;
+        IsOn = true;
         renderer.enabled = true;
     }
 
-    private void TurnOff() {
+    public void TurnOff() {
         
-        isOn = false;
+        IsOn = false;
         renderer.enabled = false;
     }
     
@@ -87,12 +88,16 @@ public class SelectCursor: MonoBehaviour {
     }
 
     private void Update() {
-        if (Input.GetKeyDown(KeyCode.A)) {
+        if (InputManager.Instance.Click(KeyTypes.Right)) {
             ExtractIndex();
         }
 
-        if (Input.GetKeyDown(KeyCode.D)) {
+        if (InputManager.Instance.Click(KeyTypes.Left)) {
             AddIndex();
+        }
+
+        if (InputManager.Instance.Click(KeyTypes.Select)) {
+            TurnOff();
         }
     }
 }

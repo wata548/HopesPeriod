@@ -43,7 +43,7 @@ public static class Inventory{
           }
 
           Items[code]--;
-          //ItemInfo.UseItem(code);
+          ItemInfo.UseItem(code);
           return true;
      }
 }
