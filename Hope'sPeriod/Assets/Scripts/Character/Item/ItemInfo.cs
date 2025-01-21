@@ -15,7 +15,7 @@ public enum CodeType {
 
 public static class ItemInfo {
 
-    public const int CodeDigit = 1000;
+    public const int CodeMask = 1000;
     private static ItemDBDataTable table = null;
 
     public static bool CheckTable() {
@@ -44,19 +44,31 @@ public static class ItemInfo {
         return false;
     }
 
+    #region Property
+    
     private static ItemDBData GetData(int code) {
-
+    
         if (!SetTable())
             return null;
-        
+            
         if (table.DataTable.TryGetValue(code, out ItemDBData data)) {
             return data;
         }
-
+    
         throw new NullReferenceException($"This code({code}) isn't exist");
     }
-
-    #region Property
+    
+    public static bool NeedSelect(int code) {
+    
+            if (!SetTable()) {
+                throw new Exception("Yet load table");
+                return false;
+            }
+            bool hp = HealHp(code) != 0;
+            bool mp = HealMp(code) != 0;
+            return hp || mp;
+        }
+        
     public static string Name(int code) {
         return GetData(code)?.Name ?? "wait"; 
     }
@@ -83,17 +95,6 @@ public static class ItemInfo {
         return GetData(code)?.ReviveAll ?? false;
     }
     #endregion
-
-    public static bool NeedSelect(int code) {
-
-        if (!SetTable()) {
-            throw new Exception("Yet load table");
-            return false;
-        }
-        bool hp = HealHp(code) != 0;
-        bool mp = HealMp(code) != 0;
-        return hp || mp;
-    }
     
     public static void UseItem(int code, ControleEachCharacterInfo user = null) {
         if (!SetTable()) {
@@ -103,14 +104,14 @@ public static class ItemInfo {
 
         ItemDBData item = GetData(code);
         
-        foreach (var characterInfo in ControleCharacterInfo.Instance.CharacterInfos) {
+        foreach (var characterInfo in ControleCharacterInfo.Instance.CharacterInfos()) {
             if(item.HealsHP != 0) characterInfo.HealHp(item.HealsHP, item.ReviveAll);
             if(item.HealsMP != 0) characterInfo.HealMp(item.HealsMP);
         }
         
         if(user is not null) {
-            user.HealHp(item.HealHP, item.Revive);
-            user.HealMp(item.HealMP);
+            if(item.HealHP != 0) user.HealHp(item.HealHP, item.Revive);
+            if(item.HealMP != 0) user.HealMp(item.HealMP);
         }
     }
 }

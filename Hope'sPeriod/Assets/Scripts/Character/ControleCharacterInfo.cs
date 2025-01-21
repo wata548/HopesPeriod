@@ -1,6 +1,7 @@
 using System;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class ControleCharacterInfo: MonoBehaviour {
     
@@ -10,8 +11,7 @@ public class ControleCharacterInfo: MonoBehaviour {
     
     public int CharacterCount { get; private set; } = 3;
     private const int MaximumCharacterCount = 3;
-    [SerializeField] private ControleEachCharacterInfo[] characterInfos = new ControleEachCharacterInfo[3];
-    public ControleEachCharacterInfo[] CharacterInfos => characterInfos;
+    [field: SerializeField] private ControleEachCharacterInfo[] characterInfos = new ControleEachCharacterInfo[3];
     private const float InvincibilityTime = 1.2f;
     
     //==================================================| Method 
@@ -27,6 +27,9 @@ public class ControleCharacterInfo: MonoBehaviour {
     
     #endregion
 
+    public ControleEachCharacterInfo CharacterInfo(int index) => characterInfos[index];
+    public ControleEachCharacterInfo[] CharacterInfos() => characterInfos;
+    
     public bool Alive(int index) {
         return !characterInfos[index].Dead;
     }
@@ -67,7 +70,7 @@ public class ControleCharacterInfo: MonoBehaviour {
 
         // make array didn't contain who used skill
         var checkCharacters = characterInfos
-            .Where(factor => factor != useAttrackSkillplayer)
+            .Where(factor => factor != useAttrackSkillplayer && !factor.Dead)
             .ToArray();
         
         // sum attract

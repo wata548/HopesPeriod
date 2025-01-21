@@ -77,6 +77,6 @@ public class ButtonInteract: MonoBehaviour, IPointerEnterHandler, IPointerExitHa
             return;
 
         var state = ButtonInteractManager.MatchButtonAndState[type];
-        GameFSM.Instance.SelectPlayerTurnState(state);
+        GameFSM.Instance.SetPlayerTurnState(state);
     }
 }

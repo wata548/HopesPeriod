@@ -11,15 +11,30 @@ public enum SelectType {
 
 public class SelectCursor: MonoBehaviour {
 
+   //==================================================||Property 
     public static SelectCursor Instance { get; private set; } = null;
-
     public SelectType SelectType { get; private set; }
     public int Index { get; private set; } = 0;
-    public bool IsOn { get; private set; }= false;
+
+   //==================================================||Field 
     private SpriteRenderer renderer = null;
     private readonly Vector2 defaultPosition = new(-2, 1.7f);
     private readonly Vector2 selectInterval = new(5.86f, 0);
 
+   //==================================================||Method 
+   
+   public void TurnOn(SelectType type) {
+
+       SelectType = type;
+       SetIndex(0);
+       renderer.enabled = true;
+   }
+
+    public void TurnOff() {
+        
+        renderer.enabled = false;
+    }
+       
     private void UpdateIndex() {
         SetIndex(Index);
     }
@@ -34,7 +49,7 @@ public class SelectCursor: MonoBehaviour {
         transform.localPosition = defaultPosition + index * selectInterval;
     }
 
-    private void AddIndex(bool aliveOnly = false) {
+    public void AddIndex(bool aliveOnly = false) {
         
         Index++;
         int count = ControleCharacterInfo.Instance.CharacterCount;
@@ -54,7 +69,7 @@ public class SelectCursor: MonoBehaviour {
         UpdateIndex();
     }
 
-    private void ExtractIndex(bool aliveOnly = false) {
+    public void ExtractIndex(bool aliveOnly = false) {
         Index--;
         int count = ControleCharacterInfo.Instance.CharacterCount;
         if (Index < 0)
@@ -71,20 +86,8 @@ public class SelectCursor: MonoBehaviour {
         UpdateIndex();
     }
     
-    public void TurnOn(SelectType type) {
-
-        SelectType = type;
-        SetIndex(0);
-        IsOn = true;
-        renderer.enabled = true;
-    }
-
-    public void TurnOff() {
-        
-        IsOn = false;
-        renderer.enabled = false;
-    }
     
+   //==================================================||Unity Func 
     private void Awake() {
 
         if (Instance == null)
@@ -93,29 +96,5 @@ public class SelectCursor: MonoBehaviour {
             Destroy(this);
 
         renderer = GetComponent<SpriteRenderer>();
-    }
-
-    private void Update() {
-
-        if (!IsOn)
-            return;
-        
-        if (InputManager.Instance.Click(KeyTypes.Right)) {
-            AddIndex();
-        }
-
-        if (InputManager.Instance.Click(KeyTypes.Left)) {
-            ExtractIndex();
-        }
-
-        if (InputManager.Instance.Click(KeyTypes.Select)) {
-            TurnOff();
-        }
-        
-        else if (InputManager.Instance.Click(KeyTypes.Cancel)) {
-            TurnOff();
-            TargetButtonManager.Instance.Interactable = false;
-            ItemListButtonManager.Instance.Interactable = true;
-        }
     }
 }

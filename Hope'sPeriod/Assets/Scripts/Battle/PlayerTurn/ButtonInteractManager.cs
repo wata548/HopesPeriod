@@ -10,13 +10,7 @@ public enum ButtonType{
 }
 
 
-public enum PlayerTurnState {
-    
-    SelectBehavior,
-    Attack,
-    Item,
-    Shield
-}
+
 
 public class ButtonInteractManager: MonoBehaviour {
 

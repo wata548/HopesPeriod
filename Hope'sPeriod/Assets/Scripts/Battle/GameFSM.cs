@@ -12,6 +12,15 @@ public enum GameState {
     PlayerAttack,
 }
 
+public enum PlayerTurnState {
+    
+    SelectBehavior,
+    Attack,
+    Item,
+    ItemTarget,
+    Shield
+}
+
 public class GameFSM: MonoBehaviour {
 
     private readonly Vector3 selectPlayerPos = new(0, 0, -1);
@@ -66,17 +75,7 @@ public class GameFSM: MonoBehaviour {
 
         else if (State == GameState.PlayerAttack) {
 
-            if (!playerTurnStart) {
-                playerTurnStart = true;
-                PlayerTurnState = PlayerTurnState.SelectBehavior;
-                
-                Player.Instance.Object.transform.DOLocalMove(selectPlayerPos, 0.5f);
-                MapSizeManager.Instance.Move(selectMapPos);
-                MapSizeManager.Instance.Resize(selectMapScale);
-                    
-                Player.Instance.Movement
-                    .SetApply<CompoInput>(Direction.None);
-            }
+            PlayerTurnStartSetting();
 
             if (needPlayerTurnUpdate && PlayerTurnState != PlayerTurnState.SelectBehavior) {
 
@@ -88,6 +87,14 @@ public class GameFSM: MonoBehaviour {
                         break;
                     case PlayerTurnState.Item:
                         ItemListButtonManager.Instance.TurnOn();
+                        break;
+                    case PlayerTurnState.ItemTarget:
+                        
+                        int index = SelectCursor.Instance.Index;
+                        var target = ControleCharacterInfo.Instance.CharacterInfo(index);
+                        int code = TargetButtonManager.Instance.Code;
+
+                        Inventory.UseItem(code, target);
                         break;
                     case PlayerTurnState.Shield:
                         break;
@@ -101,34 +108,61 @@ public class GameFSM: MonoBehaviour {
                 } 
             }
 
-            //Cancel
-            bool targetSelecting = TargetButtonManager.Instance.Interactable;
-            if (!targetSelecting && PlayerTurnState != PlayerTurnState.SelectBehavior && InputManager.Instance.Click(KeyTypes.Cancel)) {
-
-                ItemListButtonManager.Instance.TurnOff();
-                needPlayerTurnUpdate = true;
-                PlayerTurnState = PlayerTurnState.SelectBehavior;
-                
-            }
+            PlayerTurnInput();
         }
             
     }
 
-    public void SelectPlayerTurnState(PlayerTurnState newState) {
+    private void PlayerTurnStartSetting() {
+        if (!playerTurnStart) {
+            playerTurnStart = true;
+            PlayerTurnState = PlayerTurnState.SelectBehavior;
+                        
+            Player.Instance.Object.transform.DOLocalMove(selectPlayerPos, 0.5f);
+            MapSizeManager.Instance.Move(selectMapPos);
+            MapSizeManager.Instance.Resize(selectMapScale);
+                            
+            Player.Instance.Movement
+                .SetApply<CompoInput>(Direction.None);
+        }
+    }
+    
+    private void PlayerTurnInput() {
+        bool isChossingTarget = TargetButtonManager.Instance.Interactable;
+        bool isSelectState = PlayerTurnState == PlayerTurnState.SelectBehavior;
+        if (isChossingTarget || isSelectState) return;
+        
+        //Cancel
+        if (InputManager.Instance.Click(KeyTypes.Cancel)) {
+        
+            ItemListButtonManager.Instance.TurnOff();
+            needPlayerTurnUpdate = true;
+            PlayerTurnState = PlayerTurnState.SelectBehavior;
+                        
+        }
+    }
+    
+    public void SetPlayerTurnState(PlayerTurnState newState) {
 
-        bool gameState = State != GameState.PlayerAttack;
-        bool playState = PlayerTurnState != PlayerTurnState.SelectBehavior;
-        if (gameState || playState)
+        bool isPlayerTurn = State == GameState.PlayerAttack;
+        bool isSelectState = PlayerTurnState == PlayerTurnState.SelectBehavior;
+        if (!isPlayerTurn || !isSelectState)
             return;
 
         PlayerTurnState = newState;
         Debug.Log($"click {newState.ToString()}");
-        //TODO: interact
     }
 
+    public void AfterSetTarget() {
+
+        if (PlayerTurnState == PlayerTurnState.Item) {
+            PlayerTurnState = PlayerTurnState.ItemTarget;
+            needPlayerTurnUpdate = true;
+        }
+    }
     public void ClearPlayerTurnState() {
-        bool gameState = State != GameState.PlayerAttack;
-        if (gameState)
+        bool isPlayerTurn = State == GameState.PlayerAttack;
+        if (!isPlayerTurn)
             return;
 
         PlayerTurnState = PlayerTurnState.SelectBehavior;

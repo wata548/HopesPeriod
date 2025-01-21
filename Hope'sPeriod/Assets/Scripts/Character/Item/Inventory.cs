@@ -29,11 +29,11 @@ public static class Inventory{
 
      public static int Kind(CodeType mask) {
           return Items
-               .Where(value => (CodeType)(value.Key / ItemInfo.CodeDigit) == mask)
+               .Where(value => (CodeType)(value.Key / ItemInfo.CodeMask) == mask)
                .Count(value => value.Value > 0);
      }
      
-     public static bool UseItem(int code) {
+     public static bool UseItem(int code, ControleEachCharacterInfo target = null) {
 
           if (!Items.ContainsKey(code))
                throw new NullReferenceException($"This item is yet added, try add \"{code}\"Item and retry");
@@ -44,7 +44,7 @@ public static class Inventory{
 
           
           Items[code]--;
-          ItemInfo.UseItem(code);
+          ItemInfo.UseItem(code, target);
           CallBackMainFsm();
           return true;
      }

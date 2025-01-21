@@ -7,15 +7,15 @@ using UnityEngine.EventSystems;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
 
-public class ItemListButton: InteractButtonUI, IPointerEnterHandler, IPointerExitHandler {
+public class ItemListButton : InteractButtonUI, IPointerEnterHandler, IPointerExitHandler {
 
     //If you set one component's tempItemInfo, All component share this tempItemInfo 
-    [SerializeField] private FloatingItemInfo tempFloatingInfo = null; 
-    [SerializeField]private Image image;
+    [SerializeField] private FloatingItemInfo tempFloatingInfo = null;
+    [SerializeField] private Image image;
     private static FloatingItemInfo floatingInfo = null;
     private TMP_Text textInfo;
     private RectTransform rect;
-    private int code = -1;
+    public int Code { get; private set; }= -1;
     
     private bool onMouse = false;
     private float startTime;
@@ -46,7 +46,7 @@ public class ItemListButton: InteractButtonUI, IPointerEnterHandler, IPointerExi
         image.DOFade(1, 0);
 
         Show = true;
-        this.code = code;
+        this.Code = code;
         needUpdate = true;
     }
 
@@ -95,10 +95,10 @@ public class ItemListButton: InteractButtonUI, IPointerEnterHandler, IPointerExi
             return;
         
         //firstUpdate
-        if (code != -1 && needUpdate) {
+        if (Code != -1 && needUpdate) {
 
             if(ItemInfo.CheckTable()) needUpdate = false;
-            textInfo.text = $"{ItemInfo.Name(code)}\n{$"X{Inventory.Count(code)}".SetSize(1.3f)}";
+            textInfo.text = $"{ItemInfo.Name(Code)}\n{$"X{Inventory.Count(Code)}".SetSize(1.3f)}";
         }
         
         if (!onMouse)
@@ -111,7 +111,7 @@ public class ItemListButton: InteractButtonUI, IPointerEnterHandler, IPointerExi
 
         floatingInfo.UpdatePivot(rect.position);
         floatingInfo.UpdatePosition();
-        floatingInfo.UpdateInfo(code);
+        floatingInfo.UpdateInfo(Code);
     }
 
 
@@ -119,14 +119,14 @@ public class ItemListButton: InteractButtonUI, IPointerEnterHandler, IPointerExi
         if (!Show) return;
         if (!Manager.Interactable) return;
 
-        if (!ItemInfo.NeedSelect(code)) {
+        if (!ItemInfo.NeedSelect(Code)) {
 
-            Inventory.UseItem(code);
+            Inventory.UseItem(Code);
            
             return;
         }
 
-        TargetButtonManager.Instance.TurnOn(SelectType.Players);
+        TargetButtonManager.Instance.TurnOn(SelectType.Players, Code);
         InteractableOff();
     }
 

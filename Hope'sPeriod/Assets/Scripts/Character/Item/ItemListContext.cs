@@ -8,18 +8,38 @@ using UnityEditor.AddressableAssets.Build.BuildPipelineTasks;
 
 public class ItemListContext: MonoBehaviour {
 
-    public static ItemListContext Instance { get; private set; } = null;
-    
+    //==================================================||Serialize 
     [SerializeField] private TMP_Text page;
     [SerializeField] private ItemListButtonManager itemListManager; 
-        
+    
+    
+    //==================================================||Field 
+    public const int ButtonCount = 4;
     private bool needFirstItemInfoUpdate = true;
     private int currentPage = 1;
     private int maximumPage = 1;
-    public const int ButtonCount = 4;
     private List<ItemListButton> itemButtons = new();
+    
+    //==================================================||Property 
+    public static ItemListContext Instance { get; private set; } = null;
 
-    public void SetPageCount() {
+    //==================================================||Method 
+   
+    public void TurnOn() {
+        currentPage = 1;
+        needFirstItemInfoUpdate = true;
+    }
+
+    #region  Initializer
+
+    private void SetItemButton() {
+   
+        itemButtons.Clear();
+        for (int i = 1; i <= ButtonCount; i++) {
+            itemButtons.Add(GameObject.Find($"Item{i}").GetComponent<ItemListButton>());
+        }
+    } 
+    private void SetPageCount() {
 
         if (!ItemInfo.CheckTable())
             return;
@@ -33,19 +53,11 @@ public class ItemListContext: MonoBehaviour {
         page.text = $"<{currentPage}/{maximumPage}>";
     }
 
-    private void UpdatePage() {
+    #endregion
+    private void UpdatePageCount() {
         page.text = $"<{currentPage}/{maximumPage}>";
     }
-
-    private void SetItemButton() {
-
-        itemButtons.Clear();
-        for (int i = 1; i <= ButtonCount; i++) {
-            itemButtons.Add(GameObject.Find($"Item{i}").GetComponent<ItemListButton>());
-        }
-    }
-
-    public bool UpdateItemButton() {
+    private bool UpdateItemList() {
 
         if (!ItemInfo.CheckTable())
             return false;
@@ -55,7 +67,7 @@ public class ItemListContext: MonoBehaviour {
         foreach (var item in Inventory.Items) {
 
             //check item
-            if ((CodeType)(item.Key / ItemInfo.CodeDigit) != CodeType.Item)
+            if ((CodeType)(item.Key / ItemInfo.CodeMask) != CodeType.Item)
                 continue;
             
             //check count
@@ -82,26 +94,30 @@ public class ItemListContext: MonoBehaviour {
         return true;
     }
 
+    #region PageControle
+
     public void NextPage() {
         
         currentPage++;
         if (currentPage > maximumPage) currentPage = 1;
-        UpdatePage();
-        UpdateItemButton();
+        UpdatePageCount();
+        UpdateItemList();
         //cursor index correct check
-        itemListManager.CheckIndex();
+        itemListManager.CheckCursorIndex();
     }
-
     public void PriviousPage() {
 
         currentPage--;
         if (currentPage <= 0) currentPage = maximumPage;
-        UpdatePage();
-        UpdateItemButton();
+        UpdatePageCount();
+        UpdateItemList();
         //cursor index correct check
-        itemListManager.CheckIndex();
+        itemListManager.CheckCursorIndex();
     }
     
+    #endregion
+    
+   //==================================================||UnityFunc 
     private void Awake() {
 
         if (Instance == null)
@@ -112,16 +128,10 @@ public class ItemListContext: MonoBehaviour {
         ItemInfo.SetTable();
         SetItemButton();
     }
-
-    public void TurnOn() {
-        currentPage = 1;
-        needFirstItemInfoUpdate = true;
-    }
-    
     private void Update() {
 
         //First update
-        if (needFirstItemInfoUpdate && UpdateItemButton()) {
+        if (needFirstItemInfoUpdate && UpdateItemList()) {
             SetPageCount();
             needFirstItemInfoUpdate = false;
         }

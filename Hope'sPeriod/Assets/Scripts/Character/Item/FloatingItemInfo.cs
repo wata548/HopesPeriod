@@ -7,12 +7,16 @@ using UnityEngine.EventSystems;
 public class FloatingItemInfo : MonoBehaviour
 {
     
+   //==================================================||Set Inspector 
+   
+    [SerializeField]private GameObject floating;
+    
+   //==================================================||Field 
     private RectTransform rect;
     private Vector2 screenSize;
     private TMP_Text info;
-    [SerializeField]private GameObject floating;
-    
-    public enum ShowDirection {
+
+    private enum ShowDirection {
         DownLeft = 0b00,
         DownRight = 0b01,
         UpLeft = 0b10, 
@@ -26,6 +30,7 @@ public class FloatingItemInfo : MonoBehaviour
         {ShowDirection.DownRight, Vector2.one}
     };
 
+   //==================================================||Method 
     public void TurnOn() {
         floating.SetActive(true);
     }
@@ -34,14 +39,6 @@ public class FloatingItemInfo : MonoBehaviour
         floating.SetActive(false);
     }
     
-    private void Awake() {
-
-        TurnOff();
-        info = floating.GetComponentInChildren<TMP_Text>();
-        screenSize = new(Screen.width, Screen.height);
-        rect = floating.GetComponent<RectTransform>();
-    }
-
     public void UpdateInfo(int code) {
 
         info.text = ItemInfo.Description(code);
@@ -65,5 +62,14 @@ public class FloatingItemInfo : MonoBehaviour
         
         Vector2 mousePos = Input.mousePosition;
         rect.position = mousePos;
+    }
+    
+   //==================================================||Unity Func 
+    private void Awake() {
+    
+        TurnOff();
+        info = floating.GetComponentInChildren<TMP_Text>();
+        screenSize = new(Screen.width, Screen.height);
+        rect = floating.GetComponent<RectTransform>();
     }
 }
