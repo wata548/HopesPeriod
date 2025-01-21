@@ -91,6 +91,10 @@ public class ItemListButton: InteractButtonUI, IPointerEnterHandler, IPointerExi
         if (floatingInfo is null)
             throw new Exception($"please set floatingInfo in {gameObject.name}");
 
+        if (!Manager.Interactable)
+            return;
+        
+        //firstUpdate
         if (code != -1 && needUpdate) {
 
             if(ItemInfo.CheckTable()) needUpdate = false;
@@ -112,7 +116,8 @@ public class ItemListButton: InteractButtonUI, IPointerEnterHandler, IPointerExi
 
 
     public override void Click() {
-        if(!Show) return;
+        if (!Show) return;
+        if (!Manager.Interactable) return;
 
         if (!ItemInfo.NeedSelect(code)) {
 
@@ -120,7 +125,19 @@ public class ItemListButton: InteractButtonUI, IPointerEnterHandler, IPointerExi
            
             return;
         }
-        
-        
+
+        TargetButtonManager.Instance.TurnOn(SelectType.Players);
+        InteractableOff();
+    }
+
+    public void InteractableOff() {
+        floatingInfo.TurnOff();
+        floatingOn = false;
+        Manager.Interactable = false;
+        onMouse = false;
+    }
+
+    public void InteractableOn() {
+        Manager.Interactable = true;
     }
 }

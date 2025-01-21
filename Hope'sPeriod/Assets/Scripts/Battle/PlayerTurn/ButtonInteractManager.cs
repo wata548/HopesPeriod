@@ -29,7 +29,6 @@ public class ButtonInteractManager: MonoBehaviour {
         { ButtonType.Shield , PlayerTurnState.Shield}
     };
     
-    private PlayerTurnState state = PlayerTurnState.SelectBehavior;
     private ButtonType selectType = ButtonType.Attack;
     private bool isActive = true;
     
@@ -44,9 +43,9 @@ public class ButtonInteractManager: MonoBehaviour {
 
     private void SelectBehavior() {
 
-        if (state != PlayerTurnState.SelectBehavior)
+        if (GameFSM.Instance.PlayerTurnState != PlayerTurnState.SelectBehavior)
             return;
-        
+
         if(InputManager.Instance.Click(KeyTypes.Right) || InputManager.Instance.Hold(KeyTypes.Right)) {
             if (selectType == ButtonType.Shield) {
                 SelectButton(buttons[(int)ButtonType.Attack], ButtonType.Attack);
@@ -68,7 +67,7 @@ public class ButtonInteractManager: MonoBehaviour {
         }
     }
 
-    private void ButtonShowControle() {
+    private void ShowButton() {
         
         if (GameFSM.Instance.State != GameState.PlayerAttack) {
             if (isActive) {
@@ -93,7 +92,7 @@ public class ButtonInteractManager: MonoBehaviour {
     
     private void Update() {
 
-        ButtonShowControle(); 
+        ShowButton(); 
         SelectBehavior();
 
         if (InputManager.Instance.Click(KeyTypes.Select)) {

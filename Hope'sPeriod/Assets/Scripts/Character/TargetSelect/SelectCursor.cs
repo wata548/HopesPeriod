@@ -5,8 +5,8 @@ using UnityEditor.AddressableAssets.Build.BuildPipelineTasks;
 using UnityEngine;
 
 public enum SelectType {
-    ItemTarget,
-    SkillTarget
+    Players,
+    EveryOne
 }
 
 public class SelectCursor: MonoBehaviour {
@@ -74,7 +74,7 @@ public class SelectCursor: MonoBehaviour {
     public void TurnOn(SelectType type) {
 
         SelectType = type;
-        Index = 0;
+        SetIndex(0);
         IsOn = true;
         renderer.enabled = true;
     }
@@ -101,15 +101,21 @@ public class SelectCursor: MonoBehaviour {
             return;
         
         if (InputManager.Instance.Click(KeyTypes.Right)) {
-            ExtractIndex();
+            AddIndex();
         }
 
         if (InputManager.Instance.Click(KeyTypes.Left)) {
-            AddIndex();
+            ExtractIndex();
         }
 
         if (InputManager.Instance.Click(KeyTypes.Select)) {
             TurnOff();
+        }
+        
+        else if (InputManager.Instance.Click(KeyTypes.Cancel)) {
+            TurnOff();
+            TargetButtonManager.Instance.Interactable = false;
+            ItemListButtonManager.Instance.Interactable = true;
         }
     }
 }

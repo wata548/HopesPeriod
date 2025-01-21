@@ -64,7 +64,12 @@ public class KeyState {
         }
     }
 
-    public bool Click() => isClick;
+    public bool Click() {
+        bool result = isClick;
+        ClickCancel();
+
+        return result;
+    }
     public bool Pressing() => isHold;
 
     public bool Hold() {
@@ -77,7 +82,10 @@ public class KeyState {
         return check;
     }
     public bool Up() => isUp;
-    
+
+    private void ClickCancel() {
+        isClick = false;
+    }
 
     public KeyState(KeyCode key, float requiredTime = 0.5f) {
         
@@ -147,7 +155,6 @@ public class InputManager : MonoBehaviour
         return KeyMapper[type].Pressing();
 
     }
-
     #endregion
 
     #region ConvertJson
