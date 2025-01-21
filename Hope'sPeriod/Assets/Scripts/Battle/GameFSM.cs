@@ -28,7 +28,7 @@ public class GameFSM: MonoBehaviour {
             Destroy(this);
     }
 
-    public GameState State { get; private set; } = GameState.BattleStart;
+    public GameState State { get; private set; } = GameState.PlayerAttack;
     public PlayerTurnState PlayerTurnState { get; private set; } = PlayerTurnState.SelectBehavior;
     
     //Check during pattern
@@ -100,7 +100,11 @@ public class GameFSM: MonoBehaviour {
                         );
                 } 
             }
+            
+            //Cancel
             if (PlayerTurnState != PlayerTurnState.SelectBehavior && InputManager.Instance.Click(KeyTypes.Cancel)) {
+
+                ItemListButtonManager.Instance.TurnOff();
                 needPlayerTurnUpdate = true;
                 PlayerTurnState = PlayerTurnState.SelectBehavior;
             }
@@ -134,7 +138,11 @@ public class GameFSM: MonoBehaviour {
             playerTurnStart = false;
             Player.Instance.Movement
                 .SetApply<CompoInput>(DirectionInfo.All);
+
+            ItemListButtonManager.Instance.TurnOff();
             State = GameState.BeforeSkill;
+            PlayerTurnState = PlayerTurnState.SelectBehavior;
+            needPlayerTurnUpdate = true;
         }
         else {
             State++;

@@ -104,8 +104,8 @@ public static class ItemInfo {
         ItemDBData item = GetData(code);
         
         foreach (var characterInfo in ControleCharacterInfo.Instance.CharacterInfos) {
-            if(item.HealHP != 0) characterInfo.HealHp(item.HealsHP, item.ReviveAll);
-            if(item.HealMP != 0) characterInfo.HealMp(item.HealMP);
+            if(item.HealsHP != 0) characterInfo.HealHp(item.HealsHP, item.ReviveAll);
+            if(item.HealsMP != 0) characterInfo.HealMp(item.HealsMP);
         }
         
         if(user is not null) {

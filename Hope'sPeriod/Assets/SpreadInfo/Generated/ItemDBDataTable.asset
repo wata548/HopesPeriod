@@ -59,8 +59,7 @@ MonoBehaviour:
         m_Name: "\uCD08\uCF5C\uB9BF"
         m_Description: "\uB179\uC544 \uBB3C\uB801\uD574\uC9C4 \uCD08\uCF5C\uB9BF.
           \n\uB2E4\uD06C\uCD08\uCF5C\uB9BF\uC778\uC9C0 \uC4F4 \uB9DB\uC774 \uB09C\uB2E4.
-          \n\uC0AC\uC6A9 \uC2DC \uC804\uCCB4\uC758 \uC0DD\uC874\uC758\uC9C0\uAC00
-          20 \uD68C\uBCF5\uB41C\uB2E4."
+          \n\uC0AC\uC6A9 \uC2DC \uC804\uCCB4\uC758 \uC800\uD56D\uB825\uC774 20 \uD68C\uBCF5\uB41C\uB2E4."
         m_HealHP: 0
         m_HealsHP: 0
         m_Revive: 0

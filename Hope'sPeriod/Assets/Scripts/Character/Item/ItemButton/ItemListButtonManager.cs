@@ -6,26 +6,38 @@ using VInspector.Libs;
 
 public class ItemListButtonManager: InteractButtonManager {
     public override bool Interactable { get; set; } = false;
+    private static FloatingItemInfo floating = null;
     
     [SerializeField] private GameObject itemList;
 
     public static ItemListButtonManager Instance { get; private set; } = null;
+
+    public static void SetFloating(FloatingItemInfo floating) {
+        ItemListButtonManager.floating = floating;
+    }
     
     public void TurnOn() {
         itemList.SetActive(true);
+        ItemListContext.Instance.TurnOn();
+        ItemListCursor.Instance.TurnOn();
         Interactable = true;
     }
 
     public void TurnOff() {
         itemList.SetActive(false);
+        floating.TurnOff();
         Interactable = false;
+        Selecting = -1;
+        
+        foreach (var button in buttons) {
+
+            Parse(button).TurnOff();
+        }
     }
     
     public override void SelectIn(InteractButton target) {
 
-        if (target is not ItemListButton button) {
-            throw new Exception($"This Interactable Button type didn't match to ItemListButton.\nThis Interactable button type must be ItemListButton\n(ObjectName : {target.gameObject.name}");
-        }
+        var button = Parse(target);
         
         if (!button.Show)
             return;
@@ -36,13 +48,9 @@ public class ItemListButtonManager: InteractButtonManager {
     public override void SelectOut(InteractButton target) {}
 
     public void CheckIndex() {
-        if (Selecting == -1)
-            return;
 
-        if (buttons[Selecting] is not ItemListButton button) {
-            throw new Exception($"This Interactable Button type didn't match to ItemListButton.\nThis Interactable button type must be ItemListButton\n(ObjectName : {buttons[Selecting].gameObject.name}");
-        }
-
+        int index = ItemListCursor.Instance.Index;
+        var button = Parse(buttons[index]);
         if (!button.Show) {
 
             Debug.Log("init");
@@ -68,13 +76,73 @@ public class ItemListButtonManager: InteractButtonManager {
 
         if (!Interactable)
             return;
-        
+
+        Input();
+    }
+
+    private void Input() {
         if (InputManager.Instance.Click(KeyTypes.Right)) {
             ItemListContext.Instance.NextPage();
         }
-
+        
         if (InputManager.Instance.Click(KeyTypes.Left)) {
             ItemListContext.Instance.PriviousPage();
         }
+        
+        if (InputManager.Instance.Click(KeyTypes.Down)) {
+            int index = ItemListCursor.Instance.Index + 1;
+            int limit = buttons.Count;
+        
+            if (index >= limit) {
+                index = 0;
+            }
+
+            if (!Parse(buttons[index]).Show)
+                index = 0;
+            
+            Selecting = -1;
+            ItemListCursor.Instance.SetIndex(index);
+        }
+        
+        if (InputManager.Instance.Click(KeyTypes.Up)) {
+            int index = ItemListCursor.Instance.Index - 1;
+            int limit = buttons.Count;
+        
+            if (index < 0) {
+                index = limit - 1;
+            }
+
+            if (!Parse(buttons[index]).Show) {
+
+                bool change = false;
+                for (int i = buttons.Count - 1; i > -1; i--) {
+                    if (!Parse(buttons[i]).Show) continue;
+                    
+                    change = true;
+                    index = i;
+                    break;
+                }
+
+                if (!change) index = 0;
+            }
+
+            Selecting = -1;
+            ItemListCursor.Instance.SetIndex(index);
+        }
+        
+        if (InputManager.Instance.Click(KeyTypes.Select)) {
+        
+            int index = ItemListCursor.Instance.Index;
+            
+            Parse(buttons[index]).Click();
+        }
+    }
+
+    private ItemListButton Parse(InteractButton button) {
+        if (button is not ItemListButton itemButton) {
+            throw new TypeMissMatched(button.gameObject, typeof(ItemListButton));
+        }
+
+        return itemButton;
     }
 }

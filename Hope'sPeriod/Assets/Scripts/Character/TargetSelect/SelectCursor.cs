@@ -1,12 +1,19 @@
 using System;
 using System.Dynamic;
+using Unity.VisualScripting;
 using UnityEditor.AddressableAssets.Build.BuildPipelineTasks;
 using UnityEngine;
+
+public enum SelectType {
+    ItemTarget,
+    SkillTarget
+}
 
 public class SelectCursor: MonoBehaviour {
 
     public static SelectCursor Instance { get; private set; } = null;
 
+    public SelectType SelectType { get; private set; }
     public int Index { get; private set; } = 0;
     public bool IsOn { get; private set; }= false;
     private SpriteRenderer renderer = null;
@@ -64,8 +71,9 @@ public class SelectCursor: MonoBehaviour {
         UpdateIndex();
     }
     
-    public void TurnOn() {
-        
+    public void TurnOn(SelectType type) {
+
+        SelectType = type;
         Index = 0;
         IsOn = true;
         renderer.enabled = true;
@@ -88,6 +96,10 @@ public class SelectCursor: MonoBehaviour {
     }
 
     private void Update() {
+
+        if (!IsOn)
+            return;
+        
         if (InputManager.Instance.Click(KeyTypes.Right)) {
             ExtractIndex();
         }

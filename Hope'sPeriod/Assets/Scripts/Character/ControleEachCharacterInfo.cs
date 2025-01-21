@@ -68,6 +68,9 @@ public class ControleEachCharacterInfo: MonoBehaviour {
     }
 
     public bool HealHp(float power, bool revive = false) {
+
+        Debug.Log($"heal Hp {power}");
+        
         if (!revive && CurrentHp <= 0)
             return false;
 

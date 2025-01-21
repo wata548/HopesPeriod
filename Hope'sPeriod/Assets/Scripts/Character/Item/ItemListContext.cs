@@ -16,7 +16,7 @@ public class ItemListContext: MonoBehaviour {
     private bool needFirstItemInfoUpdate = true;
     private int currentPage = 1;
     private int maximumPage = 1;
-    private const int ButtonCount = 4;
+    public const int ButtonCount = 4;
     private List<ItemListButton> itemButtons = new();
 
     public void SetPageCount() {
@@ -113,6 +113,11 @@ public class ItemListContext: MonoBehaviour {
         SetItemButton();
     }
 
+    public void TurnOn() {
+        currentPage = 1;
+        needFirstItemInfoUpdate = true;
+    }
+    
     private void Update() {
 
         //First update

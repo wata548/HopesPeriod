@@ -25,6 +25,11 @@ public class ItemListButton: InteractButtonUI, IPointerEnterHandler, IPointerExi
     
     private const float AppearTime = 0.3f;
 
+    public void TurnOff() {
+        onMouse = false;
+        floatingOn = false;
+    }
+    
     private void RefreshFloating() {
         if (onMouse) {
             Debug.Log("refresh");
@@ -71,8 +76,11 @@ public class ItemListButton: InteractButtonUI, IPointerEnterHandler, IPointerExi
 
     private void Awake() {
 
-        if (floatingInfo is null && tempFloatingInfo is not null)
+        if (floatingInfo is null && tempFloatingInfo is not null) {
+            
             floatingInfo = tempFloatingInfo;
+            ItemListButtonManager.SetFloating(tempFloatingInfo);
+        }
 
         textInfo = GetComponentInChildren<TMP_Text>();
         rect = GetComponent<RectTransform>();
@@ -107,18 +115,12 @@ public class ItemListButton: InteractButtonUI, IPointerEnterHandler, IPointerExi
         if(!Show) return;
 
         if (!ItemInfo.NeedSelect(code)) {
-            
+
             Inventory.UseItem(code);
-            ItemListContext.Instance.UpdateItemButton();
-            ItemListContext.Instance.SetPageCount();
+           
             return;
         }
         
-        if (ItemInfo.Revive(code)) {
-                
-        }
-        else {
-                
-        }
+        
     }
 }

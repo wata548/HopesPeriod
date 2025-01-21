@@ -42,8 +42,15 @@ public static class Inventory{
                return false;
           }
 
+          
           Items[code]--;
           ItemInfo.UseItem(code);
+          CallBackMainFsm();
           return true;
+     }
+
+     private static void CallBackMainFsm() {
+
+          GameFSM.Instance.SkipState();
      }
 }

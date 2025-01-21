@@ -1,4 +1,5 @@
     using System;
+    using UnityEngine;
 
     public class OutOfRange: Exception{
 
@@ -27,4 +28,19 @@
 
         public ForgetSetUpInspector(string info)
             : base($"You seem to forget setup {info}") {}
+    }
+
+    public class TypeMissMatched : Exception {
+
+        public TypeMissMatched(string a, string b)
+            : base($"{a}'s component type isn't matched {b}") { }
+
+        
+        public TypeMissMatched(string a, Type b)
+            : base($"{a}'s component type isn't matched {b}") { }
+        //==================================================||
+        public TypeMissMatched(GameObject a, Type b)
+            : base($"{a.name}'s component type isn't matched {b}") { }
+        public TypeMissMatched(Type a, Type b, GameObject @Object)
+            : base($"{a.Name} type isn't matched {b}, check about {@Object.name}") { }
     }
