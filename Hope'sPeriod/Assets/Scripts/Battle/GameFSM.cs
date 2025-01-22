@@ -97,6 +97,8 @@ public class GameFSM: MonoBehaviour {
                         Inventory.UseItem(code, target);
                         break;
                     case PlayerTurnState.Shield:
+                        ControleCharacterInfo.Instance.ShieldOn();
+                        SkipState();
                         break;
                     default:
                         throw new OutOfRange(
@@ -176,6 +178,8 @@ public class GameFSM: MonoBehaviour {
                 .SetApply<CompoInput>(DirectionInfo.All);
 
             ItemListButtonManager.Instance.TurnOff();
+            ControleCharacterInfo.Instance.UpdateShield();
+            
             State = GameState.BeforeSkill;
             PlayerTurnState = PlayerTurnState.SelectBehavior;
             needPlayerTurnUpdate = true;

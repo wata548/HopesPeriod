@@ -1,19 +1,25 @@
 using System;
 using System.Linq;
+using SpreadInfo;
 using UnityEngine;
 using UnityEngine.Serialization;
+using UnityEngine.SceneManagement;
 
 public class ControleCharacterInfo: MonoBehaviour {
     
-    
-    //==================================================| Field 
-    public static ControleCharacterInfo Instance { get; private set; } = null;
-    
-    public int CharacterCount { get; private set; } = 3;
-    private const int MaximumCharacterCount = 3;
+    //==================================================||Set Inspector 
+   
     [field: SerializeField] private ControleEachCharacterInfo[] characterInfos = new ControleEachCharacterInfo[3];
+    //==================================================| Field 
+    public bool GameOver { get; private set; } = false;
+    
+    private const int MaximumCharacterCount = 3;
     private const float InvincibilityTime = 1.2f;
     
+    //==================================================||Property 
+    public static ControleCharacterInfo Instance { get; private set; } = null;
+    public int CharacterCount { get; private set; } = 3;
+
     //==================================================| Method 
     #region Singleton 
     void SetSingleton() {
@@ -29,6 +35,35 @@ public class ControleCharacterInfo: MonoBehaviour {
 
     public ControleEachCharacterInfo CharacterInfo(int index) => characterInfos[index];
     public ControleEachCharacterInfo[] CharacterInfos() => characterInfos;
+
+    public void UpdateShield() {
+        foreach (var character in characterInfos) {
+
+            character.UpdateShield();
+        }
+    }
+    
+    public void ShieldOn(DefenceType type = DefenceType.Time, float power = 2.3f) {
+
+        foreach (var character in characterInfos) {
+
+            character.SetShield(type, power);
+        }
+        
+    }
+
+    public void ShieldOff() {
+
+        foreach (var character in characterInfos) {
+            
+            character.SetShield(DefenceType.None, 0);
+        }
+    }
+
+    public void ShieldOff(int index) {
+
+        characterInfos[index].SetShield(DefenceType.None, 0);
+    }
     
     public bool Alive(int index) {
         return !characterInfos[index].Dead;
@@ -55,7 +90,6 @@ public class ControleCharacterInfo: MonoBehaviour {
                 throw new OutOfRange(0, 1, useAttrackSkillplayer.Attract);
             }
             float damage = power * useAttrackSkillplayer.Attract;
-            damage = Mathf.Ceil(damage);
             
             useAttrackSkillplayer.GetDamage(damage);
 
@@ -83,12 +117,15 @@ public class ControleCharacterInfo: MonoBehaviour {
             checkCharacter.GetDamage(eachPower);
         }
         
-        return IsGameover();
+        return IsGameOver();
     }
-    public bool IsGameover() {
+    private bool IsGameOver() {
 
-        bool gameover = characterInfos.Any(character => character.Dead == false);
-        return gameover;
+        bool gameOver = characterInfos.All(character => character.Dead);
+        if (gameOver) {
+            StartCoroutine(Wait.WaitAndDo(1, () => SceneManager.LoadScene("GameOver")));
+        }
+        return GameOver = gameOver;
     }
     
     //=================================================| UnityLogic 

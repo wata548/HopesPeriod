@@ -36,7 +36,7 @@ public class PlayerPhysics : MonoBehaviour
     }
 
     void Update() {
-
+        if (ControleCharacterInfo.Instance.GameOver) return;
         playerRigidbody.linearVelocity = Movement.Play(playerRigidbody.linearVelocity, Vector2.zero);
     }
 }
