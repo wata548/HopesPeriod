@@ -47,11 +47,11 @@ public class TargetButtonManager : InteractButtonManager {
          if (!Interactable)
              return;
                 
-         if (InputManager.Instance.Click(KeyTypes.Right)) {
+         if (InputManager.Instance.Click(KeyTypes.Right) || InputManager.Instance.Hold(KeyTypes.Right)) {
              SelectCursor.Instance.AddIndex();
          }
         
-         if (InputManager.Instance.Click(KeyTypes.Left)) {
+         if (InputManager.Instance.Click(KeyTypes.Left) || InputManager.Instance.Hold(KeyTypes.Left)) {
              SelectCursor.Instance.ExtractIndex();
          }
         

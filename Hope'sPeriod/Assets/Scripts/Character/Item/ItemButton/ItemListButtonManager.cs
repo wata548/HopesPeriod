@@ -73,15 +73,15 @@ public class ItemListButtonManager: InteractButtonManager {
     }
 
     private void Input() {
-        if (InputManager.Instance.Click(KeyTypes.Right)) {
+        if (InputManager.Instance.Click(KeyTypes.Right) || InputManager.Instance.Hold(KeyTypes.Right)) {
             ItemListContext.Instance.NextPage();
         }
             
-        if (InputManager.Instance.Click(KeyTypes.Left)) {
+        if (InputManager.Instance.Click(KeyTypes.Left) || InputManager.Instance.Hold(KeyTypes.Left)) {
             ItemListContext.Instance.PriviousPage();
         }
             
-        if (InputManager.Instance.Click(KeyTypes.Down)) {
+        if (InputManager.Instance.Click(KeyTypes.Down) || InputManager.Instance.Hold(KeyTypes.Down)) {
             int index = ItemListCursor.Instance.Index + 1;
             int limit = buttons.Count;
             
@@ -96,7 +96,7 @@ public class ItemListButtonManager: InteractButtonManager {
             ItemListCursor.Instance.SetIndex(index);
         }
             
-        if (InputManager.Instance.Click(KeyTypes.Up)) {
+        if (InputManager.Instance.Click(KeyTypes.Up) || InputManager.Instance.Hold(KeyTypes.Up)) {
             int index = ItemListCursor.Instance.Index - 1;
             int limit = buttons.Count;
             

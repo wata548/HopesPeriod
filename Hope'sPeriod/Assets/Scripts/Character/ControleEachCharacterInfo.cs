@@ -5,12 +5,14 @@ using System.Collections.Generic;
 using NUnit.Framework.Constraints;
 using SpreadInfo;
 using TMPro;
+using UnityEngine.UI;
 
 public class ControleEachCharacterInfo: MonoBehaviour {
 
 
     //==================================================||Set Inspector 
-    
+
+    [SerializeField] private SpriteRenderer profile;
     [SerializeField] private CharacterSlider hp;
     [SerializeField] private CharacterSlider mp;
     [SerializeField] private TMP_Text hpChange;
@@ -23,6 +25,9 @@ public class ControleEachCharacterInfo: MonoBehaviour {
     private readonly Color shieldColor = Color.cyan;
     private readonly Color damageHpColor = Color.white;
     private readonly Color useMpColor = Color.white;
+    private readonly Color DeadGray = new(0.3f, 0.3f, 0.3f);
+
+    private Color originColor;
     
     //==================================================| Properties  
 
@@ -37,6 +42,13 @@ public class ControleEachCharacterInfo: MonoBehaviour {
 
     //==================================================| Method 
 
+    private void SetColor(Color color) {
+        hp.ChangeColor(color);
+        mp.ChangeColor(color); 
+        profile.color = color;
+                
+    }
+    
     public void SetShield(DefenceType type, float power) {
 
         Shield = type;
@@ -125,6 +137,9 @@ public class ControleEachCharacterInfo: MonoBehaviour {
 
         CurrentHp = 0;
         ShowDamage(damage);
+
+        StartCoroutine(Wait.WaitAndDo(0.6f, () => SetColor(DeadGray)));
+        
         Debug.Log("character dead");
         
         Dead = true;
@@ -140,6 +155,7 @@ public class ControleEachCharacterInfo: MonoBehaviour {
 
         if (revive && CurrentHp <= 0) {
             //TODO: Revive Event
+            StartCoroutine(Wait.WaitAndDo(0.6f, () => SetColor(originColor)));
         }
         
         CurrentHp += power;
@@ -196,5 +212,10 @@ public class ControleEachCharacterInfo: MonoBehaviour {
         mpChange.color = healMpColor;
         
         mpChange.DOBlink(0.2f, 0.2f, 0.2f, 0.7f);
+    }
+
+    private void Awake() {
+
+        originColor = profile.color;
     }
 }

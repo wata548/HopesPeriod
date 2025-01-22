@@ -10,7 +10,8 @@ using UnityEngine.Serialization;
 public class Slider : MonoBehaviour{
    
     [SerializeField] private GameObject handle = null;
-
+    protected SpriteRenderer handleRenderer;
+    
     private float handleScale = 1;
     private const float DURACTION = 0.5f;
     private Tween current = null;
@@ -26,6 +27,7 @@ public class Slider : MonoBehaviour{
     public void Awake() {
         //Check set up
         CheckScale();
+        handleRenderer = handle.GetComponent<SpriteRenderer>();
     }
 
     

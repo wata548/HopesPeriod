@@ -36,10 +36,7 @@ namespace SpreadInfo {
         private int m_ATKCon;
         
         [UnityEngine.SerializeField()]
-        private int m_DEF;
-        
-        [UnityEngine.SerializeField()]
-        private int m_DEFCon;
+        private int m_DEFPower;
         
         [UnityEngine.SerializeField()]
         private SpreadInfo.DefenceType m_DEFType;
@@ -72,7 +69,7 @@ namespace SpreadInfo {
         private bool m_MPAll;
         
         [UnityEngine.SerializeField()]
-        private EffectType m_Effect;
+        private SpreadInfo.EffectType m_Effect;
         
         [UnityEngine.SerializeField()]
         private float m_EffectPower;
@@ -125,15 +122,9 @@ namespace SpreadInfo {
             }
         }
         
-        public int DEF {
+        public int DEFPower {
             get {
-                return this.m_DEF;
-            }
-        }
-        
-        public int DEFCon {
-            get {
-                return this.m_DEFCon;
+                return this.m_DEFPower;
             }
         }
         
@@ -197,7 +188,7 @@ namespace SpreadInfo {
             }
         }
         
-        public EffectType Effect {
+        public SpreadInfo.EffectType Effect {
             get {
                 return this.m_Effect;
             }

@@ -10,13 +10,8 @@ public class Monster: MonoBehaviour {
     [SerializeField] private List<EnemyPatternBase> patterns = new();
     public static Monster Instance { get; private set; } = null;
     
-    [SerializeField] int maxHP;
-    public int MaxHP {
-        get => maxHP;
-        private set => maxHP = value;
-    }
+    [field: SerializeField]public int MaxHP { get; private set; }
 
-    public int CurrentHP { get; private set; }
     
     private int index = 0;
     public bool IsPattern { get; private set; } = false;
