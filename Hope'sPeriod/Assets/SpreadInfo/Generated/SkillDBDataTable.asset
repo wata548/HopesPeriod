@@ -23,21 +23,8 @@ MonoBehaviour:
         m_UseMP: 0
         m_ATK: 20
         m_ATKCon: 1
-        m_DEFPower: 0
-        m_DEFType: 0
-        m_DEFReflect: 0
-        m_ATR: 0
-        m_ATRCon: 0
-        m_HP: 0
-        m_HPCon: 0
-        m_HPAll: 0
-        m_MP: 0
-        m_MPCon: 0
-        m_MPAll: 0
-        m_Effect: 0
-        m_EffectPower: 0
-        m_EffectCon: 0
-        m_EffectTarget: 4
+        m_SkillItem: 0
+        m_SkillItemCon: 0
     - Key: 9102
       Value:
         m_Code: 9102
@@ -48,21 +35,8 @@ MonoBehaviour:
         m_UseMP: 30
         m_ATK: 40
         m_ATKCon: 1
-        m_DEFPower: 0
-        m_DEFType: 0
-        m_DEFReflect: 0
-        m_ATR: 0
-        m_ATRCon: 0
-        m_HP: 0
-        m_HPCon: 0
-        m_HPAll: 0
-        m_MP: 0
-        m_MPCon: 0
-        m_MPAll: 0
-        m_Effect: 0
-        m_EffectPower: 0
-        m_EffectCon: 0
-        m_EffectTarget: 4
+        m_SkillItem: 0
+        m_SkillItemCon: 0
     - Key: 9103
       Value:
         m_Code: 9103
@@ -72,21 +46,8 @@ MonoBehaviour:
         m_UseMP: 40
         m_ATK: 0
         m_ATKCon: 0
-        m_DEFPower: 0
-        m_DEFType: 0
-        m_DEFReflect: 0
-        m_ATR: 0
-        m_ATRCon: 0
-        m_HP: 0
-        m_HPCon: 0
-        m_HPAll: 0
-        m_MP: 0
-        m_MPCon: 0
-        m_MPAll: 0
-        m_Effect: 2
-        m_EffectPower: 1.5
-        m_EffectCon: 1
-        m_EffectTarget: 2
+        m_SkillItem: 0
+        m_SkillItemCon: 0
     - Key: 9104
       Value:
         m_Code: 9104
@@ -97,21 +58,8 @@ MonoBehaviour:
         m_UseMP: 25
         m_ATK: 0
         m_ATKCon: 0
-        m_DEFPower: 3
-        m_DEFType: 2
-        m_DEFReflect: 1
-        m_ATR: 0
-        m_ATRCon: 0
-        m_HP: 0
-        m_HPCon: 0
-        m_HPAll: 0
-        m_MP: 0
-        m_MPCon: 0
-        m_MPAll: 0
-        m_Effect: 0
-        m_EffectPower: 0
-        m_EffectCon: 0
-        m_EffectTarget: 4
+        m_SkillItem: 0
+        m_SkillItemCon: 0
     - Key: 9201
       Value:
         m_Code: 9201
@@ -121,21 +69,8 @@ MonoBehaviour:
         m_UseMP: 0
         m_ATK: 25
         m_ATKCon: 1
-        m_DEFPower: 0
-        m_DEFType: 0
-        m_DEFReflect: 0
-        m_ATR: 0
-        m_ATRCon: 0
-        m_HP: 0
-        m_HPCon: 0
-        m_HPAll: 0
-        m_MP: 0
-        m_MPCon: 0
-        m_MPAll: 0
-        m_Effect: 0
-        m_EffectPower: 0
-        m_EffectCon: 0
-        m_EffectTarget: 4
+        m_SkillItem: 0
+        m_SkillItemCon: 0
     - Key: 9202
       Value:
         m_Code: 9202
@@ -146,21 +81,8 @@ MonoBehaviour:
         m_UseMP: 35
         m_ATK: 50
         m_ATKCon: 1
-        m_DEFPower: 0
-        m_DEFType: 0
-        m_DEFReflect: 0
-        m_ATR: 0
-        m_ATRCon: 0
-        m_HP: 0
-        m_HPCon: 0
-        m_HPAll: 0
-        m_MP: 0
-        m_MPCon: 0
-        m_MPAll: 0
-        m_Effect: 0
-        m_EffectPower: 0
-        m_EffectCon: 0
-        m_EffectTarget: 4
+        m_SkillItem: 0
+        m_SkillItemCon: 0
     - Key: 9203
       Value:
         m_Code: 9203
@@ -171,21 +93,8 @@ MonoBehaviour:
         m_UseMP: 25
         m_ATK: 0
         m_ATKCon: 0
-        m_DEFPower: 0
-        m_DEFType: 0
-        m_DEFReflect: 0
-        m_ATR: 0.6
-        m_ATRCon: 3
-        m_HP: 0
-        m_HPCon: 1
-        m_HPAll: 0
-        m_MP: 0
-        m_MPCon: 0
-        m_MPAll: 0
-        m_Effect: 0
-        m_EffectPower: 0
-        m_EffectCon: 0
-        m_EffectTarget: 4
+        m_SkillItem: 0
+        m_SkillItemCon: 0
     - Key: 9204
       Value:
         m_Code: 9204
@@ -195,21 +104,8 @@ MonoBehaviour:
         m_UseMP: 35
         m_ATK: 65
         m_ATKCon: 1
-        m_DEFPower: 0
-        m_DEFType: 0
-        m_DEFReflect: 0
-        m_ATR: 0
-        m_ATRCon: 0
-        m_HP: 0
-        m_HPCon: 0
-        m_HPAll: 0
-        m_MP: 0
-        m_MPCon: 0
-        m_MPAll: 0
-        m_Effect: 0
-        m_EffectPower: 0
-        m_EffectCon: 0
-        m_EffectTarget: 4
+        m_SkillItem: 0
+        m_SkillItemCon: 0
     - Key: 9301
       Value:
         m_Code: 9301
@@ -219,21 +115,8 @@ MonoBehaviour:
         m_UseMP: 0
         m_ATK: 15
         m_ATKCon: 1
-        m_DEFPower: 0
-        m_DEFType: 0
-        m_DEFReflect: 0
-        m_ATR: 0
-        m_ATRCon: 0
-        m_HP: 0
-        m_HPCon: 0
-        m_HPAll: 0
-        m_MP: 0
-        m_MPCon: 0
-        m_MPAll: 0
-        m_Effect: 0
-        m_EffectPower: 0
-        m_EffectCon: 0
-        m_EffectTarget: 4
+        m_SkillItem: 0
+        m_SkillItemCon: 0
     - Key: 9302
       Value:
         m_Code: 9302
@@ -244,21 +127,8 @@ MonoBehaviour:
         m_UseMP: 25
         m_ATK: 0
         m_ATKCon: 0
-        m_DEFPower: 0
-        m_DEFType: 0
-        m_DEFReflect: 0
-        m_ATR: 0
-        m_ATRCon: 0
-        m_HP: 0
-        m_HPCon: 0
-        m_HPAll: 0
-        m_MP: 0
-        m_MPCon: 0
-        m_MPAll: 0
-        m_Effect: 1
-        m_EffectPower: 0.7
-        m_EffectCon: 1
-        m_EffectTarget: 4
+        m_SkillItem: 0
+        m_SkillItemCon: 0
     - Key: 9303
       Value:
         m_Code: 9303
@@ -269,21 +139,8 @@ MonoBehaviour:
         m_UseMP: 40
         m_ATK: 25
         m_ATKCon: 3
-        m_DEFPower: 0
-        m_DEFType: 0
-        m_DEFReflect: 0
-        m_ATR: 0
-        m_ATRCon: 0
-        m_HP: 0
-        m_HPCon: 0
-        m_HPAll: 0
-        m_MP: 0
-        m_MPCon: 0
-        m_MPAll: 0
-        m_Effect: 0
-        m_EffectPower: 0
-        m_EffectCon: 0
-        m_EffectTarget: 4
+        m_SkillItem: 0
+        m_SkillItemCon: 0
     - Key: 9304
       Value:
         m_Code: 9304
@@ -293,18 +150,5 @@ MonoBehaviour:
         m_UseMP: 20
         m_ATK: 0
         m_ATKCon: 0
-        m_DEFPower: 0
-        m_DEFType: 0
-        m_DEFReflect: 0
-        m_ATR: 0
-        m_ATRCon: 0
-        m_HP: 0
-        m_HPCon: 0
-        m_HPAll: 0
-        m_MP: 30
-        m_MPCon: 1
-        m_MPAll: 1
-        m_Effect: 0
-        m_EffectPower: 0
-        m_EffectCon: 0
-        m_EffectTarget: 4
+        m_SkillItem: 1
+        m_SkillItemCon: 1

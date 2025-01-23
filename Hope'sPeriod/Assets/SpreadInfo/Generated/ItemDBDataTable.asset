@@ -27,6 +27,15 @@ MonoBehaviour:
         m_ReviveAll: 0
         m_HealMP: 0
         m_HealsMP: 0
+        m_DEFPower: 0
+        m_DEFType: 0
+        m_DEFReflect: 0
+        m_ATR: 0
+        m_ATRCon: 0
+        m_Effect: 0
+        m_EffectPower: 0
+        m_EffectCon: 0
+        m_EffectTarget: 3
     - Key: 2002
       Value:
         m_Code: 2002
@@ -40,6 +49,15 @@ MonoBehaviour:
         m_ReviveAll: 0
         m_HealMP: 25
         m_HealsMP: 0
+        m_DEFPower: 0
+        m_DEFType: 0
+        m_DEFReflect: 0
+        m_ATR: 0
+        m_ATRCon: 0
+        m_Effect: 0
+        m_EffectPower: 0
+        m_EffectCon: 0
+        m_EffectTarget: 3
     - Key: 2003
       Value:
         m_Code: 2003
@@ -53,6 +71,15 @@ MonoBehaviour:
         m_ReviveAll: 0
         m_HealMP: 0
         m_HealsMP: 0
+        m_DEFPower: 0
+        m_DEFType: 0
+        m_DEFReflect: 0
+        m_ATR: 0
+        m_ATRCon: 0
+        m_Effect: 0
+        m_EffectPower: 0
+        m_EffectCon: 0
+        m_EffectTarget: 3
     - Key: 2004
       Value:
         m_Code: 2004
@@ -66,6 +93,15 @@ MonoBehaviour:
         m_ReviveAll: 0
         m_HealMP: 0
         m_HealsMP: 20
+        m_DEFPower: 0
+        m_DEFType: 0
+        m_DEFReflect: 0
+        m_ATR: 0
+        m_ATRCon: 0
+        m_Effect: 0
+        m_EffectPower: 0
+        m_EffectCon: 0
+        m_EffectTarget: 3
     - Key: 2005
       Value:
         m_Code: 2005
@@ -79,6 +115,15 @@ MonoBehaviour:
         m_ReviveAll: 0
         m_HealMP: 0
         m_HealsMP: 0
+        m_DEFPower: 0
+        m_DEFType: 0
+        m_DEFReflect: 0
+        m_ATR: 0
+        m_ATRCon: 0
+        m_Effect: 0
+        m_EffectPower: 0
+        m_EffectCon: 0
+        m_EffectTarget: 3
     - Key: 2006
       Value:
         m_Code: 2006
@@ -94,6 +139,15 @@ MonoBehaviour:
         m_ReviveAll: 0
         m_HealMP: 50
         m_HealsMP: 0
+        m_DEFPower: 0
+        m_DEFType: 0
+        m_DEFReflect: 0
+        m_ATR: 0
+        m_ATRCon: 0
+        m_Effect: 0
+        m_EffectPower: 0
+        m_EffectCon: 0
+        m_EffectTarget: 3
     - Key: 2007
       Value:
         m_Code: 2007
@@ -108,6 +162,15 @@ MonoBehaviour:
         m_ReviveAll: 0
         m_HealMP: 0
         m_HealsMP: 0
+        m_DEFPower: 0
+        m_DEFType: 0
+        m_DEFReflect: 0
+        m_ATR: 0
+        m_ATRCon: 3
+        m_Effect: 0
+        m_EffectPower: 0
+        m_EffectCon: 0
+        m_EffectTarget: 3
     - Key: 4001
       Value:
         m_Code: 4001
@@ -123,6 +186,15 @@ MonoBehaviour:
         m_ReviveAll: 0
         m_HealMP: 0
         m_HealsMP: 0
+        m_DEFPower: 0
+        m_DEFType: 0
+        m_DEFReflect: 0
+        m_ATR: 0
+        m_ATRCon: 0
+        m_Effect: 0
+        m_EffectPower: 0
+        m_EffectCon: 0
+        m_EffectTarget: 3
     - Key: 4002
       Value:
         m_Code: 4002
@@ -137,6 +209,15 @@ MonoBehaviour:
         m_ReviveAll: 0
         m_HealMP: 0
         m_HealsMP: 0
+        m_DEFPower: 0
+        m_DEFType: 0
+        m_DEFReflect: 0
+        m_ATR: 0
+        m_ATRCon: 0
+        m_Effect: 0
+        m_EffectPower: 0
+        m_EffectCon: 0
+        m_EffectTarget: 3
     - Key: 4003
       Value:
         m_Code: 4003
@@ -152,3 +233,52 @@ MonoBehaviour:
         m_ReviveAll: 0
         m_HealMP: 0
         m_HealsMP: 0
+        m_DEFPower: 0
+        m_DEFType: 0
+        m_DEFReflect: 0
+        m_ATR: 0
+        m_ATRCon: 0
+        m_Effect: 0
+        m_EffectPower: 0
+        m_EffectCon: 0
+        m_EffectTarget: 3
+    - Key: 2304
+      Value:
+        m_Code: 2304
+        m_Name: "\uD30C\uB791"
+        m_Description: 
+        m_HealHP: 0
+        m_HealsHP: 0
+        m_Revive: 0
+        m_ReviveAll: 0
+        m_HealMP: 0
+        m_HealsMP: 30
+        m_DEFPower: 0
+        m_DEFType: 0
+        m_DEFReflect: 0
+        m_ATR: 0
+        m_ATRCon: 0
+        m_Effect: 0
+        m_EffectPower: 0
+        m_EffectCon: 0
+        m_EffectTarget: 2
+    - Key: 2099
+      Value:
+        m_Code: 2099
+        m_Name: test
+        m_Description: 'test test test '
+        m_HealHP: 0
+        m_HealsHP: 0
+        m_Revive: 0
+        m_ReviveAll: 0
+        m_HealMP: 0
+        m_HealsMP: 0
+        m_DEFPower: 7
+        m_DEFType: 1
+        m_DEFReflect: 1
+        m_ATR: 0.5
+        m_ATRCon: 2
+        m_Effect: 0
+        m_EffectPower: 0
+        m_EffectCon: 0
+        m_EffectTarget: 1
