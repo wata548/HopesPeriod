@@ -60,40 +60,34 @@ public static class ItemInfo {
     
     public static bool NeedSelect(int code) {
     
-            if (!SetTable()) {
-                throw new Exception("Yet load table");
-                return false;
-            }
-            bool hp = HealHp(code) != 0;
-            bool mp = HealMp(code) != 0;
-            return hp || mp;
+        if (!SetTable()) {
+            throw new Exception("Yet load table");
+            return false;
         }
+        bool hp = HealHp(code) != 0;
+        bool mp = HealMp(code) != 0;
+        bool effectTarget = EffectTarget(code) == EffectTargetType.Select;
         
-    public static string Name(int code) {
-        return GetData(code)?.Name ?? "wait"; 
+        return hp || mp || effectTarget;
     }
-    public static string Description(int code) {
-        return GetData(code)?.Description ?? "wait";
-    }
-    public static float HealHp(int code) {
-        return GetData(code)?.HealHP ?? -1;
-    }
-    public static float HealMp(int code) {
-        return GetData(code)?.HealMP ?? -1;
-    }
-    public static float HealsHp(int code) {
-        return GetData(code)?.HealsHP ?? -1;
-    }
-    public static float HealsMp(int code) {
-        return GetData(code)?.HealsMP ?? -1;
-    }
-    public static bool Revive(int code) {
-        return GetData(code)?.Revive ?? false;
-    }
-
-    public static bool ReviveAll(int code) {
-        return GetData(code)?.ReviveAll ?? false;
-    }
+        
+    public static string            Name(int code)              => GetData(code)?.Name          ?? "wait"; 
+    public static string            Description(int code)       => GetData(code)?.Description   ?? "wait";
+    public static float             HealHp(int code)            => GetData(code)?.HealHP        ?? -1;
+    public static float             HealMp(int code)            => GetData(code)?.HealMP        ?? -1;
+    public static float             HealsHp(int code)           => GetData(code)?.HealsHP       ?? -1;
+    public static float             HealsMp(int code)           => GetData(code)?.HealsMP       ?? -1;
+    public static bool              Revive(int code)            => GetData(code)?.Revive        ?? false;
+    public static bool              ReviveAll(int code)         => GetData(code)?.ReviveAll     ?? false;
+    public static EffectType        Effect(int code)            => GetData(code)?.Effect        ?? EffectType.None;
+    public static float             EffectPower(int code)       => GetData(code)?.EffectPower   ?? -1;
+    public static int               EffectDuration(int code)    => GetData(code)?.EffectCon     ?? -1;
+    public static EffectTargetType  EffectTarget(int code)      => GetData(code)?.EffectTarget  ?? EffectTargetType.None;
+    public static float             DefencePower(int code)      => GetData(code)?.DEFPower      ?? -1f;
+    public static DefenceType       DefenceType(int code)       => GetData(code)?.DEFType       ?? SpreadInfo.DefenceType.None;
+    public static bool              DefenceReflect(int code)    => GetData(code)?.DEFReflect    ?? false;
+    public static float             Attract(int code)           => GetData(code)?.ATR           ?? -1;
+    public static int               AttractDuration(int code)   => GetData(code)?.ATRCon        ?? -1;
     #endregion
     
     public static void UseItem(int code, ControleEachCharacterInfo user = null) {
@@ -101,14 +95,14 @@ public static class ItemInfo {
             throw new Exception("Yet load table");
             return;
         }
-
+   
         ItemDBData item = GetData(code);
-        
+           
         foreach (var characterInfo in ControleCharacterInfo.Instance.CharacterInfos()) {
             if(item.HealsHP != 0) characterInfo.HealHp(item.HealsHP, item.ReviveAll);
             if(item.HealsMP != 0) characterInfo.HealMp(item.HealsMP);
         }
-        
+           
         if(user is not null) {
             if(item.HealHP != 0) user.HealHp(item.HealHP, item.Revive);
             if(item.HealMP != 0) user.HealMp(item.HealMP);

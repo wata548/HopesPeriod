@@ -34,14 +34,18 @@ namespace SpreadInfo {
     [System.SerializableAttribute()]
     public enum EffectTargetType {
         
-        Enemy = 0,
+        User = 0,
         
-        User = 1,
+        Select = 1,
         
-        Select = 2,
+        AllCharacter = 2,
         
-        AllCharacter = 3,
+        None = 3,
         
-        None = 4,
+        Heail = 4,
+        
+        Cavil = 5,
+        
+        Lippi = 6,
     }
 }

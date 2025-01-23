@@ -41,6 +41,33 @@ namespace SpreadInfo {
         [UnityEngine.SerializeField()]
         private int m_HealsMP;
         
+        [UnityEngine.SerializeField()]
+        private float m_DEFPower;
+        
+        [UnityEngine.SerializeField()]
+        private SpreadInfo.DefenceType m_DEFType;
+        
+        [UnityEngine.SerializeField()]
+        private bool m_DEFReflect;
+        
+        [UnityEngine.SerializeField()]
+        private float m_ATR;
+        
+        [UnityEngine.SerializeField()]
+        private int m_ATRCon;
+        
+        [UnityEngine.SerializeField()]
+        private SpreadInfo.EffectType m_Effect;
+        
+        [UnityEngine.SerializeField()]
+        private float m_EffectPower;
+        
+        [UnityEngine.SerializeField()]
+        private int m_EffectCon;
+        
+        [UnityEngine.SerializeField()]
+        private SpreadInfo.EffectTargetType m_EffectTarget;
+        
         public int Code {
             get {
                 return this.m_Code;
@@ -92,6 +119,60 @@ namespace SpreadInfo {
         public int HealsMP {
             get {
                 return this.m_HealsMP;
+            }
+        }
+        
+        public float DEFPower {
+            get {
+                return this.m_DEFPower;
+            }
+        }
+        
+        public SpreadInfo.DefenceType DEFType {
+            get {
+                return this.m_DEFType;
+            }
+        }
+        
+        public bool DEFReflect {
+            get {
+                return this.m_DEFReflect;
+            }
+        }
+        
+        public float ATR {
+            get {
+                return this.m_ATR;
+            }
+        }
+        
+        public int ATRCon {
+            get {
+                return this.m_ATRCon;
+            }
+        }
+        
+        public SpreadInfo.EffectType Effect {
+            get {
+                return this.m_Effect;
+            }
+        }
+        
+        public float EffectPower {
+            get {
+                return this.m_EffectPower;
+            }
+        }
+        
+        public int EffectCon {
+            get {
+                return this.m_EffectCon;
+            }
+        }
+        
+        public SpreadInfo.EffectTargetType EffectTarget {
+            get {
+                return this.m_EffectTarget;
             }
         }
     }

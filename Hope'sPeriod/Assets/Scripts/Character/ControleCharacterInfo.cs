@@ -36,10 +36,10 @@ public class ControleCharacterInfo: MonoBehaviour {
     public ControleEachCharacterInfo CharacterInfo(int index) => characterInfos[index];
     public ControleEachCharacterInfo[] CharacterInfos() => characterInfos;
 
-    public void UpdateShield() {
+    public void TurnUpdate() {
         foreach (var character in characterInfos) {
 
-            character.UpdateShield();
+            character.TurnUpdate();
         }
     }
     
@@ -77,6 +77,7 @@ public class ControleCharacterInfo: MonoBehaviour {
         var useAttrackSkillplayer =
             characterInfos
                 .Take(CharacterCount)
+                .Where(character => !character.Dead)
                 .OrderByDescending(character => character.Attract)
                 .First();
 

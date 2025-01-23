@@ -36,49 +36,10 @@ namespace SpreadInfo {
         private int m_ATKCon;
         
         [UnityEngine.SerializeField()]
-        private int m_DEFPower;
+        private bool m_SkillItem;
         
         [UnityEngine.SerializeField()]
-        private SpreadInfo.DefenceType m_DEFType;
-        
-        [UnityEngine.SerializeField()]
-        private bool m_DEFReflect;
-        
-        [UnityEngine.SerializeField()]
-        private float m_ATR;
-        
-        [UnityEngine.SerializeField()]
-        private int m_ATRCon;
-        
-        [UnityEngine.SerializeField()]
-        private int m_HP;
-        
-        [UnityEngine.SerializeField()]
-        private int m_HPCon;
-        
-        [UnityEngine.SerializeField()]
-        private bool m_HPAll;
-        
-        [UnityEngine.SerializeField()]
-        private int m_MP;
-        
-        [UnityEngine.SerializeField()]
-        private int m_MPCon;
-        
-        [UnityEngine.SerializeField()]
-        private bool m_MPAll;
-        
-        [UnityEngine.SerializeField()]
-        private SpreadInfo.EffectType m_Effect;
-        
-        [UnityEngine.SerializeField()]
-        private float m_EffectPower;
-        
-        [UnityEngine.SerializeField()]
-        private int m_EffectCon;
-        
-        [UnityEngine.SerializeField()]
-        private SpreadInfo.EffectTargetType m_EffectTarget;
+        private int m_SkillItemCon;
         
         public int Code {
             get {
@@ -122,93 +83,15 @@ namespace SpreadInfo {
             }
         }
         
-        public int DEFPower {
+        public bool SkillItem {
             get {
-                return this.m_DEFPower;
+                return this.m_SkillItem;
             }
         }
         
-        public SpreadInfo.DefenceType DEFType {
+        public int SkillItemCon {
             get {
-                return this.m_DEFType;
-            }
-        }
-        
-        public bool DEFReflect {
-            get {
-                return this.m_DEFReflect;
-            }
-        }
-        
-        public float ATR {
-            get {
-                return this.m_ATR;
-            }
-        }
-        
-        public int ATRCon {
-            get {
-                return this.m_ATRCon;
-            }
-        }
-        
-        public int HP {
-            get {
-                return this.m_HP;
-            }
-        }
-        
-        public int HPCon {
-            get {
-                return this.m_HPCon;
-            }
-        }
-        
-        public bool HPAll {
-            get {
-                return this.m_HPAll;
-            }
-        }
-        
-        public int MP {
-            get {
-                return this.m_MP;
-            }
-        }
-        
-        public int MPCon {
-            get {
-                return this.m_MPCon;
-            }
-        }
-        
-        public bool MPAll {
-            get {
-                return this.m_MPAll;
-            }
-        }
-        
-        public SpreadInfo.EffectType Effect {
-            get {
-                return this.m_Effect;
-            }
-        }
-        
-        public float EffectPower {
-            get {
-                return this.m_EffectPower;
-            }
-        }
-        
-        public int EffectCon {
-            get {
-                return this.m_EffectCon;
-            }
-        }
-        
-        public SpreadInfo.EffectTargetType EffectTarget {
-            get {
-                return this.m_EffectTarget;
+                return this.m_SkillItemCon;
             }
         }
     }

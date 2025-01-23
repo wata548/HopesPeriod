@@ -26,7 +26,10 @@ public class ControleEachCharacterInfo: MonoBehaviour {
     private readonly Color damageHpColor = Color.white;
     private readonly Color useMpColor = Color.white;
     private readonly Color DeadGray = new(0.3f, 0.3f, 0.3f);
+    private const int SkillCountLimit = 4;
+    private readonly int[] skill = new int[SkillCountLimit];
 
+    private EffectInfo effectInfo = new EffectInfo(EffectType.None, 0, 0);
     private Color originColor;
     
     //==================================================| Properties  
@@ -37,10 +40,26 @@ public class ControleEachCharacterInfo: MonoBehaviour {
     public float CurrentMp { get; private set; } = 100;
     public DefenceType Shield { get; private set; } = DefenceType.None;
     public float ShieldPower { get; private set; } = 0;
+    public bool Reflection { get; private set; } = false;
     public bool Dead { get; private set; }
     public float Attract { get; private set; } = 0;
-
+    public int AttractDuration { get; private set; }= 0;
+    
     //==================================================| Method 
+
+    public void SetAttract(int code) {
+        Debug.Log("attract");
+        Attract = ItemInfo.Attract(code);
+        AttractDuration = ItemInfo.AttractDuration(code);
+    }
+    
+    public void SetAttract(int power, int duration) {
+        Attract = power;
+        AttractDuration = duration;
+    }
+
+    public void SetEffect(int code) => effectInfo = new EffectInfo(code);
+    public void SetEffect(EffectInfo info) => effectInfo = info;
 
     private void SetColor(Color color) {
         hp.ChangeColor(color);
@@ -48,45 +67,106 @@ public class ControleEachCharacterInfo: MonoBehaviour {
         profile.color = color;
                 
     }
-    
-    public void SetShield(DefenceType type, float power) {
+
+    public void SetShield(int code) {
+        Shield = ItemInfo.DefenceType(code); 
+        ShieldPower = ItemInfo.DefencePower(code);
+        Reflection = ItemInfo.DefenceReflect(code);
+
+    }
+    public void SetShield(DefenceType type, float power, bool reflect = false) {
 
         Shield = type;
         ShieldPower = power;
+        Reflection = reflect;
     }
 
-    public void UpdateShield() {
+    public void TurnUpdate() {
+        UpdateAttract();
+        UpdateShield();
+        effectInfo.TurnUpdate();
+    }
+    
+    private void UpdateShield() {
         if (Shield != DefenceType.Time) return;
         ShieldPower--;
         if (ShieldPower >= 1) return;
         
         ShieldPower = 0;
         Shield = DefenceType.None;
+        Reflection = false;
     }
+
+    private void UpdateAttract() {
+        if (AttractDuration <= 0) return;
+        
+        AttractDuration--;
+        if (AttractDuration <= 0) {
+            Attract = 0;
+            AttractDuration = 0;
+        }
+    } 
 
     public float ApplyShield(float damage) {
 
         return Shield switch {
             DefenceType.None => damage,
-            DefenceType.Time => (ShieldPower - (int)ShieldPower) * damage,
+            DefenceType.Time => TimeShieldProcedure(damage),
             DefenceType.Break => BreakShieldProcedure(damage)
             
         };
 
+        float TimeShieldProcedure(float damage) {
+
+            damage = (ShieldPower - (int)ShieldPower) * damage;
+            if (Reflection) {
+                //TODO: Attack to Monster
+                damage = 0;
+            }
+
+            return damage;
+        }
+        
         float BreakShieldProcedure(float damage) {
+
+            float power = 0;
+            
             if (ShieldPower >= damage) {
+                if (Reflection) power = damage;
+                
                 ShieldPower -= damage;
                 damage = 0;
             }
             else {
+                if (Reflection) power = ShieldPower;
+                
                 damage -= ShieldPower;
                 ShieldPower = 0;
                 Shield = DefenceType.None;
                             
             }
+            
+            //TODO: if power != 0 attack to monster
 
             return damage;
         }
+    }
+
+    public void SetSkill(int index, int code) {
+         if (index >= SkillCountLimit) {
+                throw new OutOfRange(0, SkillCountLimit - 1, index);
+         }
+
+         skill[index] = code;
+    }
+    
+    public int GetSkill(int index) {
+
+        if (index >= SkillCountLimit) {
+            throw new OutOfRange(0, SkillCountLimit - 1, index);
+        }
+
+        return index;
     }
     
     public bool UseableMp(float power) =>CurrentMp >= power;
@@ -217,5 +297,6 @@ public class ControleEachCharacterInfo: MonoBehaviour {
     private void Awake() {
 
         originColor = profile.color;
+        skill[0] = 9301;
     }
 }

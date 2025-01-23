@@ -41,7 +41,14 @@ public class FloatingItemInfo : MonoBehaviour
     
     public void UpdateInfo(int code) {
 
-        info.text = ItemInfo.Description(code);
+        switch ((CodeType)(code / ItemInfo.CodeMask)) {
+            case CodeType.Item:
+                info.text = ItemInfo.Description(code);
+                break;
+            case CodeType.SKill:
+                info.text = SkillInfo.Description(code);
+                break;
+        }
     }
     
     public void UpdatePivot(Vector2 pos) {

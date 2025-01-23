@@ -173,19 +173,24 @@ public class GameFSM: MonoBehaviour {
     public void SkipState() {
         if (State == GameState.PlayerAttack) {
 
-            playerTurnStart = false;
-            Player.Instance.Movement
-                .SetApply<CompoInput>(DirectionInfo.All);
-
-            ItemListButtonManager.Instance.TurnOff();
-            ControleCharacterInfo.Instance.UpdateShield();
-            
-            State = GameState.BeforeSkill;
-            PlayerTurnState = PlayerTurnState.SelectBehavior;
+            EndPlayerTurn();
             needPlayerTurnUpdate = true;
         }
         else {
             State++;
         }
+    }
+
+    private void EndPlayerTurn() {
+        
+        playerTurnStart = false;
+        Player.Instance.Movement
+            .SetApply<CompoInput>(DirectionInfo.All);
+        
+        ItemListButtonManager.Instance.TurnOff();
+        ControleCharacterInfo.Instance.TurnUpdate();
+         
+        State = GameState.BeforeSkill;
+        PlayerTurnState = PlayerTurnState.SelectBehavior;
     }
 }
