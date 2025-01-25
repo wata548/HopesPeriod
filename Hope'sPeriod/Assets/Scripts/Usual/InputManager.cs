@@ -134,6 +134,11 @@ public class InputManager : MonoBehaviour
 
     }
 
+    public bool ClickAndHold(KeyTypes type) {
+
+        return Click(type) || Hold(type);
+    }
+    
     public bool Up(KeyTypes type) {
 
         if (!ExsistCheck(type)) {

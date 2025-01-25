@@ -4,6 +4,7 @@ using UnityEngine.AddressableAssets;
 using System.Threading.Tasks;
 using UnityEngine.ResourceManagement.AsyncOperations;
 using System;
+using UnityEngine.TextCore.Text;
 
 public static class SkillInfo {
         
@@ -64,7 +65,7 @@ public static class SkillInfo {
     }
 
     public static int               ToSkillItem(int code)       => code - 7000;
-    public static string            Name(int code)              => GetData(code)?.Name          ?? "wait"; 
+    public static string            Name(int code)              => GetData(code)?.Name          ?? "wait";
     public static string            Description(int code)       => GetData(code)?.Description   ?? "wait";
     public static int               UseHp(int code)             => GetData(code)?.UseHP         ?? -1;
     public static int               UseMp(int code)             => GetData(code)?.UseMP         ?? -1;
@@ -73,5 +74,36 @@ public static class SkillInfo {
     
     public static bool              SkillItem(int code)         => GetData(code)?.SkillItem     ?? false;
     public static int               SkillItemDuration(int code) => GetData(code)?.SkillItemCon  ?? -1;
+
+    public static bool Useable(int characterIndex, int code) {
+        
+        var character = ControleCharacterInfo.Instance.CharacterInfo(characterIndex);
+
+        bool useableHp = UseHp(code) <= character.CurrentHp;
+        bool useableMp = UseMp(code) <= character.CurrentMp;
+
+        return useableHp && useableMp;
+    }
+    
+    public static string SimpleDescription(int code) {
+        string result = "";
+        int value;
+        if ((value = UseHp(code)) > 0) result += $"HP -{value} ";
+        if ((value = UseMp(code)) > 0) result += $"MP -{value} ";
+        if ((value = Attack(code)) > 0) result += $"ATK {value} ";
+        if (SkillItem(code)) {
+
+            int itemCode = ToSkillItem(code);
+            //It find detail type name 
+            //if (EffectInfo.MatchKorean.TryGetValue(ItemInfo.Effect(itemCode), out string korean)) {
+            if (ItemInfo.Effect(itemCode) != EffectType.None) result += "효과 ";
+
+            if (ItemInfo.Attract(itemCode) > 0) result += "도발 ";
+
+            if (ItemInfo.DefenceType(itemCode) != DefenceType.None) result += "방어 ";
+        }
+
+        return result;
+    }
     #endregion
 }

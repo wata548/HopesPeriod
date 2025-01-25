@@ -30,6 +30,10 @@ public class Slider : MonoBehaviour{
         handleRenderer = handle.GetComponent<SpriteRenderer>();
     }
 
+    public void SetInfo(float ratio) {
+
+        handle.transform.localScale = new(handleScale * ratio, handle.transform.localScale.y);
+    }
     
     public ChangeSliderState UpdateInfo(float ratio) {
         

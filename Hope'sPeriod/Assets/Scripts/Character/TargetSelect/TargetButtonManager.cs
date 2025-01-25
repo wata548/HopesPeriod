@@ -7,7 +7,7 @@ public class TargetButtonManager : InteractButtonManager {
     //==================================================||Property 
    
     public int Code { get; private set; }
-    public override bool Interactable { get; set; } = false;
+    public override bool Interactable { get; protected set; } = false;
     public static TargetButtonManager Instance { get; private set; } = null;
     
     //==================================================||Method 
@@ -47,11 +47,11 @@ public class TargetButtonManager : InteractButtonManager {
          if (!Interactable)
              return;
                 
-         if (InputManager.Instance.Click(KeyTypes.Right) || InputManager.Instance.Hold(KeyTypes.Right)) {
+         if (InputManager.Instance.ClickAndHold(KeyTypes.Right)) {
              SelectCursor.Instance.AddIndex();
          }
         
-         if (InputManager.Instance.Click(KeyTypes.Left) || InputManager.Instance.Hold(KeyTypes.Left)) {
+         if (InputManager.Instance.ClickAndHold(KeyTypes.Left)) {
              SelectCursor.Instance.ExtractIndex();
          }
         
@@ -63,7 +63,7 @@ public class TargetButtonManager : InteractButtonManager {
              
              SelectCursor.Instance.TurnOff();
              Interactable = false;
-             ItemListButtonManager.Instance.Interactable = true;
+             ItemListButtonManager.Instance.SetInteractable(true);
          }
     }
 }

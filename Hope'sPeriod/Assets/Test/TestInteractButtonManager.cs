@@ -4,7 +4,8 @@ using UnityEditor.AddressableAssets.Build.BuildPipelineTasks;
 using UnityEngine;
 
 public class TestInteractButtonManager: InteractButtonManager {
-    public override bool Interactable { get; set; } = true;
+    public override bool Interactable { get; protected set; } = true;
+    
     private Vector3 size;
     private Tween animation = null;
     
@@ -28,10 +29,13 @@ public class TestInteractButtonManager: InteractButtonManager {
     private void Update() {
         if (Input.GetKeyDown(KeyCode.A)) {
             PriviousButton();
+            UpdateState();
         }
 
         if (Input.GetKeyDown(KeyCode.D)) {
+            
             NextButton();
+            UpdateState();
         }
     }
 }

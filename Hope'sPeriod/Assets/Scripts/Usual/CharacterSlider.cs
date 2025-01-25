@@ -16,18 +16,28 @@ public class CharacterSlider: Slider {
         outLine.color = color;
         handleRenderer.color = color;
     }
-    
-    public ChangeSliderState UpdateInfo(float current, float max) {
 
+    private void Setting(float current, float max) {
         float ratio = current / max;
         int count = (int)((ratio - Interval) / CharacterInterval);
-        
+                
         string context = $"{current}/{max}";
         context = new string(context.Take(count)?.ToArray()).AddColor(Color.black) +
                   new string(context.Skip(count)?.ToArray()).AddColor(Color.white);
-
+        
         shower.text = context;
-        return base.UpdateInfo(ratio);
+    }
+    
+    public ChangeSliderState UpdateInfo(float current, float max) {
+
+        Setting(current, max);    
+        return base.UpdateInfo(current / max);
+    }
+
+    public void SetInfo(float current, float max) {
+        
+        Setting(current, max);
+        base.SetInfo(current / max);
     }
 
     private void Awake() {

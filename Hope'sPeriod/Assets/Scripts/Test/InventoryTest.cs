@@ -13,6 +13,8 @@ public class InventoryTest: MonoBehaviour {
         Inventory.AddItem(2003, 3);
         Inventory.AddItem(2004, 2);
         Inventory.AddItem(2099, 2);
-        
+        ControleCharacterInfo.Instance.CharacterInfo(0).SetSkill(0, 9101);
+        ControleCharacterInfo.Instance.CharacterInfo(0).SetSkill(1, 9102);
+        ControleCharacterInfo.Instance.CharacterInfo(0).SetSkill(2, 9103);
     }
 }

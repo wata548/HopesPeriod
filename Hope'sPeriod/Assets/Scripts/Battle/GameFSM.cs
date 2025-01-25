@@ -84,6 +84,7 @@ public class GameFSM: MonoBehaviour {
                 switch (PlayerTurnState) {
                     
                     case PlayerTurnState.Attack:
+                        SkillButtonManager.Instance.TurnOn();
                         break;
                     case PlayerTurnState.Item:
                         ItemListButtonManager.Instance.TurnOn();
@@ -138,6 +139,7 @@ public class GameFSM: MonoBehaviour {
         if (InputManager.Instance.Click(KeyTypes.Cancel)) {
         
             ItemListButtonManager.Instance.TurnOff();
+            
             needPlayerTurnUpdate = true;
             PlayerTurnState = PlayerTurnState.SelectBehavior;
                         
@@ -188,6 +190,7 @@ public class GameFSM: MonoBehaviour {
             .SetApply<CompoInput>(DirectionInfo.All);
         
         ItemListButtonManager.Instance.TurnOff();
+        SkillButtonManager.Instance.TurnOff();
         ControleCharacterInfo.Instance.TurnUpdate();
          
         State = GameState.BeforeSkill;

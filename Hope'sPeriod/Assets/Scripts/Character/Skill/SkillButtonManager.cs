@@ -1,40 +1,54 @@
-using System;
-using Unity.VisualScripting;
-using UnityEditor.AddressableAssets.Build.BuildPipelineTasks;
 using UnityEngine;
-using UnityEngine.UI;
-using VInspector.Libs;
+using System;
 
-public class ItemListButtonManager: InteractButtonManager {
+public class SkillButtonManager: InteractButtonManager {
     
     //==================================================||Set Inspector 
     
-    [SerializeField] private GameObject itemList;
-
+    [SerializeField] private GameObject skillList;
     [SerializeField] private Cursor cursor;
+    
     //==================================================||Field 
+
+    private RectTransform rect;    
     private static FloatingItemInfo floating = null;
+    private readonly Vector2 defaultPos = new(0, 70);
+    private readonly Vector2 interval = new(633, 0);
     
     //==================================================||Property 
-    public static ItemListButtonManager Instance { get; private set; } = null;
+    public static SkillButtonManager Instance { get; private set; } = null;
     public override bool Interactable { get; protected set; } = false;
+    public int CharacterIndex { get; private set; } = 0;
 
     //==================================================||Method 
     
     public static void SetFloating(FloatingItemInfo floating) {
-        ItemListButtonManager.floating = floating;
+        SkillButtonManager.floating = floating;
     }
     
     public void TurnOn() {
-        
-        itemList.SetActive(true);
-        ItemListContext.Instance.TurnOn();
-        cursor.TurnOn();
+        skillList.SetActive(true);
         Interactable = true;
+
+        Refresh();
     }
 
+    public void NextSelect() {
+        CharacterIndex++;
+        Refresh();
+    }
+    
+    public void Refresh() {
+
+        rect.localPosition = defaultPos + CharacterIndex * interval;
+        foreach (var button in buttons) {
+
+            Parse(button).Refresh();
+        }
+    }
+    
     public void TurnOff() {
-        itemList.SetActive(false);
+        skillList.SetActive(false);
         floating.TurnOff();
         Interactable = false;
         InitSelect();
@@ -47,84 +61,42 @@ public class ItemListButtonManager: InteractButtonManager {
 
     #region Interaction
 
-    
-
     public override void SelectIn(InteractButton target) {
-
-        var button = Parse(target);
         
-        if (!button.Show)
-            return;
-        
-        cursor.SetIndex(target.Index);
+        cursor.SetIndex(Selecting);
     }
     public override void SelectOut(InteractButton target) {}
     
     #endregion
 
-    public void CheckCursorIndex() {
-
-        int index = cursor.Index;
-        var button = Parse(buttons[index]);
-        if (!button.Show) {
-
-            Debug.Log("init");
-            SelectButton(0);
-        }
-
-    }
-
     private void Input() {
-        if (InputManager.Instance.ClickAndHold(KeyTypes.Right)) {
-            ItemListContext.Instance.NextPage();
-        }
-            
-        if (InputManager.Instance.ClickAndHold(KeyTypes.Left)) {
-            ItemListContext.Instance.PriviousPage();
-        }
             
         if (InputManager.Instance.ClickAndHold(KeyTypes.Down)) {
-                
             NextButton();
-            if (!Parse(buttons[Selecting]).Show) 
-                Selecting = 0;
-            
             UpdateState();
+            
             cursor.SetIndex(Selecting);
         }
             
         if (InputManager.Instance.ClickAndHold(KeyTypes.Up)) {
 
             PriviousButton();
-            if (!Parse(buttons[Selecting]).Show) {
-
-                for (int i = Selecting - 1; i > -1; i--) {
-                    if (Parse(buttons[i]).Show) {
-                        
-                        Selecting = i;
-                        break;
-                    }
-
-                    if (i == 0) Selecting = 0;
-                }
-            }
-            
             UpdateState();
-            cursor.SetIndex(Selecting);
             
+            cursor.SetIndex(Selecting);
         }
             
         if (InputManager.Instance.Click(KeyTypes.Select)) {
             
-            int index = cursor.Index;
+            int index = Selecting;
                 
             Parse(buttons[index]).Click();
         }
     }
     
-    private ItemListButton Parse(InteractButton button) {
-        if (button is not ItemListButton itemButton) {
-            throw new TypeMissMatched(button.gameObject, typeof(ItemListButton));
+    private SkillButton Parse(InteractButton button) {
+        if (button is not SkillButton itemButton) {
+            throw new TypeMissMatched(button.gameObject, typeof(SkillButton));
         }
     
         return itemButton;
@@ -136,12 +108,16 @@ public class ItemListButtonManager: InteractButtonManager {
     }
 
     private void Awake() {
+        SkillInfo.SetTable();
+        
         base.Awake();
 
         if (Instance == null)
             Instance = this;
         else if (Instance != this)
             Destroy(this);
+
+        rect = skillList.GetComponent<RectTransform>();
     }
 
     private void Update() {

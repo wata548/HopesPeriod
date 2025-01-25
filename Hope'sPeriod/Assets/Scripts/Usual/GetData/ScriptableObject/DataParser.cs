@@ -139,7 +139,8 @@ public class DataParser: ScriptableObject {
         }
 
         var parse = type.GetMethod("Parse", new Type[] { typeof(string)});
-        
+
+        //Debug.Log(target);
         return parse?.Invoke(null, new object[] {target});
     }
 

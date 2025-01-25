@@ -40,8 +40,8 @@ public abstract class InteractButton: MonoBehaviour, IPointerEnterHandler, IPoin
         IsOn = false;
         Manager.SelectOut(this);
         if (Manager.Selecting == Index) {
-            
-            Manager.Selecting = -1;
+
+            Manager.InitSelect();
             Manager.Before = -1;
         }
         isMouseOn = false;
@@ -76,13 +76,16 @@ public abstract class InteractButtonManager: MonoBehaviour {
     [SerializeField] protected List<InteractButton> buttons;
 
     //if it is false, you can't interact this
-    public abstract bool Interactable { get; set; }
-    public int Selecting { get; set; } = 0;
+    public abstract bool Interactable { get; protected set; }
+    public int Selecting { get; protected set; } = 0;
+    
     public int Before { get; set; } = -1;
 
    //==================================================||Method 
-    
-    private void UpdateState() {
+
+   public void SetInteractable(bool interactable) => Interactable = interactable;
+   
+    protected void UpdateState() {
 
         if (!Interactable)
             return;
@@ -112,6 +115,7 @@ public abstract class InteractButtonManager: MonoBehaviour {
             return;
 
         Selecting = index;
+
         UpdateState();
     }
     
@@ -120,28 +124,27 @@ public abstract class InteractButtonManager: MonoBehaviour {
         if (!Interactable)
             return;
         
-        Debug.Log(Selecting);
-        
         Selecting++;
         if (Selecting >= buttons.Count) 
             Selecting = 0;
 
-        UpdateState();
     }
 
     public void PriviousButton() {
         if (!Interactable)
             return;
         
-        Debug.Log(Selecting);
-        
         Selecting--;
         if (Selecting < 0)
             Selecting = buttons.Count - 1;
 
-        UpdateState();
     }
 
+    public void InitSelect() {
+        
+        //It makes able to interact mouse's shake movement
+        Selecting = -1;
+    }
     
    //==================================================||Abstract Function 
     public abstract void SelectIn(InteractButton target);

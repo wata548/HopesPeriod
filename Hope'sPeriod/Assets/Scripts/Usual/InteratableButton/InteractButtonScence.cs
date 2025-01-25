@@ -7,6 +7,9 @@ using UnityEngine;
 public abstract class InteractButtonScence : InteractButton {
     void CheckClicK() {
 
+        if (!Manager.Interactable)
+            return;
+        
         if (!isMouseOn)
             return;
         

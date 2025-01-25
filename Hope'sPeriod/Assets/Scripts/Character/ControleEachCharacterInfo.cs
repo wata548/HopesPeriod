@@ -25,7 +25,8 @@ public class ControleEachCharacterInfo: MonoBehaviour {
     private readonly Color shieldColor = Color.cyan;
     private readonly Color damageHpColor = Color.white;
     private readonly Color useMpColor = Color.white;
-    private readonly Color DeadGray = new(0.3f, 0.3f, 0.3f);
+    private readonly Color deadGray = new(0.3f, 0.3f, 0.3f);
+    
     private const int SkillCountLimit = 4;
     private readonly int[] skill = new int[SkillCountLimit];
 
@@ -37,7 +38,7 @@ public class ControleEachCharacterInfo: MonoBehaviour {
     public float MaximumHp { get; private set; } = 100;
     public float CurrentHp { get; private set; } = 100;
     public float MaximumMp { get; private set; } = 100;
-    public float CurrentMp { get; private set; } = 100;
+    public float CurrentMp { get; private set; } = 28;
     public DefenceType Shield { get; private set; } = DefenceType.None;
     public float ShieldPower { get; private set; } = 0;
     public bool Reflection { get; private set; } = false;
@@ -166,7 +167,8 @@ public class ControleEachCharacterInfo: MonoBehaviour {
             throw new OutOfRange(0, SkillCountLimit - 1, index);
         }
 
-        return index;
+        Debug.Log(index);
+        return skill[index];
     }
     
     public bool UseableMp(float power) =>CurrentMp >= power;
@@ -218,7 +220,7 @@ public class ControleEachCharacterInfo: MonoBehaviour {
         CurrentHp = 0;
         ShowDamage(damage);
 
-        StartCoroutine(Wait.WaitAndDo(0.6f, () => SetColor(DeadGray)));
+        StartCoroutine(Wait.WaitAndDo(0.6f, () => SetColor(deadGray)));
         
         Debug.Log("character dead");
         
@@ -297,6 +299,11 @@ public class ControleEachCharacterInfo: MonoBehaviour {
     private void Awake() {
 
         originColor = profile.color;
-        skill[0] = 9301;
+    }
+
+    private void Start() {
+        
+        hp.SetInfo(CurrentHp, MaximumHp);
+        mp.SetInfo(CurrentMp, MaximumMp);
     }
 }

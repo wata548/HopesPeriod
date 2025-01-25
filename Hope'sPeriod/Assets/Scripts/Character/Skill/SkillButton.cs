@@ -1,26 +1,28 @@
 using System;
-using DG.Tweening;
-using TMPro;
-using UnityEditor;
 using UnityEngine;
-using UnityEngine.EventSystems;
-using UnityEngine.Serialization;
-using UnityEngine.UI;
+using Image = UnityEngine.UI.Image;
+using TMP_Text = TMPro.TMP_Text;
+using DG.Tweening;
+using SpreadInfo;
 
-public class ItemListButton : InteractButtonUI {
-
+public class SkillButton: InteractButtonUI {
+    
     //If you set one component's tempItemInfo, All component share this tempItemInfo 
     [SerializeField] private FloatingItemInfo tempFloatingInfo = null;
-    [SerializeField] private Image image;
     private static FloatingItemInfo floatingInfo = null;
     private TMP_Text textInfo;
     private RectTransform rect;
-    public int Code { get; private set; }= -1;
+
+    private int code = 0;
     
     private bool onMouse = false;
     private float startTime;
     private bool floatingOn = false;
     private bool needUpdate = false;
+    
+    private readonly Color Usable = Color.white;
+    private readonly Color Unusable = Color.gray;
+    
     public bool Show { get; private set; } = true;
     
     private const float AppearTime = 0.3f;
@@ -39,35 +41,22 @@ public class ItemListButton : InteractButtonUI {
         }
     }
     
-    public void SetCode(int code) {
+    public void Refresh() {
 
         RefreshFloating();
-        
-        image.DOFade(1, 0);
 
         Show = true;
-        this.Code = code;
         needUpdate = true;
     }
 
-    public void NoneCode() {
-
-        RefreshFloating();
-        
-        Show = false;
-        image.DOFade(0,0);
-        textInfo.text = "";
-    }
-    
-   
     public override void OnPointerEnterExtra() {
 
         startTime = Time.time;
         onMouse = true;
     }
 
-    public override void OnPointerExitExtra() {
-
+    public override void OnPointerExitExtra() { 
+        
         floatingInfo.TurnOff();
         floatingOn = false;
         onMouse = false;
@@ -75,11 +64,11 @@ public class ItemListButton : InteractButtonUI {
     
 
     private void Awake() {
-
+        
         if (floatingInfo is null && tempFloatingInfo is not null) {
             
             floatingInfo = tempFloatingInfo;
-            ItemListButtonManager.SetFloating(tempFloatingInfo);
+            SkillButtonManager.SetFloating(tempFloatingInfo);
         }
 
         textInfo = GetComponentInChildren<TMP_Text>();
@@ -95,10 +84,31 @@ public class ItemListButton : InteractButtonUI {
             return;
         
         //firstUpdate
-        if (Code != -1 && needUpdate) {
+        if (needUpdate) {
 
-            if(ItemInfo.CheckTable()) needUpdate = false;
-            textInfo.text = $"{ItemInfo.Name(Code)}\n{$"X{Inventory.Count(Code)}".SetSize(1.3f)}";
+            if (!SkillInfo.CheckTable())
+                return;
+            
+            needUpdate = false;
+            int characterIndex = ParseManager().CharacterIndex;
+            code = ControleCharacterInfo.Instance.GetSkill(characterIndex, Index);
+
+            Show = true;
+            if (code == 0) {
+
+                textInfo.text = "";
+                Show = false;
+            }
+            else {
+                textInfo.text = $"{SkillInfo.Name(code)}\n{$"{SkillInfo.SimpleDescription(code)}".SetSize(1.15f)}";
+
+                if (SkillInfo.Useable(characterIndex, code))
+                    textInfo.AddColor(Usable);
+                else
+                    textInfo.AddColor(Unusable);
+            }
+            
+            
         }
         
         if (!onMouse)
@@ -111,21 +121,13 @@ public class ItemListButton : InteractButtonUI {
 
         floatingInfo.UpdatePivot(rect.position);
         floatingInfo.UpdatePosition();
-        floatingInfo.UpdateInfo(Code);
+        floatingInfo.UpdateInfo(code);
     }
 
 
     public override void Click() {
         if (!Show) return;
 
-        if (!ItemInfo.NeedSelect(Code)) {
-
-            Inventory.UseItem(Code);
-           
-            return;
-        }
-
-        TargetButtonManager.Instance.TurnOn(SelectType.Players, Code);
         InteractableOff();
     }
 
@@ -138,5 +140,12 @@ public class ItemListButton : InteractButtonUI {
 
     public void InteractableOn() {
         Manager.SetInteractable(true);
+    }
+
+    public SkillButtonManager ParseManager() {
+        if (Manager is not SkillButtonManager manager)
+            throw new TypeMissMatched(Manager.gameObject, typeof(SkillButtonManager));
+
+        return manager;
     }
 }

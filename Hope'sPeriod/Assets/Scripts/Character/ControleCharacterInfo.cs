@@ -33,6 +33,11 @@ public class ControleCharacterInfo: MonoBehaviour {
     
     #endregion
 
+    public int GetSkill(int characterIndex, int skillIndex) {
+        
+        return characterInfos[characterIndex].GetSkill(skillIndex);
+    }
+    
     public ControleEachCharacterInfo CharacterInfo(int index) => characterInfos[index];
     public ControleEachCharacterInfo[] CharacterInfos() => characterInfos;
 
