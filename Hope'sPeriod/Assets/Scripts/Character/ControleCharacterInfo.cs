@@ -37,6 +37,8 @@ public class ControleCharacterInfo: MonoBehaviour {
         
         return characterInfos[characterIndex].GetSkill(skillIndex);
     }
+
+    public bool Dead(int index) => characterInfos[index].Dead;
     
     public ControleEachCharacterInfo CharacterInfo(int index) => characterInfos[index];
     public ControleEachCharacterInfo[] CharacterInfos() => characterInfos;

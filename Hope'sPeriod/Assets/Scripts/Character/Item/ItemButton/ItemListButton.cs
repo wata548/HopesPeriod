@@ -91,29 +91,35 @@ public class ItemListButton : InteractButtonUI {
         if (floatingInfo is null)
             throw new Exception($"please set floatingInfo in {gameObject.name}");
 
-        if (!Manager.Interactable)
+        bool tableSetting = ItemInfo.CheckTable();
+        bool interactable = Manager.Interactable; 
+        if (!tableSetting || !interactable)
             return;
         
-        //firstUpdate
+        //Set name and count info
         if (Code != -1 && needUpdate) {
 
-            if(ItemInfo.CheckTable()) needUpdate = false;
+            needUpdate = false;
             textInfo.text = $"{ItemInfo.Name(Code)}\n{$"X{Inventory.Count(Code)}".SetSize(1.3f)}";
         }
+
+        ControlFloating();
+    }
+
+    private void ControlFloating() {
         
         if (!onMouse)
             return;
-        
+                
         if (Show && !floatingOn && Time.time - startTime >= AppearTime) {
             floatingInfo.TurnOn();
             floatingOn = true;
         }
-
+        
         floatingInfo.UpdatePivot(rect.position);
         floatingInfo.UpdatePosition();
         floatingInfo.UpdateInfo(Code);
     }
-
 
     public override void Click() {
         if (!Show) return;

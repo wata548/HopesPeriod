@@ -135,15 +135,15 @@ public class GameFSM: MonoBehaviour {
         bool isSelectState = PlayerTurnState == PlayerTurnState.SelectBehavior;
         if (isChossingTarget || isSelectState) return;
         
-        //Cancel
-        if (InputManager.Instance.Click(KeyTypes.Cancel)) {
+    }
+
+    public void DefaultPlayerTurnState() {
         
-            ItemListButtonManager.Instance.TurnOff();
-            
-            needPlayerTurnUpdate = true;
-            PlayerTurnState = PlayerTurnState.SelectBehavior;
-                        
-        }
+        ItemListButtonManager.Instance.TurnOff();
+        SkillButtonManager.Instance.TurnOff();
+                    
+        needPlayerTurnUpdate = true;
+        PlayerTurnState = PlayerTurnState.SelectBehavior;
     }
     
     public void SetPlayerTurnState(PlayerTurnState newState) {

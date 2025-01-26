@@ -120,6 +120,10 @@ public class ItemListButtonManager: InteractButtonManager {
                 
             Parse(buttons[index]).Click();
         }
+        else if (InputManager.Instance.Click(KeyTypes.Cancel)) {
+
+            GameFSM.Instance.DefaultPlayerTurnState();
+        }
     }
     
     private ItemListButton Parse(InteractButton button) {

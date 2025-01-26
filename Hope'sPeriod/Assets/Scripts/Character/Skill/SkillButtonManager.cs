@@ -1,5 +1,6 @@
 using UnityEngine;
 using System;
+using Mono.Cecil.Cil;
 
 public class SkillButtonManager: InteractButtonManager {
     
@@ -29,13 +30,44 @@ public class SkillButtonManager: InteractButtonManager {
     public void TurnOn() {
         skillList.SetActive(true);
         Interactable = true;
-
+        CharacterIndex = 0;
+        
         Refresh();
     }
 
     public void NextSelect() {
         CharacterIndex++;
-        Refresh();
+
+        var characterControler = ControleCharacterInfo.Instance;
+        int characterCount =  characterControler.CharacterCount;
+        
+        while (CharacterIndex < characterCount && characterControler.Dead(CharacterIndex)) {
+            
+            CharacterIndex++;
+        }
+
+        if (CharacterIndex < characterCount) {
+            
+            Refresh();
+            return;
+        }
+        
+        //TODO: Select end
+    }
+
+    public void PriviousSelect() {
+        CharacterIndex--;
+
+        while (CharacterIndex >= 0 && ControleCharacterInfo.Instance.Dead(CharacterIndex)) {
+            CharacterIndex--;
+        }
+
+        if (CharacterIndex >= 0) {
+            Refresh();
+            return;
+        }
+
+        GameFSM.Instance.DefaultPlayerTurnState();
     }
     
     public void Refresh() {
@@ -62,6 +94,9 @@ public class SkillButtonManager: InteractButtonManager {
     #region Interaction
 
     public override void SelectIn(InteractButton target) {
+
+        if (!Parse(buttons[Selecting]).Show)
+            return;
         
         cursor.SetIndex(Selecting);
     }
@@ -73,6 +108,9 @@ public class SkillButtonManager: InteractButtonManager {
             
         if (InputManager.Instance.ClickAndHold(KeyTypes.Down)) {
             NextButton();
+            if (!Parse(buttons[Selecting]).Show) 
+                Selecting = 0;
+            
             UpdateState();
             
             cursor.SetIndex(Selecting);
@@ -81,6 +119,19 @@ public class SkillButtonManager: InteractButtonManager {
         if (InputManager.Instance.ClickAndHold(KeyTypes.Up)) {
 
             PriviousButton();
+            if (!Parse(buttons[Selecting]).Show) {
+            
+                for (int i = Selecting - 1; i > -1; i--) {
+                    if (Parse(buttons[i]).Show) {
+                                    
+                        Selecting = i;
+                        break;
+                    }
+            
+                    if (i == 0) Selecting = 0;
+                }
+            }
+            
             UpdateState();
             
             cursor.SetIndex(Selecting);
@@ -92,9 +143,13 @@ public class SkillButtonManager: InteractButtonManager {
                 
             Parse(buttons[index]).Click();
         }
+        else if (InputManager.Instance.Click(KeyTypes.Cancel)) {
+
+            PriviousSelect();
+        }
     }
     
-    private SkillButton Parse(InteractButton button) {
+    private static SkillButton Parse(InteractButton button) {
         if (button is not SkillButton itemButton) {
             throw new TypeMissMatched(button.gameObject, typeof(SkillButton));
         }

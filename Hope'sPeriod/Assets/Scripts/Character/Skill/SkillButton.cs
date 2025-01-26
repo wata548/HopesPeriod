@@ -80,17 +80,16 @@ public class SkillButton: InteractButtonUI {
         if (floatingInfo is null)
             throw new Exception($"please set floatingInfo in {gameObject.name}");
 
-        if (!Manager.Interactable)
+        bool interactable = Manager.Interactable;
+        bool setTable = SkillInfo.CheckTable();
+        if (!interactable || !setTable)
             return;
         
         //firstUpdate
         if (needUpdate) {
 
-            if (!SkillInfo.CheckTable())
-                return;
-            
             needUpdate = false;
-            int characterIndex = ParseManager().CharacterIndex;
+            int characterIndex = Parse(Manager).CharacterIndex;
             code = ControleCharacterInfo.Instance.GetSkill(characterIndex, Index);
 
             Show = true;
@@ -100,52 +99,44 @@ public class SkillButton: InteractButtonUI {
                 Show = false;
             }
             else {
-                textInfo.text = $"{SkillInfo.Name(code)}\n{$"{SkillInfo.SimpleDescription(code)}".SetSize(1.15f)}";
+                textInfo.text = $"{SkillInfo.Name(code)}\n{SkillInfo.SimpleDescription(code).SetSize(1.15f)}";
 
                 if (SkillInfo.Useable(characterIndex, code))
                     textInfo.AddColor(Usable);
                 else
                     textInfo.AddColor(Unusable);
             }
-            
-            
         }
+
+        ControlFloating();
+    }
+
+    private void ControlFloating() {
         
         if (!onMouse)
             return;
-        
+                
         if (Show && !floatingOn && Time.time - startTime >= AppearTime) {
             floatingInfo.TurnOn();
             floatingOn = true;
         }
-
+        
         floatingInfo.UpdatePivot(rect.position);
         floatingInfo.UpdatePosition();
         floatingInfo.UpdateInfo(code);
-    }
-
+    } 
 
     public override void Click() {
         if (!Show) return;
 
-        InteractableOff();
+        Parse(Manager).NextSelect();
     }
 
-    public void InteractableOff() {
-        floatingInfo.TurnOff();
-        floatingOn = false;
-        Manager.SetInteractable(false);
-        onMouse = false;
-    }
-
-    public void InteractableOn() {
-        Manager.SetInteractable(true);
-    }
-
-    public SkillButtonManager ParseManager() {
-        if (Manager is not SkillButtonManager manager)
-            throw new TypeMissMatched(Manager.gameObject, typeof(SkillButtonManager));
-
-        return manager;
+    private static SkillButtonManager Parse(InteractButtonManager manager) {
+        
+        if (manager is not SkillButtonManager skillManager)
+            throw new TypeMissMatched(manager.gameObject, typeof(SkillButtonManager)); 
+        
+        return skillManager;
     }
 }

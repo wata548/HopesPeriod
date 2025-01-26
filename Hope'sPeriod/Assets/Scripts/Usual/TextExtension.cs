@@ -141,8 +141,8 @@ public static class TextExtension {
         }
     }
 
-    public static string AddColor(this TMP_Text context, Color color) => context.text.AddColor(color);
-    public static string AddColor(this TMP_Text context, string color) => context.text.AddColor(color);
+    public static void AddColor(this TMP_Text context, Color color) => context.text = context.text.AddColor(color);
+    public static void AddColor(this TMP_Text context, string color) => context.text = context.text.AddColor(color);
     /// <summary>
     /// 
     /// </summary>
@@ -151,7 +151,7 @@ public static class TextExtension {
     /// <returns></returns>
     public static string SetSize(this string context, int size) => $"<size={size}%>{context}</size>";
 
-    public static string SetSize(this TMP_Text context, int size) => context.text.SetSize(size); 
+    public static void SetSize(this TMP_Text context, int size) => context.text = context.text.SetSize(size); 
 
     /// <summary>
     /// 
@@ -160,7 +160,7 @@ public static class TextExtension {
     /// <param name="size">base on 1percent ex) 0.1f, 1f, 1.5f</param>
     /// <returns></returns>
     public static string SetSize(this string context, float size) => context.SetSize((int)(size * 100));
-    public static string SetSize(this TMP_Text context, float size) => context.text.SetSize((int)(size * 100));
+    public static void SetSize(this TMP_Text context, float size) => context.text = context.text.SetSize((int)(size * 100));
     
     public static string AddEffect(this string context, Effect effect) {
         
