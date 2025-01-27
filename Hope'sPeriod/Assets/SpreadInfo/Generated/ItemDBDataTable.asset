@@ -14,6 +14,26 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp:SpreadInfo:ItemDBDataTable
   m_DataTable:
     dataList:
+    - Key: 2000
+      Value:
+        m_Code: 2000
+        m_Name: empty
+        m_Description: Do nothing, It just a Default format
+        m_HealHP: 0
+        m_HealsHP: 0
+        m_Revive: 0
+        m_ReviveAll: 0
+        m_HealMP: 0
+        m_HealsMP: 0
+        m_DEFPower: 0
+        m_DEFType: 0
+        m_DEFReflect: 0
+        m_ATR: 0
+        m_ATRCon: 0
+        m_Effect: 0
+        m_EffectPower: 0
+        m_EffectCon: 0
+        m_EffectTarget: 3
     - Key: 2001
       Value:
         m_Code: 2001
@@ -171,6 +191,106 @@ MonoBehaviour:
         m_EffectPower: 0
         m_EffectCon: 0
         m_EffectTarget: 3
+    - Key: 2103
+      Value:
+        m_Code: 2103
+        m_Name: "\uBE5B\uC758 \uC218\uD638"
+        m_Description: "\uBC18\uC0AC"
+        m_HealHP: 0
+        m_HealsHP: 0
+        m_Revive: 0
+        m_ReviveAll: 0
+        m_HealMP: 0
+        m_HealsMP: 0
+        m_DEFPower: 2
+        m_DEFType: 2
+        m_DEFReflect: 1
+        m_ATR: 1
+        m_ATRCon: 1
+        m_Effect: 0
+        m_EffectPower: 0
+        m_EffectCon: 0
+        m_EffectTarget: 0
+    - Key: 2104
+      Value:
+        m_Code: 2104
+        m_Name: "\uBE5B"
+        m_Description: "\uACF5\uACA9\uB825 \uC99D\uAC00"
+        m_HealHP: 0
+        m_HealsHP: 0
+        m_Revive: 0
+        m_ReviveAll: 0
+        m_HealMP: 0
+        m_HealsMP: 0
+        m_DEFPower: 0
+        m_DEFType: 0
+        m_DEFReflect: 0
+        m_ATR: 0
+        m_ATRCon: 0
+        m_Effect: 2
+        m_EffectPower: 1.5
+        m_EffectCon: 1
+        m_EffectTarget: 1
+    - Key: 2203
+      Value:
+        m_Code: 2203
+        m_Name: "\uACA9\uD22C \uC2DC\uAC04\uC774\uB2E4!!!"
+        m_Description: "\uB3C4\uBC1C"
+        m_HealHP: 0
+        m_HealsHP: 0
+        m_Revive: 0
+        m_ReviveAll: 0
+        m_HealMP: 0
+        m_HealsMP: 0
+        m_DEFPower: 0
+        m_DEFType: 0
+        m_DEFReflect: 0
+        m_ATR: 0.6
+        m_ATRCon: 3
+        m_Effect: 0
+        m_EffectPower: 0
+        m_EffectCon: 0
+        m_EffectTarget: 0
+    - Key: 2302
+      Value:
+        m_Code: 2302
+        m_Name: "\uC870\uAC1C"
+        m_Description: "\uC2AC\uB85C\uC6B0"
+        m_HealHP: 0
+        m_HealsHP: 0
+        m_Revive: 0
+        m_ReviveAll: 0
+        m_HealMP: 0
+        m_HealsMP: 0
+        m_DEFPower: 0
+        m_DEFType: 0
+        m_DEFReflect: 0
+        m_ATR: 0
+        m_ATRCon: 0
+        m_Effect: 1
+        m_EffectPower: 0.7
+        m_EffectCon: 1
+        m_EffectTarget: 3
+    - Key: 2304
+      Value:
+        m_Code: 2304
+        m_Name: "\uD30C\uB791"
+        m_Description: "\uB9C8\uB098 \uD790"
+        m_HealHP: 0
+        m_HealsHP: 0
+        m_Revive: 0
+        m_ReviveAll: 0
+        m_HealMP: 0
+        m_HealsMP: 30
+        m_DEFPower: 0
+        m_DEFType: 0
+        m_DEFReflect: 0
+        m_ATR: 0
+        m_ATRCon: 0
+        m_Effect: 0
+        m_EffectPower: 0
+        m_EffectCon: 0
+        m_EffectTarget: 3
     - Key: 4001
       Value:
         m_Code: 4001
@@ -242,43 +362,3 @@ MonoBehaviour:
         m_EffectPower: 0
         m_EffectCon: 0
         m_EffectTarget: 3
-    - Key: 2304
-      Value:
-        m_Code: 2304
-        m_Name: "\uD30C\uB791"
-        m_Description: 
-        m_HealHP: 0
-        m_HealsHP: 0
-        m_Revive: 0
-        m_ReviveAll: 0
-        m_HealMP: 0
-        m_HealsMP: 30
-        m_DEFPower: 0
-        m_DEFType: 0
-        m_DEFReflect: 0
-        m_ATR: 0
-        m_ATRCon: 0
-        m_Effect: 0
-        m_EffectPower: 0
-        m_EffectCon: 0
-        m_EffectTarget: 2
-    - Key: 2099
-      Value:
-        m_Code: 2099
-        m_Name: test
-        m_Description: 'test test test '
-        m_HealHP: 0
-        m_HealsHP: 0
-        m_Revive: 0
-        m_ReviveAll: 0
-        m_HealMP: 0
-        m_HealsMP: 0
-        m_DEFPower: 7
-        m_DEFType: 1
-        m_DEFReflect: 1
-        m_ATR: 0.5
-        m_ATRCon: 2
-        m_Effect: 0
-        m_EffectPower: 0
-        m_EffectCon: 0
-        m_EffectTarget: 1

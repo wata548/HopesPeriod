@@ -46,8 +46,8 @@ MonoBehaviour:
         m_UseMP: 40
         m_ATK: 0
         m_ATKCon: 0
-        m_SkillItem: 0
-        m_SkillItemCon: 0
+        m_SkillItem: 1
+        m_SkillItemCon: 1
     - Key: 9104
       Value:
         m_Code: 9104
@@ -58,8 +58,8 @@ MonoBehaviour:
         m_UseMP: 25
         m_ATK: 0
         m_ATKCon: 0
-        m_SkillItem: 0
-        m_SkillItemCon: 0
+        m_SkillItem: 1
+        m_SkillItemCon: 1
     - Key: 9201
       Value:
         m_Code: 9201
@@ -93,8 +93,8 @@ MonoBehaviour:
         m_UseMP: 25
         m_ATK: 0
         m_ATKCon: 0
-        m_SkillItem: 0
-        m_SkillItemCon: 0
+        m_SkillItem: 1
+        m_SkillItemCon: 1
     - Key: 9204
       Value:
         m_Code: 9204
@@ -127,8 +127,8 @@ MonoBehaviour:
         m_UseMP: 25
         m_ATK: 0
         m_ATKCon: 0
-        m_SkillItem: 0
-        m_SkillItemCon: 0
+        m_SkillItem: 1
+        m_SkillItemCon: 1
     - Key: 9303
       Value:
         m_Code: 9303
@@ -150,5 +150,5 @@ MonoBehaviour:
         m_UseMP: 20
         m_ATK: 0
         m_ATKCon: 0
-        m_SkillItem: 0
-        m_SkillItemCon: 0
+        m_SkillItem: 1
+        m_SkillItemCon: 1

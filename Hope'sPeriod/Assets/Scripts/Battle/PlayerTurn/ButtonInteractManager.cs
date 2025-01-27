@@ -2,6 +2,7 @@ using System;
 using UnityEngine;
 using UnityEngine.Rendering;
 using System.Collections.Generic;
+using System.Runtime.InteropServices.WindowsRuntime;
 
 public enum ButtonType{
     Attack = 0,
@@ -59,6 +60,11 @@ public class ButtonInteractManager: MonoBehaviour {
                 SelectButton(buttons[(int)selectType - 1], (ButtonType)((int)selectType - 1));
             }
         }
+        
+        if (InputManager.Instance.Click(KeyTypes.Select)) {
+        
+            buttons[(int)selectType].Click();
+        }
     }
 
     private void ShowButton() {
@@ -88,11 +94,6 @@ public class ButtonInteractManager: MonoBehaviour {
 
         ShowButton(); 
         SelectBehavior();
-
-        if (InputManager.Instance.Click(KeyTypes.Select)) {
-
-            buttons[(int)selectType].Click();
-        }
     }
 
     private void Awake() {

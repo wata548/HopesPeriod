@@ -169,8 +169,6 @@ public class ControleEachCharacterInfo: MonoBehaviour {
     
     public bool GetDamage(float damage) {
 
-        Debug.Log($"Try {damage} damage");
-        
         damage = Mathf.Ceil(damage);
         bool shieldApply = false;
         (shieldApply, damage) = Shield.ApplyDamage(damage);

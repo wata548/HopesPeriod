@@ -11694,6 +11694,10 @@ PrefabInstance:
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 7048448525775811288, guid: a99efd2f8fb041248a3e8e5c93ecb707, type: 3}
+      propertyPath: <MaxHP>k__BackingField
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 7048448525775811288, guid: a99efd2f8fb041248a3e8e5c93ecb707, type: 3}
       propertyPath: 'patterns.Array.data[0]'
       value: 
       objectReference: {fileID: 660589241}
