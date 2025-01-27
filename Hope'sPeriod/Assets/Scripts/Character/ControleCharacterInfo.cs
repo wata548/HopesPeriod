@@ -1,9 +1,21 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using SpreadInfo;
 using UnityEngine;
 using UnityEngine.Serialization;
 using UnityEngine.SceneManagement;
+
+public class SimpleCharacterInfo {
+    public string Name { get; private set; }
+    public Color Personal { get; private set; }
+
+    public SimpleCharacterInfo(string name, Color color) {
+        
+        Name = name; 
+        Personal = color;
+    }
+}
 
 public class ControleCharacterInfo: MonoBehaviour {
     
@@ -20,6 +32,13 @@ public class ControleCharacterInfo: MonoBehaviour {
     public static ControleCharacterInfo Instance { get; private set; } = null;
     public int CharacterCount { get; private set; } = 3;
 
+    public Dictionary<int, SimpleCharacterInfo> NameAndColor { get; } = new() {
+        { 0, new("해일", new(1, 0.8745f, 0)) },
+        { 1, new("캐빌", new(1, 0, 0)) },
+        { 2, new("리피", new(0, 0, 1)) }
+    };
+    
+        
     //==================================================| Method 
     #region Singleton 
     void SetSingleton() {

@@ -13,7 +13,7 @@ public class SkillButton: InteractButtonUI {
     private TMP_Text textInfo;
     private RectTransform rect;
 
-    private int code = 0;
+    public int Code { get; private set; } = 0;
     
     private bool onMouse = false;
     private float startTime;
@@ -90,18 +90,18 @@ public class SkillButton: InteractButtonUI {
 
             needUpdate = false;
             int characterIndex = Parse(Manager).CharacterIndex;
-            code = ControleCharacterInfo.Instance.GetSkill(characterIndex, Index);
+            Code = ControleCharacterInfo.Instance.GetSkill(characterIndex, Index);
 
             Show = true;
-            if (code == 0) {
+            if (Code == 0) {
 
                 textInfo.text = "";
                 Show = false;
             }
             else {
-                textInfo.text = $"{SkillInfo.Name(code)}\n{SkillInfo.SimpleDescription(code).SetSize(1.15f)}";
+                textInfo.text = $"{SkillInfo.Name(Code)}\n{SkillInfo.SimpleDescription(Code).SetSize(1.15f)}";
 
-                if (SkillInfo.Useable(characterIndex, code))
+                if (SkillInfo.Useable(characterIndex, Code))
                     textInfo.AddColor(Usable);
                 else
                     textInfo.AddColor(Unusable);
@@ -123,7 +123,7 @@ public class SkillButton: InteractButtonUI {
         
         floatingInfo.UpdatePivot(rect.position);
         floatingInfo.UpdatePosition();
-        floatingInfo.UpdateInfo(code);
+        floatingInfo.UpdateInfo(Code);
     } 
 
     public override void Click() {

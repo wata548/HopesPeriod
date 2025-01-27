@@ -150,5 +150,5 @@ MonoBehaviour:
         m_UseMP: 20
         m_ATK: 0
         m_ATKCon: 0
-        m_SkillItem: 1
-        m_SkillItemCon: 1
+        m_SkillItem: 0
+        m_SkillItemCon: 0

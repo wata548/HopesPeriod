@@ -1,6 +1,6 @@
 using UnityEngine;
 using System;
-using Mono.Cecil.Cil;
+using System.Collections.Generic;
 
 public class SkillButtonManager: InteractButtonManager {
     
@@ -8,19 +8,22 @@ public class SkillButtonManager: InteractButtonManager {
     
     [SerializeField] private GameObject skillList;
     [SerializeField] private Cursor cursor;
-    
+    [SerializeField] private SkillShower shower;
+ 
     //==================================================||Field 
 
     private RectTransform rect;    
     private static FloatingItemInfo floating = null;
     private readonly Vector2 defaultPos = new(0, 70);
     private readonly Vector2 interval = new(633, 0);
+    private const int MaxCharacterCount = 3;
     
     //==================================================||Property 
     public static SkillButtonManager Instance { get; private set; } = null;
     public override bool Interactable { get; protected set; } = false;
     public int CharacterIndex { get; private set; } = 0;
-
+    public List<int> SelectList { get; private set; } = new();
+    
     //==================================================||Method 
     
     public static void SetFloating(FloatingItemInfo floating) {
@@ -31,11 +34,23 @@ public class SkillButtonManager: InteractButtonManager {
         skillList.SetActive(true);
         Interactable = true;
         CharacterIndex = 0;
+
+        for (int i = 0; i < SelectList.Count; i++)
+            SelectList[i] = 0;
         
+        var characterControler = ControleCharacterInfo.Instance;
+        int characterCount =  characterControler.CharacterCount;
+        while (CharacterIndex < characterCount && characterControler.Dead(CharacterIndex)) {
+                    
+            CharacterIndex++;
+        }
+       
         Refresh();
     }
 
     public void NextSelect() {
+
+        SelectList[CharacterIndex] = Parse(buttons[Selecting]).Code;
         CharacterIndex++;
 
         var characterControler = ControleCharacterInfo.Instance;
@@ -53,9 +68,13 @@ public class SkillButtonManager: InteractButtonManager {
         }
         
         //TODO: Select end
+        TurnOff();
+        shower.Show();
     }
 
     public void PriviousSelect() {
+
+        SelectList[CharacterIndex] = 0;
         CharacterIndex--;
 
         while (CharacterIndex >= 0 && ControleCharacterInfo.Instance.Dead(CharacterIndex)) {
@@ -163,6 +182,11 @@ public class SkillButtonManager: InteractButtonManager {
     }
 
     private void Awake() {
+
+        while (SelectList.Count < MaxCharacterCount) {
+            SelectList.Add(0);
+        }
+        
         SkillInfo.SetTable();
         
         base.Awake();

@@ -21,7 +21,6 @@ public class ItemListContext: MonoBehaviour {
     private List<ItemListButton> itemButtons = new();
     
     //==================================================||Property 
-    public static ItemListContext Instance { get; private set; } = null;
 
     //==================================================||Method 
    
@@ -120,11 +119,6 @@ public class ItemListContext: MonoBehaviour {
    //==================================================||UnityFunc 
     private void Awake() {
 
-        if (Instance == null)
-            Instance = this;
-        else if (Instance != this)
-            Destroy(this);
-        
         ItemInfo.SetTable();
         SetItemButton();
     }

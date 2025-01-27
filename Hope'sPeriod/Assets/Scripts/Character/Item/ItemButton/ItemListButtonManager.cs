@@ -12,6 +12,8 @@ public class ItemListButtonManager: InteractButtonManager {
     [SerializeField] private GameObject itemList;
 
     [SerializeField] private Cursor cursor;
+
+    [SerializeField] private ItemListContext context;
     //==================================================||Field 
     private static FloatingItemInfo floating = null;
     
@@ -28,7 +30,7 @@ public class ItemListButtonManager: InteractButtonManager {
     public void TurnOn() {
         
         itemList.SetActive(true);
-        ItemListContext.Instance.TurnOn();
+        context.TurnOn();
         cursor.TurnOn();
         Interactable = true;
     }
@@ -76,11 +78,11 @@ public class ItemListButtonManager: InteractButtonManager {
 
     private void Input() {
         if (InputManager.Instance.ClickAndHold(KeyTypes.Right)) {
-            ItemListContext.Instance.NextPage();
+            context.NextPage();
         }
             
-        if (InputManager.Instance.ClickAndHold(KeyTypes.Left)) {
-            ItemListContext.Instance.PriviousPage();
+        if (InputManager.Instance.ClickAndHold(KeyTypes.Left)) { 
+            context.PriviousPage();
         }
             
         if (InputManager.Instance.ClickAndHold(KeyTypes.Down)) {
