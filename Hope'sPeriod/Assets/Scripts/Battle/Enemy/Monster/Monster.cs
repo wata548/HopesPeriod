@@ -8,14 +8,11 @@ using Random = UnityEngine.Random;
 public class Monster: MonoBehaviour {
 
     [SerializeField] private List<EnemyPatternBase> patterns = new();
-    public static Monster Instance { get; private set; } = null;
-    
     [field: SerializeField]public int MaxHP { get; private set; }
-
-    
-    private int index = 0;
+    public static Monster Instance { get; private set; } = null;
     public bool IsPattern { get; private set; } = false;
-    
+    private int index = 0;
+
     public bool StartPattern() {
 
         if (IsPattern)
@@ -41,5 +38,6 @@ public class Monster: MonoBehaviour {
             Instance = this;
         else if (Instance != this)
             Destroy(this);
+
     }
 }

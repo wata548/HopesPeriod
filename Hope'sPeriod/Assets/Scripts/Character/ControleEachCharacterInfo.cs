@@ -2,6 +2,7 @@ using System;
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using NUnit.Framework.Constraints;
 using SpreadInfo;
 using TMPro;
@@ -30,7 +31,9 @@ public class ControleEachCharacterInfo: MonoBehaviour {
     private const int SkillCountLimit = 4;
     private readonly int[] skill = new int[SkillCountLimit];
 
-    private EffectInfo effectInfo = new EffectInfo(EffectType.None, 0, 0);
+    public List<EffectInfo> Effects { get; private set; } = new();
+    public ShieldInfo Shield { get; private set; } = new (DefenceType.None, 0, false);
+    public AttractInfo Attract { get; private set; } = new();
     private Color originColor;
     
     //==================================================| Properties  
@@ -38,29 +41,50 @@ public class ControleEachCharacterInfo: MonoBehaviour {
     public float MaximumHp { get; private set; } = 100;
     public float CurrentHp { get; private set; } = 100;
     public float MaximumMp { get; private set; } = 100;
-    public float CurrentMp { get; private set; } = 28;
-    public DefenceType Shield { get; private set; } = DefenceType.None;
-    public float ShieldPower { get; private set; } = 0;
-    public bool Reflection { get; private set; } = false;
+    public float CurrentMp { get; private set; } = 100;
     public bool Dead { get; private set; }
-    public float Attract { get; private set; } = 0;
-    public int AttractDuration { get; private set; }= 0;
     
     //==================================================| Method 
 
     public void SetAttract(int code) {
-        Debug.Log("attract");
-        Attract = ItemInfo.Attract(code);
-        AttractDuration = ItemInfo.AttractDuration(code);
+        Attract = new(ItemInfo.Attract(code),
+            ItemInfo.AttractDuration(code));
     }
     
     public void SetAttract(int power, int duration) {
-        Attract = power;
-        AttractDuration = duration;
+        Attract = new(power, duration);
     }
 
-    public void SetEffect(int code) => effectInfo = new EffectInfo(code);
-    public void SetEffect(EffectInfo info) => effectInfo = info;
+    public void SetEffect(int code) {
+
+        EffectType type = ItemInfo.Effect(code);
+        for (int i = 0; i < Effects.Count; i++) {
+
+            if (type != Effects[i].Type) continue;
+            
+            Effects[i] = new EffectInfo(code);
+            return;
+        }
+        Effects.Add(new EffectInfo(code));
+    }
+
+    public void SetEffect(EffectInfo info) {
+        
+        for (int i = 0; i < Effects.Count; i++) {
+        
+            if (info.Type != Effects[i].Type) continue;
+                    
+            Effects[i] = info;
+            return;
+        }
+
+        Effects.Add(info);
+    }
+
+    public EffectInfo GetEffect(EffectType type) {
+        
+        return Effects.FirstOrDefault(effect => effect.Type == type);
+    }
 
     private void SetColor(Color color) {
         hp.ChangeColor(color);
@@ -70,89 +94,29 @@ public class ControleEachCharacterInfo: MonoBehaviour {
     }
 
     public void SetShield(int code) {
-        Shield = ItemInfo.DefenceType(code); 
-        ShieldPower = ItemInfo.DefencePower(code);
-        Reflection = ItemInfo.DefenceReflect(code);
+        
+        Shield = new(ItemInfo.DefenceType(code)
+            ,ItemInfo.DefencePower(code)
+            ,ItemInfo.DefenceReflect(code));
 
     }
     public void SetShield(DefenceType type, float power, bool reflect = false) {
 
-        Shield = type;
-        ShieldPower = power;
-        Reflection = reflect;
+        Shield = new(type, power, reflect);
     }
 
     public void TurnUpdate() {
-        UpdateAttract();
-        UpdateShield();
-        effectInfo.TurnUpdate();
+        
+        Attract.TurnUpdate();
+        Shield.TurnUpdate();
+        foreach (var effect in Effects) {
+
+            effect.TurnUpdate();
+        }
+
+        Effects = Effects.Where(info => info.Type != EffectType.None).ToList();
     }
     
-    private void UpdateShield() {
-        if (Shield != DefenceType.Time) return;
-        ShieldPower--;
-        if (ShieldPower >= 1) return;
-        
-        ShieldPower = 0;
-        Shield = DefenceType.None;
-        Reflection = false;
-    }
-
-    private void UpdateAttract() {
-        if (AttractDuration <= 0) return;
-        
-        AttractDuration--;
-        if (AttractDuration <= 0) {
-            Attract = 0;
-            AttractDuration = 0;
-        }
-    } 
-
-    public float ApplyShield(float damage) {
-
-        return Shield switch {
-            DefenceType.None => damage,
-            DefenceType.Time => TimeShieldProcedure(damage),
-            DefenceType.Break => BreakShieldProcedure(damage)
-            
-        };
-
-        float TimeShieldProcedure(float damage) {
-
-            damage = (ShieldPower - (int)ShieldPower) * damage;
-            if (Reflection) {
-                //TODO: Attack to Monster
-                damage = 0;
-            }
-
-            return damage;
-        }
-        
-        float BreakShieldProcedure(float damage) {
-
-            float power = 0;
-            
-            if (ShieldPower >= damage) {
-                if (Reflection) power = damage;
-                
-                ShieldPower -= damage;
-                damage = 0;
-            }
-            else {
-                if (Reflection) power = ShieldPower;
-                
-                damage -= ShieldPower;
-                ShieldPower = 0;
-                Shield = DefenceType.None;
-                            
-            }
-            
-            //TODO: if power != 0 attack to monster
-
-            return damage;
-        }
-    }
-
     public void SetSkill(int index, int code) {
          if (index >= SkillCountLimit) {
                 throw new OutOfRange(0, SkillCountLimit - 1, index);
@@ -167,7 +131,6 @@ public class ControleEachCharacterInfo: MonoBehaviour {
             throw new OutOfRange(0, SkillCountLimit - 1, index);
         }
 
-        Debug.Log(index);
         return skill[index];
     }
     
@@ -204,21 +167,24 @@ public class ControleEachCharacterInfo: MonoBehaviour {
         return true;
     }
     
-    public bool GetDamage(float damage, bool shieldApply = true) {
+    public bool GetDamage(float damage) {
 
-        if (shieldApply) damage = ApplyShield(damage);
+        Debug.Log($"Try {damage} damage");
+        
         damage = Mathf.Ceil(damage);
+        bool shieldApply = false;
+        (shieldApply, damage) = Shield.ApplyDamage(damage);
         
         CurrentHp -= damage;
         
         if (CurrentHp > 0) {
 
-            ShowDamage(damage);
+            ShowDamage(damage, shieldApply);
             return true;
         }
 
         CurrentHp = 0;
-        ShowDamage(damage);
+        ShowDamage(damage, shieldApply);
 
         StartCoroutine(Wait.WaitAndDo(0.6f, () => SetColor(deadGray)));
         
@@ -253,13 +219,14 @@ public class ControleEachCharacterInfo: MonoBehaviour {
         return true;
     }
    
-    private void ShowDamage(float damage) {
+    private void ShowDamage(float damage, bool shield = false) {
 
         hp.UpdateInfo(CurrentHp, MaximumHp);
         
         Debug.Log($"Get damage: {damage}");
         hpChange.text = damage.ToString();
-        if (Shield != DefenceType.None) hpChange.color = shieldColor; 
+        
+        if (shield) hpChange.color = shieldColor; 
         else hpChange.color = damageHpColor;
         
         hpChange.DOBlink(0.2f, 0.2f, 0.2f, 0.7f);

@@ -52,7 +52,7 @@ public class Slider : MonoBehaviour{
             
             current.Kill();
         }
-        
+
         current = handle.transform.DOScaleX(handleScale * ratio, DURACTION);
 
         beforeRatio = ratio;

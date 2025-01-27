@@ -37,6 +37,47 @@ public static class SkillInfo {
         if (table is not null) return true;
         return false;
     }
+
+    public static void UseSkill(int index, int code) {
+
+        var user = ControleCharacterInfo.Instance.CharacterInfo(index);
+
+        int useHp = UseHp(code);
+        int useMp = UseMp(code);
+        int damage = Attack(code);
+        
+        if(useHp != 0) user.GetDamage(useHp);
+        if(useMp != 0) user.UseMp(useMp);
+
+        if (damage != 0) {
+
+            var attackUp = user.GetEffect(EffectType.AttackUp);
+            
+            if (attackUp != null) {
+
+                damage = (int)Mathf.Ceil(attackUp.Power * damage);
+            }
+            MonsterSlider.Instance.GetDamage(damage);
+        }
+        
+        if (SkillItem(code)) {
+        
+            var targetType = ItemInfo.EffectTarget(ToSkillItem(code));
+            ControleEachCharacterInfo target;
+        
+            if (targetType == EffectTargetType.Select) return; 
+                        
+            target = targetType switch {
+        
+                EffectTargetType.None => null,
+                EffectTargetType.AllCharacter => null,
+                EffectTargetType.User => ControleCharacterInfo.Instance.CharacterInfo(index),
+                _ => ControleCharacterInfo.Instance.CharacterInfo(targetType - EffectTargetType.Heail)
+            };
+        
+            ItemInfo.UseItem(ToSkillItem(code), target);
+        }
+    }
     
     #region Property
         
@@ -98,9 +139,12 @@ public static class SkillInfo {
             //if (EffectInfo.MatchKorean.TryGetValue(ItemInfo.Effect(itemCode), out string korean)) {
             if (ItemInfo.Effect(itemCode) != EffectType.None) result += "효과 ";
 
-            if (ItemInfo.Attract(itemCode) > 0) result += "도발 ";
+            if (ItemInfo.Attract(itemCode) > 0 && !ItemInfo.DefenceReflect(itemCode)) result += "도발 ";
 
-            if (ItemInfo.DefenceType(itemCode) != DefenceType.None) result += "방어 ";
+            if (ItemInfo.DefenceType(itemCode) != DefenceType.None) {
+                if (ItemInfo.DefenceReflect(itemCode)) result += "반사";
+                else result += "방어 ";
+            }
         }
 
         return result;

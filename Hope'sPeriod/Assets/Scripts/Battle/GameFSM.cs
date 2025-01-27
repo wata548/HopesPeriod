@@ -160,6 +160,7 @@ public class GameFSM: MonoBehaviour {
     public void AfterSetTarget() {
 
         if (PlayerTurnState == PlayerTurnState.Item) {
+            Debug.Log("sdf");
             PlayerTurnState = PlayerTurnState.ItemTarget;
             needPlayerTurnUpdate = true;
         }

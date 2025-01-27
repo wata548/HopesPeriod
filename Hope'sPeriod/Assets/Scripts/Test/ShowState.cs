@@ -10,6 +10,8 @@ public class ShowState : MonoBehaviour {
     }
 
     void Update() {
-        text.text = $"{GameFSM.Instance.State.ToString()} + {GameFSM.Instance.PlayerTurnState.ToString()}";
+        text.text = $"{GameFSM.Instance.State.ToString()} + {GameFSM.Instance.PlayerTurnState.ToString()}\n" +
+                    $"Select: {TargetButtonManager.Instance.Selecting}\n" +
+                    $"Monster: {MonsterSlider.Instance.CurrentHp}/{MonsterSlider.Instance.MaxHp}";
     }
 }

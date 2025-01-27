@@ -1,5 +1,6 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class MonsterSlider: Slider {
 
@@ -7,36 +8,38 @@ public class MonsterSlider: Slider {
     private TMP_Text showerText;
     private SpriteRenderer showerRenderer;
     
-    private int maxHp;
-    private int currentHp;
+    public int MaxHp { get; private set; }
+    public int CurrentHp { get; private set; }
     public bool Dead { get; private set; } = false;
-
+    public static MonsterSlider Instance { get; private set; } = null;
+    
     private readonly Color heal = Color.green;
     private readonly Color damaged = Color.red;
     
     public void SetMonster() {
 
-        maxHp = Monster.Instance.MaxHP;
-        currentHp = maxHp;
+        MaxHp = Monster.Instance.MaxHP;
+        CurrentHp = MaxHp;
     }
 
-    public void Damaged(int power) {
+    public void GetDamage(int power) {
 
         showerText.text = power.ToString();
         showerText.color = damaged;
         
-        if (power >= currentHp) {
+        if (power >= CurrentHp) {
             power = 0;
-            currentHp = 0;
+            CurrentHp = 0;
             Dead = true;
             Debug.Log("win");
             //TODO: Reward system and wining event 
         }
         else {
-            currentHp -= power;
+            CurrentHp -= power;
         }
 
-        UpdateInfo(currentHp / maxHp);
+        UpdateInfo((float)CurrentHp / MaxHp);
+        ShakeCamera.Instance.Shake(0.4f, 0.2f).DOBeforeWait(0.2f);
         showerRenderer.DOBlink(0.2f, 0.2f, 0.2f);
         showerText.DOBlink(0.2f, 0.2f, 0.2f);
     }
@@ -46,15 +49,22 @@ public class MonsterSlider: Slider {
         showerText.text = power.ToString();
         showerText.color = heal;
 
-        currentHp += power;
-        currentHp = Mathf.Min(currentHp, maxHp);
+        CurrentHp += power;
+        CurrentHp = Mathf.Min(CurrentHp, MaxHp);
 
-        UpdateInfo(currentHp / maxHp);
+        UpdateInfo(CurrentHp / MaxHp);
         showerText.DOBlink(0.2f, 0.2f, 0.2f);
     }
 
     private void Awake() {
+
+        base.Awake();
+        
+        if (Instance == null) Instance = this;
+        else if (Instance != this) Destroy(this);
+        
         showerRenderer = shower.GetComponent<SpriteRenderer>();
         showerText = shower.GetComponentInChildren<TMP_Text>();
+        SetMonster();
     }
 }

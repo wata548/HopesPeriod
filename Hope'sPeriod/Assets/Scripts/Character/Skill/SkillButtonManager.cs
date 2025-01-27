@@ -22,7 +22,7 @@ public class SkillButtonManager: InteractButtonManager {
     public static SkillButtonManager Instance { get; private set; } = null;
     public override bool Interactable { get; protected set; } = false;
     public int CharacterIndex { get; private set; } = 0;
-    public List<int> SelectList { get; private set; } = new();
+    public List<(int code, int target)> SelectList { get; private set; } = new();
     
     //==================================================||Method 
     
@@ -36,7 +36,7 @@ public class SkillButtonManager: InteractButtonManager {
         CharacterIndex = 0;
 
         for (int i = 0; i < SelectList.Count; i++)
-            SelectList[i] = 0;
+            SelectList[i] = (0,0);
         
         var characterControler = ControleCharacterInfo.Instance;
         int characterCount =  characterControler.CharacterCount;
@@ -48,9 +48,9 @@ public class SkillButtonManager: InteractButtonManager {
         Refresh();
     }
 
-    public void NextSelect() {
+    public void NextSelect(int target = 0) {
 
-        SelectList[CharacterIndex] = Parse(buttons[Selecting]).Code;
+        SelectList[CharacterIndex] = (Parse(buttons[Selecting]).Code, target);
         CharacterIndex++;
 
         var characterControler = ControleCharacterInfo.Instance;
@@ -74,7 +74,7 @@ public class SkillButtonManager: InteractButtonManager {
 
     public void PriviousSelect() {
 
-        SelectList[CharacterIndex] = 0;
+        SelectList[CharacterIndex] = (0,0);
         CharacterIndex--;
 
         while (CharacterIndex >= 0 && ControleCharacterInfo.Instance.Dead(CharacterIndex)) {
@@ -184,7 +184,7 @@ public class SkillButtonManager: InteractButtonManager {
     private void Awake() {
 
         while (SelectList.Count < MaxCharacterCount) {
-            SelectList.Add(0);
+            SelectList.Add((0,0));
         }
         
         SkillInfo.SetTable();

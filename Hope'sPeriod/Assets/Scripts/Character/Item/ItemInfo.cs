@@ -3,6 +3,7 @@ using SpreadInfo;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 using System.Threading.Tasks;
+using UnityEditor;
 using UnityEngine.ResourceManagement.AsyncOperations;
 
 public enum CodeType {
@@ -89,6 +90,26 @@ public static class ItemInfo {
     public static float             Attract(int code)           => GetData(code)?.ATR           ?? -1;
     public static int               AttractDuration(int code)   => GetData(code)?.ATRCon        ?? -1;
     #endregion
+
+    public static void HealItem(int code, ControleEachCharacterInfo user = null) {
+        
+        if (!SetTable()) {
+            throw new Exception("Yet load table");
+            return;
+        }
+           
+        ItemDBData item = GetData(code);
+                   
+        foreach (var characterInfo in ControleCharacterInfo.Instance.CharacterInfos()) {
+            if(item.HealsHP != 0) characterInfo.HealHp(item.HealsHP, item.ReviveAll);
+            if(item.HealsMP != 0) characterInfo.HealMp(item.HealsMP);
+        }
+                   
+        if(user is not null) {
+            if(item.HealHP != 0) user.HealHp(item.HealHP, item.Revive);
+            if(item.HealMP != 0) user.HealMp(item.HealMP);
+        }
+    }
     
     public static void UseItem(int code, ControleEachCharacterInfo user = null) {
         if (!SetTable()) {
@@ -98,14 +119,27 @@ public static class ItemInfo {
    
         ItemDBData item = GetData(code);
            
-        foreach (var characterInfo in ControleCharacterInfo.Instance.CharacterInfos()) {
-            if(item.HealsHP != 0) characterInfo.HealHp(item.HealsHP, item.ReviveAll);
-            if(item.HealsMP != 0) characterInfo.HealMp(item.HealsMP);
+        foreach (var character in ControleCharacterInfo.Instance.CharacterInfos()) {
+            if(item.HealsHP != 0) character.HealHp(item.HealsHP, item.ReviveAll);
+            if(item.HealsMP != 0) character.HealMp(item.HealsMP);
+            
+            if (item.EffectTarget != EffectTargetType.AllCharacter)
+                continue;
+            
+            if(item.Effect != EffectType.None) character.SetEffect(code);
+            if (item.DEFPower != 0) character.SetShield(code);
         }
            
         if(user is not null) {
             if(item.HealHP != 0) user.HealHp(item.HealHP, item.Revive);
             if(item.HealMP != 0) user.HealMp(item.HealMP);
+            if(item.ATR != 0) user.SetAttract(code);
+
+            if (item.EffectTarget == EffectTargetType.AllCharacter) return;
+
+            if (item.Effect != EffectType.None) user.SetEffect(code);
+            if (item.DEFPower != 0) user.SetShield(code);
+
         }
     }
 }

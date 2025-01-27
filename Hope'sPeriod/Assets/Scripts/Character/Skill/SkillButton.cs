@@ -129,6 +129,9 @@ public class SkillButton: InteractButtonUI {
     public override void Click() {
         if (!Show) return;
 
+        if (SkillInfo.NeedSelect(Code) && ItemInfo.NeedSelect(SkillInfo.ToSkillItem(Code))) {
+            
+        }
         Parse(Manager).NextSelect();
     }
 

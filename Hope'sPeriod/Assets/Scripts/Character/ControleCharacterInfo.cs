@@ -69,7 +69,7 @@ public class ControleCharacterInfo: MonoBehaviour {
         }
     }
     
-    public void ShieldOn(DefenceType type = DefenceType.Time, float power = 2.3f) {
+    public void ShieldOn(DefenceType type = DefenceType.Time, float power = 1.3f) {
 
         foreach (var character in characterInfos) {
 
@@ -104,19 +104,19 @@ public class ControleCharacterInfo: MonoBehaviour {
             characterInfos
                 .Take(CharacterCount)
                 .Where(character => !character.Dead)
-                .OrderByDescending(character => character.Attract)
+                .OrderByDescending(character => character.Attract.Power)
                 .First();
 
         // check no one used skill
-        bool skillUse = !Mathf.Approximately(useAttrackSkillplayer.Attract, 0);
+        bool skillUse = !Mathf.Approximately(useAttrackSkillplayer.Attract.Power, 0);
         if (skillUse) {
 
             // attract skill is always ratio, must (ratio <= 1).
-            if (useAttrackSkillplayer.Attract > 1) {
+            if (useAttrackSkillplayer.Attract.Power > 1) {
 
-                throw new OutOfRange(0, 1, useAttrackSkillplayer.Attract);
+                throw new OutOfRange(0, 1, useAttrackSkillplayer.Attract.Power);
             }
-            float damage = power * useAttrackSkillplayer.Attract;
+            float damage = power * useAttrackSkillplayer.Attract.Power;
             
             useAttrackSkillplayer.GetDamage(damage);
 

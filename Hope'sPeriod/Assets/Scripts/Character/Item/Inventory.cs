@@ -34,8 +34,8 @@ public static class Inventory{
             .Count(value => value.Value > 0);
     }
      
-    public static bool UseNonEffectItem(int code, ControleEachCharacterInfo target = null) {
-
+    public static bool UseItem(int code, ControleEachCharacterInfo target = null) {
+        
         if (!Items.ContainsKey(code))
             throw new NullReferenceException($"This item is yet added, try add \"{code}\"Item and retry");
 
@@ -43,50 +43,13 @@ public static class Inventory{
             return false;
         }
 
-          
         Items[code]--;
         ItemInfo.UseItem(code, target);
+        
+        CallBackMainFsm();
+        
         return true;
     }
-
-    public static bool UseItem(int code, ControleEachCharacterInfo target = null) {
-        
-        bool result = UseNonEffectItem(code, target);
-        ApplyEffect(code, target);
-
-        CallBackMainFsm();
-        return result;
-    }
-
-    private static void ApplyEffect(int code, ControleEachCharacterInfo target = null) {
-
-        Debug.Log(target);
-        
-        var effect = ItemInfo.Effect(code);
-        var effectTarget = ItemInfo.EffectTarget(code);
-        if (effectTarget == EffectTargetType.None) return;
-          
-        if (effectTarget >= EffectTargetType.Heail) {
-            int index = effectTarget - EffectTargetType.Heail;
-            target = ControleCharacterInfo.Instance.CharacterInfo(index);
-        }
-
-
-        if (effectTarget == EffectTargetType.AllCharacter) {
-
-            foreach (var character in ControleCharacterInfo.Instance.CharacterInfos().Where(character => !character.Dead)) {
-                
-                character.SetEffect(code);
-                character.SetShield(code);
-                character.SetAttract(code);
-            }
-        } 
-        
-        target?.SetEffect(code);
-        target?.SetShield(code);
-        target?.SetAttract(code);
-    }
-     
 
     private static void CallBackMainFsm() {
 
