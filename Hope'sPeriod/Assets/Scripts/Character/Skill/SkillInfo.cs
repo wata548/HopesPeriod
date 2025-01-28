@@ -101,8 +101,8 @@ public static class SkillInfo {
         }
 
         bool need = false;
-        if (SkillItem(code) == true) need |= ItemInfo.NeedSelect(ToSkillItem(code));
-        return false;
+        if (SkillItem(code)) need = ItemInfo.NeedSelect(ToSkillItem(code));
+        return need;
     }
 
     public static int               ToSkillItem(int code)       => code - 7000;

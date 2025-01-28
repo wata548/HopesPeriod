@@ -22,7 +22,7 @@ public class SkillButtonManager: InteractButtonManager {
     public static SkillButtonManager Instance { get; private set; } = null;
     public override bool Interactable { get; protected set; } = false;
     public int CharacterIndex { get; private set; } = 0;
-    public List<(int code, int target)> SelectList { get; private set; } = new();
+    public List<int> SelectList { get; private set; } = new();
     
     //==================================================||Method 
     
@@ -36,7 +36,7 @@ public class SkillButtonManager: InteractButtonManager {
         CharacterIndex = 0;
 
         for (int i = 0; i < SelectList.Count; i++)
-            SelectList[i] = (0,0);
+            SelectList[i] = 0;
         
         var characterControler = ControleCharacterInfo.Instance;
         int characterCount =  characterControler.CharacterCount;
@@ -48,9 +48,9 @@ public class SkillButtonManager: InteractButtonManager {
         Refresh();
     }
 
-    public void NextSelect(int target = 0) {
+    public void SkipSelect() {
 
-        SelectList[CharacterIndex] = (Parse(buttons[Selecting]).Code, target);
+        SelectList[CharacterIndex] = 0; 
         CharacterIndex++;
 
         var characterControler = ControleCharacterInfo.Instance;
@@ -60,21 +60,43 @@ public class SkillButtonManager: InteractButtonManager {
             
             CharacterIndex++;
         }
-
+        
         if (CharacterIndex < characterCount) {
             
             Refresh();
             return;
         }
         
-        //TODO: Select end
+        TurnOff();
+        shower.Show();
+    } 
+    
+    public void NextSelect() {
+
+        SelectList[CharacterIndex] = Parse(buttons[Selecting]).Code;
+        CharacterIndex++;
+
+        var characterControler = ControleCharacterInfo.Instance;
+        int characterCount =  characterControler.CharacterCount;
+        
+        while (CharacterIndex < characterCount && characterControler.Dead(CharacterIndex)) {
+            
+            CharacterIndex++;
+        }
+        
+        if (CharacterIndex < characterCount) {
+            
+            Refresh();
+            return;
+        }
+        
         TurnOff();
         shower.Show();
     }
 
     public void PriviousSelect() {
 
-        SelectList[CharacterIndex] = (0,0);
+        SelectList[CharacterIndex] = 0;
         CharacterIndex--;
 
         while (CharacterIndex >= 0 && ControleCharacterInfo.Instance.Dead(CharacterIndex)) {
@@ -92,6 +114,9 @@ public class SkillButtonManager: InteractButtonManager {
     public void Refresh() {
 
         rect.localPosition = defaultPos + CharacterIndex * interval;
+        Selecting = 0;
+        cursor.SetIndex(Selecting);
+        
         foreach (var button in buttons) {
 
             Parse(button).Refresh();
@@ -155,14 +180,20 @@ public class SkillButtonManager: InteractButtonManager {
             
             cursor.SetIndex(Selecting);
         }
-            
-        if (InputManager.Instance.Click(KeyTypes.Select)) {
+
+        bool select = InputManager.Instance.Click(KeyTypes.Select);
+        bool skip = InputManager.Instance.Click(KeyTypes.Right);
+        bool cancel = InputManager.Instance.Click(KeyTypes.Cancel) || InputManager.Instance.Click(KeyTypes.Left);
+        if (select) {
             
             int index = Selecting;
                 
             Parse(buttons[index]).Click();
         }
-        else if (InputManager.Instance.Click(KeyTypes.Cancel)) {
+        else if (skip) {
+            SkipSelect();
+        }
+        else if (cancel) {
 
             PriviousSelect();
         }
@@ -184,7 +215,7 @@ public class SkillButtonManager: InteractButtonManager {
     private void Awake() {
 
         while (SelectList.Count < MaxCharacterCount) {
-            SelectList.Add((0,0));
+            SelectList.Add(0);
         }
         
         SkillInfo.SetTable();

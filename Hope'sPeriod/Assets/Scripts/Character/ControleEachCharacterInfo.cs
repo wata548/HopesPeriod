@@ -201,6 +201,7 @@ public class ControleEachCharacterInfo: MonoBehaviour {
 
         if (revive && CurrentHp <= 0) {
             //TODO: Revive Event
+            Dead = false;
             StartCoroutine(Wait.WaitAndDo(0.6f, () => SetColor(originColor)));
         }
         

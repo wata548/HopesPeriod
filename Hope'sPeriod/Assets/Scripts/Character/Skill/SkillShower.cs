@@ -29,11 +29,11 @@ public class SkillShower: MonoBehaviour {
     public void Show() {
 
         var list = SkillButtonManager.Instance.SelectList;
-        List<(int, int, int)> userAndCode = new();
+        List<(int, int)> userAndCode = new();
         for (int i = 0; i < list.Count; i++) {
-            if(list[i].code == 0) continue;
+            if(list[i] == 0) continue;
 
-            userAndCode.Add((i, list[i].code, list[i].target));
+            userAndCode.Add((i, list[i]));
         }
         
         Sequence animation = DOTween.Sequence();
@@ -62,12 +62,12 @@ public class SkillShower: MonoBehaviour {
         return showing;
     }
 
-    private void ShowSetting((int user, int code, int target) value) {
+    private void ShowSetting((int user, int code) value) {
 
-        ShowSetting(value.user, value.code, value.target);
+        ShowSetting(value.user, value.code);
     }
     
-    private void ShowSetting(int index, int code, int target) {
+    private void ShowSetting(int index, int code) {
 
         
         var characterInfo = ControleCharacterInfo.Instance.NameAndColor[index];

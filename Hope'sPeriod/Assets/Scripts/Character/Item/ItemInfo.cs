@@ -121,7 +121,7 @@ public static class ItemInfo {
            
         foreach (var character in ControleCharacterInfo.Instance.CharacterInfos()) {
             if(item.HealsHP != 0) character.HealHp(item.HealsHP, item.ReviveAll);
-            if(item.HealsMP != 0) character.HealMp(item.HealsMP);
+            if(item.HealsMP != 0 && !character.Dead) character.HealMp(item.HealsMP);
             
             if (item.EffectTarget != EffectTargetType.AllCharacter)
                 continue;
