@@ -13,7 +13,7 @@ public abstract class InteractButtonScence : InteractButton {
         if (!isMouseOn)
             return;
         
-        if (Input.GetMouseButton(0)) {
+        if (Input.GetMouseButtonDown(0)) {
             Click();
         }
     }

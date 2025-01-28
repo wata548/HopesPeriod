@@ -15,7 +15,7 @@ public class InventoryTest: MonoBehaviour {
         Inventory.AddItem(2004, 2);
         ControleCharacterInfo.Instance.CharacterInfo(0).SetSkill(0, 9101);
         ControleCharacterInfo.Instance.CharacterInfo(0).SetSkill(1, 9102);
-        ControleCharacterInfo.Instance.CharacterInfo(0).SetSkill(2, 9103);
+        ControleCharacterInfo.Instance.CharacterInfo(0).SetSkill(2, 9104);
         
         ControleCharacterInfo.Instance.CharacterInfo(1).SetSkill(0, 9201);
         ControleCharacterInfo.Instance.CharacterInfo(1).SetSkill(1, 9202);

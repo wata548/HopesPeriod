@@ -131,7 +131,7 @@ public class ItemListButton : InteractButtonUI {
             return;
         }
 
-        TargetButtonManager.Instance.TurnOn(SelectType.Players, Code);
+        TargetButtonManager.Instance.TurnOn(Code);
         InteractableOff();
     }
 

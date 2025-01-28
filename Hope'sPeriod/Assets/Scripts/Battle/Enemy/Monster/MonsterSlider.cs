@@ -39,9 +39,9 @@ public class MonsterSlider: Slider {
         }
 
         UpdateInfo((float)CurrentHp / MaxHp);
-        ShakeCamera.Instance.Shake(0.4f, 0.2f).DOBeforeWait(0.2f);
-        showerRenderer.DOBlink(0.2f, 0.2f, 0.2f);
-        showerText.DOBlink(0.2f, 0.2f, 0.2f);
+        ShakeCamera.Instance.Shake(0.4f, 0.3f).DOBeforeWait(0.2f);
+        showerRenderer.DOBlink(0.2f, 0.4f, 0.2f);
+        showerText.DOBlink(0.2f, 0.4f, 0.2f);
     }
 
     public void Heal(int power) {

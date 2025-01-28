@@ -1,5 +1,7 @@
 using System;
 using System.Security.Cryptography;
+using Unity.VisualScripting;
+using UnityEditor;
 
 public class TargetButtonManager : InteractButtonManager {
     
@@ -12,19 +14,17 @@ public class TargetButtonManager : InteractButtonManager {
     
     //==================================================||Method 
     
-    public void TurnOn(SelectType type, int code) {
+    public void TurnOn(int code) {
             
         this.Code = code;
         Interactable = true;
             
-        SelectCursor.Instance.TurnOn(type);
+        SelectCursor.Instance.TurnOn();
     }
 
     public void TurnOff() {
 
-        if (GameFSM.Instance.PlayerTurnState == PlayerTurnState.Item)
-            GameFSM.Instance.AfterSetTarget();
-            
+        GameFSM.Instance.AfterSetTarget();
         SelectCursor.Instance.TurnOff();
     }
     
@@ -63,7 +63,15 @@ public class TargetButtonManager : InteractButtonManager {
              
              SelectCursor.Instance.TurnOff();
              Interactable = false;
-             ItemListButtonManager.Instance.SetInteractable(true);
+
+             if (GameFSM.Instance.PlayerTurnState == PlayerTurnState.Item) {
+                 
+                 ItemListButtonManager.Instance.SetInteractable(true);
+             }
+             else if (GameFSM.Instance.PlayerTurnState == PlayerTurnState.Attack) {
+
+                 SkillButtonManager.Instance.SetInteractable(true);
+             }
          }
     }
 }

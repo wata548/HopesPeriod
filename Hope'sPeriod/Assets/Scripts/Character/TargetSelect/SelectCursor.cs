@@ -13,7 +13,6 @@ public class SelectCursor: MonoBehaviour {
 
    //==================================================||Property 
     public static SelectCursor Instance { get; private set; } = null;
-    public SelectType SelectType { get; private set; }
     public int Index { get; private set; } = 0;
 
    //==================================================||Field 
@@ -23,9 +22,8 @@ public class SelectCursor: MonoBehaviour {
 
    //==================================================||Method 
    
-   public void TurnOn(SelectType type) {
+   public void TurnOn() {
 
-       SelectType = type;
        SetIndex(0);
        renderer.enabled = true;
    }

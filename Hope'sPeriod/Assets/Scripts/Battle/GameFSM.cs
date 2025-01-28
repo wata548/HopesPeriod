@@ -16,6 +16,7 @@ public enum PlayerTurnState {
     
     SelectBehavior,
     Attack,
+    AttackTarget,
     Item,
     ItemTarget,
     Shield
@@ -77,39 +78,7 @@ public class GameFSM: MonoBehaviour {
 
             PlayerTurnStartSetting();
 
-            if (needPlayerTurnUpdate && PlayerTurnState != PlayerTurnState.SelectBehavior) {
-
-                needPlayerTurnUpdate = false;
-                
-                switch (PlayerTurnState) {
-                    
-                    case PlayerTurnState.Attack:
-                        SkillButtonManager.Instance.TurnOn();
-                        break;
-                    case PlayerTurnState.Item:
-                        ItemListButtonManager.Instance.TurnOn();
-                        break;
-                    case PlayerTurnState.ItemTarget:
-                        
-                        int index = SelectCursor.Instance.Index;
-                        var target = ControleCharacterInfo.Instance.CharacterInfo(index);
-                        int code = TargetButtonManager.Instance.Code;
-
-                        Inventory.UseItem(code, target);
-                        break;
-                    case PlayerTurnState.Shield:
-                        ControleCharacterInfo.Instance.ShieldOn();
-                        SkipState();
-                        break;
-                    default:
-                        throw new OutOfRange(
-                            (int)PlayerTurnState.Attack, 
-                            (int)PlayerTurnState.Shield,
-                            (int)PlayerTurnState, 
-                            "PlayerTurnState must be Attack or Item or Shield"
-                        );
-                } 
-            }
+            PlayerTurnFSM();
 
             PlayerTurnInput();
         }
@@ -127,6 +96,49 @@ public class GameFSM: MonoBehaviour {
                             
             Player.Instance.Movement
                 .SetApply<CompoInput>(Direction.None);
+        }
+    }
+
+    public void PlayerTurnFSM() {
+
+        if (!needPlayerTurnUpdate || PlayerTurnState == PlayerTurnState.SelectBehavior) return;
+        needPlayerTurnUpdate = false;
+        
+        switch (PlayerTurnState) {
+                            
+            case PlayerTurnState.Attack:
+                SkillButtonManager.Instance.TurnOn();
+                break;
+            case PlayerTurnState.AttackTarget:
+                int selectIndex = SelectCursor.Instance.Index;
+                SkillButtonManager.Instance.SetInteractable(true);
+                SkillButtonManager.Instance.NextSelect(selectIndex);
+                PlayerTurnState = PlayerTurnState.Attack;
+                break;
+            
+            case PlayerTurnState.Item:
+                ItemListButtonManager.Instance.TurnOn();
+                break;
+            case PlayerTurnState.ItemTarget:
+                int index = SelectCursor.Instance.Index;
+                var target = ControleCharacterInfo.Instance.CharacterInfo(index);
+                int code = TargetButtonManager.Instance.Code;
+        
+                Inventory.UseItem(code, target);
+                break;
+            
+            case PlayerTurnState.Shield:
+                ControleCharacterInfo.Instance.ShieldOn();
+                SkipState();
+                break;
+            
+            default:
+                throw new OutOfRange(
+                    (int)PlayerTurnState.Attack, 
+                    (int)PlayerTurnState.Shield,
+                    (int)PlayerTurnState, 
+                    "PlayerTurnState must be Attack or Item or Shield"
+                );
         }
     }
     
@@ -160,8 +172,12 @@ public class GameFSM: MonoBehaviour {
     public void AfterSetTarget() {
 
         if (PlayerTurnState == PlayerTurnState.Item) {
-            Debug.Log("sdf");
             PlayerTurnState = PlayerTurnState.ItemTarget;
+            needPlayerTurnUpdate = true;
+        }
+
+        if (PlayerTurnState == PlayerTurnState.Attack) {
+            PlayerTurnState = PlayerTurnState.AttackTarget;
             needPlayerTurnUpdate = true;
         }
     }
