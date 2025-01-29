@@ -2,7 +2,7 @@ using UnityEditor;
 using UnityEngine;
 
 #if UNITY_EDITOR
-[CustomEditor(typeof(DataParser))]
+[CustomEditor(typeof(DefaultAndEnumDataParser))]
 public class SyncEditor: Editor {
 
     public override void OnInspectorGUI() {
@@ -12,13 +12,13 @@ public class SyncEditor: Editor {
         GUILayout.Label("It make directory and EnumType (please press first and wait for loading)");
         if (GUILayout.Button("SetUp")) {
             
-            DataParser parser = target as DataParser;
+            DefaultAndEnumDataParser parser = target as DefaultAndEnumDataParser;
             parser.SetUp();
         }
         
         GUILayout.Label("It make data type (please press second and wait for loading)");
         if (GUILayout.Button("GenerateData")) {
-            DataParser parser = target as DataParser;
+            DefaultAndEnumDataParser parser = target as DefaultAndEnumDataParser;
 
             foreach (var factor in parser.Path) {
 
@@ -27,7 +27,7 @@ public class SyncEditor: Editor {
         }
         
         if (GUILayout.Button("SyncData")) {
-            DataParser parser = target as DataParser;
+            DefaultAndEnumDataParser parser = target as DefaultAndEnumDataParser;
 
             foreach (var factor in parser.Path) {
                 

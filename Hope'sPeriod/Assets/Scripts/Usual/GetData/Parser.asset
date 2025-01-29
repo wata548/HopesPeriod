@@ -16,5 +16,6 @@ MonoBehaviour:
   m_Path:
   - ItemDB
   - SkillDB
+  - ActorDB
   m_AddEnums: AddType
   mDataLoaderLoader: {fileID: 11400000, guid: e661bbc669084434d928aa5b092fbfcc, type: 2}

@@ -1,12 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.Net.Http;
-using JetBrains.Annotations;
 using Newtonsoft.Json;
 using UnityEngine;
-using UnityEditor;
 
 [CreateAssetMenu(menuName = "LoadData/Loader/SpreadSheet")]
-public class SpreadSheetReader: RawDataLoader{
+public class SpreadSheetLoader: RawDataLoader{
 
     [SerializeField] private string m_SpreadSheetID;
     [SerializeField] private string m_ApiKey;

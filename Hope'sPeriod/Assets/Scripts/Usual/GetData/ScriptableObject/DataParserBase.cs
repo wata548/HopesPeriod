@@ -1,4 +1,4 @@
-﻿#if UNITY_EDITOR
+#if UNITY_EDITOR
 
 using System;
 using System.Collections.Generic;
@@ -9,34 +9,28 @@ using System.CodeDom;
 using System.CodeDom.Compiler;
 using System.Linq.Expressions;
 using System.Reflection;
-using Unity.VisualScripting;
 using UnityEditor;
-using UnityEngine.Serialization;
 using Object = System.Object;
 
-[CreateAssetMenu(menuName = "LoadData/DataParser")]
-public class DataParser: ScriptableObject {
 
-    [SerializeField] private string m_NameSpace = null;
-    [SerializeField] private List<string> m_Path = new();
-    [SerializeField] private string m_AddEnums;
-    [FormerlySerializedAs("m_DataLoader")] [SerializeField] private RawDataLoader mDataLoaderLoader;
-    
-    public List<string> Path => m_Path;
-    
-    private struct TypeAndName {
+public struct TypeAndName {
         
-        public string Name;
-        public string Type;
+    public string Name;
+    public string Type;
 
-        public TypeAndName(string type, string name) {
-            Type = type;
-            Name = name;
-        }
+    public TypeAndName(string type, string name) {
+        Type = type;
+        Name = name;
     }
+}
+
+public abstract class DataParserBase : ScriptableObject {
+    
+    [SerializeField] protected string m_NameSpace = null;
+    [SerializeField] protected List<string> m_Path = new();
     
     //divide rawData's info to (header and dataPart) 
-    private (List<TypeAndName>, List<List<string>>) Divide(List<List<string>> origin) {
+    protected (List<TypeAndName>, List<List<string>>) Divide(List<List<string>> origin) {
 
         //origin data should over 3. because It must contain dataType row, dataName row, context row 
         if (origin.Count <= 2) {
@@ -52,7 +46,35 @@ public class DataParser: ScriptableObject {
         return (header, origin.Skip(2).ToList());
     }
 
-    private void GenerateDataType( string typeName, List<TypeAndName> header) {
+    
+    protected virtual string DataTypeName(string path) => $"{path.Split('!')[0]}Data";
+    
+    //Set folders
+    public virtual void SetUp() {
+            //check and make namespace directory
+            DirectoryInfo @namespace = new(@$"Assets\{m_NameSpace}");
+            if (!@namespace.Exists) {
+                @namespace.Create();
+                Debug.Log($"Create Namespace({m_NameSpace}) Directory");
+            }
+                                    
+            DirectoryInfo dataTypes = new DirectoryInfo($@"Assets\{m_NameSpace}\DataTypes");
+            if (!dataTypes.Exists) {
+                dataTypes.Create();
+                Debug.Log($"Create DataTypes({m_NameSpace}\\DataTypes) Directory");
+            }
+                                
+            DirectoryInfo Generated = new DirectoryInfo($@"Assets\{m_NameSpace}\Generated");
+            if (!Generated.Exists) {
+                Generated.Create();
+                Debug.Log($"Create DataTypes({m_NameSpace}\\Generated) Directory");
+            }
+    
+            AssetDatabase.Refresh();
+    }
+    
+    //check data type exist. if didn't exist, make that type
+    protected virtual void GenerateDataType( string typeName, List<TypeAndName> header, bool ListType = false) {
 
         CodeTypeDeclaration dataType = new(typeName);
         dataType.BaseTypes.Add(typeof(DefaultDataType));
@@ -98,10 +120,14 @@ public class DataParser: ScriptableObject {
                 )
             );
             dataType.Members.Add(newProperty);
+
         }
 
         CodeTypeDeclaration dataTableType = new($"{typeName}Table");
         CodeTypeReference dataTypeReference = new(typeof(DefaultDataTable<>));
+        if (ListType) {
+            dataTypeReference = new(typeof(ListTypeDataTable<>));
+        }
         dataTypeReference.TypeArguments.Add(new CodeTypeReference($"{m_NameSpace}.{typeName}"));
         
         dataTableType.IsClass = true;
@@ -144,7 +170,7 @@ public class DataParser: ScriptableObject {
         return parse?.Invoke(null, new object[] {target});
     }
 
-    private void SyncData(List<List<string>> data, string dataTypeName) {
+    protected virtual void SyncData(List<List<string>> data, string dataTypeName) {
 
         Type dataType = Type.GetType($"{m_NameSpace}.{dataTypeName}");
         Type dataTableType = Type.GetType($"{m_NameSpace}.{dataTypeName}Table");
@@ -197,120 +223,6 @@ public class DataParser: ScriptableObject {
         Debug.Log("Sync complete");
     }
 
-    public void AddEnums() {
-
-        string path = $@"Assets\{m_NameSpace}\DataTypes\AddType.cs";
-        if (string.IsNullOrEmpty(m_AddEnums)) return;
-        if (File.Exists(path)) {
-            Debug.Log($"AddDataFile is already exist ({path})");
-            return;
-        }
-        
-        List<List<string>> data = mDataLoaderLoader.Load(m_AddEnums);
-
-        CodeCompileUnit compileUnit = new();
-        CodeNamespace codeNamespace = new(m_NameSpace);
-        compileUnit.Namespaces.Add(codeNamespace);
-        
-        foreach (var row in data) {
-
-            CodeTypeDeclaration newEnum = new(row[0]);
-            newEnum.IsEnum = true;
-            newEnum.Attributes = MemberAttributes.Public;
-            newEnum.CustomAttributes.Add(
-                new CodeAttributeDeclaration(
-                    new CodeTypeReference(typeof(SerializableAttribute))
-                )
-            );
-
-            int index = 0;
-            foreach (var factor in row.Skip(1)) {
-
-                newEnum.Members.Add(new CodeMemberField(typeof(int), factor)
-                    { InitExpression = new CodePrimitiveExpression(index) });
-
-                index++;
-            }
-
-            codeNamespace.Types.Add(newEnum);
-        }
-
-        CodeDomProvider provider = CodeDomProvider.CreateProvider("CSharp");
-        StreamWriter wirter = new(path);
-        provider.GenerateCodeFromCompileUnit(compileUnit, wirter, new CodeGeneratorOptions());
-        wirter.Close();
-
-        Debug.Log("make addData type");
-    }
-
-    public void SetUp() {
-        //check and make namespace directory
-        DirectoryInfo @namespace = new(@$"Assets\{m_NameSpace}");
-        if (!@namespace.Exists) {
-            @namespace.Create();
-            Debug.Log($"Create Namespace({m_NameSpace}) Directory");
-        }
-                                
-        DirectoryInfo dataTypes = new DirectoryInfo($@"Assets\{m_NameSpace}\DataTypes");
-        if (!dataTypes.Exists) {
-            dataTypes.Create();
-            Debug.Log($"Create DataTypes({m_NameSpace}\\DataTypes) Directory");
-        }
-                            
-        DirectoryInfo Generated = new DirectoryInfo($@"Assets\{m_NameSpace}\Generated");
-        if (!Generated.Exists) {
-            Generated.Create();
-            Debug.Log($"Create DataTypes({m_NameSpace}\\Generated) Directory");
-        }
-
-        AddEnums();
-        AssetDatabase.Refresh();
-    }
-
-    public void Generate(string path) {
-        //check path is correct
-        if (new[] {m_NameSpace, path}.Any(string.IsNullOrEmpty)) {
-            throw new NullReferenceException("NameSpace and Path must not null or empty");
-        }
-        
-        //split data
-        List<List<string>> data = mDataLoaderLoader.Load(path);
-        List<TypeAndName> header;
-        (header, data) = Divide(data);
-                
-        //find data type
-        string dataTypeName = $"{path.Split('!')[0]}Data";
-        Type dataType = Type.GetType($"{m_NameSpace}.{dataTypeName}");
-                
-        if (dataType is null) {
-            //make DataType
-            GenerateDataType(dataTypeName, header);
-            AssetDatabase.Refresh();
-                    
-            dataType = Type.GetType($"{m_NameSpace}.{dataTypeName}");
-        }
-        else {
-            Debug.Log($"already exist {dataTypeName} Type");
-        }
-    }
-    
-    public void Sync(string path) {
-
-        //check path is correct
-        if (new[] {m_NameSpace, path}.Any(string.IsNullOrEmpty)) {
-            throw new NullReferenceException("NameSpace and Path must not null or empty");
-        }
-        
-        //split data
-        List<List<string>> data = mDataLoaderLoader.Load(path);
-        List<TypeAndName> header;
-        (header, data) = Divide(data);
-        
-        //find data type
-        string dataTypeName = $"{path.Split('!')[0]}Data";
-
-        SyncData(data, dataTypeName);
-        
-    }
 }
+
 #endif
