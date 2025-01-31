@@ -8,6 +8,11 @@ public class DictionaryData<K, V> {
     public K Key;
     public V Value;
 
+    public DictionaryData() {
+        Key = default;
+        Value = default;
+    }
+    
     public DictionaryData(K key, V value) {
         Key = key;
         Value = value;
@@ -41,11 +46,11 @@ public class SerializableDictionary<K, V>: Dictionary<K, V>, ISerializationCallb
 
     public void OnBeforeSerialize() {
 
-        dataList.Clear();
-        foreach (var data in this) {
+        //dataList.Clear();
+        //foreach (var data in this) {
 
-            dataList.Add(new(data));
-        }
+            //dataList.Add(new(data));
+        //}
     }
 
     public void OnAfterDeserialize() {
@@ -53,7 +58,8 @@ public class SerializableDictionary<K, V>: Dictionary<K, V>, ISerializationCallb
         this.Clear();
         foreach (var data in dataList) {
 
-            this.Add(data.Key, data.Value);
+            if(!this.ContainsKey(data.Key))
+                this.Add(data.Key, data.Value);
         }
     }
 }

@@ -1,23 +1,35 @@
 using System;
 using System.Collections.Generic;
 using System.Numerics;
+using DG.Tweening;
 using Unity.VisualScripting;
 using UnityEngine;
+using Image = UnityEngine.UI.Image;
 using Vector2 = UnityEngine.Vector2;
 
 [RequireComponent(typeof(Rigidbody2D))]
-public class TilePlayerPhysics : MonoBehaviour
-{
+public class TilePlayerPhysics : MonoBehaviour {
+    [SerializeField] private Image mapMoveEvent;
+    [SerializeField] private GameObject map;
+    private MapEvent eventInfo; 
+    private Vector2Int pos;
+
     Rigidbody2D playerRigidbody = null;
     private PlayerAnimation animation = null;
+
+    private Direction moveableDirection = DirectionInfo.All;
+    private Direction frictionDirection = DirectionInfo.All;
+
+    private float power = 5f;
+    private float frictionRatio = 0.5f;
+    private float frictionPower = 20;
+
+    private static readonly Vector2 ColliderSize = new (1, 0.5f);
+    private static readonly Vector2 ColliderPos = new (0, -0.7f);
+    private static readonly Vector2 SpriteSize = new(0.9f, 0.9f);
+    private static readonly Vector2 DefaultPos = new(0, 0.8f);
+    private static readonly Vector2 PivotPos = ColliderPos * SpriteSize + Vector2.one * 0.5f;
     
-    Direction moveableDirection = DirectionInfo.All;
-    Direction frictionDirection = DirectionInfo.All;
-
-    float power = 5f;
-    float frictionRatio = 0.5f;
-    float frictionPower = 20;
-
     Vector2 playerVelocity = Vector2.zero;
 
     private CompositeGroupBase movement;
@@ -25,7 +37,7 @@ public class TilePlayerPhysics : MonoBehaviour
 
         animation ??= GetComponent<PlayerAnimation>();
         movement = new CompositeGroupBase(gameObject)
-            .SetCollider(new SettingCollider(gameObject, new Vector2(1, 0.5f), new Vector2(0,-0.7f)))
+            .SetCollider(new SettingCollider(gameObject, ColliderSize, ColliderPos))
             .AddComposite(new CompoInput(null))
             .AddComposite(new CompoFriction(null))
             .SetApply<CompoInput>(moveableDirection)
@@ -38,6 +50,7 @@ public class TilePlayerPhysics : MonoBehaviour
             playerRigidbody = GetComponent<Rigidbody2D>();
         }
 
+        eventInfo = map.GetComponent<MapEvent>();
     }
 
     void Update() {
@@ -45,5 +58,24 @@ public class TilePlayerPhysics : MonoBehaviour
         var velocity = movement.Play(playerRigidbody.linearVelocity, Vector2.zero);
         playerRigidbody.linearVelocity = velocity;
         animation.SetAnimation(velocity);
+
+        if (velocity != Vector2.zero) {
+            var newPos = (transform.localPosition.ToVec2() + PivotPos).ToVec2Int();
+
+            if (newPos != pos) {
+                pos = newPos;
+                if (eventInfo.MoveEventList(pos, out string result)) {
+
+                    Destroy(map);
+                    map = Instantiate(Resources.Load<GameObject>($"MapPrefab/{result}"));
+                    eventInfo = map.GetComponent<MapEvent>();
+                    transform.localPosition = DefaultPos;
+                    pos = Vector2Int.zero;
+                    
+                    mapMoveEvent.color = Color.black;
+                    mapMoveEvent.DOFade(0, 0.7f).SetEase(Ease.InCubic);
+                }
+            }
+        }
     }
 }

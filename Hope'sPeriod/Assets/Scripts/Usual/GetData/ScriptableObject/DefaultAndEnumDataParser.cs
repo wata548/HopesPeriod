@@ -20,8 +20,6 @@ public class DefaultAndEnumDataParser: DataParserBase {
     [SerializeField] private string m_AddEnumsPath;
     [SerializeField] protected RawDataLoader m_DataLoader;
     
-    public List<string> Path => m_Path;
-    
     public void AddEnums() {
 
         string path = $@"Assets\{m_NameSpace}\DataTypes\AddType.cs";
@@ -113,10 +111,18 @@ public class DefaultAndEnumDataParser: DataParserBase {
         (header, data) = Divide(data);
         
         //find data type
-        string dataTypeName = $"{path.Split('!')[0]}Data";
+        string dataTypeName = DataTypeName(path);
+        Type dataType = Type.GetType($"{m_NameSpace}.{dataTypeName}");
 
-        SyncData(data, dataTypeName);
-        
+        if (dataType is null) {
+
+            throw new NullReferenceException("Type isn't exist. please press Generate button");
+        }
+        else {
+            
+            SyncData(data, dataTypeName);
+            Debug.Log("Sync complete");
+        }
     }
 }
 #endif

@@ -9,13 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a4447bdbb4d098245bc2375fac7482a4, type: 3}
-  m_Name: Parser
-  m_EditorClassIdentifier: 
+  m_Script: {fileID: 0}
+  m_Name: New Multi Type Parser
+  m_EditorClassIdentifier: Assembly-CSharp::MultiTypeParser
   m_NameSpace: SpreadInfo
   m_Path:
-  - ItemDB
-  - SkillDB
-  - ActorDB
-  m_AddEnumsPath: AddType
-  m_DataLoader: {fileID: 11400000, guid: e661bbc669084434d928aa5b092fbfcc, type: 2}
+  - ScriptDB
+  m_DataLoader: {fileID: 11400000, guid: 7c52106eee9771f4a9d864ba3441b79a, type: 2}

@@ -9,13 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a4447bdbb4d098245bc2375fac7482a4, type: 3}
-  m_Name: Parser
+  m_Script: {fileID: 11500000, guid: 4f4c53139af74f038fecc70a5ddc223c, type: 3}
+  m_Name: ScriptLoader
   m_EditorClassIdentifier: 
-  m_NameSpace: SpreadInfo
-  m_Path:
-  - ItemDB
-  - SkillDB
-  - ActorDB
-  m_AddEnumsPath: AddType
-  m_DataLoader: {fileID: 11400000, guid: e661bbc669084434d928aa5b092fbfcc, type: 2}
+  UsingFirstRawToKey: 1
+  m_SpreadSheetID: 1GJNYum0DGrJOh9_bqJaXeDDmwOJWD_IE6Zj8z3yWacs
+  m_ApiKey: AIzaSyDKVIpQnE2p8q5gREM7qBOxI-YOGffHpp0
+  splitRange: 2

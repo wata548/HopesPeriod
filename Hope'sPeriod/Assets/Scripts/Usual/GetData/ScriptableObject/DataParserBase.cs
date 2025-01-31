@@ -28,6 +28,8 @@ public abstract class DataParserBase : ScriptableObject {
     
     [SerializeField] protected string m_NameSpace = null;
     [SerializeField] protected List<string> m_Path = new();
+
+    public List<string> Path => m_Path;
     
     //divide rawData's info to (header and dataPart) 
     protected (List<TypeAndName>, List<List<string>>) Divide(List<List<string>> origin) {
@@ -153,7 +155,7 @@ public abstract class DataParserBase : ScriptableObject {
         Debug.Log($"complete make file {typeName}");
     }
 
-    private Object Parse(Type type, string target) {
+    protected Object Parse(Type type, string target) {
 
         if (type.IsEnum) {
             return Enum.Parse(type, target);
@@ -220,7 +222,6 @@ public abstract class DataParserBase : ScriptableObject {
 
         //save on disk
         EditorUtility.SetDirty(targetTable);
-        Debug.Log("Sync complete");
     }
 
 }

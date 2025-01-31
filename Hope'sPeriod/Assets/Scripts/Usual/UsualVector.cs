@@ -46,26 +46,28 @@ public static class UsualVector
         return inclination;
     }
 
-    public static Vector2Int ToVector2Int(this Vector3 v) {
+    public static Vector2Int ToVec2Int(this Vector3 v) {
 
-        var x = Convert.ToInt32(v.x);
-        var y = Convert.ToInt32(v.y);
+        var x = (int)(Mathf.Floor(v.x));
+        var y = (int)(Mathf.Floor(v.x));
 
         return new Vector2Int(x, y);
     }
 
-    public static Vector3Int ToVector3Int(this Vector3 v) {
+    public static Vector3Int ToVec3Int(this Vector3 v) {
         
-        var x = Convert.ToInt32(v.x);
-        var y = Convert.ToInt32(v.y);
-        var z = Convert.ToInt32(v.z);
+        var x = (int)(Mathf.Floor(v.x));
+        var y = (int)(Mathf.Floor(v.y));
+        var z = (int)(Mathf.Floor(v.z));
         
         return new Vector3Int(x, y, z);
     }
 
+    public static Vector2Int ToVec2Int(this Vector2 v) => new((int)(Mathf.Floor(v.x)), (int)(Mathf.Floor(v.y)));
+    
     public static Vector2 ToVec2(this Vector3 vector) => new(vector.x, vector.y);
+    public static Vector2 ToVec2(this Vector2Int v) => new((float)v.x, (float)v.y);
     public static Vector3 ToVec3(this Vector2 vector) => new(vector.x, vector.y, 0);
     public static Vector3 ToVec3(this Vector2 vector, float zCoor) => new(vector.x, vector.y, zCoor);
-
     public static Vector2 Add(this Vector2 vector, float a) => new Vector2(vector.x + a, vector.y + a);
 }
