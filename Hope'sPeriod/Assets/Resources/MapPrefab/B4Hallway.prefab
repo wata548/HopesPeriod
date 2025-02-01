@@ -4146,7 +4146,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4588097086316354279}
-  - component: {fileID: 8629358314543829386}
   m_Layer: 0
   m_Name: B4Hallway
   m_TagString: Untagged
@@ -4173,56 +4172,6 @@ Transform:
   - {fileID: 1638230814538165759}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8629358314543829386
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1961659621655338074}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 61fe15827d205d347ac002e82795aace, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  autoEventList:
-    dataList:
-    - Key: {x: 14, y: 1}
-      Value: 2001
-  passiveEventList:
-    dataList: []
-  moveEventList:
-    dataList:
-    - Key: {x: 4, y: 5}
-      Value: B4MaleLodge
-    - Key: {x: 5, y: 5}
-      Value: B4MaleLodge
-    - Key: {x: 12, y: 5}
-      Value: B4MaleLodge
-    - Key: {x: 13, y: 5}
-      Value: B4MaleLodge
-    - Key: {x: 18, y: 5}
-      Value: B4MaleLodge
-    - Key: {x: 19, y: 5}
-      Value: B4MaleLodge
-    - Key: {x: 31, y: 5}
-      Value: B4MaleLodge
-    - Key: {x: 32, y: 5}
-      Value: B4MaleLodge
-    - Key: {x: 33, y: 5}
-      Value: B4MaleLodge
-    - Key: {x: 5, y: -5}
-      Value: B4MaleLodge
-    - Key: {x: 6, y: -5}
-      Value: B4MaleLodge
-    - Key: {x: 7, y: -5}
-      Value: B4MaleLodge
-    - Key: {x: 27, y: -5}
-      Value: B4MaleLodge
-    - Key: {x: 28, y: -5}
-      Value: B4MaleLodge
-    - Key: {x: 29, y: -5}
-      Value: B4MaleLodge
 --- !u!1 &3965655654783885125
 GameObject:
   m_ObjectHideFlags: 0

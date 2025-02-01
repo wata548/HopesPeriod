@@ -217,6 +217,7 @@ public abstract class DataParserBase : ScriptableObject {
 
         foreach (var context in keyAndValue) {
 
+            Debug.Log("fuck");
             addFunc.Invoke(target, new object[] {context.Item1, context.Item2});
         }
 

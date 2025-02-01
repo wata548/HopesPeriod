@@ -1,18 +1,83 @@
+using System;
 using System.Numerics;
+using SpreadInfo;
 using UnityEngine;
+using System.Collections.Generic;
 
-public class MapEvent : MonoBehaviour
-{
-    [SerializeField] SerializableDictionary<Vector2Int, int> autoEventList; 
-    [SerializeField] SerializableDictionary<Vector2Int, int> passiveEventList;
-    [SerializeField] SerializableDictionary<Vector2Int, string> moveEventList;
+[CreateAssetMenu(menuName = "MapEventInfo")]
+public class MapEventInfo : ScriptableObject {
 
+    [SerializeField] private SerializableDictionary<int, LayerEventInfo> mapInfo;
 
-    public bool MoveEventList(Vector2Int v, out string mapPrefab) {
+    public bool ConnectInfo(int code, Vector2Int pos, out ConnectMapInfo info, out GameObject prefab) {
+
+        info = null;
+        prefab = null;
         
-        mapPrefab = null;
+        bool result = mapInfo[ConnectMapInfo.ToLayer(code)]
+                          ?.RoomInfo[code]
+                          ?.MoveEventList(pos, out info) 
+                      ?? throw new Exception("check about code");
+
+        if (result) {
+
+            prefab = mapInfo[ConnectMapInfo.ToLayer(info.ConnectMapCode)]
+                ?.RoomInfo[info.ConnectMapCode]
+                ?.MapPrefab;
+        }
+        
+        return result;
+    }
+
+    public bool PassiveInfo(int code, Vector2Int pos, out int resultCode) {
+        resultCode = 0;
+        
+        bool result = mapInfo[ConnectMapInfo.ToLayer(code)]
+                          ?.RoomInfo[code]
+                          ?.PassiveEventList(pos, out resultCode) 
+                      ?? throw new Exception("check about code");
+        
+        return result;
+    }
+    
+    public bool AutoInfo(int code, Vector2Int pos, out int resultCode) {
+        resultCode = 0;
+            
+        bool result = mapInfo[ConnectMapInfo.ToLayer(code)]
+                          ?.RoomInfo[code]
+                          ?.AutoEventList(pos, out resultCode) 
+                      ?? throw new Exception("check about code");
+            
+        return result;
+    }
+
+}
+
+[Serializable]
+public class LayerEventInfo{
+
+    [SerializeField] private SerializableDictionary<int, RoomEventInfo> roomInfo;
+    public SerializableDictionary<int, RoomEventInfo> RoomInfo => roomInfo;
+}
+    
+[Serializable]
+public class RoomEventInfo
+{
+    [SerializeField] private SerializableDictionary<Vector2Int, int> autoEventList; 
+    [SerializeField] private SerializableDictionary<Vector2Int, int> passiveEventList;
+    [SerializeField] private SerializableDictionary<Vector2Int, ConnectMapInfo> moveEventList;
+    [SerializeField] private GameObject mapPrefab;
+
+    public GameObject MapPrefab => mapPrefab;
+    
+    public bool MoveEventList(Vector2Int v, out ConnectMapInfo mapInfo) {
+        
+        mapInfo = null;
+        
         bool result = moveEventList?.ContainsKey(v) ?? false;
-        if (result) mapPrefab = moveEventList[v];
+        if (result) {
+            mapInfo = moveEventList[v];
+        }
 
         return result;
     }
@@ -31,4 +96,22 @@ public class MapEvent : MonoBehaviour
                 
         return result;
     }
+}
+[Serializable]
+public class ConnectMapInfo {
+
+    [SerializeField] private int connectMapCode;
+    [SerializeField] private Vector2Int connectPos;
+
+    public int ConnectMapCode => connectMapCode;
+    public Vector2Int ConnectPos => connectPos;
+
+    //8401 -> 84 -> 4
+    public static int ToLayer(int code) => (code / 100) % 10; 
+    
+    public ConnectMapInfo(int mapCode, Vector2Int pos) {
+        connectMapCode = mapCode;
+        connectPos = pos;
+    }
+    public ConnectMapInfo() {}
 }

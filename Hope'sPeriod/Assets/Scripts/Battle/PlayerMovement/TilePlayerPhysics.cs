@@ -11,7 +11,8 @@ using Vector2 = UnityEngine.Vector2;
 public class TilePlayerPhysics : MonoBehaviour {
     [SerializeField] private Image mapMoveEvent;
     [SerializeField] private GameObject map;
-    private MapEvent eventInfo; 
+    [SerializeField] private int mapCode = 8401;
+    private MapEventInfo mapInfo;
     private Vector2Int pos;
 
     Rigidbody2D playerRigidbody = null;
@@ -50,7 +51,7 @@ public class TilePlayerPhysics : MonoBehaviour {
             playerRigidbody = GetComponent<Rigidbody2D>();
         }
 
-        eventInfo = map.GetComponent<MapEvent>();
+        mapInfo = Resources.Load<MapEventInfo>("MapPrefab/MapInfo");
     }
 
     void Update() {
@@ -64,12 +65,13 @@ public class TilePlayerPhysics : MonoBehaviour {
 
             if (newPos != pos) {
                 pos = newPos;
-                if (eventInfo.MoveEventList(pos, out string result)) {
+                if (mapInfo.ConnectInfo(mapCode, pos, out ConnectMapInfo connectMapInfo, out GameObject mapPrefab)) {
 
                     Destroy(map);
-                    map = Instantiate(Resources.Load<GameObject>($"MapPrefab/{result}"));
-                    eventInfo = map.GetComponent<MapEvent>();
-                    transform.localPosition = DefaultPos;
+                    Debug.Log(mapPrefab);
+                    map = Instantiate(mapPrefab);
+                    mapCode = connectMapInfo.ConnectMapCode;
+                    transform.localPosition = DefaultPos + connectMapInfo.ConnectPos;
                     pos = Vector2Int.zero;
                     
                     mapMoveEvent.color = Color.black;

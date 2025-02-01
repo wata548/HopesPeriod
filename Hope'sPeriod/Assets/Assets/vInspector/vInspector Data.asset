@@ -12,4 +12,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7915df4cd4da490ab52fc8fa9ee9127, type: 3}
   m_Name: vInspector Data
   m_EditorClassIdentifier: 
-  bookmarks: []
+  bookmarks:
+  - globalId:
+      globalObjectIdString: GlobalObjectId_V1-3-ee029fefe9fa4354b8ad52732e22a77c-11400000-0
+    _typeString: LayerEventInfo, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
+    _obj: {fileID: 0}
+    isSceneGameObject: 0
+    isAsset: 1
+    id: 1055673414
+  - globalId:
+      globalObjectIdString: GlobalObjectId_V1-3-11ca7d59420788e4e8b30c30c46725e2-11400000-0
+    _typeString: DefaultAndEnumDataParser, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
+    _obj: {fileID: 11400000, guid: 11ca7d59420788e4e8b30c30c46725e2, type: 2}
+    isSceneGameObject: 0
+    isAsset: 1
+    id: 1061705202
+  - globalId:
+      globalObjectIdString: GlobalObjectId_V1-3-764159ca612f62c4883e696941bef31a-11400000-0
+    _typeString: SpreadInfo.ItemDBDataTable, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
+    _obj: {fileID: 11400000, guid: 764159ca612f62c4883e696941bef31a, type: 2}
+    isSceneGameObject: 0
+    isAsset: 1
+    id: 1059840901
