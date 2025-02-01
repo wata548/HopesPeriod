@@ -51,6 +51,17 @@ public class MapEventInfo : ScriptableObject {
         return result;
     }
 
+    public bool Item(int code, Vector2Int pos, out int itemCode) {
+   
+        itemCode = 0;
+        bool result = mapInfo[ConnectMapInfo.ToLayer(code)]
+                          ?.RoomInfo[code]
+                          ?.Item(pos, out itemCode) 
+                      ?? throw new Exception("check about code");
+                       
+        return result;
+    } 
+
 }
 
 [Serializable]
@@ -61,14 +72,26 @@ public class LayerEventInfo{
 }
     
 [Serializable]
-public class RoomEventInfo
-{
+public class RoomEventInfo {
+    [SerializeField] private string roomName;
     [SerializeField] private SerializableDictionary<Vector2Int, int> autoEventList; 
+    [SerializeField] private SerializableDictionary<Vector2Int, int> itemList; 
     [SerializeField] private SerializableDictionary<Vector2Int, int> passiveEventList;
     [SerializeField] private SerializableDictionary<Vector2Int, ConnectMapInfo> moveEventList;
     [SerializeField] private GameObject mapPrefab;
 
     public GameObject MapPrefab => mapPrefab;
+    public string Name => roomName;
+
+    public bool Item(Vector2Int v, out int code) {
+        code = 0;
+        bool result = itemList?.ContainsKey(v) ?? false;
+        if (result) {
+            code = itemList[v];
+        }
+        
+        return result;
+    }
     
     public bool MoveEventList(Vector2Int v, out ConnectMapInfo mapInfo) {
         

@@ -41,7 +41,7 @@ public class ButtonInteractManager: MonoBehaviour {
         if (GameFSM.Instance.PlayerTurnState != PlayerTurnState.SelectBehavior)
             return;
 
-        if(InputManager.Instance.Click(KeyTypes.Right) || InputManager.Instance.Hold(KeyTypes.Right)) {
+        if(InputManager.Instance.ClickAndHold(KeyTypes.Right)) {
             if (selectType == ButtonType.Shield) {
                 SelectButton(buttons[(int)ButtonType.Attack], ButtonType.Attack);
             }
@@ -51,7 +51,7 @@ public class ButtonInteractManager: MonoBehaviour {
             }
         }
         
-        if (InputManager.Instance.Click(KeyTypes.Left) || InputManager.Instance.Hold(KeyTypes.Left)) {
+        if (InputManager.Instance.ClickAndHold(KeyTypes.Left)) {
             if (selectType == ButtonType.Attack) {
                 SelectButton(buttons[(int)ButtonType.Shield], ButtonType.Shield);
             }

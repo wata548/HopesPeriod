@@ -26,9 +26,9 @@ public class TilePlayerPhysics : MonoBehaviour {
     private float frictionPower = 20;
 
     private static readonly Vector2 ColliderSize = new (1, 0.5f);
-    private static readonly Vector2 ColliderPos = new (0, -0.7f);
+    private static readonly Vector2 ColliderPos = new (0, 0.13f);
     private static readonly Vector2 SpriteSize = new(0.9f, 0.9f);
-    private static readonly Vector2 DefaultPos = new(0, 0.8f);
+    private static readonly Vector2 DefaultPos = new(0, 0.13f);
     private static readonly Vector2 PivotPos = ColliderPos * SpriteSize + Vector2.one * 0.5f;
     
     Vector2 playerVelocity = Vector2.zero;
@@ -77,6 +77,24 @@ public class TilePlayerPhysics : MonoBehaviour {
                     mapMoveEvent.color = Color.black;
                     mapMoveEvent.DOFade(0, 0.7f).SetEase(Ease.InCubic);
                 }
+                else if (mapInfo.AutoInfo(mapCode, pos, out int code)) {
+                    Debug.Log($"auto event {code}");
+                }
+            }
+        }
+        
+        if (InputManager.Instance.Click(KeyTypes.Interaction)) {
+        
+            var direction = animation.Dir.ConvertVector().ToVec2Int();
+
+            if (mapInfo.Item(mapCode, pos, out int itemCode)) {
+                Debug.Log($"Get item {ItemInfo.Name(itemCode)} at current pos");
+            }
+            else if (mapInfo.Item(mapCode, pos + direction, out itemCode)) {
+                Debug.Log($"Get item {ItemInfo.Name(itemCode)} at view point");
+            }
+            else if (mapInfo.PassiveInfo(mapCode, pos, out int interactCode)) {
+                Debug.Log($"?");
             }
         }
     }
