@@ -9,10 +9,9 @@ using Vector2 = UnityEngine.Vector2;
 
 [RequireComponent(typeof(Rigidbody2D))]
 public class TilePlayerPhysics : MonoBehaviour {
-    [SerializeField] private Image mapMoveEvent;
-    [SerializeField] private GameObject map;
-    [SerializeField] private int mapCode = 8401;
-    private MapEventInfo mapInfo;
+    
+    [SerializeField] private Image mapMoveEffect;
+    [SerializeField] private int code;
     private Vector2Int pos;
 
     Rigidbody2D playerRigidbody = null;
@@ -28,7 +27,6 @@ public class TilePlayerPhysics : MonoBehaviour {
     private static readonly Vector2 ColliderSize = new (1, 0.5f);
     private static readonly Vector2 ColliderPos = new (0, 0.13f);
     private static readonly Vector2 SpriteSize = new(0.9f, 0.9f);
-    private static readonly Vector2 DefaultPos = new(0, 0.13f);
     private static readonly Vector2 PivotPos = ColliderPos * SpriteSize + Vector2.one * 0.5f;
     
     Vector2 playerVelocity = Vector2.zero;
@@ -51,51 +49,29 @@ public class TilePlayerPhysics : MonoBehaviour {
             playerRigidbody = GetComponent<Rigidbody2D>();
         }
 
-        mapInfo = Resources.Load<MapEventInfo>("MapPrefab/MapInfo");
+        ItemInfo.SetTable();
+        SkillInfo.SetTable();
+        
+        CheckEvent.SetEffect(mapMoveEffect);
+        CheckEvent.SetMap(code);
     }
 
     void Update() {
 
         var velocity = movement.Play(playerRigidbody.linearVelocity, Vector2.zero);
         playerRigidbody.linearVelocity = velocity;
-        animation.SetAnimation(velocity);
+        animation.SetSpeed(velocity);
 
         if (velocity != Vector2.zero) {
             var newPos = (transform.localPosition.ToVec2() + PivotPos).ToVec2Int();
 
             if (newPos != pos) {
                 pos = newPos;
-                if (mapInfo.ConnectInfo(mapCode, pos, out ConnectMapInfo connectMapInfo, out GameObject mapPrefab)) {
-
-                    Destroy(map);
-                    Debug.Log(mapPrefab);
-                    map = Instantiate(mapPrefab);
-                    mapCode = connectMapInfo.ConnectMapCode;
-                    transform.localPosition = DefaultPos + connectMapInfo.ConnectPos;
-                    pos = Vector2Int.zero;
-                    
-                    mapMoveEvent.color = Color.black;
-                    mapMoveEvent.DOFade(0, 0.7f).SetEase(Ease.InCubic);
-                }
-                else if (mapInfo.AutoInfo(mapCode, pos, out int code)) {
-                    Debug.Log($"auto event {code}");
-                }
+                CheckEvent.CheckAutoEvent(ref pos, gameObject);
             }
         }
-        
-        if (InputManager.Instance.Click(KeyTypes.Interaction)) {
-        
-            var direction = animation.Dir.ConvertVector().ToVec2Int();
 
-            if (mapInfo.Item(mapCode, pos, out int itemCode)) {
-                Debug.Log($"Get item {ItemInfo.Name(itemCode)} at current pos");
-            }
-            else if (mapInfo.Item(mapCode, pos + direction, out itemCode)) {
-                Debug.Log($"Get item {ItemInfo.Name(itemCode)} at view point");
-            }
-            else if (mapInfo.PassiveInfo(mapCode, pos, out int interactCode)) {
-                Debug.Log($"?");
-            }
-        }
+        CheckEvent.CheckInteract(pos, animation.Dir);
+
     }
 }

@@ -37,3 +37,11 @@ MonoBehaviour:
     isSceneGameObject: 0
     isAsset: 1
     id: 1059840901
+  - globalId:
+      globalObjectIdString: GlobalObjectId_V1-3-6800884a57ef1984babaebeb4c74d15f-11400000-0
+    _typeString: MapEventInfo, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
+    _obj: {fileID: 11400000, guid: 6800884a57ef1984babaebeb4c74d15f, type: 2}
+    isSceneGameObject: 0
+    isAsset: 1
+    id: 1065114122

@@ -9,6 +9,13 @@ public class MapEventInfo : ScriptableObject {
 
     [SerializeField] private SerializableDictionary<int, LayerEventInfo> mapInfo;
 
+    public GameObject Prefab(int code) {
+        return mapInfo[ConnectMapInfo.ToLayer(code)]
+            ?.RoomInfo[code]
+            ?.MapPrefab
+            ?? throw new Exception($"check about code {code}");
+    }
+    
     public bool ConnectInfo(int code, Vector2Int pos, out ConnectMapInfo info, out GameObject prefab) {
 
         info = null;
