@@ -14,7 +14,8 @@ public static class CheckEvent {
     private static GameObject map = null;
     private static MapEventInfo mapInfo = null;
     private static int mapCode;
-
+    private static bool moveMap = false;
+    
     public static void SetEffect(Image effect) => mapMoveEffect = effect;
     public static void SetMap(int code) {
         mapCode = code;
@@ -25,7 +26,9 @@ public static class CheckEvent {
     public static void CheckAutoEvent(ref Vector2Int pos, GameObject player) {
 
         if (mapInfo.ConnectInfo(mapCode, pos, out ConnectMapInfo connectMapInfo, out GameObject mapPrefab)) {
-        
+
+            if (moveMap) return;
+            
             if(map is not null)
                 Object.Destroy(map);
             
@@ -37,10 +40,13 @@ public static class CheckEvent {
                             
             mapMoveEffect.color = Color.black;
             mapMoveEffect.DOFade(0, 0.7f).SetEase(Ease.InCubic);
+            moveMap = true;
         }
         else if (mapInfo.AutoInfo(mapCode, pos, out int code)) {
+            moveMap = false;
             Debug.Log($"auto event {code}");
         }
+        else moveMap = false;
     }
 
     public static void CheckInteract(Vector2Int pos, Direction viewDirection) {
@@ -49,11 +55,13 @@ public static class CheckEvent {
                 
             var direction = viewDirection.ConvertVector().ToVec2Int();
         
-            if (mapInfo.Item(mapCode, pos, out int itemCode)) {
-                Debug.Log($"Get item {ItemInfo.Name(itemCode)} at current pos");
+            if (mapInfo.Item(mapCode, pos, out var item)) {
+                Debug.Log($"Get item {ItemInfo.Name(item.Code)} * {item.Count} at current pos");
+                GetItemWindow.Instance.TurnOn(item);
             }
-            else if (mapInfo.Item(mapCode, pos + direction, out itemCode)) {
-                Debug.Log($"Get item {ItemInfo.Name(itemCode)} at view point");
+            else if (mapInfo.Item(mapCode, pos + direction, out item)) {
+                Debug.Log($"Get item {ItemInfo.Name(item.Code)} * {item.Count} at view point");
+                GetItemWindow.Instance.TurnOn(item);
             }
             else if (mapInfo.PassiveInfo(mapCode, pos, out int interactCode)) {
                 Debug.Log($"?");

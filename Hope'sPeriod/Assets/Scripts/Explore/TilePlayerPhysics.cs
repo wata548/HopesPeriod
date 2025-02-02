@@ -13,9 +13,16 @@ public class TilePlayerPhysics : MonoBehaviour {
     [SerializeField] private Image mapMoveEffect;
     [SerializeField] private int code;
     private Vector2Int pos;
+    public static bool Interactable { get; private set; } = true;
+    private static PlayerAnimation animation = null;
 
+    public static void SetInteractable(bool target) {
+
+        animation.SetOn(target);
+        Interactable = target;
+    }
+    
     Rigidbody2D playerRigidbody = null;
-    private PlayerAnimation animation = null;
 
     private Direction moveableDirection = DirectionInfo.All;
     private Direction frictionDirection = DirectionInfo.All;
@@ -58,6 +65,12 @@ public class TilePlayerPhysics : MonoBehaviour {
 
     void Update() {
 
+        if (!Interactable) {
+            playerRigidbody.linearVelocity = Vector2.zero;
+            animation.SetSpeed(Vector2.zero);
+            return;
+        }
+        
         var velocity = movement.Play(playerRigidbody.linearVelocity, Vector2.zero);
         playerRigidbody.linearVelocity = velocity;
         animation.SetSpeed(velocity);

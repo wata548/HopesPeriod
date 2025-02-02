@@ -38,7 +38,7 @@ MonoBehaviour:
                 - Key: {x: 5, y: 5}
                   Value:
                     connectMapCode: 8402
-                    connectPos: {x: 0, y: 0}
+                    connectPos: {x: 1, y: 0}
                 - Key: {x: 12, y: 5}
                   Value:
                     connectMapCode: 8402
@@ -106,11 +106,19 @@ MonoBehaviour:
                 - Key: {x: 0, y: 0}
                   Value:
                     connectMapCode: 8401
-                    connectPos: {x: 0, y: 0}
+                    connectPos: {x: 4, y: 5}
                 - Key: {x: 1, y: 0}
                   Value:
                     connectMapCode: 8401
+                    connectPos: {x: 5, y: 5}
+                - Key: {x: -2, y: 8}
+                  Value:
+                    connectMapCode: 8403
                     connectPos: {x: 0, y: 0}
+                - Key: {x: -2, y: 7}
+                  Value:
+                    connectMapCode: 8403
+                    connectPos: {x: 0, y: -1}
               mapPrefab: {fileID: 3150022464060748283, guid: ba4e1a553a786ab4cba07856fde6ef9b, type: 3}
           - Key: 8403
             Value:
@@ -120,17 +128,19 @@ MonoBehaviour:
               itemList:
                 dataList:
                 - Key: {x: -5, y: 3}
-                  Value: 2001
+                  Value:
+                    code: 2001
+                    count: 1
               passiveEventList:
                 dataList: []
               moveEventList:
                 dataList:
                 - Key: {x: 0, y: 0}
                   Value:
-                    connectMapCode: 8401
-                    connectPos: {x: 0, y: 0}
-                - Key: {x: 1, y: 0}
+                    connectMapCode: 8402
+                    connectPos: {x: -2, y: 8}
+                - Key: {x: 0, y: -1}
                   Value:
-                    connectMapCode: 8401
-                    connectPos: {x: 0, y: 0}
+                    connectMapCode: 8402
+                    connectPos: {x: -2, y: 7}
               mapPrefab: {fileID: 5122103929621390644, guid: 343952eaf0f1c0e49b92eb36d37ebb81, type: 3}

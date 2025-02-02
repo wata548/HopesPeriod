@@ -46,11 +46,11 @@ public class SerializableDictionary<K, V>: Dictionary<K, V>, ISerializationCallb
 
     public void OnBeforeSerialize() {
 
-        //dataList.Clear();
-        //foreach (var data in this) {
+        dataList.Clear();
+        foreach (var data in this) {
 
-            //dataList.Add(new(data));
-        //}
+            dataList.Add(new(data));
+        }
     }
 
     public void OnAfterDeserialize() {

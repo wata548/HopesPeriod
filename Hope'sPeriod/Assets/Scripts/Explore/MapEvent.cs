@@ -3,6 +3,8 @@ using System.Numerics;
 using SpreadInfo;
 using UnityEngine;
 using System.Collections.Generic;
+using Unity.VisualScripting;
+using UnityEditorInternal.Profiling.Memory.Experimental;
 
 [CreateAssetMenu(menuName = "MapEventInfo")]
 public class MapEventInfo : ScriptableObject {
@@ -58,12 +60,12 @@ public class MapEventInfo : ScriptableObject {
         return result;
     }
 
-    public bool Item(int code, Vector2Int pos, out int itemCode) {
+    public bool Item(int code, Vector2Int pos, out GetItemInfo item) {
    
-        itemCode = 0;
+        item = new();
         bool result = mapInfo[ConnectMapInfo.ToLayer(code)]
                           ?.RoomInfo[code]
-                          ?.Item(pos, out itemCode) 
+                          ?.Item(pos, out item) 
                       ?? throw new Exception("check about code");
                        
         return result;
@@ -82,7 +84,7 @@ public class LayerEventInfo{
 public class RoomEventInfo {
     [SerializeField] private string roomName;
     [SerializeField] private SerializableDictionary<Vector2Int, int> autoEventList; 
-    [SerializeField] private SerializableDictionary<Vector2Int, int> itemList; 
+    [SerializeField] private SerializableDictionary<Vector2Int, GetItemInfo> itemList; 
     [SerializeField] private SerializableDictionary<Vector2Int, int> passiveEventList;
     [SerializeField] private SerializableDictionary<Vector2Int, ConnectMapInfo> moveEventList;
     [SerializeField] private GameObject mapPrefab;
@@ -90,8 +92,8 @@ public class RoomEventInfo {
     public GameObject MapPrefab => mapPrefab;
     public string Name => roomName;
 
-    public bool Item(Vector2Int v, out int code) {
-        code = 0;
+    public bool Item(Vector2Int v, out GetItemInfo code) {
+        code = new();
         bool result = itemList?.ContainsKey(v) ?? false;
         if (result) {
             code = itemList[v];
@@ -127,6 +129,22 @@ public class RoomEventInfo {
         return result;
     }
 }
+
+[Serializable]
+public class GetItemInfo {
+
+    [SerializeField] private int code;
+    [SerializeField] private int count;
+    
+    public int Code => code;
+    public int Count => count;
+
+    public GetItemInfo() {
+        code = 0;
+        count = 0;
+    }
+}
+
 [Serializable]
 public class ConnectMapInfo {
 

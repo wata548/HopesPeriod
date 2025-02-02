@@ -9,6 +9,9 @@ public class PlayerAnimation: MonoBehaviour {
     private Vector2 direction;
     public Direction Dir { get; private set; }
     private MoveComposite input;
+    private bool on = false;
+
+    public void SetOn(bool on) => this.on = on;
     
     private void Awake() {
 
@@ -17,7 +20,8 @@ public class PlayerAnimation: MonoBehaviour {
     }
 
     private void Update() {
-        
+
+        if (!on) return;
         var inputDirection = input.Play(Vector2.zero, Vector2.zero, Direction.None);
 
         if(!inputDirection.Approximately(Vector2.zero))
