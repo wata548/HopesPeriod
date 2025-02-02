@@ -38,7 +38,6 @@
         
         public TypeMissMatched(string a, Type b)
             : base($"{a}'s component type isn't matched {b}") { }
-        //==================================================||
         public TypeMissMatched(GameObject a, Type b)
             : base($"{a.name}'s component type isn't matched {b}") { }
         public TypeMissMatched(Type a, Type b, GameObject @Object)

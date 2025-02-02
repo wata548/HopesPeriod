@@ -151,6 +151,9 @@ public static class SkillInfo {
             //if (EffectInfo.MatchKorean.TryGetValue(ItemInfo.Effect(itemCode), out string korean)) {
             if (ItemInfo.Effect(itemCode) != EffectType.None) result += "효과 ";
 
+            bool healHp = ItemInfo.HealHp(itemCode) != 0 || ItemInfo.HealsHp(itemCode) != 0;
+            bool healMp = ItemInfo.HealMp(itemCode) != 0 || ItemInfo.HealsMp(itemCode) != 0; 
+            if ( healHp || healMp) result += "회복";
             if (ItemInfo.Attract(itemCode) > 0 && !ItemInfo.DefenceReflect(itemCode)) result += "도발 ";
 
             if (ItemInfo.DefenceType(itemCode) != DefenceType.None) {
