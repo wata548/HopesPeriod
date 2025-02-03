@@ -41,7 +41,7 @@ public static class Inventory{
             .ToList();
     }
     
-    public static bool UseItem(int code, ControleEachCharacterInfo target = null) {
+    public static bool UseItem(int code, EachCharacterInfoBattle target = null) {
         
         if (!Items.ContainsKey(code))
             throw new NullReferenceException($"This item is yet added, try add \"{code}\"Item and retry");

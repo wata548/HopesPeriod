@@ -2,6 +2,7 @@ using System;
 using System.Linq;
 using UnityEngine;
 using System.Collections.Generic;
+using TMPro;
 
 public class InventoryButtonManager : InteractButtonManager {
     
@@ -9,6 +10,7 @@ public class InventoryButtonManager : InteractButtonManager {
     private static readonly Color Disactive = Color.white;
     [SerializeField] private Cursor cursor;
     [SerializeField] private InventoryItemInfo infoShower;
+    [SerializeField] private TMP_Text pageInfo;
     public InventoryItemInfo InfoShower => infoShower;
     private CodeType category = CodeType.Item;
     private List<InventoryButton> fixButtons;
@@ -30,6 +32,7 @@ public class InventoryButtonManager : InteractButtonManager {
     public void SetButtonCode() {
 
         Page.CountPage(category);
+        pageInfo.text = $"<{Page.currentPage + 1} / {Page.MaxPage}>";
         var factors = Page.Factors();
         int factorSize = factors.Count();
         for (int i = 0, size = buttons.Count; i < size; i++) {
@@ -39,6 +42,11 @@ public class InventoryButtonManager : InteractButtonManager {
             
             fixButtons[i].SetCode(code);
         }
+    }
+
+    public void SetCategory(CodeType category) {
+        this.category = category;
+        SetButtonCode();
     }
     
     public override void SelectOut(InteractButton target) {

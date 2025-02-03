@@ -45,3 +45,11 @@ MonoBehaviour:
     isSceneGameObject: 0
     isAsset: 1
     id: 1065114122
+  - globalId:
+      globalObjectIdString: GlobalObjectId_V1-3-9c694c24d4d0b2944b0df502fe95ba49-11400000-0
+    _typeString: SpreadInfo.SkillDBDataTable, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
+    _obj: {fileID: 11400000, guid: 9c694c24d4d0b2944b0df502fe95ba49, type: 2}
+    isSceneGameObject: 0
+    isAsset: 1
+    id: 1064628992

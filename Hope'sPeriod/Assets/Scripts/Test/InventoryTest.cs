@@ -13,16 +13,17 @@ public class InventoryTest: MonoBehaviour {
         Inventory.AddItem(2002, 2);
         Inventory.AddItem(2003, 3);
         Inventory.AddItem(2004, 2);
-        //ControleCharacterInfo.Instance.CharacterInfo(0).SetSkill(0, 9101);
-        //ControleCharacterInfo.Instance.CharacterInfo(0).SetSkill(1, 9102);
-        //ControleCharacterInfo.Instance.CharacterInfo(0).SetSkill(2, 9104);
-        
-        //ControleCharacterInfo.Instance.CharacterInfo(1).SetSkill(0, 9201);
-        //ControleCharacterInfo.Instance.CharacterInfo(1).SetSkill(1, 9202);
-        //ControleCharacterInfo.Instance.CharacterInfo(1).SetSkill(2, 9203);
-                
-        //ControleCharacterInfo.Instance.CharacterInfo(2).SetSkill(0, 9301);
-        //ControleCharacterInfo.Instance.CharacterInfo(2).SetSkill(1, 9302);
-        //ControleCharacterInfo.Instance.CharacterInfo(2).SetSkill(2, 9303);
+
+        TestSetSkill();
+    }
+
+    private void TestSetSkill() {
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 4; j++) {
+                       
+                CharactersInfo.Instance.CharacterInfo(i).SetSkill(j, 9000 + (i+1) * 100 + j + 1);
+            }
+               
+        } 
     }
 }

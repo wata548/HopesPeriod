@@ -112,7 +112,7 @@ public static class ItemInfo {
     
     #endregion
 
-    public static void HealItem(int code, ControleEachCharacterInfo user = null) {
+    public static void HealItem(int code, EachCharacterInfoBattle user = null) {
         
         if (!SetTable()) {
             throw new Exception("Yet load table");
@@ -121,7 +121,7 @@ public static class ItemInfo {
            
         ItemDBData item = GetData(code);
                    
-        foreach (var characterInfo in ControleCharacterInfo.Instance.CharacterInfos()) {
+        foreach (var characterInfo in CharactersInfo.Instance.CharacterInfos) {
             if(item.HealsHP != 0) characterInfo.HealHp(item.HealsHP, item.ReviveAll);
             if(item.HealsMP != 0) characterInfo.HealMp(item.HealsMP);
         }
@@ -132,7 +132,7 @@ public static class ItemInfo {
         }
     }
     
-    public static void UseItem(int code, ControleEachCharacterInfo user = null) {
+    public static void UseItem(int code, EachCharacterInfoBattle user = null) {
         if (!SetTable()) {
             throw new Exception("Yet load table");
             return;
@@ -140,7 +140,7 @@ public static class ItemInfo {
    
         ItemDBData item = GetData(code);
            
-        foreach (var character in ControleCharacterInfo.Instance.CharacterInfos()) {
+        foreach (var character in CharactersInfo.Instance.CharacterInfos) {
             if(item.HealsHP != 0) character.HealHp(item.HealsHP, item.ReviveAll);
             if(item.HealsMP != 0 && !character.Dead) character.HealMp(item.HealsMP);
             

@@ -24,6 +24,7 @@ public class TargetButtonManager : InteractButtonManager {
 
     public void TurnOff() {
 
+        Interactable = false;
         GameFSM.Instance.AfterSetTarget();
         SelectCursor.Instance.TurnOff();
     }

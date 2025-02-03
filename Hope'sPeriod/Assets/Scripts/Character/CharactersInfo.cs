@@ -17,11 +17,11 @@ public class SimpleCharacterInfo {
     }
 }
 
-public class ControleCharacterInfo: MonoBehaviour {
+public class CharactersInfo: MonoBehaviour {
     
     //==================================================||Set Inspector 
    
-    [field: SerializeField] private ControleEachCharacterInfo[] characterInfos = new ControleEachCharacterInfo[3];
+    [field: SerializeField] private EachCharacterInfoBattle[] characterInfos = new EachCharacterInfoBattle[3];
     //==================================================| Field 
     public bool GameOver { get; private set; } = false;
     
@@ -29,7 +29,7 @@ public class ControleCharacterInfo: MonoBehaviour {
     private const float InvincibilityTime = 1.2f;
     
     //==================================================||Property 
-    public static ControleCharacterInfo Instance { get; private set; } = null;
+    public static CharactersInfo Instance { get; private set; } = null;
     public int CharacterCount { get; private set; } = 3;
 
     public Dictionary<int, SimpleCharacterInfo> NameAndColor { get; } = new() {
@@ -59,8 +59,8 @@ public class ControleCharacterInfo: MonoBehaviour {
 
     public bool Dead(int index) => characterInfos[index].Dead;
     
-    public ControleEachCharacterInfo CharacterInfo(int index) => characterInfos[index];
-    public ControleEachCharacterInfo[] CharacterInfos() => characterInfos;
+    public EachCharacterInfoBattle CharacterInfo(int index) => characterInfos[index];
+    public EachCharacterInfoBattle[] CharacterInfos => characterInfos;
 
     public void TurnUpdate() {
         foreach (var character in characterInfos) {

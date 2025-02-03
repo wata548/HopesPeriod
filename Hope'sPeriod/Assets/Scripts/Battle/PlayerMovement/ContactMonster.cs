@@ -18,7 +18,7 @@ public class ContactMonster : MonoBehaviour {
                return false;
           }
 
-          ControleCharacterInfo.Instance.DamageDistribute(damage);
+          CharactersInfo.Instance.DamageDistribute(damage);
           Debug.Log("Damaged");
           return true;
      } 

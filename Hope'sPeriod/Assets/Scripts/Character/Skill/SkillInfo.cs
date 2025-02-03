@@ -40,7 +40,7 @@ public static class SkillInfo {
 
     public static void UseSkill(int index, int code, int targetIndex) {
 
-        var user = ControleCharacterInfo.Instance.CharacterInfo(index);
+        var user = CharactersInfo.Instance.CharacterInfo(index);
 
         int useHp = UseHp(code);
         int useMp = UseMp(code);
@@ -63,15 +63,15 @@ public static class SkillInfo {
         if (SkillItem(code)) {
         
             var targetType = ItemInfo.EffectTarget(ToSkillItem(code));
-            ControleEachCharacterInfo target;
+            EachCharacterInfoBattle target;
         
             target = targetType switch {
         
                 EffectTargetType.None => null,
                 EffectTargetType.AllCharacter => null,
-                EffectTargetType.Select => ControleCharacterInfo.Instance.CharacterInfo(targetIndex),
-                EffectTargetType.User => ControleCharacterInfo.Instance.CharacterInfo(index),
-                _ => ControleCharacterInfo.Instance.CharacterInfo(targetType - EffectTargetType.Heail)
+                EffectTargetType.Select => CharactersInfo.Instance.CharacterInfo(targetIndex),
+                EffectTargetType.User => CharactersInfo.Instance.CharacterInfo(index),
+                _ => CharactersInfo.Instance.CharacterInfo(targetType - EffectTargetType.Heail)
             };
         
             ItemInfo.UseItem(ToSkillItem(code), target);
@@ -130,7 +130,7 @@ public static class SkillInfo {
 
     public static bool Useable(int characterIndex, int code) {
         
-        var character = ControleCharacterInfo.Instance.CharacterInfo(characterIndex);
+        var character = CharactersInfo.Instance.CharacterInfo(characterIndex);
 
         bool useableHp = UseHp(code) <= character.CurrentHp;
         bool useableMp = UseMp(code) <= character.CurrentMp;

@@ -90,7 +90,7 @@ public class SkillButton: InteractButtonUI {
 
             needUpdate = false;
             int characterIndex = Parse(Manager).CharacterIndex;
-            Code = ControleCharacterInfo.Instance.GetSkill(characterIndex, Index);
+            Code = CharactersInfo.Instance.GetSkill(characterIndex, Index);
 
             Show = true;
             if (Code == 0) {
@@ -131,6 +131,7 @@ public class SkillButton: InteractButtonUI {
 
         if (SkillInfo.NeedSelect(Code, out int itemCode)) {
 
+            OnPointerExitExtra();
             TargetButtonManager.Instance.TurnOn(Code);
             Manager.SetInteractable(false);
             return;

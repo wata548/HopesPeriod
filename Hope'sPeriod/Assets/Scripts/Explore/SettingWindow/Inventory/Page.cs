@@ -4,8 +4,8 @@ using System.Linq;
 
 public static class Page {
 
-    private static int maxPage;
-    private static int currentPage = 0;
+    public static int MaxPage { get; private set; }
+    public static int currentPage { get; private set; } = 0;
     private static CodeType category;
     
     private const int ItemCount = 15;
@@ -15,7 +15,7 @@ public static class Page {
 
         Page.category = category;
         int count = Inventory.Kind(category);
-        maxPage = count / ItemCount + Convert.ToInt32((count % ItemCount != 0));
+        MaxPage = count / ItemCount + Convert.ToInt32((count % ItemCount != 0));
     }
 
     public static List<int> Factors() {
