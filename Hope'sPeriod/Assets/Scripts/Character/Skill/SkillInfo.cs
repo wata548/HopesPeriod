@@ -138,7 +138,7 @@ public static class SkillInfo {
         return useableHp && useableMp;
     }
     
-    public static string SimpleDescription(int code) {
+    public static string SimpleTag(int code) {
         string result = "";
         int value;
         if ((value = UseHp(code)) > 0) result += $"HP -{value} ";
@@ -147,19 +147,7 @@ public static class SkillInfo {
         if (SkillItem(code)) {
 
             int itemCode = ToSkillItem(code);
-            //It find detail type name 
-            //if (EffectInfo.MatchKorean.TryGetValue(ItemInfo.Effect(itemCode), out string korean)) {
-            if (ItemInfo.Effect(itemCode) != EffectType.None) result += "효과 ";
-
-            bool healHp = ItemInfo.HealHp(itemCode) != 0 || ItemInfo.HealsHp(itemCode) != 0;
-            bool healMp = ItemInfo.HealMp(itemCode) != 0 || ItemInfo.HealsMp(itemCode) != 0; 
-            if ( healHp || healMp) result += "회복";
-            if (ItemInfo.Attract(itemCode) > 0 && !ItemInfo.DefenceReflect(itemCode)) result += "도발 ";
-
-            if (ItemInfo.DefenceType(itemCode) != DefenceType.None) {
-                if (ItemInfo.DefenceReflect(itemCode)) result += "반사";
-                else result += "방어 ";
-            }
+            result += ItemInfo.SimpleTag(itemCode);
         }
 
         return result;

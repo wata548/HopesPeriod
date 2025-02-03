@@ -54,6 +54,8 @@ public class Cursor: MonoBehaviour {
          
          rect.localPosition = startPos.ToVec3() + interval * (index - nextLineIndex);
      }
+
+     public void Disappear() => transform.localPosition = Vector3.one * 100000;
      
     //==================================================||Unity Func 
      private void Awake() {

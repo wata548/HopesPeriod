@@ -33,7 +33,14 @@ public static class Inventory{
             .Where(value => (CodeType)(value.Key / ItemInfo.CodeMask) == mask)
             .Count(value => value.Value > 0);
     }
-     
+
+    public static List<int> Category(CodeType mask) {
+        return Items
+            .Where(value => (CodeType)(value.Key / ItemInfo.CodeMask) == mask && value.Value > 0)
+            .Select(value => value.Key)
+            .ToList();
+    }
+    
     public static bool UseItem(int code, ControleEachCharacterInfo target = null) {
         
         if (!Items.ContainsKey(code))

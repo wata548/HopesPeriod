@@ -89,6 +89,27 @@ public static class ItemInfo {
     public static bool              DefenceReflect(int code)    => GetData(code)?.DEFReflect    ?? false;
     public static float             Attract(int code)           => GetData(code)?.ATR           ?? -1;
     public static int               AttractDuration(int code)   => GetData(code)?.ATRCon        ?? -1;
+
+    public static string SimpleTag(int code) {
+
+        string result = "";
+        //It find detail type name 
+        //if (EffectInfo.MatchKorean.TryGetValue(ItemInfo.Effect(itemCode), out string korean)) {
+        if (Effect(code) != EffectType.None) result += "효과 ";
+        
+        bool healHp = HealHp(code) != 0 || HealsHp(code) != 0;
+        bool healMp = HealMp(code) != 0 || HealsMp(code) != 0; 
+        if ( healHp || healMp) result += "회복";
+        if (Attract(code) > 0 && !ItemInfo.DefenceReflect(code)) result += "도발 ";
+        
+        if (DefenceType(code) != SpreadInfo.DefenceType.None) {
+            if (DefenceReflect(code)) result += "반사";
+            else result += "방어 ";
+        }
+
+        return result;
+    }
+    
     #endregion
 
     public static void HealItem(int code, ControleEachCharacterInfo user = null) {
