@@ -36,6 +36,7 @@ public class InventoryButton: InteractButtonUI {
         }
         else {
             On = true;
+            icon.sprite = CodeInfo.LoadImage(Code);
             icon.color = Color.white;
             frame.color = Color.white;
         }

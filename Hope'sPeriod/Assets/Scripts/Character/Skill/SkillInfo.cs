@@ -8,8 +8,6 @@ using UnityEngine.TextCore.Text;
 
 public static class SkillInfo {
         
-    public const int CodeMask = 1000;
-    
     private static SkillDBDataTable table = null;
     
     public static bool CheckTable() {

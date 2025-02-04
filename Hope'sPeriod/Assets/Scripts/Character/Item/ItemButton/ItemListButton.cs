@@ -42,7 +42,8 @@ public class ItemListButton : InteractButtonUI {
     public void SetCode(int code) {
 
         RefreshFloating();
-        
+
+        image.sprite = CodeInfo.LoadImage(code);
         image.DOFade(1, 0);
 
         Show = true;

@@ -41,7 +41,7 @@ public class FloatingItemInfo : MonoBehaviour
     
     public void UpdateInfo(int code) {
 
-        switch ((CodeType)(code / ItemInfo.CodeMask)) {
+        switch (code.ToCodeType()) {
             case CodeType.Item:
                 info.text = ItemInfo.Description(code);
                 break;

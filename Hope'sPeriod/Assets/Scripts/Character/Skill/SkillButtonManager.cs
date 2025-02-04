@@ -54,7 +54,7 @@ public class SkillButtonManager: InteractButtonManager {
 
     public void SkipSelect() {
 
-        SelectList[CharacterIndex] = (0,0); 
+        SelectList[CharacterIndex] = (9401,CharacterIndex); 
         CharacterIndex++;
 
         var characterControler = CharactersInfo.Instance;

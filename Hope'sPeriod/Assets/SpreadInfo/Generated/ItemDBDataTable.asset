@@ -14,6 +14,246 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp:SpreadInfo:ItemDBDataTable
   m_DataTable:
     dataList:
+    - Key: 2013
+      Value:
+        m_Code: 2013
+        m_Name: empty
+        m_Description: Do nothing, It just a Default format
+        m_HealHP: 0
+        m_HealsHP: 0
+        m_Revive: 0
+        m_ReviveAll: 0
+        m_HealMP: 0
+        m_HealsMP: 0
+        m_DEFPower: 0
+        m_DEFType: 0
+        m_DEFReflect: 0
+        m_ATR: 0
+        m_ATRCon: 0
+        m_Effect: 0
+        m_EffectPower: 0
+        m_EffectCon: 0
+        m_EffectTarget: 3
+    - Key: 2014
+      Value:
+        m_Code: 2014
+        m_Name: empty
+        m_Description: Do nothing, It just a Default format
+        m_HealHP: 0
+        m_HealsHP: 0
+        m_Revive: 0
+        m_ReviveAll: 0
+        m_HealMP: 0
+        m_HealsMP: 0
+        m_DEFPower: 0
+        m_DEFType: 0
+        m_DEFReflect: 0
+        m_ATR: 0
+        m_ATRCon: 0
+        m_Effect: 0
+        m_EffectPower: 0
+        m_EffectCon: 0
+        m_EffectTarget: 3
+    - Key: 2015
+      Value:
+        m_Code: 2015
+        m_Name: empty
+        m_Description: Do nothing, It just a Default format
+        m_HealHP: 0
+        m_HealsHP: 0
+        m_Revive: 0
+        m_ReviveAll: 0
+        m_HealMP: 0
+        m_HealsMP: 0
+        m_DEFPower: 0
+        m_DEFType: 0
+        m_DEFReflect: 0
+        m_ATR: 0
+        m_ATRCon: 0
+        m_Effect: 0
+        m_EffectPower: 0
+        m_EffectCon: 0
+        m_EffectTarget: 3
+    - Key: 2016
+      Value:
+        m_Code: 2016
+        m_Name: empty
+        m_Description: Do nothing, It just a Default format
+        m_HealHP: 0
+        m_HealsHP: 0
+        m_Revive: 0
+        m_ReviveAll: 0
+        m_HealMP: 0
+        m_HealsMP: 0
+        m_DEFPower: 0
+        m_DEFType: 0
+        m_DEFReflect: 0
+        m_ATR: 0
+        m_ATRCon: 0
+        m_Effect: 0
+        m_EffectPower: 0
+        m_EffectCon: 0
+        m_EffectTarget: 3
+    - Key: 2017
+      Value:
+        m_Code: 2017
+        m_Name: empty
+        m_Description: Do nothing, It just a Default format
+        m_HealHP: 0
+        m_HealsHP: 0
+        m_Revive: 0
+        m_ReviveAll: 0
+        m_HealMP: 0
+        m_HealsMP: 0
+        m_DEFPower: 0
+        m_DEFType: 0
+        m_DEFReflect: 0
+        m_ATR: 0
+        m_ATRCon: 0
+        m_Effect: 0
+        m_EffectPower: 0
+        m_EffectCon: 0
+        m_EffectTarget: 3
+    - Key: 2018
+      Value:
+        m_Code: 2018
+        m_Name: empty
+        m_Description: Do nothing, It just a Default format
+        m_HealHP: 0
+        m_HealsHP: 0
+        m_Revive: 0
+        m_ReviveAll: 0
+        m_HealMP: 0
+        m_HealsMP: 0
+        m_DEFPower: 0
+        m_DEFType: 0
+        m_DEFReflect: 0
+        m_ATR: 0
+        m_ATRCon: 0
+        m_Effect: 0
+        m_EffectPower: 0
+        m_EffectCon: 0
+        m_EffectTarget: 3
+    - Key: 2019
+      Value:
+        m_Code: 2019
+        m_Name: empty
+        m_Description: Do nothing, It just a Default format
+        m_HealHP: 0
+        m_HealsHP: 0
+        m_Revive: 0
+        m_ReviveAll: 0
+        m_HealMP: 0
+        m_HealsMP: 0
+        m_DEFPower: 0
+        m_DEFType: 0
+        m_DEFReflect: 0
+        m_ATR: 0
+        m_ATRCon: 0
+        m_Effect: 0
+        m_EffectPower: 0
+        m_EffectCon: 0
+        m_EffectTarget: 3
+    - Key: 2012
+      Value:
+        m_Code: 2012
+        m_Name: empty
+        m_Description: Do nothing, It just a Default format
+        m_HealHP: 0
+        m_HealsHP: 0
+        m_Revive: 0
+        m_ReviveAll: 0
+        m_HealMP: 0
+        m_HealsMP: 0
+        m_DEFPower: 0
+        m_DEFType: 0
+        m_DEFReflect: 0
+        m_ATR: 0
+        m_ATRCon: 0
+        m_Effect: 0
+        m_EffectPower: 0
+        m_EffectCon: 0
+        m_EffectTarget: 3
+    - Key: 2008
+      Value:
+        m_Code: 2008
+        m_Name: empty
+        m_Description: Do nothing, It just a Default format
+        m_HealHP: 0
+        m_HealsHP: 0
+        m_Revive: 0
+        m_ReviveAll: 0
+        m_HealMP: 0
+        m_HealsMP: 0
+        m_DEFPower: 0
+        m_DEFType: 0
+        m_DEFReflect: 0
+        m_ATR: 0
+        m_ATRCon: 0
+        m_Effect: 0
+        m_EffectPower: 0
+        m_EffectCon: 0
+        m_EffectTarget: 3
+    - Key: 2009
+      Value:
+        m_Code: 2009
+        m_Name: empty
+        m_Description: Do nothing, It just a Default format
+        m_HealHP: 0
+        m_HealsHP: 0
+        m_Revive: 0
+        m_ReviveAll: 0
+        m_HealMP: 0
+        m_HealsMP: 0
+        m_DEFPower: 0
+        m_DEFType: 0
+        m_DEFReflect: 0
+        m_ATR: 0
+        m_ATRCon: 0
+        m_Effect: 0
+        m_EffectPower: 0
+        m_EffectCon: 0
+        m_EffectTarget: 3
+    - Key: 2010
+      Value:
+        m_Code: 2010
+        m_Name: empty
+        m_Description: Do nothing, It just a Default format
+        m_HealHP: 0
+        m_HealsHP: 0
+        m_Revive: 0
+        m_ReviveAll: 0
+        m_HealMP: 0
+        m_HealsMP: 0
+        m_DEFPower: 0
+        m_DEFType: 0
+        m_DEFReflect: 0
+        m_ATR: 0
+        m_ATRCon: 0
+        m_Effect: 0
+        m_EffectPower: 0
+        m_EffectCon: 0
+        m_EffectTarget: 3
+    - Key: 2011
+      Value:
+        m_Code: 2011
+        m_Name: empty
+        m_Description: Do nothing, It just a Default format
+        m_HealHP: 0
+        m_HealsHP: 0
+        m_Revive: 0
+        m_ReviveAll: 0
+        m_HealMP: 0
+        m_HealsMP: 0
+        m_DEFPower: 0
+        m_DEFType: 0
+        m_DEFReflect: 0
+        m_ATR: 0
+        m_ATRCon: 0
+        m_Effect: 0
+        m_EffectPower: 0
+        m_EffectCon: 0
+        m_EffectTarget: 3
     - Key: 2000
       Value:
         m_Code: 2000
@@ -291,6 +531,26 @@ MonoBehaviour:
         m_EffectPower: 0
         m_EffectCon: 0
         m_EffectTarget: 3
+    - Key: 2401
+      Value:
+        m_Code: 2401
+        m_Name: "\uC26C\uAE30"
+        m_Description: "\uB9C8\uB098 \uD68C\uBCF5"
+        m_HealHP: 0
+        m_HealsHP: 0
+        m_Revive: 0
+        m_ReviveAll: 0
+        m_HealMP: 10
+        m_HealsMP: 0
+        m_DEFPower: 0
+        m_DEFType: 0
+        m_DEFReflect: 0
+        m_ATR: 0
+        m_ATRCon: 0
+        m_Effect: 0
+        m_EffectPower: 0
+        m_EffectCon: 0
+        m_EffectTarget: 0
     - Key: 4001
       Value:
         m_Code: 4001

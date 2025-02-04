@@ -66,7 +66,7 @@ public class ItemListContext: MonoBehaviour {
         foreach (var item in Inventory.Items) {
 
             //check item
-            if ((CodeType)(item.Key / ItemInfo.CodeMask) != CodeType.Item)
+            if (item.Key.ToCodeType()!= CodeType.Item)
                 continue;
             
             //check count

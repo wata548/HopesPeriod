@@ -26,6 +26,7 @@ public class MapSizeManager : MonoBehaviour {
     public void Move(Vector3 pos) {
 
         map.transform.DOLocalMove(pos, Duration).SetEase(Ease.InOutCubic);
+        pos.z += 0.1f;
         outline.transform.DOLocalMove(pos, Duration).SetEase(Ease.InOutCubic);
     }
 

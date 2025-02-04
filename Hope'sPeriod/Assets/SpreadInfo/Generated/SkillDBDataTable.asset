@@ -152,3 +152,14 @@ MonoBehaviour:
         m_ATKCon: 0
         m_SkillItem: 1
         m_SkillItemCon: 1
+    - Key: 9401
+      Value:
+        m_Code: 9401
+        m_Name: "\uC26C\uAE30"
+        m_Description: "\uC7A0\uC2DC \uD734\uC2DD\uC744 \uCDE8\uD55C\uB2E4"
+        m_UseHP: 0
+        m_UseMP: 0
+        m_ATK: 0
+        m_ATKCon: 0
+        m_SkillItem: 1
+        m_SkillItemCon: 1

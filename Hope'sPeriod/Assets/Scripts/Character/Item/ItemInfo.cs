@@ -8,15 +8,18 @@ using UnityEngine.ResourceManagement.AsyncOperations;
 
 public enum CodeType {
     Monster = 1,
-    Item,
-    Document,
-    Key,
+    Item = 2,
+    Document = 3,
+    Key = 4,
+    Actor = 5,
+    Script = 6,
+    SimpleInteract = 7,
+    Map = 8,
     SKill = 9
 };
 
 public static class ItemInfo {
 
-    public const int CodeMask = 1000;
     private static ItemDBDataTable table = null;
 
     public static bool CheckTable() {

@@ -30,13 +30,13 @@ public static class Inventory{
 
     public static int Kind(CodeType mask) {
         return Items
-            .Where(value => (CodeType)(value.Key / ItemInfo.CodeMask) == mask)
+            .Where(value => value.Key.ToCodeType() == mask)
             .Count(value => value.Value > 0);
     }
 
     public static List<int> Category(CodeType mask) {
         return Items
-            .Where(value => (CodeType)(value.Key / ItemInfo.CodeMask) == mask && value.Value > 0)
+            .Where(value => value.Key.ToCodeType() == mask && value.Value > 0)
             .Select(value => value.Key)
             .ToList();
     }

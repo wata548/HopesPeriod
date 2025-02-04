@@ -48,7 +48,7 @@ public class GetItemWindow: MonoBehaviour {
             cursor.TurnOn();
         });
         
-        //itemImage.sprite = Resources.Load<Sprite>($"ItemImage/{code}");
+        itemImage.sprite = CodeInfo.LoadImage(itemInfo.Code);
         itemImage.DOFade(1, AppearTime);
         itemName.DOFade(1, AppearTime);
         itemName.text = ItemInfo.Name(itemInfo.Code) + $" ×{itemInfo.Count}".SetSize(0.75f);
