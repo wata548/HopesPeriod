@@ -23,7 +23,7 @@ public class InventoryTest: MonoBehaviour {
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 4; j++) {
                        
-                CharactersInfo.Instance.CharacterInfo(i).SetSkill(j, 9000 + (i+1) * 100 + j + 1);
+                CharactersInfoBattle.Instance.CharacterInfo(i).SetSkill(j, 9000 + (i+1) * 100 + j + 1);
             }
                
         } 

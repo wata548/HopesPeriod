@@ -70,7 +70,7 @@ public class SkillShower: MonoBehaviour {
     private void ShowSetting(int index, int code, int target) {
 
         
-        var characterInfo = CharactersInfo.Instance.NameAndColor[index];
+        var characterInfo = CharactersInfoBattle.Instance.NameAndColor[index];
         nameText.text = characterInfo.Name;
         var personal = characterInfo.Personal;
         personal.a = 0;

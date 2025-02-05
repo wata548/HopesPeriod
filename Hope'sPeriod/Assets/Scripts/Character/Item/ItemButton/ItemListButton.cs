@@ -127,7 +127,7 @@ public class ItemListButton : InteractButtonUI {
 
         if (!ItemInfo.NeedSelect(Code)) {
 
-            Inventory.UseItem(Code);
+            Inventory.UseItemBattle(Code);
            
             return;
         }

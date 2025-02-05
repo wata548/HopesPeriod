@@ -36,7 +36,7 @@ public class PlayerPhysics : MonoBehaviour
     }
 
     void Update() {
-        if (CharactersInfo.Instance.GameOver) {
+        if (CharactersInfoBattle.Instance.GameOver) {
 
             playerRigidbody.linearVelocity = Vector2.zero;
             return;

@@ -42,7 +42,7 @@ public class SkillButtonManager: InteractButtonManager {
         for (int i = 0; i < SelectList.Count; i++)
             SelectList[i] = (0,0);
         
-        var characterControler = CharactersInfo.Instance;
+        var characterControler = CharactersInfoBattle.Instance;
         int characterCount =  characterControler.CharacterCount;
         while (CharacterIndex < characterCount && characterControler.Dead(CharacterIndex)) {
                     
@@ -57,7 +57,7 @@ public class SkillButtonManager: InteractButtonManager {
         SelectList[CharacterIndex] = (9401,CharacterIndex); 
         CharacterIndex++;
 
-        var characterControler = CharactersInfo.Instance;
+        var characterControler = CharactersInfoBattle.Instance;
         int characterCount =  characterControler.CharacterCount;
         
         while (CharacterIndex < characterCount && characterControler.Dead(CharacterIndex)) {
@@ -81,7 +81,7 @@ public class SkillButtonManager: InteractButtonManager {
         SelectList[CharacterIndex] = (Parse(buttons[Selecting]).Code, target);
         CharacterIndex++;
 
-        var characterControler = CharactersInfo.Instance;
+        var characterControler = CharactersInfoBattle.Instance;
         int characterCount =  characterControler.CharacterCount;
         
         while (CharacterIndex < characterCount && characterControler.Dead(CharacterIndex)) {
@@ -104,7 +104,7 @@ public class SkillButtonManager: InteractButtonManager {
         SelectList[CharacterIndex] = (0,0);
         CharacterIndex--;
 
-        while (CharacterIndex >= 0 && CharactersInfo.Instance.Dead(CharacterIndex)) {
+        while (CharacterIndex >= 0 && CharactersInfoBattle.Instance.Dead(CharacterIndex)) {
             CharacterIndex--;
         }
 

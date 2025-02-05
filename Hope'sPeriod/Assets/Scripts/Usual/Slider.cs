@@ -5,6 +5,7 @@ using TMPro;
 using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
 using UnityEngine.Serialization;
 
 public class Slider : MonoBehaviour{
@@ -13,7 +14,7 @@ public class Slider : MonoBehaviour{
     protected SpriteRenderer handleRenderer;
     
     private float handleScale = 1;
-    private const float DURACTION = 0.5f;
+    private const float Duraction = 0.5f;
     private Tween current = null;
     private float beforeRatio = 1f;
     private void CheckScale() {
@@ -48,12 +49,12 @@ public class Slider : MonoBehaviour{
             changeState = ChangeSliderState.SAME;
 
         //Check yet doing Dotween
-        if (current == null || !current.IsComplete()) {
+        if (current is null || !current.IsComplete()) {
             
             current.Kill();
         }
 
-        current = handle.transform.DOScaleX(handleScale * ratio, DURACTION);
+        current = handle.transform.DOScaleX(handleScale * ratio, Duraction);
 
         beforeRatio = ratio;
         return changeState;

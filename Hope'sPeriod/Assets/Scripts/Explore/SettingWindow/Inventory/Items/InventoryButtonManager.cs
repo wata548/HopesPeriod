@@ -4,6 +4,7 @@ using UnityEngine;
 using System.Collections.Generic;
 using TMPro;
 using Unity.VisualScripting;
+using VInspector.Libs;
 
 public class InventoryButtonManager : InteractButtonManager {
     
@@ -12,15 +13,24 @@ public class InventoryButtonManager : InteractButtonManager {
     private const int ButtonCount = 15;
     private const int NewLinePoint = 5;
     [SerializeField] private Cursor cursor;
-    [SerializeField] private InventoryItemInfo infoShower;
+    [SerializeField] private UseButtonManager infoShower;
     [SerializeField] private TMP_Text pageInfo;
-    public InventoryItemInfo InfoShower => infoShower;
     private CodeType category = CodeType.Item;
     private List<InventoryButton> fixButtons;
-    
-    
+
+    public UseButtonManager InfoShower => infoShower;
     public override bool Interactable { get; protected set; } = true;
 
+    public void TurnOn() {
+        Interactable = true;
+        category = CodeType.Item;
+        ItemListRefresh();
+        cursor.Disappear();
+    }
+
+    public void TurnOff() => Interactable = false;
+    
+    
     public void ButtonActive(int index) => fixButtons[index].SetFrameColor(Active);
 
     public void ButtonDisactive(int index) {
@@ -40,7 +50,7 @@ public class InventoryButtonManager : InteractButtonManager {
         cursor.SetIndex(target.Index);
     }
 
-    public void ItemListRefresh() {
+    public void ItemListRefresh(bool selectCancel = false) {
 
         Page.CountPage(category);
         if(Page.MaxPage == 0)
@@ -57,6 +67,9 @@ public class InventoryButtonManager : InteractButtonManager {
             
             fixButtons[i].SetCode(code);
         }
+
+        if (selectCancel)
+            fixButtons[0].SelectCancel();
     }
 
     public void SetCategory(CodeType category) {
@@ -80,8 +93,10 @@ public class InventoryButtonManager : InteractButtonManager {
 
     public void Update() {
 
-        if (!Interactable)
+        bool keyBoardContorlable = !infoShower.KeyBoardControlable;
+        if (!Interactable || !keyBoardContorlable)
             return;
+
 
         bool input = false;
         bool controlable = Page.MaxPage > 0;
@@ -126,38 +141,34 @@ public class InventoryButtonManager : InteractButtonManager {
 
         if (InputManager.Instance.Click(KeyTypes.Select) && Selecting != -1) {
             buttons[Selecting].Click();
+            if(category == CodeType.Item)
+                InfoShower.SetKeBoardControlable(true);
         }
 
         if (input) cursor.SetIndex(Selecting);
     }
 
     public void NextPage() {
+        if(!Interactable) return;
+        
         if (Page.MaxPage <= 1) return;
         Page.NextPage();
         ItemListRefresh();
     }
 
     public void PriviousPage() {
+        if(!Interactable) return;
+        
         if (Page.MaxPage <= 1) return;
         Page.PriviousPage();
         ItemListRefresh();
     }
 
-    public void TurnOn() {
-        ItemListRefresh();
-        Interactable = true;
-    }
-
-    public void TurnOff() {
-        Interactable = false;
-    }
     private void Awake() {
         base.Awake();
 
         fixButtons = buttons
             .Select(Parse)
             .ToList();
-
-        infoShower.SetEmpty();
     }
 }

@@ -90,7 +90,7 @@ public class SkillButton: InteractButtonUI {
 
             needUpdate = false;
             int characterIndex = Parse(Manager).CharacterIndex;
-            Code = CharactersInfo.Instance.GetSkill(characterIndex, Index);
+            Code = CharactersInfoBattle.Instance.GetSkill(characterIndex, Index);
 
             Show = true;
             if (Code == 0) {

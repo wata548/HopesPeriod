@@ -7,7 +7,7 @@ public class CategoryButton: InteractButtonUI {
     [SerializeField] private Image backGround;
     [SerializeField] private TMP_Text buttonName;
     public override void Click() {
-
+        if (!Manager.Interactable) return;
         Parse(Manager).SetSelect(Index);
     }
 

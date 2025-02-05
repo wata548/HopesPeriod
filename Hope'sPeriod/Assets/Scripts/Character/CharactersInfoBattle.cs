@@ -17,7 +17,7 @@ public class SimpleCharacterInfo {
     }
 }
 
-public class CharactersInfo: MonoBehaviour {
+public class CharactersInfoBattle: MonoBehaviour {
     
     //==================================================||Set Inspector 
    
@@ -29,7 +29,7 @@ public class CharactersInfo: MonoBehaviour {
     private const float InvincibilityTime = 1.2f;
     
     //==================================================||Property 
-    public static CharactersInfo Instance { get; private set; } = null;
+    public static CharactersInfoBattle Instance { get; private set; } = null;
     public int CharacterCount { get; private set; } = 3;
 
     public Dictionary<int, SimpleCharacterInfo> NameAndColor { get; } = new() {

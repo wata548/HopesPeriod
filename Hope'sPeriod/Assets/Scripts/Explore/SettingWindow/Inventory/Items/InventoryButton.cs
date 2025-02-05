@@ -15,6 +15,7 @@ public class InventoryButton: InteractButtonUI {
 
     public override void Click() {
 
+        if (!Manager.Interactable) return;
         if (!On) return;
         
         var manager = Parse(Manager);
@@ -24,8 +25,16 @@ public class InventoryButton: InteractButtonUI {
         beforeIndex = Index;
         manager.ButtonActive(Index);
         manager.InfoShower.SetInfo(Code);
+            
     }
 
+    public void SelectCancel() {
+        if (beforeIndex == -1)
+            return;
+
+        Parse(Manager).ButtonDisactive(beforeIndex);
+    }
+    
     public void SetCode(int code) {
 
         Code = code; 

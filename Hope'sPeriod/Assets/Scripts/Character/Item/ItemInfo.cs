@@ -115,27 +115,32 @@ public static class ItemInfo {
     
     #endregion
 
-    public static void HealItem(int code, EachCharacterInfoBattle user = null) {
-        
+    public static bool UseAble(int code, EachCharacterInfo user = null) {
         if (!SetTable()) {
             throw new Exception("Yet load table");
-            return;
+            return false;
         }
            
         ItemDBData item = GetData(code);
-                   
-        foreach (var characterInfo in CharactersInfo.Instance.CharacterInfos) {
-            if(item.HealsHP != 0) characterInfo.HealHp(item.HealsHP, item.ReviveAll);
-            if(item.HealsMP != 0) characterInfo.HealMp(item.HealsMP);
+        if (user is null) return true;
+        if (!user.Dead) return true; 
+        if (item.Revive && item.HealHP > 0) return true;
+        if (item.ReviveAll && item.HealsHP > 0) return true;
+        return false;
+    }
+
+    public static bool HealItemNeedSelect(int code) {
+        if (!SetTable()) {
+            throw new Exception("Yet load table");
+            return false;
         }
-                   
-        if(user is not null) {
-            if(item.HealHP != 0) user.HealHp(item.HealHP, item.Revive);
-            if(item.HealMP != 0) user.HealMp(item.HealMP);
-        }
+        bool hp = HealHp(code) != 0;
+        bool mp = HealMp(code) != 0;
+                
+        return hp || mp;
     }
     
-    public static void UseItem(int code, EachCharacterInfoBattle user = null) {
+    public static void UseItemBattle(int code, EachCharacterInfoBattle user = null) {
         if (!SetTable()) {
             throw new Exception("Yet load table");
             return;
@@ -143,11 +148,11 @@ public static class ItemInfo {
    
         ItemDBData item = GetData(code);
            
-        foreach (var character in CharactersInfo.Instance.CharacterInfos) {
+        foreach (var character in CharactersInfoBattle.Instance.CharacterInfos) {
             if(item.HealsHP != 0) character.HealHp(item.HealsHP, item.ReviveAll);
             if(item.HealsMP != 0 && !character.Dead) character.HealMp(item.HealsMP);
             
-            if (item.EffectTarget != EffectTargetType.AllCharacter)
+            if (character.Dead || item.EffectTarget != EffectTargetType.AllCharacter)
                 continue;
             
             if(item.Effect != EffectType.None) character.SetEffect(code);
@@ -164,6 +169,25 @@ public static class ItemInfo {
             if (item.Effect != EffectType.None) user.SetEffect(code);
             if (item.DEFPower != 0) user.SetShield(code);
 
+        }
+    }
+    
+    public static void UseItem(int code, EachCharacterInfo user = null) {
+        if (!SetTable()) {
+            throw new Exception("Yet load table");
+            return;
+        }
+       
+        ItemDBData item = GetData(code);
+               
+        foreach (var character in CharacterInfoInventory.Instance.Characterinfos) {
+            if(item.HealsHP != 0) character.Info.HealHp(item.HealsHP, item.ReviveAll);
+            if(item.HealsMP != 0 && !character.Info.Dead) character.Info.HealMp(item.HealsMP);
+        }
+               
+        if(user is not null) {
+            if(item.HealHP != 0) user.HealHp(item.HealHP, item.Revive);
+            if(item.HealMP != 0) user.HealMp(item.HealMP);
         }
     }
 }

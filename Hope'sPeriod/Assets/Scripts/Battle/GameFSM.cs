@@ -121,14 +121,14 @@ public class GameFSM: MonoBehaviour {
                 break;
             case PlayerTurnState.ItemTarget:
                 int index = SelectCursor.Instance.Index;
-                var target = CharactersInfo.Instance.CharacterInfo(index);
+                var target = CharactersInfoBattle.Instance.CharacterInfo(index);
                 int code = TargetButtonManager.Instance.Code;
         
-                Inventory.UseItem(code, target);
+                Inventory.UseItemBattle(code, target);
                 break;
             
             case PlayerTurnState.Shield:
-                CharactersInfo.Instance.ShieldOn();
+                CharactersInfoBattle.Instance.ShieldOn();
                 SkipState();
                 break;
             
@@ -208,7 +208,7 @@ public class GameFSM: MonoBehaviour {
         
         ItemListButtonManager.Instance.TurnOff();
         SkillButtonManager.Instance.TurnOff();
-        CharactersInfo.Instance.TurnUpdate();
+        CharactersInfoBattle.Instance.TurnUpdate();
          
         State = GameState.BeforeSkill;
         PlayerTurnState = PlayerTurnState.SelectBehavior;

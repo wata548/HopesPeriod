@@ -39,7 +39,7 @@ public class SelectCursor: MonoBehaviour {
     
     public void SetIndex(int index) {
 
-        int count = CharactersInfo.Instance.CharacterCount;
+        int count = CharactersInfoBattle.Instance.CharacterCount;
         if (index > count)
             throw new OutOfRange(0, count, index);
 
@@ -50,13 +50,13 @@ public class SelectCursor: MonoBehaviour {
     public void AddIndex(bool aliveOnly = false) {
         
         Index++;
-        int count = CharactersInfo.Instance.CharacterCount;
+        int count = CharactersInfoBattle.Instance.CharacterCount;
         if (Index >= count)
             Index = 0;
 
         if (aliveOnly) {
 
-            while (!CharactersInfo.Instance.Alive(Index)) {
+            while (!CharactersInfoBattle.Instance.Alive(Index)) {
                 
                 Index++;
                 if (Index >= count)
@@ -69,13 +69,13 @@ public class SelectCursor: MonoBehaviour {
 
     public void ExtractIndex(bool aliveOnly = false) {
         Index--;
-        int count = CharactersInfo.Instance.CharacterCount;
+        int count = CharactersInfoBattle.Instance.CharacterCount;
         if (Index < 0)
             Index = count - 1;
 
         if (aliveOnly) {
 
-            while (!CharactersInfo.Instance.Alive(Index)) {
+            while (!CharactersInfoBattle.Instance.Alive(Index)) {
                 Index--;
                 if (Index < 0)
                     Index = count - 1;

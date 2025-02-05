@@ -41,7 +41,7 @@ public static class Inventory{
             .ToList();
     }
     
-    public static bool UseItem(int code, EachCharacterInfoBattle target = null) {
+    public static bool UseItemBattle(int code, EachCharacterInfoBattle target = null) {
         
         if (!Items.ContainsKey(code))
             throw new NullReferenceException($"This item is yet added, try add \"{code}\"Item and retry");
@@ -51,12 +51,27 @@ public static class Inventory{
         }
 
         Items[code]--;
-        ItemInfo.UseItem(code, target);
+        ItemInfo.UseItemBattle(code, target);
         
         CallBackMainFsm();
         
         return true;
     }
+    
+    public static bool UseItem(int code, EachCharacterInfo target = null) {
+            
+            if (!Items.ContainsKey(code))
+                throw new NullReferenceException($"This item is yet added, try add \"{code}\"Item and retry");
+    
+            if (Items[code] <= 0) {
+                return false;
+            }
+    
+            Items[code]--;
+            ItemInfo.UseItem(code, target);
+            
+            return true;
+        }
 
     private static void CallBackMainFsm() {
 

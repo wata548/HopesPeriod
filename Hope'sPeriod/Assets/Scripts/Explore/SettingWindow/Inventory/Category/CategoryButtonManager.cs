@@ -15,6 +15,9 @@ public class CategoryButtonManager: InteractButtonManager {
         CodeType.Document,
         CodeType.Key
     };
+
+    public void TurnOn() => Interactable = true;
+    public void TurnOff() => Interactable = false;
     
     public override void SelectIn(InteractButton target) {}
 
