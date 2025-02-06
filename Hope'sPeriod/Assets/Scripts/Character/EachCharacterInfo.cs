@@ -8,6 +8,7 @@ public class EachCharacterInfo: MonoBehaviour {
     
     //==================================================| Properties  
 
+    public bool Exist { get; private set; } = true;
     public float MaximumHp { get; private set; } = 100;
     public float CurrentHp { get; private set; } = 10;
     public float MaximumMp { get; private set; } = 100;

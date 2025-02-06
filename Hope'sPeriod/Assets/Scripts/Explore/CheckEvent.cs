@@ -22,6 +22,8 @@ public static class CheckEvent {
         mapInfo = Resources.Load<MapEventInfo>("MapPrefab/MapInfo");
         map = Object.Instantiate(mapInfo.Prefab(code));
     }
+
+    public static int MeetMonster() => mapInfo.MeetMonster(mapCode);
     
     public static void CheckAutoEvent(ref Vector2Int pos, GameObject player) {
 

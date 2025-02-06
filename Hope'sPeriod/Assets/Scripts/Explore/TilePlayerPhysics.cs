@@ -81,6 +81,11 @@ public class TilePlayerPhysics : MonoBehaviour {
             if (newPos != pos) {
                 pos = newPos;
                 CheckEvent.CheckAutoEvent(ref pos, gameObject);
+                int monster = CheckEvent.MeetMonster();
+                if (monster != 0) {
+                    //TODO: Load Monster
+                    Debug.Log(monster);
+                }
             }
         }
 

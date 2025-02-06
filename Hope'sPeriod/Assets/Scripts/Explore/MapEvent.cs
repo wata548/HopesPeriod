@@ -5,6 +5,7 @@ using UnityEngine;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEditorInternal.Profiling.Memory.Experimental;
+using Random = UnityEngine.Random;
 
 [CreateAssetMenu(menuName = "MapEventInfo")]
 public class MapEventInfo : ScriptableObject {
@@ -69,7 +70,14 @@ public class MapEventInfo : ScriptableObject {
                       ?? throw new Exception("check about code");
                        
         return result;
-    } 
+    }
+
+    public int MeetMonster(int code) {
+        return mapInfo[ConnectMapInfo.ToLayer(code)]
+                   ?.RoomInfo[code]
+                   ?.MeetMonster() 
+               ?? throw new Exception("check about code");
+    }
 
 }
 
@@ -83,7 +91,10 @@ public class LayerEventInfo{
 [Serializable]
 public class RoomEventInfo {
     [SerializeField] private string roomName;
-    [SerializeField] private SerializableDictionary<Vector2Int, int> autoEventList; 
+    [SerializeField] private SerializableDictionary<Vector2Int, int> autoEventList;
+    [SerializeField] private List<int> monsterList;
+
+    [SerializeField] private float genProbability;
     [SerializeField] private SerializableDictionary<Vector2Int, GetItemInfo> itemList; 
     [SerializeField] private SerializableDictionary<Vector2Int, int> passiveEventList;
     [SerializeField] private SerializableDictionary<Vector2Int, ConnectMapInfo> moveEventList;
@@ -124,9 +135,17 @@ public class RoomEventInfo {
     public bool PassiveEventList(Vector2Int v, out int code) {
         code = 0;
         bool result = passiveEventList?.ContainsKey(v) ?? false;
-        if (result) code = passiveEventList[v];
+        if (result) code = passiveEventList[v]; 
                 
         return result;
+    }
+
+    public int MeetMonster() {
+        int code = 0;
+        if (1 - Random.Range(0, 1f) <= genProbability)
+            code = monsterList[Random.Range(0, monsterList.Count)];
+
+        return code;
     }
 }
 
