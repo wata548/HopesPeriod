@@ -9,6 +9,7 @@ using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.UIElements;
 using System.Reflection;
+using TMPro;
 
 public enum KeyTypes { 
 
@@ -99,6 +100,8 @@ public class InputManager : MonoBehaviour
 
 //==================================================| Field 
 
+    [SerializeField] private TMP_Text text;
+
     public static InputManager Instance { get; private set; } = null;
 
     public Dictionary<KeyTypes, KeyState> KeyMapper { get; private set; } = new();
@@ -173,7 +176,7 @@ public class InputManager : MonoBehaviour
             return;
         }
 
-        string path = $"Assets\\Resources\\KeyBindSetting\\{fileName}.json";
+        string path = Path.Combine(Application.streamingAssetsPath, $@"KeyBindSetting\{fileName}.json");
 
         JsonSerializerSettings settings = new JsonSerializerSettings {
             Formatting = Formatting.Indented,
@@ -195,13 +198,16 @@ public class InputManager : MonoBehaviour
     }
     public void KeySettingLoad(string fileName) {
 
+        
         var newSettig = DeserializeJson(fileName);
+        text.text = $"{newSettig.Count}";
         KeySettingLoad(newSettig);
     }
 
     public Dictionary<KeyTypes, KeyState> DeserializeJson(string fileName) {
 
-        string path = $"Assets\\Resources\\KeyBindSetting\\{fileName}.json";
+        
+        string path = Path.Combine(Application.streamingAssetsPath, $@"KeyBindSetting\{fileName}.json");
 
         JsonSerializerSettings settings = new JsonSerializerSettings {
             Converters = new List<JsonConverter> { new StringEnumConverter() }
