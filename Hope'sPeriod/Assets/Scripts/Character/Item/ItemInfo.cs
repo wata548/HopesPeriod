@@ -1,10 +1,6 @@
 using System;
 using SpreadInfo;
 using UnityEngine;
-using UnityEngine.AddressableAssets;
-using System.Threading.Tasks;
-using UnityEditor;
-using UnityEngine.ResourceManagement.AsyncOperations;
 
 public enum CodeType {
     Monster = 1,
@@ -15,7 +11,7 @@ public enum CodeType {
     Script = 6,
     SimpleInteract = 7,
     Map = 8,
-    SKill = 9
+    Skill = 9
 };
 
 public static class ItemInfo {
@@ -31,21 +27,8 @@ public static class ItemInfo {
     public static bool SetTable() {
 
         if (table is not null) return true;
-        string path = "ItemTable";
-
-        Addressables.LoadAssetAsync<ItemDBDataTable>(path).Completed += handle => 
-        {
-            if (handle.Status == AsyncOperationStatus.Succeeded) {
-                Debug.Log($"{path} Load succeed");
-                table = handle.Result;
-            }
-            else {
-                Debug.Log($"{path} Fail to load");
-            }
-        };
-        
-        if (table is not null) return true;
-        return false;
+        table = Resources.Load<ItemDBDataTable>(@"SpreadInfo/Generated/ItemDBDataTable");
+        return true;
     }
 
     #region Property

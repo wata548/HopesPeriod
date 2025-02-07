@@ -15,17 +15,16 @@ public class InventoryTest: MonoBehaviour {
         Inventory.AddItem(2003, 3);
         Inventory.AddItem(2004, 2);
         for(int i = 2006; i <= 2019; i++)
-            Inventory.AddItem(i, 2);
-        //TestSetSkill();
+            Inventory.AddItem(i, 2); 
+        TestSetSkill();
     }
 
     private void TestSetSkill() {
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 4; j++) {
                        
-                CharactersInfoBattle.Instance.CharacterInfo(i).SetSkill(j, 9000 + (i+1) * 100 + j + 1);
+                CharacterInfoInventory.Instance.Characterinfos[i].Info.SetSkill(j, 9000 + (i+1) * 100 + j + 1);
             }
-               
         } 
     }
 }

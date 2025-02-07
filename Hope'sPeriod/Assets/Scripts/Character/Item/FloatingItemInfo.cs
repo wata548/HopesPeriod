@@ -45,7 +45,7 @@ public class FloatingItemInfo : MonoBehaviour
             case CodeType.Item:
                 info.text = ItemInfo.Description(code);
                 break;
-            case CodeType.SKill:
+            case CodeType.Skill:
                 info.text = SkillInfo.Description(code);
                 break;
         }

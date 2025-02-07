@@ -9,7 +9,6 @@ using System.Net.Http;
 using Newtonsoft.Json;
 using System.Reflection;
 using SpreadInfo;
-using VInspector.Libs;
 using Object = System.Object;
 
 [CreateAssetMenu(menuName = "LoadData/Loader/MultiTypeSpreadSheet")]
@@ -55,6 +54,7 @@ public class SpreadSheetListLoader: RawListDataLoader {
     }
 };
 
+#if UNITY_EDITOR
 [CreateAssetMenu(menuName = "LoadData/MultiTypeLoader")]
 public class MultiTypeParser : DataParserBase {
 
@@ -113,7 +113,7 @@ public class MultiTypeParser : DataParserBase {
         Type dataType = Type.GetType($"{m_NameSpace}.{dataTypeName}");
         Type dataTableType = Type.GetType($"{m_NameSpace}.{dataTypeName}Table");
         
-        string directoryPath = $@"Assets\{m_NameSpace}\Generated\{dataTypeName}Table.asset";
+        string directoryPath = $@"Assets\Resources\{m_NameSpace}\Generated\{dataTypeName}Table.asset";
         UnityEngine.Object targetTable = AssetDatabase.LoadAssetAtPath<UnityEngine.Object>(directoryPath);
         
         if (targetTable is null) {
@@ -145,7 +145,7 @@ public class MultiTypeParser : DataParserBase {
 
                 if (rawData.Count == 0) break;
                 
-                if (rawData[0].IsNullOrEmpty()) break;
+                if (string.IsNullOrEmpty(rawData[0])) break;
                 
                 Object row = Activator.CreateInstance(dataType);
                 for (int i = 0; i < fields.Length; i++) {
@@ -169,7 +169,6 @@ public class MultiTypeParser : DataParserBase {
         
         clearFunc.Invoke(target, new object[] {});
         
-        
         foreach (var context in keyAndValue) {
 
             addFunc.Invoke(target, new object[] {context.Item1, context.Item2});
@@ -177,6 +176,7 @@ public class MultiTypeParser : DataParserBase {
         
         //save on disk
         EditorUtility.SetDirty(targetTable);
+        AssetDatabase.SaveAssets();
         Debug.Log("Load complete");
     }
 
@@ -192,3 +192,4 @@ public class MultiTypeParser : DataParserBase {
         return (IList)toList.Invoke(null, new Object[] { result });
     }
 }
+#endif

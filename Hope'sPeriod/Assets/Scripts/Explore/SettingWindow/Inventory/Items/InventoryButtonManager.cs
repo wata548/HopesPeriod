@@ -3,8 +3,6 @@ using System.Linq;
 using UnityEngine;
 using System.Collections.Generic;
 using TMPro;
-using Unity.VisualScripting;
-using VInspector.Libs;
 
 public class InventoryButtonManager : InteractButtonManager {
     

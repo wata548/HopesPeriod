@@ -147,7 +147,7 @@ public abstract class DataParserBase : ScriptableObject {
 
         //
         CodeDomProvider provider = CodeDomProvider.CreateProvider("CSharp");
-        string path = $@"Assets\{m_NameSpace}\DataTypes\{typeName}.cs";
+        string path = $@"Assets\Resources\{m_NameSpace}\DataTypes\{typeName}Table.cs";
         StreamWriter writer = new(path);
         provider.GenerateCodeFromCompileUnit(compileUnit, writer, new CodeGeneratorOptions());
         writer.Close();
@@ -177,11 +177,11 @@ public abstract class DataParserBase : ScriptableObject {
         Type dataType = Type.GetType($"{m_NameSpace}.{dataTypeName}");
         Type dataTableType = Type.GetType($"{m_NameSpace}.{dataTypeName}Table");
 
-        string directoryPath = $@"Assets\{m_NameSpace}\Generated\{dataTypeName}Table.asset";
+        string directoryPath = $@"Assets\Resources\{m_NameSpace}\Generated\{dataTypeName}Table.asset";
         UnityEngine.Object targetTable = AssetDatabase.LoadAssetAtPath<UnityEngine.Object>(directoryPath);
 
         if (targetTable is null) {
-            targetTable = CreateInstance(dataTableType);
+            targetTable = ScriptableObject.CreateInstance(dataTableType);
 
             AssetDatabase.CreateAsset(targetTable, directoryPath);
             AssetDatabase.Refresh();
@@ -222,8 +222,8 @@ public abstract class DataParserBase : ScriptableObject {
 
         //save on disk
         EditorUtility.SetDirty(targetTable);
+        AssetDatabase.SaveAssets();
     }
 
 }
-
 #endif

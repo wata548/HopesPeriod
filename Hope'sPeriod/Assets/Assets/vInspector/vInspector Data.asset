@@ -30,14 +30,6 @@ MonoBehaviour:
     isAsset: 1
     id: 1061705202
   - globalId:
-      globalObjectIdString: GlobalObjectId_V1-3-764159ca612f62c4883e696941bef31a-11400000-0
-    _typeString: SpreadInfo.ItemDBDataTable, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
-      PublicKeyToken=null
-    _obj: {fileID: 11400000, guid: 764159ca612f62c4883e696941bef31a, type: 2}
-    isSceneGameObject: 0
-    isAsset: 1
-    id: 1059840901
-  - globalId:
       globalObjectIdString: GlobalObjectId_V1-3-6800884a57ef1984babaebeb4c74d15f-11400000-0
     _typeString: MapEventInfo, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
@@ -46,10 +38,18 @@ MonoBehaviour:
     isAsset: 1
     id: 1065114122
   - globalId:
-      globalObjectIdString: GlobalObjectId_V1-3-9c694c24d4d0b2944b0df502fe95ba49-11400000-0
-    _typeString: SpreadInfo.SkillDBDataTable, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+      globalObjectIdString: GlobalObjectId_V1-3-0aaefbad49fb11341b88a4e8629f9e86-11400000-0
+    _typeString: SpreadInfo.ItemDBDataTable, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
-    _obj: {fileID: 11400000, guid: 9c694c24d4d0b2944b0df502fe95ba49, type: 2}
+    _obj: {fileID: 11400000, guid: 0aaefbad49fb11341b88a4e8629f9e86, type: 2}
     isSceneGameObject: 0
     isAsset: 1
-    id: 1064628992
+    id: 1059336031
+  - globalId:
+      globalObjectIdString: GlobalObjectId_V1-3-a447fbb40ec2d4c4fb55edc70a1982d7-11400000-0
+    _typeString: SpreadInfo.SkillDBDataTable, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
+    _obj: {fileID: 11400000, guid: a447fbb40ec2d4c4fb55edc70a1982d7, type: 2}
+    isSceneGameObject: 0
+    isAsset: 1
+    id: 1049672125

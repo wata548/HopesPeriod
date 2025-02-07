@@ -2,7 +2,6 @@ using System;
 using DG.Tweening;
 using TMPro;
 using UnityEngine;
-using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 public class GetItemWindow: MonoBehaviour {
@@ -13,7 +12,7 @@ public class GetItemWindow: MonoBehaviour {
     [SerializeField] private Image window;
     private Color windowColor;
     [SerializeField] private Image line;
-    [FormerlySerializedAs("item")] [SerializeField] private Image itemImage;
+    [SerializeField] private Image itemImage;
     [SerializeField] private WaveMovementButton cursor;
     [SerializeField] private TMP_Text itemName;
     [SerializeField] private TMP_Text itemDescription;
@@ -36,7 +35,7 @@ public class GetItemWindow: MonoBehaviour {
         itemDescription.color = Transparent;
 
         window.transform.localPosition = new(0, StartAppearPoint);
-        TilePlayerPhysics.SetInteractable(true);
+        TilePlayerPhysics.SetMovable(true);
     }
 
     public void TurnOn(GetItemInfo itemInfo) {
@@ -54,7 +53,7 @@ public class GetItemWindow: MonoBehaviour {
         itemName.text = ItemInfo.Name(itemInfo.Code) + $" ×{itemInfo.Count}".SetSize(0.75f);
         itemDescription.DOFade(1, AppearTime);
         itemDescription.text = ItemInfo.Description(itemInfo.Code);
-        TilePlayerPhysics.SetInteractable(false);
+        TilePlayerPhysics.SetMovable(false);
     }
     
     private void Awake() {

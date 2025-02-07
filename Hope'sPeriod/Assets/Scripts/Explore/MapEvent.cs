@@ -1,10 +1,6 @@
 using System;
-using System.Numerics;
-using SpreadInfo;
 using UnityEngine;
 using System.Collections.Generic;
-using Unity.VisualScripting;
-using UnityEditorInternal.Profiling.Memory.Experimental;
 using Random = UnityEngine.Random;
 
 [CreateAssetMenu(menuName = "MapEventInfo")]

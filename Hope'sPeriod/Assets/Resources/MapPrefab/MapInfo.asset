@@ -25,6 +25,8 @@ MonoBehaviour:
                 dataList:
                 - Key: {x: 14, y: 1}
                   Value: 2001
+              monsterList: e9030000
+              genProbability: 1
               itemList:
                 dataList: []
               passiveEventList:
@@ -97,6 +99,8 @@ MonoBehaviour:
               roomName: 
               autoEventList:
                 dataList: []
+              monsterList: 
+              genProbability: 0
               itemList:
                 dataList: []
               passiveEventList:
@@ -125,6 +129,8 @@ MonoBehaviour:
               roomName: 
               autoEventList:
                 dataList: []
+              monsterList: 
+              genProbability: 0
               itemList:
                 dataList:
                 - Key: {x: -5, y: 3}

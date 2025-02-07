@@ -1,9 +1,4 @@
-using System;
-using Unity.VisualScripting;
-using UnityEditor.AddressableAssets.Build.BuildPipelineTasks;
 using UnityEngine;
-using UnityEngine.UI;
-using VInspector.Libs;
 
 public class ItemListButtonManager: InteractButtonManager {
     

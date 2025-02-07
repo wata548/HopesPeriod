@@ -1,10 +1,6 @@
 using SpreadInfo;
 using UnityEngine;
-using UnityEngine.AddressableAssets;
-using System.Threading.Tasks;
-using UnityEngine.ResourceManagement.AsyncOperations;
 using System;
-using UnityEngine.TextCore.Text;
 
 public static class SkillInfo {
         
@@ -19,21 +15,8 @@ public static class SkillInfo {
     public static bool SetTable() {
     
         if (table is not null) return true;
-        string path = "SkillTable";
-    
-        Addressables.LoadAssetAsync<SkillDBDataTable>(path).Completed += handle => 
-        {
-            if (handle.Status == AsyncOperationStatus.Succeeded) {
-                Debug.Log($"{path} Load succeed");
-                table = handle.Result;
-            }
-            else {
-                Debug.Log($"{path} Fail to load");
-            }
-        };
-            
-        if (table is not null) return true;
-        return false;
+        table = Resources.Load<SkillDBDataTable>(@"SpreadInfo/Generated/SkillDBDataTable");
+        return true;
     }
 
     public static void UseSkill(int index, int code, int targetIndex) {

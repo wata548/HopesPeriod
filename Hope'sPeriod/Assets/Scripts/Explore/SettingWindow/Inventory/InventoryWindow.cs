@@ -32,19 +32,4 @@ public class InventoryWindow: MonoBehaviour {
     private void Start() {
         TurnOff();
     }
-
-    private bool s = false;
-    private void Update() {
-
-        if (Input.GetKeyDown(KeyCode.Y)) {
-            if (s) {
-                TurnOff();
-                s = !s;
-            }
-            else {
-                TurnOn();
-                s = !s;
-            }
-        }
-    }
 }

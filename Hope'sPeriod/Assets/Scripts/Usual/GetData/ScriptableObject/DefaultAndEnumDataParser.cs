@@ -22,7 +22,7 @@ public class DefaultAndEnumDataParser: DataParserBase {
     
     public void AddEnums() {
 
-        string path = $@"Assets\{m_NameSpace}\DataTypes\AddType.cs";
+        string path = $@"Assets\Resources\{m_NameSpace}\DataTypes\AddType.cs";
         if (string.IsNullOrEmpty(m_AddEnumsPath)) return;
         if (File.Exists(path)) {
             Debug.Log($"AddDataFile is already exist ({path})");

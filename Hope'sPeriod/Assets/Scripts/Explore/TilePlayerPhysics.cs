@@ -4,6 +4,7 @@ using System.Numerics;
 using DG.Tweening;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using Image = UnityEngine.UI.Image;
 using Vector2 = UnityEngine.Vector2;
 
@@ -13,13 +14,13 @@ public class TilePlayerPhysics : MonoBehaviour {
     [SerializeField] private Image mapMoveEffect;
     [SerializeField] private int code;
     private Vector2Int pos;
-    public static bool Interactable { get; private set; } = true;
+    public static bool Movable { get; private set; } = true;
     private static PlayerAnimation animation = null;
 
-    public static void SetInteractable(bool target) {
+    public static void SetMovable(bool target) {
 
         animation.SetOn(target);
-        Interactable = target;
+        Movable = target;
     }
     
     Rigidbody2D playerRigidbody = null;
@@ -65,7 +66,7 @@ public class TilePlayerPhysics : MonoBehaviour {
 
     void Update() {
 
-        if (!Interactable) {
+        if (!Movable) {
             playerRigidbody.linearVelocity = Vector2.zero;
             animation.SetSpeed(Vector2.zero);
             return;
@@ -81,15 +82,23 @@ public class TilePlayerPhysics : MonoBehaviour {
             if (newPos != pos) {
                 pos = newPos;
                 CheckEvent.CheckAutoEvent(ref pos, gameObject);
-                int monster = CheckEvent.MeetMonster();
-                if (monster != 0) {
-                    //TODO: Load Monster
-                    Debug.Log(monster);
-                }
+                MeetMonsterEvent(CheckEvent.MeetMonster());
             }
         }
 
         CheckEvent.CheckInteract(pos, animation.Dir);
 
+    }
+    
+    
+    private void MeetMonsterEvent(int code) {
+        if (code == 0)
+            return;
+
+        SetMovable(false);
+        Debug.Log($"Meet Monster {code}");
+        ShakeCamera.Instance.HShake(0.5f, 0.2f);
+        ScenceChangeEffecter.Instance.StartEffect()
+            .OnComplete(() => ScenceControler.Load("Battle"));
     }
 }

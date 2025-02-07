@@ -1,10 +1,13 @@
 using System;
 using UnityEngine;
+using System.Collections.Generic;
+using System.Linq;
 
 public class EachCharacterInfo: MonoBehaviour {
 
     private const int SkillCountLimit = 4;
     private readonly int[] skill = new int[SkillCountLimit];
+    public List<int> HaveSkills { get; private set; } = new();
     
     //==================================================| Properties  
 
@@ -16,7 +19,6 @@ public class EachCharacterInfo: MonoBehaviour {
     public bool Dead { get; private set; }
     
     //==================================================| Method 
-
     public void SetSkill(int index, int code) {
         if (index >= SkillCountLimit) {
             throw new OutOfRange(0, SkillCountLimit - 1, index);
@@ -24,7 +26,6 @@ public class EachCharacterInfo: MonoBehaviour {
 
         skill[index] = code;
     }
-    
     public int GetSkill(int index) {
 
         if (index >= SkillCountLimit) {
@@ -32,6 +33,14 @@ public class EachCharacterInfo: MonoBehaviour {
         }
 
         return skill[index];
+    }
+
+    public void LockOffSkill(int code) {
+        if (code.ToCodeType() == CodeType.Skill) {
+            if (!HaveSkills.Any(skill => skill == code)) {
+                HaveSkills.Add(code);
+            }
+        }
     }
     
     public bool UseableMp(float power) =>CurrentMp >= power;
