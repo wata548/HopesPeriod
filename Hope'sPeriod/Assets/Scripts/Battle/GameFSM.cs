@@ -25,6 +25,7 @@ public enum PlayerTurnState {
 
 public class GameFSM: MonoBehaviour {
 
+    [FormerlySerializedAs("shower")] [SerializeField] private SkillShower skillShower;
     private readonly Vector3 selectPlayerPos = new(0, 0, -1);
     private readonly Vector3 selectMapPos = new(0, 0.35f, -0.7f);
     private readonly Vector2 selectMapScale = new(13, 6);
@@ -89,8 +90,6 @@ public class GameFSM: MonoBehaviour {
             PlayerTurnStartSetting();
 
             PlayerTurnFSM();
-
-            PlayerTurnInput();
         } 
         else if (!end && State == GameState.Win) {
 
@@ -157,13 +156,6 @@ public class GameFSM: MonoBehaviour {
         }
     }
     
-    private void PlayerTurnInput() {
-        bool isChossingTarget = TargetButtonManager.Instance.Interactable;
-        bool isSelectState = PlayerTurnState == PlayerTurnState.SelectBehavior;
-        if (isChossingTarget || isSelectState) return;
-        
-    }
-
     public void DefaultPlayerTurnState() {
         
         ItemListButtonManager.Instance.TurnOff();
@@ -199,36 +191,49 @@ public class GameFSM: MonoBehaviour {
             needPlayerTurnUpdate = true;
         }
     }
-    public void ClearPlayerTurnState() {
-        bool isPlayerTurn = State == GameState.PlayerAttack;
-        if (!isPlayerTurn)
-            return;
-
-        PlayerTurnState = PlayerTurnState.SelectBehavior;
-    }
 
     public void SkipState() {
+
+        if (State == GameState.PlayerAttack) {
+            SkipStateProcess();
+            skillShower.Show().OnComplete(() => {
+                    
+                    //Moveable
+                    Player.Instance.Movement
+                        .SetApply<CompoInput>(DirectionInfo.All);
+                    
+                    //State set
+                    State = GameState.BeforeSkill;
+                    PlayerTurnState = PlayerTurnState.SelectBehavior;
+                    
+                    //express need to update
+                    playerTurnStart = false;
+                    needPlayerTurnUpdate = true;
+
+                    skillShower.UpdateRemainInfo();
+                }
+            );
+        }
+        else {
+            SkipStateProcess();
+        }
+    } 
+    
+    private void SkipStateProcess() {
         if (State == GameState.PlayerAttack) {
 
-            EndPlayerTurn();
-            needPlayerTurnUpdate = true;
+            Disinteractable();
         }
         else {
             State++;
         }
     }
 
-    private void EndPlayerTurn() {
-        
-        playerTurnStart = false;
-        Player.Instance.Movement
-            .SetApply<CompoInput>(DirectionInfo.All);
+    private void Disinteractable() {
         
         ItemListButtonManager.Instance.TurnOff();
         SkillButtonManager.Instance.TurnOff();
         CharactersInfoBattle.Instance.TurnUpdate();
          
-        State = GameState.BeforeSkill;
-        PlayerTurnState = PlayerTurnState.SelectBehavior;
     }
 }

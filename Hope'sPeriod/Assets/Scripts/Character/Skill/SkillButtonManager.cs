@@ -8,7 +8,6 @@ public class SkillButtonManager: InteractButtonManager {
     
     [SerializeField] private GameObject skillList;
     [SerializeField] private Cursor cursor;
-    [SerializeField] private SkillShower shower;
  
     //==================================================||Field 
 
@@ -35,13 +34,7 @@ public class SkillButtonManager: InteractButtonManager {
         Interactable = true;
         CharacterIndex = 0;
 
-        while (SelectList.Count < MaxCharacterCount) {
-            SelectList.Add((0,0));
-        }
-        
-        for (int i = 0; i < SelectList.Count; i++)
-            SelectList[i] = (0,0);
-        
+        Init();
         var characterControler = CharactersInfoBattle.Instance;
         int characterCount =  characterControler.CharacterCount;
         while (CharacterIndex < characterCount && characterControler.Dead(CharacterIndex)) {
@@ -50,6 +43,19 @@ public class SkillButtonManager: InteractButtonManager {
         }
        
         Refresh();
+    }
+
+    public void Init() { 
+        CharacterIndex = 0;
+        while (SelectList.Count < MaxCharacterCount) {
+            SelectList.Add((0,0));
+        }
+               
+        for (int i = 0; i < SelectList.Count; i++)
+            SelectList[i] = (0,0);
+               
+        var characterControler = CharactersInfoBattle.Instance;
+        int characterCount =  characterControler.CharacterCount; 
     }
 
     public void SkipSelect() {
@@ -72,11 +78,10 @@ public class SkillButtonManager: InteractButtonManager {
         }
         
         TurnOff();
-        shower.Show();
+        GameFSM.Instance.SkipState();
     } 
     
     public void NextSelect(int target = 0) {
-        Debug.Log(target);
 
         SelectList[CharacterIndex] = (Parse(buttons[Selecting]).Code, target);
         CharacterIndex++;
@@ -96,7 +101,7 @@ public class SkillButtonManager: InteractButtonManager {
         }
         
         TurnOff();
-        shower.Show();
+        GameFSM.Instance.SkipState();
     }
 
     public void PriviousSelect() {

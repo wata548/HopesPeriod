@@ -4856,7 +4856,6 @@ MonoBehaviour:
   - {fileID: 1244032050}
   skillList: {fileID: 1089076485}
   cursor: {fileID: 1344695633}
-  shower: {fileID: 182229658}
 --- !u!1 &1020562147
 GameObject:
   m_ObjectHideFlags: 0
@@ -8857,6 +8856,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab81bd92afb447be85e5199a96ee38f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  skillShower: {fileID: 182229658}
 --- !u!114 &1686858095
 MonoBehaviour:
   m_ObjectHideFlags: 0

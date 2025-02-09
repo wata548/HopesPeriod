@@ -16,7 +16,6 @@ public class PlayerAnimation: MonoBehaviour {
     private void Awake() {
 
         animator = GetComponent<Animator>();
-        Debug.Log(animator.GetFloat("Speed"));
         input = new CompoInput(gameObject);
     }
 

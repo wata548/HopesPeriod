@@ -20,13 +20,15 @@ public class SkillShower: MonoBehaviour {
     private TMP_Text nameText;
     private TMP_Text skillText;
     
+    private List<(int user, int code, int duraction)> remainDamage;
     private void Awake() {
 
         nameText = nameBox.GetComponentInChildren<TMP_Text>();
         skillText = skillBox.GetComponentInChildren<TMP_Text>();
+        remainDamage = new();
     }
 
-    public void Show() {
+    public Tween Show() {
 
         var list = SkillButtonManager.Instance.SelectList;
         List<(int user, int code, int target)> userAndCode = new();
@@ -38,20 +40,41 @@ public class SkillShower: MonoBehaviour {
         
         Sequence animation = DOTween.Sequence();
 
+        //Duraction Demage skill
         int index = 0;
+        for (int i = 0, size = remainDamage.Count; i < size; i++) {
+            var showAnimation = ShowAnimation();
+            showAnimation.OnStart(() => {
+                ShowSetting(remainDamage[index++], true);
+            });
+            animation.Append(showAnimation.DOBeforeWait(Interval));
+            remainDamage[i] = (remainDamage[i].user, remainDamage[i].code, remainDamage[i].duraction - 1);
+        }
+
+        //SimpleSkill
+        int index2 = 0;
         for (int i = 0; i < userAndCode.Count; i++) {
 
             var showAnimation = ShowAnimation();
             showAnimation.OnStart(() => {
                 
-                ShowSetting(userAndCode[index++]);
+                ShowSetting(userAndCode[index2++]);
             });
             animation.Append(showAnimation.DOBeforeWait(Interval));
+
+            int duraction = SkillInfo.AttackDuration(userAndCode[i].code) - 1;
+            if (duraction > 0) {
+                remainDamage.Add((userAndCode[i].user, userAndCode[i].code, duraction));
+            }
         }
 
-        animation.OnComplete(() => GameFSM.Instance.SkipState());
+        return animation;
     }
 
+    public void UpdateRemainInfo() {
+        remainDamage = remainDamage.Where(factor => factor.duraction > 0).ToList();
+    }
+    
     private Tween ShowAnimation() {
         Sequence showing = DOTween.Sequence();
         showing.Append(nameBox.DOBlink(AppearTime, StayTime, DisappearTime))
@@ -62,12 +85,12 @@ public class SkillShower: MonoBehaviour {
         return showing;
     }
 
-    private void ShowSetting((int user, int code, int target) value) {
+    private void ShowSetting((int user, int code, int target) value, bool justDamage = false) {
 
-        ShowSetting(value.user, value.code, value.target);
+        ShowSetting(value.user, value.code, value.target, justDamage);
     }
     
-    private void ShowSetting(int index, int code, int target) {
+    private void ShowSetting(int index, int code, int target, bool justDamage) {
 
         
         var characterInfo = CharactersInfoBattle.Instance.NameAndColor[index];
@@ -77,6 +100,11 @@ public class SkillShower: MonoBehaviour {
         nameBox.color = personal;
         
         skillText.text = SkillInfo.Name(code);
-        StartCoroutine(Wait.WaitAndDo(UseDelay, () => SkillInfo.UseSkill(index, code, target)));
+        Action skill;
+        if (justDamage)
+            skill = () => MonsterSlider.Instance.GetDamage(SkillInfo.Attack(code));
+        else
+            skill = () => SkillInfo.UseSkill(index, code, target);
+        StartCoroutine(Wait.WaitAndDo(UseDelay, skill));
     }
 }

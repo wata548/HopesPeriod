@@ -15,7 +15,7 @@ public class InventoryCharacterSlider: MonoBehaviour {
     [SerializeField] private TMP_Text shower;
     [SerializeField] private float intervalPercent;
     [SerializeField] private float charPercent;
-    private Vector2 handleScale;
+    private Vector2 handleScale = Vector2.zero;
     private Tween animation = null;
     private static readonly Color DeadColor = new(0.3f, 0.3f, 0.3f);
     
@@ -24,10 +24,6 @@ public class InventoryCharacterSlider: MonoBehaviour {
         handleScale = handle.rectTransform.localScale;
     }
     
-    private void Awake() {
-        Setting();
-    }
-
     public void SetColor(Color color) {
         handle.color = color;
         backGround.color = color;
@@ -48,6 +44,9 @@ public class InventoryCharacterSlider: MonoBehaviour {
     }
     
     public void SetState(float current, float maximum) {
+
+        if (handleScale == Vector2.zero)
+            Setting();
         
         float ratio = current / maximum;
         ShowerUpdate(current, maximum);
