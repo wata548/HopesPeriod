@@ -7,9 +7,10 @@ public enum GameState {
     
     BattleStart,
     BeforeSkill,
-    Skill,
+    MonsterSkill,
     AfterSkill,
     PlayerAttack,
+    Win
 }
 
 public enum PlayerTurnState {
@@ -36,6 +37,9 @@ public class GameFSM: MonoBehaviour {
             Instance = this;
         else if (Instance != this)
             Destroy(this);
+
+        State = GameState.BattleStart;
+        PlayerTurnState = PlayerTurnState.SelectBehavior;
     }
 
     public GameState State { get; private set; } = GameState.PlayerAttack;
@@ -46,9 +50,15 @@ public class GameFSM: MonoBehaviour {
     //when player turn if it's value is false, map and player position will be refreshed; 
     private bool playerTurnStart = false;
     private bool needPlayerTurnUpdate = true;
-    
+
+    private bool end = false;
     private void Update() {
 
+        if (MonsterSlider.Instance.Dead) {
+            
+            State = GameState.Win;
+        }
+            
         if (State == GameState.BattleStart) {
             SkipState();
         }
@@ -57,7 +67,7 @@ public class GameFSM: MonoBehaviour {
             SkipState();
         }
 
-        else if (State == GameState.Skill) {
+        else if (State == GameState.MonsterSkill) {
 
             if (!isPattern) {
                     
@@ -81,8 +91,13 @@ public class GameFSM: MonoBehaviour {
             PlayerTurnFSM();
 
             PlayerTurnInput();
+        } 
+        else if (!end && State == GameState.Win) {
+
+            ScenceControler.Load("PlayMap");
+            SkillButtonManager.Instance.TurnOff();
+            end = true;
         }
-            
     }
 
     private void PlayerTurnStartSetting() {
@@ -157,7 +172,10 @@ public class GameFSM: MonoBehaviour {
         needPlayerTurnUpdate = true;
         PlayerTurnState = PlayerTurnState.SelectBehavior;
     }
-    
+
+    public void Win() {
+        State = GameState.Win;
+    }
     public void SetPlayerTurnState(PlayerTurnState newState) {
 
         bool isPlayerTurn = State == GameState.PlayerAttack;

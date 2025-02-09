@@ -6,8 +6,7 @@ using UnityEngine.SceneManagement;
 
 public static class ScenceControler {
 
-    private static string targetScence;
-    private static Action callback = null;
+    public static string targetScence;
     public static void Load(string name) {
         targetScence = name;
         SceneManager.LoadSceneAsync("Loading");

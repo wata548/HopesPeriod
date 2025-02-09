@@ -12,8 +12,13 @@ public class SettingCategoryButton: InteractButtonUI {
 
     public override void Click() {
 
-        
+        Parse(Manager).Click(Index);
     }
 
-    
+    private SettingCattegoryButtonManager Parse(InteractButtonManager manager) {
+        if (manager is not SettingCattegoryButtonManager result)
+            throw new TypeMissMatched(manager.gameObject, typeof(SettingCattegoryButtonManager));
+
+        return result;
+    }
 }

@@ -15,6 +15,7 @@ public static class CheckEvent {
     private static MapEventInfo mapInfo = null;
     private static int mapCode;
     private static bool moveMap = false;
+    public static int MapCode => mapCode;
     
     public static void SetEffect(Image effect) => mapMoveEffect = effect;
     public static void SetMap(int code) {
@@ -24,7 +25,6 @@ public static class CheckEvent {
     }
 
     public static int MeetMonster() => mapInfo.MeetMonster(mapCode);
-    
     public static void CheckAutoEvent(ref Vector2Int pos, GameObject player) {
 
         if (mapInfo.ConnectInfo(mapCode, pos, out ConnectMapInfo connectMapInfo, out GameObject mapPrefab)) {

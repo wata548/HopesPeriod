@@ -149,9 +149,13 @@ public class EachCharacterInfoBattle : MonoBehaviour {
         else {
             
             ShowDamage(damage, shieldApply);
-            StartCoroutine(Wait.WaitAndDo(0.6f, () => SetColor(deadGray)));
+            DeadProcess();
             return false;
         }
+    }
+
+    private void DeadProcess() {
+        StartCoroutine(Wait.WaitAndDo(0.6f, () => SetColor(deadGray)));
     }
     
     public bool HealHp(float power, bool revive = false) {
@@ -225,7 +229,8 @@ public class EachCharacterInfoBattle : MonoBehaviour {
     }
     
     private void Start() {
-            
+
+        if (info.Dead) DeadProcess();
         hp.SetInfo(info.CurrentHp, info.MaximumHp);
         mp.SetInfo(info.CurrentMp, info.MaximumMp);
     }

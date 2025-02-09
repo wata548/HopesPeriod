@@ -100,8 +100,6 @@ public class InputManager : MonoBehaviour
 
 //==================================================| Field 
 
-    [SerializeField] private TMP_Text text;
-
     public static InputManager Instance { get; private set; } = null;
 
     public Dictionary<KeyTypes, KeyState> KeyMapper { get; private set; } = new();
@@ -200,7 +198,6 @@ public class InputManager : MonoBehaviour
 
         
         var newSettig = DeserializeJson(fileName);
-        text.text = $"{newSettig.Count}";
         KeySettingLoad(newSettig);
     }
 
@@ -234,6 +231,10 @@ public class InputManager : MonoBehaviour
         if(Instance == null) {
 
             Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else if(Instance != this) {
+            Destroy(this);
         }
 
         KeySettingLoad("Default");

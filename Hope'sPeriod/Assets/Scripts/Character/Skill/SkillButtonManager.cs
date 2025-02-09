@@ -129,6 +129,7 @@ public class SkillButtonManager: InteractButtonManager {
     }
     
     public void TurnOff() {
+        CharacterIndex = 0;
         skillList.SetActive(false);
         floating.TurnOff();
         Interactable = false;

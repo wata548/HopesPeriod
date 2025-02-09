@@ -14,6 +14,7 @@ public class SettingCattegoryButtonManager: InteractButtonManager {
     }
     
     private void TurnOnInventory() {
+        TurnOff();
         inventory.TurnOn();
     }
     private void TurnOnSkill() {

@@ -12,7 +12,6 @@ using Vector2 = UnityEngine.Vector2;
 public class TilePlayerPhysics : MonoBehaviour {
     
     [SerializeField] private Image mapMoveEffect;
-    [SerializeField] private int code;
     private Vector2Int pos;
     public static bool Movable { get; private set; } = true;
     private static PlayerAnimation animation = null;
@@ -42,7 +41,10 @@ public class TilePlayerPhysics : MonoBehaviour {
     private CompositeGroupBase movement;
     private void Awake() {
 
-        animation ??= GetComponent<PlayerAnimation>();
+        int code;
+        (code, pos) = SaveMapInfo.Load();
+        
+        animation = GetComponent<PlayerAnimation>();
         movement = new CompositeGroupBase(gameObject)
             .SetCollider(new SettingCollider(gameObject, ColliderSize, ColliderPos))
             .AddComposite(new CompoInput(null))
@@ -62,6 +64,7 @@ public class TilePlayerPhysics : MonoBehaviour {
         
         CheckEvent.SetEffect(mapMoveEffect);
         CheckEvent.SetMap(code);
+        transform.localPosition = pos.ToVec2();
     }
 
     void Update() {
@@ -95,6 +98,7 @@ public class TilePlayerPhysics : MonoBehaviour {
         if (code == 0)
             return;
 
+        SaveMapInfo.Save(CheckEvent.MapCode, pos);
         SetMovable(false);
         Debug.Log($"Meet Monster {code}");
         ShakeCamera.Instance.HShake(0.5f, 0.2f);

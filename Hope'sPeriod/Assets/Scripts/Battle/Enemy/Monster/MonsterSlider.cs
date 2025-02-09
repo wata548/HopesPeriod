@@ -32,7 +32,7 @@ public class MonsterSlider: Slider {
             CurrentHp = 0;
             Dead = true;
             Debug.Log("win");
-            //TODO: Reward system and wining event 
+            GameFSM.Instance.Win();
         }
         else {
             CurrentHp -= power;

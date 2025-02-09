@@ -77,7 +77,7 @@ public class ItemListButton : InteractButtonUI {
 
     private void Awake() {
 
-        if (floatingInfo is null && tempFloatingInfo is not null) {
+        if (tempFloatingInfo != null) {
             
             floatingInfo = tempFloatingInfo;
             ItemListButtonManager.SetFloating(tempFloatingInfo);

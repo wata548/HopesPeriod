@@ -5,88 +5,95 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using System.Numerics;
 using System.Reflection;
+using System.Diagnostics;
 
 #region Commands
+/// <summary>
+/// <para>It's subClass must sealed</para>
+/// <para>and compare subParameter and essentialParameter by setter's attribute</para>
+/// <para>if subParamter, It's Property's setter must be private</para>
+/// <para>if essentialParameter, It's Property's setter must be protected</para>
+/// </summary>
 public interface ICommand { }
 /// <summary>
 /// <para>Essential: Target(int), Route(List(Direction))</para>
 /// <para>Sub: Follow(bool)</para>
 /// ex) Move(Target = 5001 | Route = [Left, Right, Up, Down] | Follow = True);
 /// </summary>
-public class MoveScriptCommand : ICommand {
-    public readonly int Target;
-    public readonly List<ScriptCodeDirection> Route;
-    public readonly bool Follow = false;
+public sealed class MoveScriptCommand : ICommand {
+    public int Target { get; protected set; }
+    public List<ScriptCodeDirection> Route { get; protected set; }
+    public bool Follow { get; private set; } = false;
 }
 /// <summary>
 /// <para>Essential: Parcent(float)</para>
 /// ex) Zoom(0.5f);
 /// </summary>
-public class ZoomScriptCommand : ICommand {
-    public readonly float Percent;
+sealed public class ZoomScriptCommand : ICommand {
+    public float Percent { get; protected set; }
 }
 /// <summary>
 /// <para>Essential: ActorCode(int)</para>
 /// <para>Sub: Pos(Vector2), View(Direction)</para>
 /// ex) GeneratePerson( ActorCode = 5001 | Pos = {12f, 23f} | Direction = L);
 /// </summary>
-public class GeneratePersonScriptCommand : ICommand {
-    public readonly int ActorCode;
-    public readonly Vector2 Pos;
-    public readonly ScriptCodeDirection View;
+sealed public class GeneratePersonScriptCommand : ICommand {
+    public int ActorCode { get; protected set; }
+    public Vector2 Pos { get; private set; }
+    public ScriptCodeDirection View { get; private set;}
 }
 /// <summary>
 /// <para>Essential: Image(string)</para>
 /// ex) SetBackGround(Image = "Background01.png");
 /// </summary>
-public class SetBackgroundScriptCommand : ICommand {
-    public readonly string Image;
+sealed public class SetBackgroundScriptCommand : ICommand {
+    public string Image { get; protected set; }
 }
 /// <summary>
 /// <para>Sub: Pos(Vector2), Zoom(float)</para>
 /// ex) ControleBackground(Pos = {1f,2f} | Zoom = 0.5f);
 /// </summary>
-public class ControleBackgroundScriptCommand : ICommand {
-    public readonly Vector2 Pos;
-    public readonly float Zoom;
+sealed public class ControleBackgroundScriptCommand : ICommand {
+    public Vector2 Pos{ get; private set; }
+    public float Zoom { get; private set; }
 }
 /// <summary>
 /// ex) ClearBackground();
 /// </summary>
-public class ClearBackgroundScriptCommand : ICommand { }
+sealed public class ClearBackgroundScriptCommand : ICommand { }
 /// <summary>
 /// <para>Essential: MapCode(int)</para>
 /// <para>Sub: Pos(Vector2)</para>
 /// ex) SetMap(MapCode = 8001 | Pos = {1.2f, 4.3f});
 /// </summary>
-public class SetMapScriptCommand : ICommand {
-    public readonly int MapCode;
-    public readonly Vector2 Pos;
+sealed public class SetMapScriptCommand : ICommand {
+    public int MapCode{ get; protected set; }
+    public Vector2 Pos { get; private set; }
 }
 /// <summary>
 /// <para>Essential: Pos(Vector2)</para>
 /// ex) SetCameraPos(Pos = {12f, 34f});
 /// </summary>
-public class SetCameraPosScriptCommand : ICommand {
-    public readonly Vector2 Pos;
+sealed public class SetCameraPosScriptCommand : ICommand {
+    public Vector2 Pos { get; protected set; }
 }
 /// <summary>
 /// <para>Essential: Factor(List(string))</para>
 /// <para>Sub: title(string)</para>
 /// ex) MakeSelect(Factor = ["One", "Two", "Three"] | Title = "Numbers");
 /// </summary> 
-public class MakeSelectScriptCommand : ICommand {
-    public readonly List<string> Factor;
-    public readonly string Title;
+sealed public class MakeSelectScriptCommand : ICommand {
+    public List<string> Factor { get; protected set; }
+    public string Title { get; private set; }
 }
 /// <summary>
 /// <para>Essential: Target(int)</para>
 /// <para>Sub: Pos(Vector2)</para>
 /// ex) Focus(Target = 5001 | Pos = {12f, 34f});
 /// </summary> 
-public class FocusScriptCommand : ICommand {
-    public readonly int Target;
-    public readonly Vector2 Pos;
+sealed public class FocusScriptCommand : ICommand {
+    public int Target { get; protected set; }
+    public Vector2 Pos { get; private set; }
 }
 #endregion
 
@@ -142,37 +149,66 @@ public static class ScriptCode {
         { typeof(List<>), @"^\s*\[(.*)\]"},
         { typeof(Vector2), @"^\s*\{(.*)\}"},
     };
-    private static Dictionary<ScriptCodeKeyword, Parameter[]?> essentialParam = new() {
-        {ScriptCodeKeyword.Move, new Parameter[]{new("Target", typeof(int)), new("Route", typeof(List<ScriptCodeDirection>))} },
-        {ScriptCodeKeyword.Zoom, new Parameter[]{new("Percent", typeof(float))} },
-        {ScriptCodeKeyword.GeneratePerson, new Parameter[]{new("ActorCode", typeof(int))} },
-        {ScriptCodeKeyword.SetBackground, new Parameter[]{new("Iamge", typeof(string))} },
-        {ScriptCodeKeyword.ControleBackground, null },
-        {ScriptCodeKeyword.ClearBackground, null },
-        {ScriptCodeKeyword.SetMap, new Parameter[]{new("MapCode", typeof(int))} },
-        {ScriptCodeKeyword.SetCameraPos, new Parameter[]{new("Pos", typeof(Vector2))} },
-        {ScriptCodeKeyword.MakeSelect, new Parameter[]{new("Factor", typeof(List<string>))} },
-        {ScriptCodeKeyword.Focus, new Parameter[]{new("Target", typeof(int))}}
-    };
-    private static Dictionary<ScriptCodeKeyword, Parameter[]?> subParam = new() {
-        {ScriptCodeKeyword.Move, new Parameter[]{new("Follow", typeof(bool))} },
-        {ScriptCodeKeyword.Zoom, null },
-        {ScriptCodeKeyword.GeneratePerson, new Parameter[]{new("Pos", typeof(Vector2)),new("View", typeof(ScriptCodeDirection))} },
-        {ScriptCodeKeyword.SetBackground, null },
-        {ScriptCodeKeyword.ControleBackground, new Parameter[]{new("Pos", typeof(Vector2)), new("Zoom", typeof(float))} },
-        {ScriptCodeKeyword.ClearBackground, null },
-        {ScriptCodeKeyword.SetMap, new Parameter[]{new("Pos", typeof(Vector2))} },
-        {ScriptCodeKeyword.SetCameraPos, null },
-        {ScriptCodeKeyword.MakeSelect, new Parameter[]{new("Title", typeof(string))} },
-        {ScriptCodeKeyword.Focus, new Parameter[]{new("Pos", typeof(Vector2))}}
-    };
+    private static Dictionary<ScriptCodeKeyword, List<Parameter>?> essentialParam = new();
+    private static Dictionary<ScriptCodeKeyword, List<Parameter>?> subParam = new();
     private static List<string> keywords = Enum.GetValues(typeof(ScriptCodeKeyword))
             .Cast<ScriptCodeKeyword>()
             .Select(factor => factor.ToString())
             .ToList();
     private static string keywordPattern = $@"^\s*({string.Join("|", keywords)})\s*\((.*?)\)";
     private static string parameterPattern = @"^\s*(\S*)\s*=\s*(.*)";
+
+    private static bool isSetting = false;
+
+    private static void SetUp() {
+        if (isSetting)
+            return;
+
+        isSetting = true;
+        var commands = Enum.GetValues(typeof(ScriptCodeKeyword));
+        
+        foreach (ScriptCodeKeyword command in commands) {
+
+            Type type = command.ToClass();
+            var parameters = type.GetProperties(BindingFlags.Instance | BindingFlags.Public);
+
+            bool haveEssential = false;
+            bool haveSub = false;
+
+            foreach (var parameter in parameters) {
+
+                if (parameter.SetMethod is null) {
+                    throw new NullReferenceException($"please make set({parameter.Name})");
+                }
+                if(parameter.SetMethod.IsFamily) {
+                    if (!haveEssential) {
+                        haveEssential = true;
+                        essentialParam.Add(command, new ());
+                    }
+
+                    essentialParam[command].Add(new(parameter.Name, parameter.PropertyType));
+                }
+                else if (parameter.SetMethod.IsPrivate) {
+                    if (!haveSub) {
+                        haveSub = true;
+                        subParam.Add(command, new());
+                    }
+                    subParam[command].Add(new(parameter.Name, parameter.PropertyType));
+                }
+                else {
+                    throw new Exception($"Setter({parameter.Name})'s setter must be protected or private. read ICommand's summary");
+                }
+
+            }
+            if (!haveEssential)
+                essentialParam.Add(command, null);
+            else if(!haveSub)
+                subParam.Add(command, null);
+        }
+    }
     public static List<(ScriptCodeKeyword, ICommand)> Interpret(string input) {
+
+        SetUp();
 
         var lines = input.Split(';');
         lines = lines.Take(lines.Length - 1).ToArray();
@@ -180,12 +216,12 @@ public static class ScriptCode {
         List<(ScriptCodeKeyword, ICommand)> result = new();
         foreach (var line in lines) {
             var rawDatas = InterpretOneLine(line, out var commandType);
-            Type command = Type.GetType(commandType.ToString() + "ScriptCommand")!;
+            Type command = commandType.ToClass();
             object data = Activator.CreateInstance(command);
 
             foreach (var rawData in rawDatas) {
 
-                var targetParam = command.GetField(rawData.param.Name, BindingFlags.Public | BindingFlags.Instance);
+                var targetParam = command.GetProperty(rawData.param.Name, BindingFlags.Public | BindingFlags.Instance);
                 //List casting
                 if (rawData.param.Type.IsGenericType) {
                     var cast = typeof(Enumerable)
@@ -342,4 +378,5 @@ public static class ScriptCode {
         var parse = type.GetMethod("Parse", new[] { typeof(string) });
         return parse.Invoke(null, new[] { context });
     }
+    private static Type ToClass(this ScriptCodeKeyword keyword) => Type.GetType(keyword.ToString() + "ScriptCommand") ?? throw new Exception($"Make {keyword.ToString()}'s class");
 }

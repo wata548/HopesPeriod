@@ -64,8 +64,8 @@ public class SkillButton: InteractButtonUI {
     
 
     private void Awake() {
-        
-        if (floatingInfo is null && tempFloatingInfo is not null) {
+
+        if (tempFloatingInfo is not null) {
             
             floatingInfo = tempFloatingInfo;
             SkillButtonManager.SetFloating(tempFloatingInfo);

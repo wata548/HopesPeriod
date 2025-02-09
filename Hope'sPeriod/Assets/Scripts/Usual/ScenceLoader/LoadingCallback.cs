@@ -16,6 +16,7 @@ public class LoadingCallback: MonoBehaviour {
         
         int index= Random.Range(0, tips.Count);
         tipShower.text = "Tip: " + tips[index];
+        Debug.Log(ScenceControler.targetScence);
         StartCoroutine(ScenceControler.LoadScenceAsync(ProgressUpdate));
     }
 
