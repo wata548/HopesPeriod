@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using SpreadInfo;
 using UnityEngine;
 
@@ -131,7 +132,7 @@ public static class ItemInfo {
    
         ItemDBData item = GetData(code);
            
-        foreach (var character in CharactersInfoBattle.Instance.CharacterInfos) {
+        foreach (var character in CharactersInfoBattle.Instance.CharacterInfos.Where(character => character.Exist)) {
             if(item.HealsHP != 0) character.HealHp(item.HealsHP, item.ReviveAll);
             if(item.HealsMP != 0 && !character.Dead) character.HealMp(item.HealsMP);
             

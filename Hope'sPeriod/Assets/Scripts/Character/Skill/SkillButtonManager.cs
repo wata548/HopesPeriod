@@ -34,7 +34,7 @@ public class SkillButtonManager: InteractButtonManager {
         Interactable = true;
         CharacterIndex = 0;
 
-        Init();
+        SkillSelectInit();
         var characterControler = CharactersInfoBattle.Instance;
         int characterCount =  characterControler.CharacterCount;
         while (CharacterIndex < characterCount && characterControler.Dead(CharacterIndex)) {
@@ -45,7 +45,7 @@ public class SkillButtonManager: InteractButtonManager {
         Refresh();
     }
 
-    public void Init() { 
+    public void SkillSelectInit() { 
         CharacterIndex = 0;
         while (SelectList.Count < MaxCharacterCount) {
             SelectList.Add((0,0));

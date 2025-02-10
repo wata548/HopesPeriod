@@ -12,6 +12,9 @@ public class InventoryWindow: MonoBehaviour {
     public void TurnOn() {
 
         inventory.SetActive(true);
+        foreach (var info in CharacterInfoInventory.Instance.Characterinfos) {
+            info.ShowUpdate();
+        }
         
         category.TurnOn();
         itemButton.TurnOn();

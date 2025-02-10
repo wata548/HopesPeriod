@@ -71,7 +71,7 @@ public class CharactersInfoBattle: MonoBehaviour {
     
     public void ShieldOn(DefenceType type = DefenceType.Time, float power = 1.3f) {
 
-        foreach (var character in characterInfos) {
+        foreach (var character in characterInfos.Where(character => character.Exist)) {
 
             character.SetShield(type, power);
         }
@@ -103,7 +103,7 @@ public class CharactersInfoBattle: MonoBehaviour {
         var useAttrackSkillplayer =
             characterInfos
                 .Take(CharacterCount)
-                .Where(character => !character.Dead)
+                .Where(character => !character.Dead && character.Exist)
                 .OrderByDescending(character => character.Attract.Power)
                 .First();
 
@@ -131,7 +131,7 @@ public class CharactersInfoBattle: MonoBehaviour {
 
         // make array didn't contain who used skill
         var checkCharacters = characterInfos
-            .Where(factor => factor != useAttrackSkillplayer && !factor.Dead)
+            .Where(factor => factor != useAttrackSkillplayer && !factor.Dead && factor.Exist)
             .ToArray();
         
         // sum attract
@@ -148,7 +148,9 @@ public class CharactersInfoBattle: MonoBehaviour {
     }
     private bool IsGameOver() {
 
-        bool gameOver = characterInfos.All(character => character.Dead);
+        bool gameOver = characterInfos
+            .Where(character => character.Exist)
+            .All(character => character.Dead);
         if (gameOver) {
             StartCoroutine(Wait.WaitAndDo(1, () => SceneManager.LoadScene("GameOver")));
         }
@@ -159,5 +161,10 @@ public class CharactersInfoBattle: MonoBehaviour {
     private void Awake() {
     
         SetSingleton();
+    }
+
+    private void Start() {
+
+        CharacterCount = characterInfos.Count(info => info.Exist);
     }
 }

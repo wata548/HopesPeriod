@@ -113,7 +113,7 @@ public class SaveCharacterInfo {
         Name = Regex.Match(playerInfo.gameObject.name, @"(.*)Info").Groups[1].Value;
         Exist = playerInfo.Exist;
         Dead = playerInfo.Dead;
-        Skill = playerInfo.Skill;
+        Skill = playerInfo.Skill.ToArray();
         HaveSkill = playerInfo.Skill.ToArray();
         MaximumHp = playerInfo.MaximumHp;
         CurrentHp = playerInfo.CurrentHp;
@@ -124,9 +124,36 @@ public class SaveCharacterInfo {
 
 public class SaveData {
 
-    public static SaveFormat Load(string name) {
-        string data = File.ReadAllText(Application.streamingAssetsPath + $@"/SaveFile/{name}.json"); 
-        return JsonConvert.DeserializeObject<SaveFormat>(data);
+    public static void Load(string name) {
+        string rawData = File.ReadAllText(Application.streamingAssetsPath + $@"/SaveFile/{name}.json");
+        var data = JsonConvert.DeserializeObject<SaveFormat>(rawData);
+        
+        foreach (var character in data.SaveCharacterInfo) {
+
+            var before = GameObject.Find($"{character.Name}Info");
+            if(before is not null) 
+                GameObject.Destroy(before);
+            
+            var target = new GameObject();
+            target.name = $"{character.Name}Info";
+            var info = target.AddComponent<EachCharacterInfo>();
+            info.Load(character);
+        }
+
+        foreach (var item in data.SaveItem) {
+            Inventory.AddItem(item.Code, item.Amount);
+        }
+
+        foreach (var findItem in data.SaveFindItem) {
+            FindEventInfo.FindItem(findItem.Code, new(findItem.X, findItem.Y));
+        }
+        foreach (var findEvent in data.SaveFindItem) {
+            FindEventInfo.FindItem(findEvent.Code, new(findEvent.X, findEvent.Y));
+        }
+
+        foreach (var monster in data.SaveMonster) {
+            MonsterInfo.Load(monster.Code, monster.KillCount);
+        }
     }
     
     public static void Save(EachCharacterInfo[] playerInfos, int mapCode, Vector2Int pos, int saveSlot) {

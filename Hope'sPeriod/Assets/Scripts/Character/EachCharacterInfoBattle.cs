@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
+using System.Text.RegularExpressions;
 using SpreadInfo;
 using TMPro;
 
@@ -29,10 +30,12 @@ public class EachCharacterInfoBattle : MonoBehaviour {
     public ShieldInfo Shield { get; private set; } = new (DefenceType.None, 0, false);
     public AttractInfo Attract { get; private set; } = new();
     public bool Dead => info.Dead;
+    public bool Exist => info.Exist;
     public float MaximumHp => info.MaximumHp;
     public float CurrentHp => info.CurrentHp;
     public float MaximumMp => info.MaximumMp;
     public float CurrentMp => info.CurrentMp;
+    //public string Name => Regex.Match(info.gameObject.name, @"(.*)Info").Groups[1].Value;
     private Color originColor;
         
     public void SetAttract(int code) {
@@ -226,8 +229,10 @@ public class EachCharacterInfoBattle : MonoBehaviour {
         originColor = profile.color;
         info = GameObject.Find($"{targetName}Info")
             .GetComponent<EachCharacterInfo>();
+
+        if (!info.Exist) gameObject.SetActive(false);
     }
-    
+
     private void Start() {
 
         if (info.Dead) DeadProcess();

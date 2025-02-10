@@ -10,5 +10,9 @@ public static class MonsterInfo {
         }
     }
 
+    public static void Load(int code, int count) {
+        Monsters.Add(code, count);
+    }
+
 
 }

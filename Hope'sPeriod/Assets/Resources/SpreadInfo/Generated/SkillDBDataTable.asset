@@ -146,8 +146,8 @@ MonoBehaviour:
         m_Code: 9304
         m_Name: "\uD30C\uB791"
         m_Description: "\uC2DC\uC6D0\uD55C \uD30C\uB3C4 \uC18C\uB9AC\uAC00 \uB4E4\uB824\uC628\uB2E4."
-        m_UseHP: 0
-        m_UseMP: 20
+        m_UseHP: 20
+        m_UseMP: 0
         m_ATK: 0
         m_ATKCon: 0
         m_SkillItem: 1

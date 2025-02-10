@@ -92,7 +92,6 @@ public class SkillShower: MonoBehaviour {
     
     private void ShowSetting(int index, int code, int target, bool justDamage) {
 
-        
         var characterInfo = CharactersInfoBattle.Instance.NameAndColor[index];
         nameText.text = characterInfo.Name;
         var personal = characterInfo.Personal;

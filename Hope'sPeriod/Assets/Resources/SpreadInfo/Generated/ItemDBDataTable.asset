@@ -14,246 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_DataTable:
     dataList:
-    - Key: 2013
-      Value:
-        m_Code: 2013
-        m_Name: empty
-        m_Description: Do nothing, It just a Default format
-        m_HealHP: 0
-        m_HealsHP: 0
-        m_Revive: 0
-        m_ReviveAll: 0
-        m_HealMP: 0
-        m_HealsMP: 0
-        m_DEFPower: 0
-        m_DEFType: 0
-        m_DEFReflect: 0
-        m_ATR: 0
-        m_ATRCon: 0
-        m_Effect: 0
-        m_EffectPower: 0
-        m_EffectCon: 0
-        m_EffectTarget: 3
-    - Key: 2014
-      Value:
-        m_Code: 2014
-        m_Name: empty
-        m_Description: Do nothing, It just a Default format
-        m_HealHP: 0
-        m_HealsHP: 0
-        m_Revive: 0
-        m_ReviveAll: 0
-        m_HealMP: 0
-        m_HealsMP: 0
-        m_DEFPower: 0
-        m_DEFType: 0
-        m_DEFReflect: 0
-        m_ATR: 0
-        m_ATRCon: 0
-        m_Effect: 0
-        m_EffectPower: 0
-        m_EffectCon: 0
-        m_EffectTarget: 3
-    - Key: 2015
-      Value:
-        m_Code: 2015
-        m_Name: empty
-        m_Description: Do nothing, It just a Default format
-        m_HealHP: 0
-        m_HealsHP: 0
-        m_Revive: 0
-        m_ReviveAll: 0
-        m_HealMP: 0
-        m_HealsMP: 0
-        m_DEFPower: 0
-        m_DEFType: 0
-        m_DEFReflect: 0
-        m_ATR: 0
-        m_ATRCon: 0
-        m_Effect: 0
-        m_EffectPower: 0
-        m_EffectCon: 0
-        m_EffectTarget: 3
-    - Key: 2016
-      Value:
-        m_Code: 2016
-        m_Name: empty
-        m_Description: Do nothing, It just a Default format
-        m_HealHP: 0
-        m_HealsHP: 0
-        m_Revive: 0
-        m_ReviveAll: 0
-        m_HealMP: 0
-        m_HealsMP: 0
-        m_DEFPower: 0
-        m_DEFType: 0
-        m_DEFReflect: 0
-        m_ATR: 0
-        m_ATRCon: 0
-        m_Effect: 0
-        m_EffectPower: 0
-        m_EffectCon: 0
-        m_EffectTarget: 3
-    - Key: 2017
-      Value:
-        m_Code: 2017
-        m_Name: empty
-        m_Description: Do nothing, It just a Default format
-        m_HealHP: 0
-        m_HealsHP: 0
-        m_Revive: 0
-        m_ReviveAll: 0
-        m_HealMP: 0
-        m_HealsMP: 0
-        m_DEFPower: 0
-        m_DEFType: 0
-        m_DEFReflect: 0
-        m_ATR: 0
-        m_ATRCon: 0
-        m_Effect: 0
-        m_EffectPower: 0
-        m_EffectCon: 0
-        m_EffectTarget: 3
-    - Key: 2018
-      Value:
-        m_Code: 2018
-        m_Name: empty
-        m_Description: Do nothing, It just a Default format
-        m_HealHP: 0
-        m_HealsHP: 0
-        m_Revive: 0
-        m_ReviveAll: 0
-        m_HealMP: 0
-        m_HealsMP: 0
-        m_DEFPower: 0
-        m_DEFType: 0
-        m_DEFReflect: 0
-        m_ATR: 0
-        m_ATRCon: 0
-        m_Effect: 0
-        m_EffectPower: 0
-        m_EffectCon: 0
-        m_EffectTarget: 3
-    - Key: 2019
-      Value:
-        m_Code: 2019
-        m_Name: empty
-        m_Description: Do nothing, It just a Default format
-        m_HealHP: 0
-        m_HealsHP: 0
-        m_Revive: 0
-        m_ReviveAll: 0
-        m_HealMP: 0
-        m_HealsMP: 0
-        m_DEFPower: 0
-        m_DEFType: 0
-        m_DEFReflect: 0
-        m_ATR: 0
-        m_ATRCon: 0
-        m_Effect: 0
-        m_EffectPower: 0
-        m_EffectCon: 0
-        m_EffectTarget: 3
-    - Key: 2012
-      Value:
-        m_Code: 2012
-        m_Name: empty
-        m_Description: Do nothing, It just a Default format
-        m_HealHP: 0
-        m_HealsHP: 0
-        m_Revive: 0
-        m_ReviveAll: 0
-        m_HealMP: 0
-        m_HealsMP: 0
-        m_DEFPower: 0
-        m_DEFType: 0
-        m_DEFReflect: 0
-        m_ATR: 0
-        m_ATRCon: 0
-        m_Effect: 0
-        m_EffectPower: 0
-        m_EffectCon: 0
-        m_EffectTarget: 3
-    - Key: 2008
-      Value:
-        m_Code: 2008
-        m_Name: empty
-        m_Description: Do nothing, It just a Default format
-        m_HealHP: 0
-        m_HealsHP: 0
-        m_Revive: 0
-        m_ReviveAll: 0
-        m_HealMP: 0
-        m_HealsMP: 0
-        m_DEFPower: 0
-        m_DEFType: 0
-        m_DEFReflect: 0
-        m_ATR: 0
-        m_ATRCon: 0
-        m_Effect: 0
-        m_EffectPower: 0
-        m_EffectCon: 0
-        m_EffectTarget: 3
-    - Key: 2009
-      Value:
-        m_Code: 2009
-        m_Name: empty
-        m_Description: Do nothing, It just a Default format
-        m_HealHP: 0
-        m_HealsHP: 0
-        m_Revive: 0
-        m_ReviveAll: 0
-        m_HealMP: 0
-        m_HealsMP: 0
-        m_DEFPower: 0
-        m_DEFType: 0
-        m_DEFReflect: 0
-        m_ATR: 0
-        m_ATRCon: 0
-        m_Effect: 0
-        m_EffectPower: 0
-        m_EffectCon: 0
-        m_EffectTarget: 3
-    - Key: 2010
-      Value:
-        m_Code: 2010
-        m_Name: empty
-        m_Description: Do nothing, It just a Default format
-        m_HealHP: 0
-        m_HealsHP: 0
-        m_Revive: 0
-        m_ReviveAll: 0
-        m_HealMP: 0
-        m_HealsMP: 0
-        m_DEFPower: 0
-        m_DEFType: 0
-        m_DEFReflect: 0
-        m_ATR: 0
-        m_ATRCon: 0
-        m_Effect: 0
-        m_EffectPower: 0
-        m_EffectCon: 0
-        m_EffectTarget: 3
-    - Key: 2011
-      Value:
-        m_Code: 2011
-        m_Name: empty
-        m_Description: Do nothing, It just a Default format
-        m_HealHP: 0
-        m_HealsHP: 0
-        m_Revive: 0
-        m_ReviveAll: 0
-        m_HealMP: 0
-        m_HealsMP: 0
-        m_DEFPower: 0
-        m_DEFType: 0
-        m_DEFReflect: 0
-        m_ATR: 0
-        m_ATRCon: 0
-        m_Effect: 0
-        m_EffectPower: 0
-        m_EffectCon: 0
-        m_EffectTarget: 3
     - Key: 2000
       Value:
         m_Code: 2000
@@ -404,29 +164,6 @@ MonoBehaviour:
         m_DEFReflect: 0
         m_ATR: 0
         m_ATRCon: 0
-        m_Effect: 0
-        m_EffectPower: 0
-        m_EffectCon: 0
-        m_EffectTarget: 3
-    - Key: 2007
-      Value:
-        m_Code: 2007
-        m_Name: PPO-003
-        m_Description: "\uC5F0\uBD84\uD64D\uC0C9\uC758 \uC57D. \n\uC5B4\uCA50\uC9C0
-          \uB538\uAE30\uB9DB\uC774 \uB0A0 \uAC83 \uAC19\uB2E4. \n\uD558\uC9C0\uB9CC
-          \uB9C8\uC2DC\uB294 \uAC74 \uC5ED\uC2DC \uBD88\uC548\uD558\uB2C8\uAE4C...
-          \uC0AC\uC6A9 \uBD88\uAC00."
-        m_HealHP: 0
-        m_HealsHP: 0
-        m_Revive: 0
-        m_ReviveAll: 0
-        m_HealMP: 0
-        m_HealsMP: 0
-        m_DEFPower: 0
-        m_DEFType: 0
-        m_DEFReflect: 0
-        m_ATR: 0
-        m_ATRCon: 3
         m_Effect: 0
         m_EffectPower: 0
         m_EffectCon: 0
@@ -618,6 +355,29 @@ MonoBehaviour:
         m_DEFReflect: 0
         m_ATR: 0
         m_ATRCon: 0
+        m_Effect: 0
+        m_EffectPower: 0
+        m_EffectCon: 0
+        m_EffectTarget: 3
+    - Key: 4004
+      Value:
+        m_Code: 4004
+        m_Name: PPO-003
+        m_Description: "\uC5F0\uBD84\uD64D\uC0C9\uC758 \uC57D. \n\uC5B4\uCA50\uC9C0
+          \uB538\uAE30\uB9DB\uC774 \uB0A0 \uAC83 \uAC19\uB2E4. \n\uD558\uC9C0\uB9CC
+          \uB9C8\uC2DC\uB294 \uAC74 \uC5ED\uC2DC \uBD88\uC548\uD558\uB2C8\uAE4C...
+          \uC0AC\uC6A9 \uBD88\uAC00."
+        m_HealHP: 0
+        m_HealsHP: 0
+        m_Revive: 0
+        m_ReviveAll: 0
+        m_HealMP: 0
+        m_HealsMP: 0
+        m_DEFPower: 0
+        m_DEFType: 0
+        m_DEFReflect: 0
+        m_ATR: 0
+        m_ATRCon: 3
         m_Effect: 0
         m_EffectPower: 0
         m_EffectCon: 0

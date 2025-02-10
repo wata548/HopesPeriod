@@ -6,7 +6,7 @@ using System.Linq;
 public class EachCharacterInfo: MonoBehaviour {
 
     private const int SkillCountLimit = 4;
-    private readonly int[] skill = new int[SkillCountLimit];
+    private List<int> skill;
     public List<int> HaveSkills { get; private set; } = new();
     
     //==================================================| Properties  
@@ -35,7 +35,7 @@ public class EachCharacterInfo: MonoBehaviour {
         return skill[index];
     }
 
-    public int[] Skill => skill;
+    public List<int> Skill => skill;
 
     public void LockOffSkill(int code) {
         if (code.ToCodeType() == CodeType.Skill) {
@@ -59,8 +59,8 @@ public class EachCharacterInfo: MonoBehaviour {
     public bool HealMp(float power) {
             
         CurrentMp += power;
-        if (CurrentMp > MaximumHp)
-            CurrentMp = MaximumHp;
+        if (CurrentMp > MaximumMp)
+            CurrentMp = MaximumMp;
                         
         return true;
     }
@@ -112,6 +112,22 @@ public class EachCharacterInfo: MonoBehaviour {
         return true;
     }
 
+    public void Load(SaveCharacterInfo info) {
+        Exist = info.Exist;
+        Dead = info.Dead;
+        skill = info.Skill.ToList();
+        while (skill.Count < SkillCountLimit) {
+            skill.Add(0);
+        }
+        HaveSkills = info.HaveSkill.ToList();
+
+        MaximumHp = info.MaximumHp;
+        CurrentHp = info.CurrentHp;
+        MaximumMp = info.MaximumMp;
+        CurrentMp = info.CurrentMp;
+    }
+    
+    
     private void Awake() {
         DontDestroyOnLoad(gameObject);
     }
