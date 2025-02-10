@@ -1,0 +1,92 @@
+{
+  "SavePlayerInfo": [
+    {
+      "Exist": true,
+      "Dead": false,
+      "Name": "Cavil",
+      "Skill": [
+        9101,
+        9102
+      ],
+      "HaveSkill": [
+        9101,
+        9102
+      ],
+      "MaximumHp": 100.0,
+      "CurrentHp": 100.0,
+      "MaximumMp": 130.0,
+      "CurrentMp": 130.0
+    },
+    {
+      "Exist": false,
+      "Dead": false,
+      "Name": "Heail",
+      "Skill": [
+        9201,
+        9202
+      ],
+      "HaveSkill": [
+        9201,
+        9202
+      ],
+      "MaximumHp": 120.0,
+      "CurrentHp": 120.0,
+      "MaximumMp": 105.0,
+      "CurrentMp": 105.0
+    },
+    {
+      "Exist": false,
+      "Dead": false,
+      "Name": "Lippi",
+      "Skill": [
+        9301,
+        9302
+      ],
+      "HaveSkill": [
+        9301,
+        9302
+      ],
+      "MaximumHp": 95.0,
+      "CurrentHp": 95.0,
+      "MaximumMp": 140.0,
+      "CurrentMp": 140.0
+    }
+  ],
+  "SaveItem": [
+    {
+      "Code": 2001,
+      "Amount": 1
+    },
+    {
+      "Code": 2002,
+      "Amount": 2
+    },
+    {
+      "Code": 2003,
+      "Amount": 3
+    },
+    {
+      "Code": 2004,
+      "Amount": 4
+    },
+    {
+      "Code": 2005,
+      "Amount": 5
+    },
+    {
+      "Code": 2006,
+      "Amount": 6
+    }
+  ],
+  "SavePos": {
+    "Code": 8401,
+    "X": 0,
+    "Y": 0
+  },
+  "SaveMonster": [
+  ],
+  "SaveFindEvent": [
+  ],
+  "SaveFindItem": [
+  ]
+}
