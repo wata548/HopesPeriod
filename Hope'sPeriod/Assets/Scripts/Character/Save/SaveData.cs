@@ -1,3 +1,4 @@
+using System;
 using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
@@ -6,83 +7,126 @@ using Newtonsoft.Json.Linq;
 using UnityEditor.Rendering;
 using UnityEngine;
 
+public class SaveFormat {
+    public SaveCharacterInfo[] SaveCharacterInfo;
+    public SaveItem[] SaveItem;
+    public SavePos SavePos;
+    public SaveMonster[] SaveMonster;
+    public SaveFindEvent[] SaveFindEvent;
+    public SaveFindItem[] SaveFindItem;
+}
+
+public class SaveItem {
+    [JsonProperty]
+    public int Code { get; private set; }
+    [JsonProperty]
+    public int Amount { get; private set; }
+
+    public SaveItem() {}
+    public SaveItem(int code, int amount) {
+        Code = code;
+        Amount = amount;
+    }
+}
+public class SaveMonster {
+    [JsonProperty]
+    public int Code { get; private set; }
+    [JsonProperty]
+    public int KillCount { get; private set; }
+
+    public SaveMonster() {}
+    public SaveMonster(int code, int killCount) {
+        Code = code;
+        KillCount = killCount;
+    }
+}
+public class SavePos {
+    [JsonProperty]
+    public int Code { get; private set; }
+    [JsonProperty]
+    public int X { get; private set; }
+    [JsonProperty]
+    public int Y { get; private set; }
+
+    public SavePos() {}
+    public SavePos(int code, Vector2Int pos) {
+        Code = code;
+        X = pos.x;
+        Y = pos.y;
+    }
+}
+public class SaveFindItem {
+    [JsonProperty]
+    public int Code { get; private set; }
+    [JsonProperty]
+    public int X { get; private set; }
+    [JsonProperty]
+    public int Y { get; private set; }
+
+    public SaveFindItem() {}
+    public SaveFindItem(int code, Vector2Int pos) {
+        Code = code;
+        X = pos.x;
+        Y = pos.y;
+    }
+}
+public class SaveFindEvent {
+    [JsonProperty]
+    public int Code { get; private set; }
+    [JsonProperty]
+    public int X { get; private set; }
+    [JsonProperty]
+    public int Y { get; private set; }
+
+    public SaveFindEvent() {}
+
+    public SaveFindEvent(int code, Vector2Int pos) {
+        Code = code;
+        X = pos.x;
+        Y = pos.y;
+    }
+}
+public class SaveCharacterInfo {
+    [JsonProperty]
+    public string Name { get; private set; }
+    [JsonProperty]
+    public bool Exist;
+    [JsonProperty]
+    public bool Dead;
+    [JsonProperty]
+    public int[] Skill { get; private set; }
+    [JsonProperty]
+    public int[] HaveSkill { get; private set; }
+    [JsonProperty]
+    public float MaximumHp { get; private set; }
+    [JsonProperty]
+    public float CurrentHp { get; private set; }
+    [JsonProperty]
+    public float MaximumMp { get; private set; }
+    [JsonProperty]
+    public float CurrentMp { get; private set; }
+
+    public SaveCharacterInfo() {}
+
+    public SaveCharacterInfo(EachCharacterInfo playerInfo) {
+
+        Name = Regex.Match(playerInfo.gameObject.name, @"(.*)Info").Groups[1].Value;
+        Exist = playerInfo.Exist;
+        Dead = playerInfo.Dead;
+        Skill = playerInfo.Skill;
+        HaveSkill = playerInfo.Skill.ToArray();
+        MaximumHp = playerInfo.MaximumHp;
+        CurrentHp = playerInfo.CurrentHp;
+        MaximumMp = playerInfo.MaximumMp;
+        CurrentMp = playerInfo.CurrentMp;
+    }
+}
+
 public class SaveData {
 
-    public class SaveItem {
-        public int Code { get; private set; }
-        public int Amount { get; private set; }
-
-        public SaveItem(int code, int amount) {
-            Code = code;
-            Amount = amount;
-        }
-    }
-    public class SaveMonster {
-        public int Code { get; private set; }
-        public int KillCount { get; private set; }
-
-        public SaveMonster(int code, int killCount) {
-            Code = code;
-            KillCount = killCount;
-        }
-    }
-    public class SavePos {
-        public int Code { get; private set; }
-        public int X { get; private set; }
-        public int Y { get; private set; }
-
-        public SavePos(int code, Vector2Int pos) {
-            Code = code;
-            X = pos.x;
-            Y = pos.y;
-        }
-    }
-    public class SaveFindItem {
-        public int Code { get; private set; }
-        public int X { get; private set; }
-        public int Y { get; private set; }
-
-        public SaveFindItem(int code, Vector2Int pos) {
-            Code = code;
-            X = pos.x;
-            Y = pos.y;
-        }
-    }
-    public class SaveFindEvent {
-        public int Code { get; private set; }
-        public int X { get; private set; }
-        public int Y { get; private set; }
-
-        public SaveFindEvent(int code, Vector2Int pos) {
-            Code = code;
-            X = pos.x;
-            Y = pos.y;
-        }
-    }
-    public class SavePlayerInfo {
-        
-        public string Name { get; private set; }
-        public bool Exist;
-        public bool Dead;
-        public int[] Skill { get; private set; }
-        public int[] HaveSkill { get; private set; }
-        public float MaximumHp { get; private set; }
-        public float CurrentHp { get; private set; }
-        public float MaximumMp { get; private set; }
-        public float CurrentMp { get; private set; }
-
-        public SavePlayerInfo(EachCharacterInfo playerInfo) {
-
-            Name = Regex.Match(playerInfo.gameObject.name, @"(.*)Info").Groups[1].Value;
-            Exist = playerInfo.Exist;
-            Dead = playerInfo.Dead;
-            Skill = playerInfo.Skill;
-            HaveSkill = playerInfo.Skill.ToArray();
-            MaximumHp = playerInfo.MaximumHp;
-            CurrentHp = playerInfo.CurrentHp;
-            MaximumMp = playerInfo.MaximumMp;
-            CurrentMp = playerInfo.CurrentMp;
-        }
+    public static SaveFormat Load(string name) {
+        string data = File.ReadAllText(Application.streamingAssetsPath + $@"/SaveFile/{name}.json"); 
+        return JsonConvert.DeserializeObject<SaveFormat>(data);
     }
     
     public static void Save(EachCharacterInfo[] playerInfos, int mapCode, Vector2Int pos, int saveSlot) {
@@ -94,13 +138,13 @@ public class SaveData {
         SerializeMonster(json);
         SerializeFindEvent(json);
         SerializeFindItem(json);
-        File.WriteAllText(Application.streamingAssetsPath + $@"/SaveFile/SaveFile{saveSlot}.json", json.ToString(Formatting.Indented));
+        File.WriteAllText(Application.streamingAssetsPath + $@"/SaveFile/SaveData{saveSlot}.json", json.ToString(Formatting.Indented));
     }
 
     private static void SerializeCharacter(JObject json, EachCharacterInfo[] playerInfos) {
-        var fixInfos = playerInfos.Select(info => new SavePlayerInfo(info));
+        var fixInfos = playerInfos.Select(info => new SaveCharacterInfo(info));
         var jPlayerInfo = JArray.Parse(JsonConvert.SerializeObject(fixInfos, Formatting.Indented));
-        json.Add(nameof(SavePlayerInfo), jPlayerInfo);
+        json.Add(nameof(SaveCharacterInfo), jPlayerInfo);
     }
 
     private static void SerializeInventory(JObject json) {
