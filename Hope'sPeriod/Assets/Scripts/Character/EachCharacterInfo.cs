@@ -35,6 +35,8 @@ public class EachCharacterInfo: MonoBehaviour {
         return skill[index];
     }
 
+    public int[] Skill => skill;
+
     public void LockOffSkill(int code) {
         if (code.ToCodeType() == CodeType.Skill) {
             if (!HaveSkills.Any(skill => skill == code)) {
