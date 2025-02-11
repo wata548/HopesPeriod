@@ -84,10 +84,7 @@ public class SelectCursor: MonoBehaviour {
    //==================================================||Unity Func 
     private void Awake() {
 
-        if (Instance == null)
-            Instance = this;
-        else if (Instance != this)
-            Destroy(this);
+        Instance = this;
 
         renderer = GetComponent<SpriteRenderer>();
     }

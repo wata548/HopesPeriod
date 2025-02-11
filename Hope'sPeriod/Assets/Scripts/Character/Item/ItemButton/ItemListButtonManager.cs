@@ -139,10 +139,7 @@ public class ItemListButtonManager: InteractButtonManager {
     private void Awake() {
         base.Awake();
 
-        if (Instance == null)
-            Instance = this;
-        else if (Instance != this)
-            Destroy(this);
+        Instance = this;
     }
 
     private void Update() {

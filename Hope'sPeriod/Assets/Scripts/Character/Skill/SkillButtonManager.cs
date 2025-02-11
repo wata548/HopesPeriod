@@ -229,10 +229,7 @@ public class SkillButtonManager: InteractButtonManager {
         
         base.Awake();
 
-        if (Instance == null)
-            Instance = this;
-        else if (Instance != this)
-            Destroy(this);
+        Instance = this;
 
         rect = skillList.GetComponent<RectTransform>();
     }

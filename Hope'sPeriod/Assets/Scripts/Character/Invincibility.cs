@@ -30,9 +30,7 @@ public class Invincibility : MonoBehaviour {
     } 
     private void SetSingleton() {
 
-        if (Instance == null) {
-            Instance = this;
-        }
+        Instance = this;
     }
     
     private bool UpdateTime() {

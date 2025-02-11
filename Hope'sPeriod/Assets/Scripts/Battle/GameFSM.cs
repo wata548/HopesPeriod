@@ -25,7 +25,7 @@ public enum PlayerTurnState {
 
 public class GameFSM: MonoBehaviour {
 
-    [FormerlySerializedAs("shower")] [SerializeField] private SkillShower skillShower;
+    [SerializeField] private SkillShower skillShower;
     private readonly Vector3 selectPlayerPos = new(0, 0, -1);
     private readonly Vector3 selectMapPos = new(0, 0.35f, -0.7f);
     private readonly Vector2 selectMapScale = new(13, 6);
@@ -34,10 +34,7 @@ public class GameFSM: MonoBehaviour {
 
     private void Awake() {
 
-        if (Instance == null)
-            Instance = this;
-        else if (Instance != this)
-            Destroy(this);
+        Instance = this;
 
         State = GameState.BattleStart;
         PlayerTurnState = PlayerTurnState.SelectBehavior;

@@ -60,10 +60,7 @@ public class GetItemWindow: MonoBehaviour {
         windowColor = window.color;
         windowColor.a = 0.5f;
 
-        if (Instance == null)
-            Instance = this;
-        else if (Instance != this)
-            Destroy(this);
+        Instance = this;
     }
 
     private void Start() {

@@ -13,13 +13,12 @@ public class EachChararacterInfoInventory: MonoBehaviour {
     
     private void TurnOn() {
         info = GameObject.Find($"{characterName}Info").GetComponent<EachCharacterInfo>();
-        //hpBar.SetState(info.CurrentHp, info.MaximumHp);
-        //mpBar.SetState(info.CurrentMp, info.MaximumMp);
-        //ShowUpdate();
+        hpBar.SetState(info.CurrentHp, info.MaximumHp);
+        mpBar.SetState(info.CurrentMp, info.MaximumMp);
+        ShowUpdate();
     }
 
     private void SetView(bool view) {
-        Debug.Log(hpBar is null);
         hpBar.gameObject.SetActive(view);
         mpBar.gameObject.SetActive(view);
         image.SetActive(view);

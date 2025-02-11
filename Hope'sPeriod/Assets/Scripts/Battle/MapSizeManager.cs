@@ -17,10 +17,7 @@ public class MapSizeManager : MonoBehaviour {
     private void Awake() {
 
         defaultMapSize = map.transform.localScale;
-        if (Instance == null)
-            Instance = this;
-        else if (Instance != this)
-            Destroy(this);
+        Instance = this;
     }
 
     public void Move(Vector3 pos) {

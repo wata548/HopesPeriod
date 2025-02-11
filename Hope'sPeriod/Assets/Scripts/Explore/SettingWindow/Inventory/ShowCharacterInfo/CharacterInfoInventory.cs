@@ -10,10 +10,7 @@ public class CharacterInfoInventory: MonoBehaviour {
     public EachChararacterInfoInventory GetCharacterInfo(int index) => characterinfos[index];
 
     private void Awake() {
-        if (Instance is null)
-            Instance = this;
-        else if(Instance != this)
-            Destroy(this);
+        Instance = this;
     }
 
     public void UpdateState() {

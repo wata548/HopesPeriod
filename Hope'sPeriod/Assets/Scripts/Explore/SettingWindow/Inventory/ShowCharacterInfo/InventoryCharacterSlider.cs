@@ -15,14 +15,8 @@ public class InventoryCharacterSlider: MonoBehaviour {
     [SerializeField] private TMP_Text shower;
     [SerializeField] private float intervalPercent;
     [SerializeField] private float charPercent;
-    private Vector2 handleScale = Vector2.zero;
     private Tween animation = null;
     private static readonly Color DeadColor = new(0.3f, 0.3f, 0.3f);
-    
-    private void Setting() {
-
-        handleScale = handle.rectTransform.localScale;
-    }
     
     public void SetColor(Color color) {
         handle.color = color;
@@ -45,12 +39,9 @@ public class InventoryCharacterSlider: MonoBehaviour {
     
     public void SetState(float current, float maximum) {
 
-        if (handleScale == Vector2.zero)
-            Setting();
-        
         float ratio = current / maximum;
         ShowerUpdate(current, maximum);
-        handle.rectTransform.localScale= new Vector2(ratio * handleScale.x, handleScale.y);
+        handle.fillAmount = ratio;
         if (current <= 0)
             SetColor(DeadColor);
         else SetColor(Color.white);
@@ -62,8 +53,9 @@ public class InventoryCharacterSlider: MonoBehaviour {
         ShowerUpdate(current, maximum);
         if (animation is null || !animation.IsComplete())
             animation.Kill();
-        
-        animation = handle.rectTransform.DOScaleX(ratio * handleScale.x, Duraction)
+
+        float size = handle.fillAmount;
+        DOTween.To(x => handle.fillAmount = x, size, ratio, Duraction)
             .OnComplete(() => {
                     if (current <= 0)
                         SetColor(DeadColor);
