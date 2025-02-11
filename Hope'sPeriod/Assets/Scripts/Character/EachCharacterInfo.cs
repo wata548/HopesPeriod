@@ -5,7 +5,7 @@ using System.Linq;
 
 public class EachCharacterInfo: MonoBehaviour {
 
-    private const int SkillCountLimit = 4;
+    public const int SkillCountLimit = 4;
     private List<int> skill;
     public List<int> HaveSkills { get; private set; } = new();
     
