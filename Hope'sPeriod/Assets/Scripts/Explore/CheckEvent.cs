@@ -16,43 +16,59 @@ public static class CheckEvent {
     private static int mapCode;
     private static bool moveMap = false;
     public static int MapCode => mapCode;
+    public static string MapName => mapInfo.Name(mapCode);
     
     public static void SetEffect(Image effect) => mapMoveEffect = effect;
+
+    private static void LoadMapInfo() {
+        mapInfo ??= Resources.Load<MapEventInfo>("MapPrefab/MapInfo");
+    }
     public static void SetMap(int code) {
         mapCode = code;
-        mapInfo = Resources.Load<MapEventInfo>("MapPrefab/MapInfo");
+        LoadMapInfo();
         map = Object.Instantiate(mapInfo.Prefab(code));
     }
 
-    public static int MeetMonster() => mapInfo.MeetMonster(mapCode);
-    public static void CheckAutoEvent(ref Vector2Int pos, GameObject player) {
+    public static int MeetMonster() {
 
+        LoadMapInfo();
+        return mapInfo.MeetMonster(mapCode);
+    }
+
+    public static bool CheckAutoEvent(ref Vector2Int pos, GameObject player) {
+
+        LoadMapInfo();
         if (mapInfo.ConnectInfo(mapCode, pos, out ConnectMapInfo connectMapInfo, out GameObject mapPrefab)) {
 
-            if (moveMap) return;
-            
-            if(map is not null)
+            if (moveMap) return false;
+
+            if (map is not null)
                 Object.Destroy(map);
-            
+
             Debug.Log(mapPrefab);
             map = Object.Instantiate(mapPrefab);
             mapCode = connectMapInfo.ConnectMapCode;
             player.transform.localPosition = DefaultPos + connectMapInfo.ConnectPos;
             pos = connectMapInfo.ConnectPos;
-                            
+
             mapMoveEffect.color = Color.black;
             mapMoveEffect.DOFade(0, 0.7f).SetEase(Ease.InCubic);
             moveMap = true;
+            return true;
         }
-        else if (mapInfo.AutoInfo(mapCode, pos, out int code)) {
-            moveMap = false;
+        
+        //Didn't move map
+        moveMap = false;
+        if (mapInfo.AutoInfo(mapCode, pos, out int code)) {
             Debug.Log($"auto event {code}");
         }
-        else moveMap = false;
+
+        return false;
     }
 
     public static void CheckInteract(Vector2Int pos, Direction viewDirection) {
-        
+
+        LoadMapInfo();
         if (InputManager.Instance.Click(KeyTypes.Interaction)) {
                 
             var direction = viewDirection.ConvertVector().ToVec2Int();

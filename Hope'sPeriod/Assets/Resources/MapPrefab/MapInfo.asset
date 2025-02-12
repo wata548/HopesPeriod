@@ -48,14 +48,14 @@ MonoBehaviour:
                 - Key: {x: 13, y: 5}
                   Value:
                     connectMapCode: 8402
-                    connectPos: {x: 0, y: 0}
+                    connectPos: {x: 1, y: 0}
                 - Key: {x: 18, y: 5}
                   Value:
-                    connectMapCode: 8402
+                    connectMapCode: 8409
                     connectPos: {x: 0, y: 0}
                 - Key: {x: 19, y: 5}
                   Value:
-                    connectMapCode: 8402
+                    connectMapCode: 8409
                     connectPos: {x: 0, y: 0}
                 - Key: {x: 31, y: 5}
                   Value:
@@ -81,15 +81,15 @@ MonoBehaviour:
                   Value:
                     connectMapCode: 8402
                     connectPos: {x: 0, y: 0}
-                - Key: {x: 27, y: -5}
-                  Value:
-                    connectMapCode: 8402
-                    connectPos: {x: 0, y: 0}
                 - Key: {x: 28, y: -5}
                   Value:
                     connectMapCode: 8402
                     connectPos: {x: 0, y: 0}
                 - Key: {x: 29, y: -5}
+                  Value:
+                    connectMapCode: 8402
+                    connectPos: {x: 0, y: 0}
+                - Key: {x: 30, y: -5}
                   Value:
                     connectMapCode: 8402
                     connectPos: {x: 0, y: 0}
@@ -110,11 +110,11 @@ MonoBehaviour:
                 - Key: {x: 0, y: 0}
                   Value:
                     connectMapCode: 8401
-                    connectPos: {x: 4, y: 5}
+                    connectPos: {x: 12, y: 5}
                 - Key: {x: 1, y: 0}
                   Value:
                     connectMapCode: 8401
-                    connectPos: {x: 5, y: 5}
+                    connectPos: {x: 13, y: 5}
                 - Key: {x: -2, y: 8}
                   Value:
                     connectMapCode: 8405
@@ -139,6 +139,30 @@ MonoBehaviour:
                   Value:
                     connectMapCode: 8403
                     connectPos: {x: 0, y: -1}
+                - Key: {x: 3, y: 7}
+                  Value:
+                    connectMapCode: 8408
+                    connectPos: {x: 0, y: 0}
+                - Key: {x: 3, y: 8}
+                  Value:
+                    connectMapCode: 8408
+                    connectPos: {x: 0, y: 1}
+                - Key: {x: 3, y: 15}
+                  Value:
+                    connectMapCode: 8407
+                    connectPos: {x: 0, y: 0}
+                - Key: {x: 3, y: 16}
+                  Value:
+                    connectMapCode: 8407
+                    connectPos: {x: 0, y: 1}
+                - Key: {x: 3, y: 23}
+                  Value:
+                    connectMapCode: 8406
+                    connectPos: {x: 0, y: 0}
+                - Key: {x: 3, y: 24}
+                  Value:
+                    connectMapCode: 8406
+                    connectPos: {x: 0, y: 1}
               mapPrefab: {fileID: 3150022464060748283, guid: ba4e1a553a786ab4cba07856fde6ef9b, type: 3}
           - Key: 8403
             Value:
@@ -165,7 +189,7 @@ MonoBehaviour:
                   Value:
                     connectMapCode: 8402
                     connectPos: {x: -2, y: 23}
-              mapPrefab: {fileID: 5122103929621390644, guid: 343952eaf0f1c0e49b92eb36d37ebb81, type: 3}
+              mapPrefab: {fileID: 5122103929621390644, guid: 7b03b5e763accfd48836e3320649e940, type: 3}
           - Key: 8404
             Value:
               roomName: "\uB0A8\uC790 \uC219\uBC15\uC2E4-2"
@@ -213,4 +237,288 @@ MonoBehaviour:
                   Value:
                     connectMapCode: 8402
                     connectPos: {x: -2, y: 7}
-              mapPrefab: {fileID: 5122103929621390644, guid: 343952eaf0f1c0e49b92eb36d37ebb81, type: 3}
+              mapPrefab: {fileID: 5122103929621390644, guid: 7b03b5e763accfd48836e3320649e940, type: 3}
+          - Key: 8406
+            Value:
+              roomName: "\uB0A8\uC790 \uC219\uBC15\uC2E4-4"
+              autoEventList:
+                dataList: []
+              monsterList: 
+              genProbability: 0
+              itemList:
+                dataList: []
+              passiveEventList:
+                dataList: []
+              moveEventList:
+                dataList:
+                - Key: {x: 0, y: 0}
+                  Value:
+                    connectMapCode: 8402
+                    connectPos: {x: 3, y: 23}
+                - Key: {x: 0, y: 1}
+                  Value:
+                    connectMapCode: 8402
+                    connectPos: {x: 3, y: 24}
+              mapPrefab: {fileID: 610627443237383314, guid: 9d9e7c83756e7cb4c882bcd66274efda, type: 3}
+          - Key: 8407
+            Value:
+              roomName: "\uB0A8\uC790 \uC219\uBC15\uC2E4-5"
+              autoEventList:
+                dataList: []
+              monsterList: 
+              genProbability: 0
+              itemList:
+                dataList:
+                - Key: {x: 4, y: 3}
+                  Value:
+                    code: 2001
+                    count: 1
+              passiveEventList:
+                dataList: []
+              moveEventList:
+                dataList:
+                - Key: {x: 0, y: 0}
+                  Value:
+                    connectMapCode: 8402
+                    connectPos: {x: 3, y: 15}
+                - Key: {x: 0, y: 1}
+                  Value:
+                    connectMapCode: 8402
+                    connectPos: {x: 3, y: 16}
+              mapPrefab: {fileID: 610627443237383314, guid: 9d9e7c83756e7cb4c882bcd66274efda, type: 3}
+          - Key: 8408
+            Value:
+              roomName: "\uB0A8\uC790 \uC219\uBC15\uC2E4-6"
+              autoEventList:
+                dataList: []
+              monsterList: 
+              genProbability: 0
+              itemList:
+                dataList: []
+              passiveEventList:
+                dataList: []
+              moveEventList:
+                dataList:
+                - Key: {x: 0, y: 0}
+                  Value:
+                    connectMapCode: 8402
+                    connectPos: {x: 3, y: 7}
+                - Key: {x: 0, y: 1}
+                  Value:
+                    connectMapCode: 8402
+                    connectPos: {x: 3, y: 8}
+              mapPrefab: {fileID: 610627443237383314, guid: 9d9e7c83756e7cb4c882bcd66274efda, type: 3}
+          - Key: 8409
+            Value:
+              roomName: "\uC5EC\uC790 \uC219\uBC15\uC2E4 \uBCF5\uB3C4"
+              autoEventList:
+                dataList: []
+              monsterList: 
+              genProbability: 0
+              itemList:
+                dataList: []
+              passiveEventList:
+                dataList: []
+              moveEventList:
+                dataList:
+                - Key: {x: 0, y: 0}
+                  Value:
+                    connectMapCode: 8401
+                    connectPos: {x: 18, y: 5}
+                - Key: {x: 1, y: 0}
+                  Value:
+                    connectMapCode: 8401
+                    connectPos: {x: 19, y: 5}
+                - Key: {x: -2, y: 8}
+                  Value:
+                    connectMapCode: 8412
+                    connectPos: {x: 0, y: 0}
+                - Key: {x: -2, y: 7}
+                  Value:
+                    connectMapCode: 8412
+                    connectPos: {x: 0, y: -1}
+                - Key: {x: -2, y: 16}
+                  Value:
+                    connectMapCode: 8411
+                    connectPos: {x: 0, y: 0}
+                - Key: {x: -2, y: 15}
+                  Value:
+                    connectMapCode: 8411
+                    connectPos: {x: 0, y: -1}
+                - Key: {x: -2, y: 24}
+                  Value:
+                    connectMapCode: 8410
+                    connectPos: {x: 0, y: 0}
+                - Key: {x: -2, y: 23}
+                  Value:
+                    connectMapCode: 8410
+                    connectPos: {x: 0, y: -1}
+                - Key: {x: 3, y: 7}
+                  Value:
+                    connectMapCode: 8415
+                    connectPos: {x: 0, y: 0}
+                - Key: {x: 3, y: 8}
+                  Value:
+                    connectMapCode: 8415
+                    connectPos: {x: 0, y: 1}
+                - Key: {x: 3, y: 15}
+                  Value:
+                    connectMapCode: 8414
+                    connectPos: {x: 0, y: 0}
+                - Key: {x: 3, y: 16}
+                  Value:
+                    connectMapCode: 8414
+                    connectPos: {x: 0, y: 1}
+                - Key: {x: 3, y: 23}
+                  Value:
+                    connectMapCode: 8413
+                    connectPos: {x: 0, y: 0}
+                - Key: {x: 3, y: 24}
+                  Value:
+                    connectMapCode: 8413
+                    connectPos: {x: 0, y: 1}
+              mapPrefab: {fileID: 3150022464060748283, guid: ba4e1a553a786ab4cba07856fde6ef9b, type: 3}
+          - Key: 8410
+            Value:
+              roomName: "\uC5EC\uC790 \uC219\uBC15\uC2E4-1"
+              autoEventList:
+                dataList: []
+              monsterList: 
+              genProbability: 0
+              itemList:
+                dataList:
+                - Key: {x: -5, y: 3}
+                  Value:
+                    code: 2001
+                    count: 1
+              passiveEventList:
+                dataList: []
+              moveEventList:
+                dataList:
+                - Key: {x: 0, y: 0}
+                  Value:
+                    connectMapCode: 8409
+                    connectPos: {x: -2, y: 24}
+                - Key: {x: 0, y: -1}
+                  Value:
+                    connectMapCode: 8409
+                    connectPos: {x: -2, y: 23}
+              mapPrefab: {fileID: 5122103929621390644, guid: 7b03b5e763accfd48836e3320649e940, type: 3}
+          - Key: 8411
+            Value:
+              roomName: "\uC5EC\uC790 \uC219\uBC15\uC2E4-2"
+              autoEventList:
+                dataList: []
+              monsterList: 
+              genProbability: 0
+              itemList:
+                dataList:
+                - Key: {x: -5, y: 3}
+                  Value:
+                    code: 2001
+                    count: 1
+              passiveEventList:
+                dataList: []
+              moveEventList:
+                dataList:
+                - Key: {x: 0, y: 0}
+                  Value:
+                    connectMapCode: 8409
+                    connectPos: {x: -2, y: 16}
+                - Key: {x: 0, y: -1}
+                  Value:
+                    connectMapCode: 8409
+                    connectPos: {x: -2, y: 15}
+              mapPrefab: {fileID: 5122103929621390644, guid: 7b03b5e763accfd48836e3320649e940, type: 3}
+          - Key: 8412
+            Value:
+              roomName: "\uC5EC\uC790 \uC219\uBC15\uC2E4-3"
+              autoEventList:
+                dataList: []
+              monsterList: 
+              genProbability: 0
+              itemList:
+                dataList: []
+              passiveEventList:
+                dataList: []
+              moveEventList:
+                dataList:
+                - Key: {x: 0, y: 0}
+                  Value:
+                    connectMapCode: 8409
+                    connectPos: {x: -2, y: 8}
+                - Key: {x: 0, y: -1}
+                  Value:
+                    connectMapCode: 8409
+                    connectPos: {x: -2, y: 7}
+              mapPrefab: {fileID: 5122103929621390644, guid: 7b03b5e763accfd48836e3320649e940, type: 3}
+          - Key: 8413
+            Value:
+              roomName: "\uC5EC\uC790 \uC219\uBC15\uC2E4-4"
+              autoEventList:
+                dataList: []
+              monsterList: 
+              genProbability: 0
+              itemList:
+                dataList: []
+              passiveEventList:
+                dataList: []
+              moveEventList:
+                dataList:
+                - Key: {x: 0, y: 0}
+                  Value:
+                    connectMapCode: 8409
+                    connectPos: {x: 3, y: 23}
+                - Key: {x: 0, y: 1}
+                  Value:
+                    connectMapCode: 8409
+                    connectPos: {x: 3, y: 24}
+              mapPrefab: {fileID: 610627443237383314, guid: 9d9e7c83756e7cb4c882bcd66274efda, type: 3}
+          - Key: 8414
+            Value:
+              roomName: "\uC5EC\uC790 \uC219\uBC15\uC2E4-5"
+              autoEventList:
+                dataList: []
+              monsterList: 
+              genProbability: 0
+              itemList:
+                dataList:
+                - Key: {x: 4, y: 3}
+                  Value:
+                    code: 2001
+                    count: 1
+              passiveEventList:
+                dataList: []
+              moveEventList:
+                dataList:
+                - Key: {x: 0, y: 0}
+                  Value:
+                    connectMapCode: 8409
+                    connectPos: {x: 3, y: 15}
+                - Key: {x: 0, y: 1}
+                  Value:
+                    connectMapCode: 8409
+                    connectPos: {x: 3, y: 16}
+              mapPrefab: {fileID: 610627443237383314, guid: 9d9e7c83756e7cb4c882bcd66274efda, type: 3}
+          - Key: 8415
+            Value:
+              roomName: "\uC5EC\uC790 \uC219\uBC15\uC2E4-6"
+              autoEventList:
+                dataList: []
+              monsterList: 
+              genProbability: 0
+              itemList:
+                dataList: []
+              passiveEventList:
+                dataList: []
+              moveEventList:
+                dataList:
+                - Key: {x: 0, y: 0}
+                  Value:
+                    connectMapCode: 8409
+                    connectPos: {x: 3, y: 7}
+                - Key: {x: 0, y: 1}
+                  Value:
+                    connectMapCode: 8409
+                    connectPos: {x: 3, y: 8}
+              mapPrefab: {fileID: 610627443237383314, guid: 9d9e7c83756e7cb4c882bcd66274efda, type: 3}

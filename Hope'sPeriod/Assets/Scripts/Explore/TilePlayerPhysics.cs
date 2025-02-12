@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Numerics;
 using DG.Tweening;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -12,6 +13,7 @@ using Vector2 = UnityEngine.Vector2;
 public class TilePlayerPhysics : MonoBehaviour {
     
     [SerializeField] private Image mapMoveEffect;
+    [SerializeField] private TMP_Text mapName;
     private Vector2Int pos;
     public static bool Movable { get; private set; } = true;
     private static PlayerAnimation animation = null;
@@ -84,13 +86,13 @@ public class TilePlayerPhysics : MonoBehaviour {
 
             if (newPos != pos) {
                 pos = newPos;
-                CheckEvent.CheckAutoEvent(ref pos, gameObject);
+                if (CheckEvent.CheckAutoEvent(ref pos, gameObject)) {
+                    mapName.text = CheckEvent.MapName;
+                }
                 MeetMonsterEvent(CheckEvent.MeetMonster());
             }
         }
-
         CheckEvent.CheckInteract(pos, animation.Dir);
-
     }
     
     
