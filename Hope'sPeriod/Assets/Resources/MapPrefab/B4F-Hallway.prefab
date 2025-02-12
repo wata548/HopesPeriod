@@ -4147,7 +4147,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4588097086316354279}
   m_Layer: 0
-  m_Name: B4Hallway
+  m_Name: B4F-Hallway
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -4,7 +4,7 @@ using TMPro;
 using UnityEngine;
 
 public class MainButton: InteractButtonUI {
-    public override void Click() {}
+    public override void Click() => Manager.SetInteractable(false); 
 
     private float fontSize;
     private const float ActivePower = 1.2f;

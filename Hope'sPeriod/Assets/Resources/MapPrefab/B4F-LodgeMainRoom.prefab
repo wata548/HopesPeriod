@@ -3249,7 +3249,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5670812050968659188}
   m_Layer: 0
-  m_Name: B4MaleLodge
+  m_Name: B4F-LodgeMainRoom
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -4,6 +4,7 @@ using VInspector.Libs;
 public class MainButtonManager: InteractButtonManager {
     public override bool Interactable { get; protected set; } = true;
     
+    
     public override void SelectIn(InteractButton target) {
         Parse(target).Active();
     }

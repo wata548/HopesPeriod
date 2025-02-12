@@ -20,7 +20,7 @@ MonoBehaviour:
           dataList:
           - Key: 8401
             Value:
-              roomName: 
+              roomName: "\uBCF5\uB3C4"
               autoEventList:
                 dataList:
                 - Key: {x: 14, y: 1}
@@ -96,7 +96,7 @@ MonoBehaviour:
               mapPrefab: {fileID: 1961659621655338074, guid: 464ce0f2dc39216409d390b88530fafc, type: 3}
           - Key: 8402
             Value:
-              roomName: 
+              roomName: "\uB0A8\uC790 \uC219\uBC15\uC2E4"
               autoEventList:
                 dataList: []
               monsterList: e8030000e9030000

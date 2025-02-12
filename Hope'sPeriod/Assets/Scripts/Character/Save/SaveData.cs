@@ -47,12 +47,15 @@ public class SavePos {
     public int X { get; private set; }
     [JsonProperty]
     public int Y { get; private set; }
+   [JsonProperty] 
+   public int Chapter { get; private set; }
 
     public SavePos() {}
-    public SavePos(int code, Vector2Int pos) {
+    public SavePos(int code, Vector2Int pos, int chapter) {
         Code = code;
         X = pos.x;
         Y = pos.y;
+        Chapter = chapter;
     }
 }
 public class SaveFindItem {
@@ -124,8 +127,12 @@ public class SaveCharacterInfo {
 
 public class SaveData {
 
-    public static void Load(string name) {
-        string rawData = File.ReadAllText(Application.streamingAssetsPath + $@"/SaveFile/{name}.json");
+    public static void Load(int index = 0) {
+        string rawData;
+        if(index == 0)
+            rawData = File.ReadAllText(Application.streamingAssetsPath + @"/SaveFile/DefaultSaveData.json");
+        else 
+            rawData = File.ReadAllText(Application.streamingAssetsPath + $@"/SaveFile/SaveData{index}.json");
         var data = JsonConvert.DeserializeObject<SaveFormat>(rawData);
         
         foreach (var character in data.SaveCharacterInfo) {
@@ -156,16 +163,16 @@ public class SaveData {
         }
     }
     
-    public static void Save(EachCharacterInfo[] playerInfos, int mapCode, Vector2Int pos, int saveSlot) {
+    public static void Save(EachCharacterInfo[] playerInfos, int chapter, int mapCode, Vector2Int pos, int saveSlot) {
  
         var json = new JObject();
         SerializeCharacter(json, playerInfos);
         SerializeInventory(json);
-        SerializePos(json, mapCode, pos);
+        SerializePos(json, chapter, mapCode, pos);
         SerializeMonster(json);
         SerializeFindEvent(json);
         SerializeFindItem(json);
-        File.WriteAllText(Application.streamingAssetsPath + $@"/SaveFile/SaveData{saveSlot}.json", json.ToString(Formatting.Indented));
+        File.WriteAllText(Application.streamingAssetsPath + $@"/SaveFile/SaveData{saveSlot + 1}.json", json.ToString(Formatting.Indented));
     }
 
     private static void SerializeCharacter(JObject json, EachCharacterInfo[] playerInfos) {
@@ -180,8 +187,8 @@ public class SaveData {
         json.Add(nameof(SaveItem), jInfo);
     }
 
-    private static void SerializePos(JObject json, int code, Vector2Int pos) {
-        var fixInfos = new SavePos(code, pos);
+    private static void SerializePos(JObject json, int chapter, int code, Vector2Int pos) {
+        var fixInfos = new SavePos(code, pos, chapter);
         JObject parse = JObject.Parse(JsonConvert.SerializeObject(fixInfos, Formatting.Indented));
         json.Add(nameof(SavePos), parse);
     }

@@ -42,7 +42,7 @@ public class TilePlayerPhysics : MonoBehaviour {
     private void Awake() {
 
         int code;
-        (code, pos) = SaveMapInfo.Load();
+        (code, pos) = CurrentMapInfo.Load();
         
         animation = GetComponent<PlayerAnimation>();
         movement = new CompositeGroupBase(gameObject)
@@ -98,7 +98,7 @@ public class TilePlayerPhysics : MonoBehaviour {
         if (code == 0)
             return;
 
-        SaveMapInfo.Save(CheckEvent.MapCode, pos);
+        CurrentMapInfo.Save(CheckEvent.MapCode, pos);
         SetMovable(false);
         Debug.Log($"Meet Monster {code}");
         ShakeCamera.Instance.HShake(0.5f, 0.2f);
