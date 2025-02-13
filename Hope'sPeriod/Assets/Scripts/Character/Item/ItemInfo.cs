@@ -83,10 +83,12 @@ public static class ItemInfo {
         //It find detail type name 
         //if (EffectInfo.MatchKorean.TryGetValue(ItemInfo.Effect(itemCode), out string korean)) {
         if (Effect(code) != EffectType.None) result += "효과 ";
-        
+
+        bool revive = Revive(code) || ReviveAll(code);
         bool healHp = HealHp(code) != 0 || HealsHp(code) != 0;
-        bool healMp = HealMp(code) != 0 || HealsMp(code) != 0; 
-        if ( healHp || healMp) result += "회복";
+        bool healMp = HealMp(code) != 0 || HealsMp(code) != 0;
+        if (revive) result += "부활";
+        else if ( healHp || healMp) result += "회복";
         if (Attract(code) > 0 && !ItemInfo.DefenceReflect(code)) result += "도발 ";
         
         if (DefenceType(code) != SpreadInfo.DefenceType.None) {

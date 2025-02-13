@@ -19,8 +19,8 @@
       "CurrentMp": 130.0
     },
     {
-      "Exist": false,
-      "Dead": false,
+      "Exist": true,
+      "Dead": true,
       "Name": "Cavil",
       "Skill": [
         9201,
@@ -31,7 +31,7 @@
         9202
       ],
       "MaximumHp": 120.0,
-      "CurrentHp": 120.0,
+      "CurrentHp": 0.0,
       "MaximumMp": 105.0,
       "CurrentMp": 105.0
     },

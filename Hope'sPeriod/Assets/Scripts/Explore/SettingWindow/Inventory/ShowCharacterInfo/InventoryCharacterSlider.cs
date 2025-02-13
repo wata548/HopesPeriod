@@ -19,11 +19,16 @@ public class InventoryCharacterSlider: MonoBehaviour {
     private static readonly Color DeadColor = new(0.3f, 0.3f, 0.3f);
     
     public void SetColor(Color color) {
+        symbol.color = color;
         handle.color = color;
         backGround.color = color;
     }
 
-    private void ShowerUpdate(float current, float maximum) {
+    private void ShowerUpdate(float current, float maximum, bool dead) {
+        if (dead) {
+            shower.text = $"{current}/{maximum}".AddColor(DeadColor);
+            return;
+        }
         float ratio = current / maximum;
         
         int black = (int)((ratio - intervalPercent) / charPercent);
@@ -37,27 +42,27 @@ public class InventoryCharacterSlider: MonoBehaviour {
         shower.text = blackString.AddColor(Color.black) + grayString.AddColor(new Color(0.7f,0.7f,0.7f)) + whiteString.AddColor(Color.white);
     }
     
-    public void SetState(float current, float maximum) {
+    public void SetState(float current, float maximum, bool dead) {
 
         float ratio = current / maximum;
-        ShowerUpdate(current, maximum);
+        ShowerUpdate(current, maximum, dead);
         handle.fillAmount = ratio;
-        if (current <= 0)
+        if (dead)
             SetColor(DeadColor);
         else SetColor(Color.white);
     }
     
-    public void UpdateState(float current, float maximum) {
+    public void UpdateState(float current, float maximum, bool dead) {
         
         float ratio = current / maximum;
-        ShowerUpdate(current, maximum);
+        ShowerUpdate(current, maximum, dead);
         if (animation is null || !animation.IsComplete())
             animation.Kill();
 
         float size = handle.fillAmount;
         DOTween.To(x => handle.fillAmount = x, size, ratio, Duraction)
             .OnComplete(() => {
-                    if (current <= 0)
+                    if (dead)
                         SetColor(DeadColor);
                     else SetColor(Color.white);
                 }

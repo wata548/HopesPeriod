@@ -9,12 +9,11 @@ public class EachChararacterInfoInventory: MonoBehaviour {
     [SerializeField] private GameObject image;
     private EachCharacterInfo info;
     public EachCharacterInfo Info => info;
-
     
-    private void TurnOn() {
-        info = GameObject.Find($"{characterName}Info").GetComponent<EachCharacterInfo>();
-        hpBar.SetState(info.CurrentHp, info.MaximumHp);
-        mpBar.SetState(info.CurrentMp, info.MaximumMp);
+    public void TurnOn() {
+        
+        hpBar.SetState(info.CurrentHp, info.MaximumHp, info.Dead);
+        mpBar.SetState(info.CurrentMp, info.MaximumMp, info.Dead);
         ShowUpdate();
     }
 
@@ -23,19 +22,20 @@ public class EachChararacterInfoInventory: MonoBehaviour {
         mpBar.gameObject.SetActive(view);
         image.SetActive(view);
     }
-    
-    public void ShowUpdate() {
+
+    private void ShowUpdate() {
          if (!info.Exist) SetView(false);
          else SetView(true);
     }
     
     public void UpdateState() {
 
-        hpBar.UpdateState(info.CurrentHp, info.MaximumHp);
-        mpBar.UpdateState(info.CurrentMp, info.MaximumMp);
+        hpBar.UpdateState(info.CurrentHp, info.MaximumHp, info.Dead);
+        mpBar.UpdateState(info.CurrentMp, info.MaximumMp, info.Dead);
         ShowUpdate();
     }
     private void Awake() {
-        TurnOn();
+        
+        info = GameObject.Find($"{characterName}Info").GetComponent<EachCharacterInfo>();
     }
 }

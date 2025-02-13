@@ -13,7 +13,7 @@ public class InventoryWindow: MonoBehaviour {
 
         inventory.SetActive(true);
         foreach (var info in CharacterInfoInventory.Instance.Characterinfos) {
-            info.ShowUpdate();
+            info.TurnOn();
         }
         
         category.TurnOn();
