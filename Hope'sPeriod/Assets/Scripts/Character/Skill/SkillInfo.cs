@@ -99,15 +99,15 @@ public static class SkillInfo {
     }
 
     public static int               ToSkillItem(int code)       => code - 7000;
-    public static string            Name(int code)              => GetData(code)?.Name          ?? "wait";
-    public static string            Description(int code)       => GetData(code)?.Description   ?? "wait";
-    public static int               UseHp(int code)             => GetData(code)?.UseHP         ?? -1;
-    public static int               UseMp(int code)             => GetData(code)?.UseMP         ?? -1;
-    public static int               Attack(int code)            => GetData(code)?.ATK           ?? -1;
-    public static int               AttackDuration(int code)    => GetData(code)?.ATKCon        ?? -1;
-    
-    public static bool              SkillItem(int code)         => GetData(code)?.SkillItem     ?? false;
-    public static int               SkillItemDuration(int code) => GetData(code)?.SkillItemCon  ?? -1;
+    public static string            Name(int code)              => GetData(code)?.Name                  ?? "wait";
+    public static string            DetailDescription(int code) => GetData(code)?.DetailDescription     ?? "wait";
+    public static string            Description(int code)       => GetData(code)?.Description           ?? "wait";
+    public static int               UseHp(int code)             => GetData(code)?.UseHP                 ?? -1;
+    public static int               UseMp(int code)             => GetData(code)?.UseMP                 ?? -1;
+    public static int               Attack(int code)            => GetData(code)?.ATK                   ?? -1;
+    public static int               AttackDuration(int code)    => GetData(code)?.ATKCon                ?? -1;
+    public static bool              SkillItem(int code)         => GetData(code)?.SkillItem             ?? false;
+    public static int               SkillItemDuration(int code) => GetData(code)?.SkillItemCon          ?? -1;
 
     public static bool Useable(int characterIndex, int code) {
         
@@ -122,9 +122,9 @@ public static class SkillInfo {
     public static string SimpleTag(int code) {
         string result = "";
         int value;
-        if ((value = UseHp(code)) > 0) result += $"HP -{value} ";
-        if ((value = UseMp(code)) > 0) result += $"MP -{value} ";
-        if ((value = Attack(code)) > 0) result += $"ATK {value} ";
+        if ((value = UseHp(code)) > 0) result += $"<size=80%>생존의지</size> -{value} ";
+        if ((value = UseMp(code)) > 0) result += $"<size=80%>저항력</size> -{value} ";
+        if ((value = Attack(code)) > 0) result += $"<size=80%>공격력</size> {value} ";
         if (SkillItem(code)) {
 
             int itemCode = ToSkillItem(code);

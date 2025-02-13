@@ -3,6 +3,7 @@ using UnityEngine;
 public class CharacterSelectButtonManager: InteractButtonManager {
     public override bool Interactable { get; protected set; } = true;
     [SerializeField] private EachChararacterInfoInventory[] infos;
+    [SerializeField] private SkillSelectButtonManager skillSelect;
     [SerializeField] private GameObject characterList;
     public override void SelectIn(InteractButton target) { }
 
@@ -31,6 +32,11 @@ public class CharacterSelectButtonManager: InteractButtonManager {
         foreach (var button in buttons) {
             Parse(button).SetInfo(infos[index++].Info);
         }
+    }
+
+    public void Click(int index) {
+        skillSelect.TurnOn(infos[index].Info, index);
+        TurnOff();
     }
 
     private CharacterSelectButton Parse(InteractButton button) {

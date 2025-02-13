@@ -18,6 +18,13 @@ public class CharacterSelectButton: InteractButtonUI {
         skillShower.SetSkill(info.Skill);
     }
     public override void Click() {
-        
+        Parse(Manager).Click(Index);
+    }
+
+    private CharacterSelectButtonManager Parse(InteractButtonManager manager) {
+        if (manager is not CharacterSelectButtonManager result)
+            throw new TypeMissMatched(manager.gameObject, typeof(CharacterSelectButtonManager));
+
+        return result;
     }
 }

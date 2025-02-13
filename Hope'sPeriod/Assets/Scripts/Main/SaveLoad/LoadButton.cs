@@ -21,13 +21,10 @@ public class LoadButton: InteractButton {
             mapInfo = Resources.Load<MapEventInfo>("MapPrefab/MapInfo");
         
         text = GetComponentInChildren<TMP_Text>();
-        Debug.Log("sdgf");
         if (Index == 0) {
             On = true;
             return;
         }
-
-        Debug.Log("dsf");
         
         var rawData = File.ReadAllText(Application.streamingAssetsPath + $@"\SaveFile\SaveData{Index}.json");
         var info = JsonConvert.DeserializeObject<SimpleSaveInfo>(rawData);

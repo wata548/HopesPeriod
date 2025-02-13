@@ -21,6 +21,9 @@ namespace SpreadInfo {
         private string m_Name;
         
         [UnityEngine.SerializeField()]
+        private string m_DetailDescription;
+        
+        [UnityEngine.SerializeField()]
         private string m_Description;
         
         [UnityEngine.SerializeField()]
@@ -50,6 +53,12 @@ namespace SpreadInfo {
         public string Name {
             get {
                 return this.m_Name;
+            }
+        }
+        
+        public string DetailDescription {
+            get {
+                return this.m_DetailDescription;
             }
         }
         

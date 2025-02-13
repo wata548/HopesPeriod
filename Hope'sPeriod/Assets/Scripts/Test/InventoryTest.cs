@@ -22,7 +22,6 @@ public class InventoryTest: MonoBehaviour {
     private void TestSetSkill() {
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 4; j++) {
-                       
                 CharacterInfoInventory.Instance.Characterinfos[i].Info.SetSkill(j, 9000 + (i+1) * 100 + j + 1);
             }
         } 

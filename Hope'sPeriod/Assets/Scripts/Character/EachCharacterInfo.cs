@@ -33,6 +33,13 @@ public class EachCharacterInfo: MonoBehaviour {
             throw new OutOfRange(0, SkillCountLimit - 1, index);
         }
 
+        for (int i = 0; i < skill.Count; i++) {
+            if (skill[i] == code) {
+                skill[i] = skill[index];
+                skill[index] = code;
+                return;
+            }
+        }
         skill[index] = code;
     }
     public int GetSkill(int index) {

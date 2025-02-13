@@ -99,7 +99,7 @@ public class SkillButton: InteractButtonUI {
                 Show = false;
             }
             else {
-                textInfo.text = $"{SkillInfo.Name(Code)}\n{SkillInfo.SimpleTag(Code).SetSize(1.15f)}";
+                textInfo.text = $"{SkillInfo.Name(Code)}\n{SkillInfo.SimpleTag(Code).SetSize(0.9f)}";
 
                 if (SkillInfo.Useable(characterIndex, Code))
                     textInfo.AddColor(Usable);
