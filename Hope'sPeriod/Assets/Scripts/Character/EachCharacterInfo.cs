@@ -16,8 +16,17 @@ public class EachCharacterInfo: MonoBehaviour {
     public float CurrentHp { get; private set; } = 100;
     public float MaximumMp { get; private set; } = 100;
     public float CurrentMp { get; private set; } = 50;
-    public bool Dead { get; private set; }
-    
+    private bool dead;
+    public bool Dead {
+        get {
+            dead = CurrentHp == 0;
+            return dead;
+        }
+        private set {
+            dead = value;
+        }
+    }
+
     //==================================================| Method 
     public void SetSkill(int index, int code) {
         if (index >= SkillCountLimit) {

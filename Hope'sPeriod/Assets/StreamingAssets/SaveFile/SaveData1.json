@@ -20,7 +20,7 @@
     },
     {
       "Exist": true,
-      "Dead": true,
+      "Dead": false,
       "Name": "Cavil",
       "Skill": [
         9201,

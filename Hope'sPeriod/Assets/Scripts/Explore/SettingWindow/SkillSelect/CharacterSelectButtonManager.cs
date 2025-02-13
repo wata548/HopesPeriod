@@ -11,14 +11,17 @@ public class CharacterSelectButtonManager: InteractButtonManager {
     public void TurnOn() {
         characterList.SetActive(true);
         Interactable = true;
-
-        foreach (var info in infos) {
-            info.TurnOn();
-        }
-
         foreach (var button in buttons) {
             Parse(button).TurnOn();
         }
+        foreach (var info in infos) {
+            info.TurnOn();
+        }
+    }
+
+    public void TurnOff() {
+        characterList.SetActive(false);
+        Interactable = false;
     }
 
     private void Awake() {
@@ -35,4 +38,5 @@ public class CharacterSelectButtonManager: InteractButtonManager {
             throw new TypeMissMatched(button.gameObject, typeof(CharacterSelectButton));
         return result;
     }
+    
 }

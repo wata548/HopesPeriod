@@ -25,10 +25,6 @@ public class InventoryCharacterSlider: MonoBehaviour {
     }
 
     private void ShowerUpdate(float current, float maximum, bool dead) {
-        if (dead) {
-            shower.text = $"{current}/{maximum}".AddColor(DeadColor);
-            return;
-        }
         float ratio = current / maximum;
         
         int black = (int)((ratio - intervalPercent) / charPercent);
@@ -39,7 +35,10 @@ public class InventoryCharacterSlider: MonoBehaviour {
         if(gray)
             grayString = new(text.Skip(black)?.Take(1)?.ToArray());
         string whiteString = new(text.Skip(black + Convert.ToInt32(gray))?.ToArray());
-        shower.text = blackString.AddColor(Color.black) + grayString.AddColor(new Color(0.7f,0.7f,0.7f)) + whiteString.AddColor(Color.white);
+        if(dead)
+            shower.text = blackString.AddColor(Color.black) + grayString.AddColor(new Color(0.7f,0.7f,0.7f)) + whiteString.AddColor(DeadColor);
+        else 
+            shower.text = blackString.AddColor(Color.black) + grayString.AddColor(new Color(0.7f,0.7f,0.7f)) + whiteString.AddColor(Color.white);
     }
     
     public void SetState(float current, float maximum, bool dead) {

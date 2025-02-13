@@ -5,6 +5,7 @@ public class SettingCattegoryButtonManager: InteractButtonManager {
     public override bool Interactable { get; protected set; }
 
     [SerializeField] private InventoryWindow inventory;
+    [SerializeField] private CharacterSelectButtonManager skill;
     public override void SelectIn(InteractButton target) {
         throw new System.NotImplementedException();
     }
@@ -20,6 +21,7 @@ public class SettingCattegoryButtonManager: InteractButtonManager {
     private void TurnOnSkill() {
                 
         TurnOff();
+        skill.TurnOn();
     }
     private void TurnOnSave() {
                
@@ -38,6 +40,7 @@ public class SettingCattegoryButtonManager: InteractButtonManager {
 
     private void TurnOff() {
         inventory.TurnOff();
+        skill.TurnOff();
     }
 
     public void Click(int index) {
