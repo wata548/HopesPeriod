@@ -4537,7 +4537,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -147, y: 269}
+  m_AnchoredPosition: {x: -147, y: 741}
   m_SizeDelta: {x: 20, y: 40}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &321959808
@@ -6106,6 +6106,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   settingWindow: {fileID: 1412998828}
+  window: {fileID: 418782085}
 --- !u!1 &389192788
 GameObject:
   m_ObjectHideFlags: 0
@@ -6264,8 +6265,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1145484959}
-        m_TargetAssemblyTypeName: InteractButtonManager, Assembly-CSharp
-        m_MethodName: PriviousButton
+        m_TargetAssemblyTypeName: SkillListButtonManager, Assembly-CSharp
+        m_MethodName: PriviousPage
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -7414,7 +7415,8 @@ MonoBehaviour:
   - {fileID: 1483647438}
   - {fileID: 1734618498}
   inventory: {fileID: 887214362}
-  skill: {fileID: 1466617117}
+  skillCharacterShower: {fileID: 1466617117}
+  skillListShower: {fileID: 1700975716}
 --- !u!1 &426028484
 GameObject:
   m_ObjectHideFlags: 0
@@ -9958,7 +9960,7 @@ GameObject:
   - component: {fileID: 650402972}
   - component: {fileID: 650402971}
   m_Layer: 5
-  m_Name: Default
+  m_Name: Categories
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -15821,6 +15823,7 @@ MonoBehaviour:
   - {fileID: 1987908614}
   - {fileID: 768598578}
   shower: {fileID: 2021875326}
+  selectedSkill: {fileID: 1700975716}
   cursor: {fileID: 321959808}
   list: {fileID: 342324236}
   pageShower: {fileID: 1603982236}
@@ -22394,8 +22397,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4278190335
-  m_fontColor: {r: 1, g: 0, b: 0, a: 1}
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:

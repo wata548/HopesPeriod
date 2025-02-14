@@ -5,20 +5,24 @@ using UnityEngine;
 public class SkillListButton: InteractButtonUI {
 
     private TMP_Text text;
-    private bool on = false;
+    public bool On { get; private set; } = false;
+    
     public override void Click() {
+
+        Parse(Manager).Click(Code);
     }
 
     public int Code { get; private set; }
 
     public void SetCode(int code) {
+        this.Code = code;
         if (code == 0) {
-            on = false;
+            On = false;
             text.text = "";
             return;
         }
 
-        on = true;
+        On = true;
         text.text = SkillInfo.Name(code);
     }
     

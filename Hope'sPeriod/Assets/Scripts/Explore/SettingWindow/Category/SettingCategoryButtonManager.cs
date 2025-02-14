@@ -1,11 +1,13 @@
 using System;
 using UnityEngine;
+using UnityEngine.Serialization;
 
-public class SettingCattegoryButtonManager: InteractButtonManager {
+public class SettingCategoryButtonManager: InteractButtonManager {
     public override bool Interactable { get; protected set; }
 
     [SerializeField] private InventoryWindow inventory;
-    [SerializeField] private CharacterSelectButtonManager skill;
+    [SerializeField] private CharacterSelectButtonManager skillCharacterShower;
+    [SerializeField] private SkillSelectButtonManager skillListShower; 
     public override void SelectIn(InteractButton target) {
         throw new System.NotImplementedException();
     }
@@ -21,7 +23,7 @@ public class SettingCattegoryButtonManager: InteractButtonManager {
     private void TurnOnSkill() {
                 
         TurnOff();
-        skill.TurnOn();
+        skillCharacterShower.TurnOn();
     }
     private void TurnOnSave() {
                
@@ -36,14 +38,16 @@ public class SettingCattegoryButtonManager: InteractButtonManager {
         TurnOff();
     }
     private void QuitGame() {
+        ScenceControler.Load("Title");
     }
 
     private void TurnOff() {
         inventory.TurnOff();
-        skill.TurnOff();
+        skillCharacterShower.TurnOff();
+        skillListShower.TurnOff();
     }
 
-    public void Click(int index) {
+    public void Click(int index = 0) {
         Action action = index switch {
         
             0 => TurnOnInventory,

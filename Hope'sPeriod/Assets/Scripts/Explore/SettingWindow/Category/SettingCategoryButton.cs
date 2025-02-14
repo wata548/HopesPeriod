@@ -16,9 +16,9 @@ public class SettingCategoryButton: InteractButtonUI {
         Parse(Manager).Click(Index);
     }
 
-    private SettingCattegoryButtonManager Parse(InteractButtonManager manager) {
-        if (manager is not SettingCattegoryButtonManager result)
-            throw new TypeMissMatched(manager.gameObject, typeof(SettingCattegoryButtonManager));
+    private SettingCategoryButtonManager Parse(InteractButtonManager manager) {
+        if (manager is not SettingCategoryButtonManager result)
+            throw new TypeMissMatched(manager.gameObject, typeof(SettingCategoryButtonManager));
 
         return result;
     }

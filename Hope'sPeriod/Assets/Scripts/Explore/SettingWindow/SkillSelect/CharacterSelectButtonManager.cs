@@ -39,6 +39,11 @@ public class CharacterSelectButtonManager: InteractButtonManager {
         TurnOff();
     }
 
+    private void Start() {
+        TurnOff();
+        skillSelect.TurnOff();
+    }
+
     private CharacterSelectButton Parse(InteractButton button) {
         if (button is not CharacterSelectButton result)
             throw new TypeMissMatched(button.gameObject, typeof(CharacterSelectButton));

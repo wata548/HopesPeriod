@@ -15,12 +15,8 @@ public class SkillSelectButtonManager: InteractButtonManager {
         window.SetActive(true);
         
         info = characterInfo;
-        int index = 0;
-        foreach (var button in buttons) {
-            
-            Parse(button).TurnOn(info.GetSkill(index++));
-        }
 
+        Refresh();
         targetName.text = target switch {
             0 => "해일",
             1 => "캐빌",
@@ -29,16 +25,25 @@ public class SkillSelectButtonManager: InteractButtonManager {
         };
     }
 
+    public void Refresh() {
+        int index = 0;
+        foreach (var button in buttons) {
+                    
+            Parse(button).TurnOn(info.GetSkill(index++));
+        }
+    }
+
     public void TurnOff() {
         Interactable = false;
         window.SetActive(false);
+        foreach (var button in buttons) {
+            Parse(button).TurnOff();
+        }
     }
     public override void SelectIn(InteractButton target) {
-        Parse(target).Active();
     }
 
     public override void SelectOut(InteractButton target) {
-        Parse(target).Disactive();
     }
 
     public void ListTurnOn(int index) {
@@ -51,7 +56,5 @@ public class SkillSelectButtonManager: InteractButtonManager {
         return result;
     }
 
-    private void Start() {
-        TurnOff();
-    }
+    public SkillSelectButton GetButton(int index) => Parse(buttons[index]);
 }

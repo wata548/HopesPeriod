@@ -13,6 +13,7 @@ public class SkillSelectButton: InteractButtonUI {
     private Tween animation = null;
     private const float ActiveSize = 1.2f;
     private const float ActiveDuraction = 0.2f;
+    private static int select = -1;
     
     private void SetCode(int code) {
         this.code = code;
@@ -21,27 +22,41 @@ public class SkillSelectButton: InteractButtonUI {
 
     public void TurnOn(int code) {
         SetCode(code);
-        
-        button.SetActive(on);
+
+        button.SetActive(true);
         if (!on) {
-            skillName.text = "";
+            
+            skillName.color = Color.gray;
+            skillName.text = "빈 슬롯";
             return;
         }
 
+        skillName.color = Color.white;
         skillName.text = SkillInfo.Name(this.code);
     }
 
-    public void Active() {
+    public void TurnOff() {
+        button.SetActive(false);
+    }
+
+    private void Active() {
         if (animation != null) animation.Kill();
         animation = button.transform.DOScale(ActiveSize, ActiveDuraction);
     }
 
-    public void Disactive() {
+    private void Disactive() {
         if (animation != null) animation.Kill();
         animation = button.transform.DOScale(1, 0);
     }
     
     public override void Click() {
+        if (select != -1) {
+            Parse(Manager).GetButton(select).Disactive();
+        }
+
+        select = Index;
+        Active();
+        
         Parse(Manager).ListTurnOn(Index);
     }
 

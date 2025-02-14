@@ -1,5 +1,3 @@
-using UnityEngine;
-using VInspector.Libs;
 
 public class MainButtonManager: InteractButtonManager {
     public override bool Interactable { get; protected set; } = true;

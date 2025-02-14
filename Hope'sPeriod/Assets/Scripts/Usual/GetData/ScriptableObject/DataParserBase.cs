@@ -220,7 +220,7 @@ public abstract class DataParserBase : ScriptableObject {
             addFunc.Invoke(target, new object[] {context.Item1, context.Item2});
         }
 
-        //save on disk
+        //save On disk
         EditorUtility.SetDirty(targetTable);
         AssetDatabase.SaveAssets();
     }

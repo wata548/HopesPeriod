@@ -5,11 +5,13 @@ using UnityEngine.UI;
 public class SettingWindow: MonoBehaviour {
 
     [SerializeField] private GameObject settingWindow;
+    [SerializeField] private SettingCategoryButtonManager window;
     private bool on = false;
 
     private void TurnOn() {
         TilePlayerPhysics.SetMovable(false);
         settingWindow.SetActive(true);
+        window.Click();
     }
 
     private void TurnOff() {

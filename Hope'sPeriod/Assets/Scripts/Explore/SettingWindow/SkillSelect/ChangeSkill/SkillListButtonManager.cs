@@ -8,6 +8,7 @@ using UnityEngine;
 public class SkillListButtonManager: InteractButtonManager {
 
     [SerializeField] private SkillInfoShower shower;
+    [SerializeField] private SkillSelectButtonManager selectedSkill;
     [SerializeField] private Cursor cursor;
     [SerializeField] private GameObject list;
     [SerializeField] private TMP_Text pageShower;
@@ -15,7 +16,7 @@ public class SkillListButtonManager: InteractButtonManager {
     private EachCharacterInfo info;
     private int index;
     private static readonly Color ActiveColor = Color.red;
-    private static readonly Color DisactiveColor = Color.gray;
+    private static readonly Color DisactiveColor = Color.white;
 
     private int currentPage = 0;
     private int maxPage = 0;
@@ -26,6 +27,7 @@ public class SkillListButtonManager: InteractButtonManager {
     public override void SelectIn(InteractButton target) {
         var button = Parse(target);
 
+        if (!button.On) return;
         shower.SetSkill(button.Code);
         button.SetColor(ActiveColor);
         cursor.SetIndex(target.Index);
@@ -33,6 +35,7 @@ public class SkillListButtonManager: InteractButtonManager {
     }
 
     public override void SelectOut(InteractButton target) {
+        
         shower.SetSkill(0);
         Parse(target).SetColor(DisactiveColor);
         cursor.Disappear();
@@ -56,7 +59,7 @@ public class SkillListButtonManager: InteractButtonManager {
         SetMaxPage();
         currentPage = 0;
 
-        SkillsUpdate();
+        SkillListRefresh();
     }
 
     private void SetMaxPage() {
@@ -72,14 +75,17 @@ public class SkillListButtonManager: InteractButtonManager {
         maxPage = count / ShowCount + (count % ShowCount != 0 ? 1 : 0); 
     }
     
-    private void SkillsUpdate() {
-        pageShower.text = $"<{currentPage}/{maxPage}>";
+    private void SkillListRefresh() {
+        if (maxPage == 0) 
+            pageShower.text = $"<0/0>";
+        else 
+            pageShower.text = $"<{currentPage + 1}/{maxPage}>";
         
         List<int> availableSkill;
         if (!changeable)
             availableSkill = info.HaveSkills.Except(info.Skill).ToList();
         else
-            availableSkill = info.Skill.ToList();
+            availableSkill = info.HaveSkills.ToList();
 
         int startPos = currentPage * ShowCount;
         for (int i = 0; i < ShowCount; i++) {
@@ -100,7 +106,7 @@ public class SkillListButtonManager: InteractButtonManager {
         if (currentPage >= maxPage)
             currentPage = 0;
 
-        SkillsUpdate();
+        SkillListRefresh();
     }
 
     public void PriviousPage() {
@@ -111,7 +117,7 @@ public class SkillListButtonManager: InteractButtonManager {
         if (currentPage < 0)
             currentPage = maxPage - 1;
 
-        SkillsUpdate();
+        SkillListRefresh();
     }
 
     public void TurnOff() {
@@ -120,6 +126,12 @@ public class SkillListButtonManager: InteractButtonManager {
         shower.TurnOff();
     }
 
+    public void Click(int code) {
+        info.SetSkill(index, code);
+        selectedSkill.Refresh();
+        SetMaxPage();
+        SkillListRefresh();
+    }
     
     private void Awake() {
         base.Awake();

@@ -22,7 +22,7 @@ public sealed class CompoInput : MoveComposite {
             }
             
             //TODO: Contact Check should not static class 
-            //* If player contact on wall, Don't need calculate power
+            //* If player contact On wall, Don't need calculate power
             if(contactInfo.Contain(checkDirectrion)) {
             
                 continue;

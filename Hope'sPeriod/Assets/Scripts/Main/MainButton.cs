@@ -34,6 +34,11 @@ public class MainButton: InteractButtonUI {
         text.fontSize = fontSize;
     }
 
+    public void StartButton() {
+        SaveData.Load();
+        ScenceControler.Load("PlayMap");
+    }
+    
     public void Awake() {
 
         text = GetComponentInChildren<TMP_Text>();
