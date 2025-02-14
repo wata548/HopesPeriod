@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 [Serializable]
 [Flags]
@@ -60,6 +61,11 @@ static class DirectionInfo {
         return false;
     }
 
+    public static float SimpleDirection(this Direction dir) {
+        var simple = Enum.GetValues(typeof(Direction)).Cast<Direction>().Any(simple => simple == dir);
+        return simple ? 1 : 1.414f;
+    }
+    
     public static Vector2 ConvertVector(this Direction dir) {
 
         Vector2 result = Vector2.zero;

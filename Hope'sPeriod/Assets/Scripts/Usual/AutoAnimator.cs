@@ -10,20 +10,31 @@ public class AutoAnimator: MonoBehaviour {
      private void Awake() {
           
           animator = GetComponent<Animator>();
+          var route = ((MoveScriptCommand)ScriptCode.Interpret(@"Move(Target = 123| Route = [L,L,L + U,L + D,L+D,L+U]);")[0].Item2).Route;
+          SetRoute(route, 0.5f);
      }
-
-     private static readonly Dictionary<Direction, Vector3> directionVector = new() {
-          { Direction.Down, Vector3.down},
-          { Direction.Left, Vector3.left},
-          { Direction.Right, Vector3.right},
-          { Direction.Up, Vector3.up}
-     };
      
-     private void SetRoute(List<Direction> route, float duraction, ref bool end) {
+     private void SetRoute(List<Direction> route, float duraction) {
 
           Sequence animation = DOTween.Sequence();
+          Vector3 pos = gameObject.transform.localPosition;
+          
           foreach (var dir in route) {
-               animation.Append(gameObject.transform.DOMove(directionVector[dir], duraction));
+               Vector3 direction = dir.ConvertVector().ToVec3(); 
+               pos += direction;
+               animation.Append(gameObject.transform
+                    .DOLocalMove(pos, duraction * dir.SimpleDirection())
+                    .SetEase(Ease.Linear)
+                    .OnStart(() => {
+                         animator.SetFloat("Horizontal", direction.x);
+                         animator.SetFloat("Vertical", direction.y);
+                         animator.SetFloat("Speed", direction.magnitude);
+                         Debug.Log($"{animator.GetFloat("Horizontal")} + {animator.GetFloat("Vertical")} = {animator.GetFloat("Speed")}");
+                    }) 
+               );
           }
+          
+          //TODO: End Process
+          animation.OnComplete(() => Debug.Log("end"));
      }
 }
