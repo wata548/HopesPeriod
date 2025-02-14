@@ -1,13 +1,11 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text.RegularExpressions;
 using System.Numerics;
 using System.Reflection;
-using System.Diagnostics;
+using System.Text.RegularExpressions;
+using System.Collections.Generic;
+using System.Collections;
+using System;
+using System.Linq;
 
-#region Commands
 /// <summary>
 /// <para>It's subClass must sealed</para>
 /// <para>and compare subParameter and essentialParameter by setter's attribute</para>
@@ -22,7 +20,8 @@ public interface ICommand { }
 /// </summary>
 public sealed class MoveScriptCommand : ICommand {
     public int Target { get; protected set; }
-    public List<ScriptCodeDirection> Route { get; protected set; }
+    public List<Direction> Route { get; protected set; }
+    public float Power { get; private set; }
     public bool Follow { get; private set; } = false;
 }
 /// <summary>
@@ -40,7 +39,7 @@ sealed public class ZoomScriptCommand : ICommand {
 sealed public class GeneratePersonScriptCommand : ICommand {
     public int ActorCode { get; protected set; }
     public Vector2 Pos { get; private set; }
-    public ScriptCodeDirection View { get; private set;}
+    public Direction View { get; private set; }
 }
 /// <summary>
 /// <para>Essential: Image(string)</para>
@@ -54,7 +53,7 @@ sealed public class SetBackgroundScriptCommand : ICommand {
 /// ex) ControleBackground(Pos = {1f,2f} | Zoom = 0.5f);
 /// </summary>
 sealed public class ControleBackgroundScriptCommand : ICommand {
-    public Vector2 Pos{ get; private set; }
+    public Vector2 Pos { get; private set; }
     public float Zoom { get; private set; }
 }
 /// <summary>
@@ -67,7 +66,7 @@ sealed public class ClearBackgroundScriptCommand : ICommand { }
 /// ex) SetMap(MapCode = 8001 | Pos = {1.2f, 4.3f});
 /// </summary>
 sealed public class SetMapScriptCommand : ICommand {
-    public int MapCode{ get; protected set; }
+    public int MapCode { get; protected set; }
     public Vector2 Pos { get; private set; }
 }
 /// <summary>
@@ -95,7 +94,6 @@ sealed public class FocusScriptCommand : ICommand {
     public int Target { get; protected set; }
     public Vector2 Pos { get; private set; }
 }
-#endregion
 
 public enum ScriptCodeKeyword {
     Move,
@@ -108,12 +106,6 @@ public enum ScriptCodeKeyword {
     SetCameraPos,
     MakeSelect,
     Focus
-};
-public enum ScriptCodeDirection {
-    Left,
-    Right,
-    Up,
-    Down
 };
 
 public static class ScriptCode {
@@ -145,16 +137,16 @@ public static class ScriptCode {
         { typeof(bool), @"^\s*(true|false|t|f|True|False|T|F)" },
         { typeof(int), @"^\s*(-?\d*)" },
         { typeof(float), @"^\s*(-?\d*\.?\d+)f" },
-        { typeof(ScriptCodeDirection), @"^\s*(left|right|up|down|l|r|u|d|Left|Right|Up|Down|L|R|D|U)"},
+        { typeof(Direction), "(.*)"},
         { typeof(List<>), @"^\s*\[(.*)\]"},
         { typeof(Vector2), @"^\s*\{(.*)\}"},
     };
     private static Dictionary<ScriptCodeKeyword, List<Parameter>?> essentialParam = new();
     private static Dictionary<ScriptCodeKeyword, List<Parameter>?> subParam = new();
     private static List<string> keywords = Enum.GetValues(typeof(ScriptCodeKeyword))
-            .Cast<ScriptCodeKeyword>()
-            .Select(factor => factor.ToString())
-            .ToList();
+        .Cast<ScriptCodeKeyword>()
+        .Select(factor => factor.ToString())
+        .ToList();
     private static string keywordPattern = $@"^\s*({string.Join("|", keywords)})\s*\((.*?)\)";
     private static string parameterPattern = @"^\s*(\S*)\s*=\s*(.*)";
 
@@ -166,7 +158,7 @@ public static class ScriptCode {
 
         isSetting = true;
         var commands = Enum.GetValues(typeof(ScriptCodeKeyword));
-        
+
         foreach (ScriptCodeKeyword command in commands) {
 
             Type type = command.ToClass();
@@ -180,10 +172,10 @@ public static class ScriptCode {
                 if (parameter.SetMethod is null) {
                     throw new NullReferenceException($"please make set({parameter.Name})");
                 }
-                if(parameter.SetMethod.IsFamily) {
+                if (parameter.SetMethod.IsFamily) {
                     if (!haveEssential) {
                         haveEssential = true;
-                        essentialParam.Add(command, new ());
+                        essentialParam.Add(command, new());
                     }
 
                     essentialParam[command].Add(new(parameter.Name, parameter.PropertyType));
@@ -202,7 +194,7 @@ public static class ScriptCode {
             }
             if (!haveEssential)
                 essentialParam.Add(command, null);
-            else if(!haveSub)
+            else if (!haveSub)
                 subParam.Add(command, null);
         }
     }
@@ -344,18 +336,18 @@ public static class ScriptCode {
             : base("please set parameters") { }
         public NotEnoughParameter(List<Parameter>? essential)
             : base("please set parameters"
-                  + $"\nessential: {string.Join(", ", essential?.Select(param => param.ToString()) ?? new string[1])}") { }
+                   + $"\nessential: {string.Join(", ", essential?.Select(param => param.ToString()) ?? new string[1])}") { }
         public NotEnoughParameter(List<Parameter>? essential, List<Parameter>? sub)
             : base("please set parameters"
-                  + $"\nessential: {string.Join(", ", essential?.Select(param => param.ToString()) ?? new string[1])}"
-                  + $"\nsub: {string.Join(", ", sub?.Select(param => param.ToString()) ?? new string[1])}") { }
+                   + $"\nessential: {string.Join(", ", essential?.Select(param => param.ToString()) ?? new string[1])}"
+                   + $"\nsub: {string.Join(", ", sub?.Select(param => param.ToString()) ?? new string[1])}") { }
         public NotEnoughParameter(Parameter[]? essential, Parameter[]? sub)
-                : base("please set parameters"
-                      + $"\nessential: {string.Join(", ", essential?.Select(param => param.ToString()) ?? new string[1])}"
-                      + $"\nsub: {string.Join(", ", sub?.Select(param => param.ToString()) ?? new string[1])}") { }
+            : base("please set parameters"
+                   + $"\nessential: {string.Join(", ", essential?.Select(param => param.ToString()) ?? new string[1])}"
+                   + $"\nsub: {string.Join(", ", sub?.Select(param => param.ToString()) ?? new string[1])}") { }
         public NotEnoughParameter(Parameter[]? essential)
-                : base("please set parameters"
-                      + $"\nessential: {string.Join(", ", essential?.Select(param => param.ToString()) ?? new string[1])}") { }
+            : base("please set parameters"
+                   + $"\nessential: {string.Join(", ", essential?.Select(param => param.ToString()) ?? new string[1])}") { }
     }
     private static object Parse(Type type, string context) {
         if (string.IsNullOrEmpty(context))
@@ -364,13 +356,29 @@ public static class ScriptCode {
         if (type == typeof(string))
             return context;
 
-        if (type == typeof(ScriptCodeDirection) || type == typeof(bool)) {
+        if (type == typeof(Direction)) {
+
+            string[] directions = context.Split('+');
+            Direction result = Direction.None;
+
+            foreach (var direction in directions) {
+                string dir = Regex.Match(direction, @"^\s*(left|right|up|down|l|r|u|d|Left|Right|Up|Down|L|R|D|U)").Groups[1].Value;
+                char initial = (char)(dir[0] | 32);
+
+                result |= initial switch {
+                    'l' => Direction.Left,
+                    'r' => Direction.Right,
+                    'u' => Direction.Up,
+                    'd' => Direction.Down,
+                };
+            }
+
+            return result;
+        }
+
+        if (type == typeof(bool)) {
             char initial = (char)(context[0] | 32);
             return initial switch {
-                'l' => ScriptCodeDirection.Left,
-                'r' => ScriptCodeDirection.Right,
-                'u' => ScriptCodeDirection.Up,
-                'd' => ScriptCodeDirection.Down,
                 't' => true,
                 'f' => false
             };
