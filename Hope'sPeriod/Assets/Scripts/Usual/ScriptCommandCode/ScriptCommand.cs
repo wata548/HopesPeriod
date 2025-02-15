@@ -1,10 +1,12 @@
-using System.Numerics;
 using System.Reflection;
 using System.Text.RegularExpressions;
 using System.Collections.Generic;
 using System.Collections;
 using System;
 using System.Linq;
+using Unity.Mathematics;
+using UnityEngine;
+using Vector2 = System.Numerics.Vector2;
 
 /// <summary>
 /// <para>It's subClass must sealed</para>
@@ -12,13 +14,48 @@ using System.Linq;
 /// <para>if subParamter, It's Property's setter must be private</para>
 /// <para>if essentialParameter, It's Property's setter must be protected</para>
 /// </summary>
-public interface ICommand { }
+public abstract class CommandBase {
+
+    private bool usable = false;
+    private bool on = false;
+    private bool end = false;
+    private CommandBase Next = null;
+
+    public bool Usable() => usable;
+    public bool On() => on;
+    public bool End() => end;
+    
+    public void SetUsable(bool value) => usable = value;
+    public bool Start() {
+        if (!usable) 
+            return false;
+
+        if (on) return false;
+        on = true;
+        return true;
+    }
+    public void EndProcess() {
+
+        if (!on)
+            return;
+        
+        on = false;
+        end = true;
+        usable = false;
+        if(Next is not null)
+            Next.SetUsable(true);
+    }
+
+    public void SetNext(CommandBase next) {
+        Next = next;
+    }
+}
 /// <summary>
 /// <para>Essential: Target(int), Route(List(Direction))</para>
 /// <para>Sub: Follow(bool)</para>
 /// ex) Move(Target = 5001 | Route = [Left, Right, Up, Down] | Follow = True);
 /// </summary>
-public sealed class MoveScriptCommand : ICommand {
+public sealed class MoveScriptCommand : CommandBase {
     public int Target { get; protected set; }
     public List<Direction> Route { get; protected set; }
     public float Power { get; private set; }
@@ -29,7 +66,7 @@ public sealed class MoveScriptCommand : ICommand {
 /// <para>Essential: Parcent(float)</para>
 /// ex) Zoom(0.5f);
 /// </summary>
-sealed public class ZoomScriptCommand : ICommand {
+sealed public class ZoomScriptCommand : CommandBase {
     public float Percent { get; protected set; }
 }
 /// <summary>
@@ -37,7 +74,7 @@ sealed public class ZoomScriptCommand : ICommand {
 /// <para>Sub: Pos(Vector2), View(Direction)</para>
 /// ex) GeneratePerson( ActorCode = 5001 | Pos = {12f, 23f} | Direction = L);
 /// </summary>
-sealed public class GeneratePersonScriptCommand : ICommand {
+sealed public class GeneratePersonScriptCommand : CommandBase {
     public int ActorCode { get; protected set; }
     public Vector2 Pos { get; private set; }
     public Direction View { get; private set; }
@@ -46,27 +83,27 @@ sealed public class GeneratePersonScriptCommand : ICommand {
 /// <para>Essential: Image(string)</para>
 /// ex) SetBackGround(Image = "Background01.png");
 /// </summary>
-sealed public class SetBackgroundScriptCommand : ICommand {
+sealed public class SetBackgroundScriptCommand : CommandBase {
     public string Image { get; protected set; }
 }
 /// <summary>
 /// <para>Sub: Pos(Vector2), Zoom(float)</para>
 /// ex) ControleBackground(Pos = {1f,2f} | Zoom = 0.5f);
 /// </summary>
-sealed public class ControleBackgroundScriptCommand : ICommand {
+sealed public class ControleBackgroundScriptCommand : CommandBase {
     public Vector2 Pos { get; private set; }
     public float Zoom { get; private set; }
 }
 /// <summary>
 /// ex) ClearBackground();
 /// </summary>
-sealed public class ClearBackgroundScriptCommand : ICommand { }
+sealed public class ClearBackgroundScriptCommand : CommandBase { }
 /// <summary>
 /// <para>Essential: MapCode(int)</para>
 /// <para>Sub: Pos(Vector2)</para>
 /// ex) SetMap(MapCode = 8001 | Pos = {1.2f, 4.3f});
 /// </summary>
-sealed public class SetMapScriptCommand : ICommand {
+sealed public class SetMapScriptCommand : CommandBase {
     public int MapCode { get; protected set; }
     public Vector2 Pos { get; private set; }
 }
@@ -74,7 +111,7 @@ sealed public class SetMapScriptCommand : ICommand {
 /// <para>Essential: Pos(Vector2)</para>
 /// ex) SetCameraPos(Pos = {12f, 34f});
 /// </summary>
-sealed public class SetCameraPosScriptCommand : ICommand {
+sealed public class SetCameraPosScriptCommand : CommandBase {
     public Vector2 Pos { get; protected set; }
 }
 /// <summary>
@@ -82,7 +119,7 @@ sealed public class SetCameraPosScriptCommand : ICommand {
 /// <para>Sub: title(string)</para>
 /// ex) MakeSelect(Factor = ["One", "Two", "Three"] | Title = "Numbers");
 /// </summary> 
-sealed public class MakeSelectScriptCommand : ICommand {
+sealed public class MakeSelectScriptCommand : CommandBase {
     public List<string> Factor { get; protected set; }
     public string Title { get; private set; }
 }
@@ -91,9 +128,10 @@ sealed public class MakeSelectScriptCommand : ICommand {
 /// <para>Sub: Pos(Vector2)</para>
 /// ex) Focus(Target = 5001 | Pos = {12f, 34f});
 /// </summary> 
-sealed public class FocusScriptCommand : ICommand {
+sealed public class FocusScriptCommand : CommandBase {
     public int Target { get; protected set; }
-    public Vector2 Pos { get; private set; }
+    public Vector2 Pos { get; private set; } = Vector2.Zero;
+    public float Power { get; private set; }
 }
 
 public enum ScriptCodeKeyword {
@@ -148,8 +186,8 @@ public static class ScriptCode {
         .Cast<ScriptCodeKeyword>()
         .Select(factor => factor.ToString())
         .ToList();
-    private static string keywordPattern = $@"^\s*({string.Join("|", keywords)})\s*\((.*?)\)";
-    private static string parameterPattern = @"^\s*(\S*)\s*=\s*(.*)";
+    private static string keywordPattern = $@"({string.Join("|", keywords)})\s*\((.*?)\)";
+    private static string parameterPattern = @"(\S*)\s*=\s*(.*)";
 
     private static bool isSetting = false;
 
@@ -199,14 +237,14 @@ public static class ScriptCode {
                 subParam.Add(command, null);
         }
     }
-    public static List<(ScriptCodeKeyword, ICommand)> Interpret(string input) {
+    public static List<(ScriptCodeKeyword, CommandBase)> Interpret(string input) {
 
         SetUp();
 
         var lines = input.Split(';');
         lines = lines.Take(lines.Length - 1).ToArray();
 
-        List<(ScriptCodeKeyword, ICommand)> result = new();
+        List<(ScriptCodeKeyword, CommandBase)> result = new();
         foreach (var line in lines) {
             var rawDatas = InterpretOneLine(line, out var commandType);
             Type command = commandType.ToClass();
@@ -232,7 +270,7 @@ public static class ScriptCode {
                     targetParam.SetValue(data, rawData.value);
             }
 
-            result.Add((commandType, (ICommand)data));
+            result.Add((commandType, (CommandBase)data));
 
         }
 
@@ -242,6 +280,7 @@ public static class ScriptCode {
 
         Match match = Regex.Match(input, keywordPattern);
 
+        Debug.Log($"{match.Groups[1].Value} + Char({match.Groups[0].Value.Length})");
         keyword = Enum.Parse<ScriptCodeKeyword>(match.Groups[1].Value);
         List<(Parameter, object)> result = new();
 
