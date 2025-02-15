@@ -10,9 +10,19 @@ public class ScenceChangeEffecter: MonoBehaviour {
         
         changer.fillAmount = 0;
         changer.enabled = true;
+        changer.color = Color.black;
         return DOTween.To(() => changer.fillAmount, x => changer.fillAmount = x, 1f, 1.5f);
     }
 
+    public Tween EndEffect(float duraction) {
+
+        return changer.DOColor(new Color(0,0,0,0), duraction)
+            .OnComplete(() => {
+                changer.enabled = false;
+                changer.fillAmount = 0;
+            });
+    }
+    
     private void Awake() {
         changer = GetComponent<Image>();
         changer.enabled = false;
@@ -20,8 +30,9 @@ public class ScenceChangeEffecter: MonoBehaviour {
         if (Instance == null) {
 
             Instance = this;
+            DontDestroyOnLoad(gameObject);
         }
         else if (Instance != this)
-            Destroy(this);
+            Destroy(gameObject);
     }
 }

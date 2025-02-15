@@ -55,7 +55,7 @@ public abstract class CommandBase {
 /// <para>Sub: Follow(bool)</para>
 /// ex) Move(Target = 5001 | Route = [Left, Right, Up, Down] | Follow = True);
 /// </summary>
-public sealed class MoveScriptCommand : CommandBase {
+sealed public class MoveScriptCommand : CommandBase {
     public int Target { get; protected set; }
     public List<Direction> Route { get; protected set; }
     public float Power { get; private set; }
@@ -63,19 +63,20 @@ public sealed class MoveScriptCommand : CommandBase {
     public bool Follow { get; private set; } = false;
 }
 /// <summary>
-/// <para>Essential: Parcent(float)</para>
+/// <para>Sub: Parcent(float)</para>
 /// ex) Zoom(0.5f);
 /// </summary>
 sealed public class ZoomScriptCommand : CommandBase {
     public float Percent { get; protected set; }
+    public float Power { get; private set; }
 }
 /// <summary>
-/// <para>Essential: ActorCode(int)</para>
+/// <para>Essential: Code(int)</para>
 /// <para>Sub: Pos(Vector2), View(Direction)</para>
-/// ex) GeneratePerson( ActorCode = 5001 | Pos = {12f, 23f} | Direction = L);
+/// ex) GeneratePerson( Code = 5001 | Pos = {12f, 23f} | Direction = L);
 /// </summary>
 sealed public class GeneratePersonScriptCommand : CommandBase {
-    public int ActorCode { get; protected set; }
+    public int Code { get; protected set; }
     public Vector2 Pos { get; private set; }
     public Direction View { get; private set; }
 }
@@ -113,6 +114,7 @@ sealed public class SetMapScriptCommand : CommandBase {
 /// </summary>
 sealed public class SetCameraPosScriptCommand : CommandBase {
     public Vector2 Pos { get; protected set; }
+    public float Power { get; private set; }
 }
 /// <summary>
 /// <para>Essential: Factor(List(string))</para>
@@ -133,18 +135,36 @@ sealed public class FocusScriptCommand : CommandBase {
     public Vector2 Pos { get; private set; } = Vector2.Zero;
     public float Power { get; private set; }
 }
+/// <summary>
+/// <para>Essential: Target(int)</para>
+/// <para>Sub: Pos(Vector2)</para>
+/// ex) (Target = 5001 | Pos = {12f, 34f});
+/// </summary> 
+sealed public class SetPersonPosScriptCommand : CommandBase {
+    public int Target { get; protected set; }
+    public Vector2 Pos { get; private set; } = Vector2.Zero;
+}
+
+sealed public class StartChangeEffectScriptCommand : CommandBase {}
+
+sealed public class ClearEffectScriptCommand : CommandBase {
+    public float Power { get; protected set; }
+}
 
 public enum ScriptCodeKeyword {
     Move,
     Zoom,
     GeneratePerson,
+    SetPersonPos,
     SetBackground,
     ControleBackground,
     ClearBackground,
     SetMap,
     SetCameraPos,
     MakeSelect,
-    Focus
+    Focus,
+    StartChangeEffect,
+    ClearEffect
 };
 
 public static class ScriptCode {
