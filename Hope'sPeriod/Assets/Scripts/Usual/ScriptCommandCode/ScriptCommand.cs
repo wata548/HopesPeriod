@@ -22,6 +22,7 @@ public sealed class MoveScriptCommand : ICommand {
     public int Target { get; protected set; }
     public List<Direction> Route { get; protected set; }
     public float Power { get; private set; }
+    public int Loop { get; private set; }
     public bool Follow { get; private set; } = false;
 }
 /// <summary>

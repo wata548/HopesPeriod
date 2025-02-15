@@ -64,11 +64,15 @@ public static class UsualVector
     }
 
     public static Vector2Int ToVec2Int(this Vector2 v) => new((int)(Mathf.Floor(v.x)), (int)(Mathf.Floor(v.y)));
+
+    public static Vector2Int ToVec2Int(this System.Numerics.Vector2 v) =>
+        new((int)(Mathf.Floor(v.X)), (int)(MathF.Floor(v.Y)));
     
     public static Vector2 ToVec2(this Vector3 vector) => new(vector.x, vector.y);
+    public static Vector2 ToVec2(this System.Numerics.Vector2 v) => new(v.X, v.Y);
     public static Vector2 ToVec2(this Vector2Int v) => new(v.x, v.y);
     public static Vector3 ToVec3(this Vector2Int v) => new(v.x, v.y);
-    public static Vector3 ToVec3(this Vector2 vector) => new(vector.x, vector.y, 0);
-    public static Vector3 ToVec3(this Vector2 vector, float zCoor) => new(vector.x, vector.y, zCoor);
+    public static Vector3 ToVec3(this Vector2 vector, float zCoor = 0) => new(vector.x, vector.y, zCoor);
+    public static Vector3 ToVec3(this System.Numerics.Vector2 vector, float zCoor = 0) => new(vector.X, vector.Y, zCoor);
     public static Vector2 Add(this Vector2 vector, float a) => new Vector2(vector.x + a, vector.y + a);
 }

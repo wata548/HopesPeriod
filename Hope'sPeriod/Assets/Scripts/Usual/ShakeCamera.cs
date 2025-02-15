@@ -1,3 +1,4 @@
+using System;
 using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
@@ -6,7 +7,8 @@ using UnityEngine;
 public class ShakeCamera : MonoBehaviour {
 
     public static ShakeCamera Instance { get; private set; } = null;
-
+    public Camera camera { get; private set; } = null;
+    
     Tween current = null;
 
     private void Awake() {
@@ -14,6 +16,8 @@ public class ShakeCamera : MonoBehaviour {
         if (Instance == null) {
             Instance = this;
         }
+
+        camera = GetComponent<Camera>();
     }
 
     public Tween Shake(float power, float duraction) {
