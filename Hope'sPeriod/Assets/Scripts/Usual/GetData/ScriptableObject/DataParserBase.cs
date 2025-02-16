@@ -54,19 +54,19 @@ public abstract class DataParserBase : ScriptableObject {
     //Set folders
     public virtual void SetUp() {
             //check and make namespace directory
-            DirectoryInfo @namespace = new(@$"Assets\{m_NameSpace}");
+            DirectoryInfo @namespace = new(@$"Assets\Resources\{m_NameSpace}");
             if (!@namespace.Exists) {
                 @namespace.Create();
                 Debug.Log($"Create Namespace({m_NameSpace}) Directory");
             }
                                     
-            DirectoryInfo dataTypes = new DirectoryInfo($@"Assets\{m_NameSpace}\DataTypes");
+            DirectoryInfo dataTypes = new DirectoryInfo($@"Assets\Resources\{m_NameSpace}\DataTypes");
             if (!dataTypes.Exists) {
                 dataTypes.Create();
                 Debug.Log($"Create DataTypes({m_NameSpace}\\DataTypes) Directory");
             }
                                 
-            DirectoryInfo Generated = new DirectoryInfo($@"Assets\{m_NameSpace}\Generated");
+            DirectoryInfo Generated = new DirectoryInfo($@"Assets\Resources\{m_NameSpace}\Generated");
             if (!Generated.Exists) {
                 Generated.Create();
                 Debug.Log($"Create DataTypes({m_NameSpace}\\Generated) Directory");
@@ -89,6 +89,7 @@ public abstract class DataParserBase : ScriptableObject {
 
         foreach (var field in header) {
 
+            Debug.Log(field.Type);
             Type fieldType = Type.GetType($"System.{field.Type}") 
                              ?? Type.GetType(field.Type) 
                              ?? Type.GetType($"{field.Type}, Assembly-CSharp")

@@ -48,4 +48,36 @@ namespace SpreadInfo {
         
         Lippi = 6,
     }
+    
+    [System.SerializableAttribute()]
+    public enum ScriptEvent {
+        
+        None = 0,
+        
+        ZoomIn = 1,
+        
+        CameraShake  = 2,
+        
+        CharacterMove = 3,
+    }
+    
+    [System.SerializableAttribute()]
+    public enum Timing {
+        
+        BeforeTalking = 0,
+        
+        Talking = 1,
+        
+        AfterTalking = 2,
+    }
+    
+    [System.SerializableAttribute()]
+    public enum WindowType {
+        
+        NoneActor = 0,
+        
+        Default = 1,
+        
+        BackgroundImage = 2,
+    }
 }

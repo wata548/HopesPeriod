@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 0}
-  m_Name: New Multi Type Parser
+  m_Name: ScriptParser
   m_EditorClassIdentifier: Assembly-CSharp::MultiTypeParser
   m_NameSpace: SpreadInfo
   m_Path:
   - ScriptDB
-  m_DataLoader: {fileID: 11400000, guid: 7c52106eee9771f4a9d864ba3441b79a, type: 2}
+  m_DataLoader: {fileID: 11400000, guid: 71252c3d0ef6af14d8de4ddc2258051c, type: 2}

@@ -6,12 +6,19 @@ using UnityEngine.UI;
 public class ScenceChangeEffecter: MonoBehaviour {
     private Image changer;
     public static ScenceChangeEffecter Instance { get; private set; } = null;
-    public Tween StartEffect() {
+    public Tween StartEffect(float power = 1.5f) {
         
         changer.fillAmount = 0;
         changer.enabled = true;
         changer.color = Color.black;
-        return DOTween.To(() => changer.fillAmount, x => changer.fillAmount = x, 1f, 1.5f);
+        return DOTween.To(() => changer.fillAmount, x => changer.fillAmount = x, 1f, power);
+    }
+    public Tween Appear(float power = 1.5f) {
+             
+        changer.fillAmount = 1;
+        changer.enabled = true;
+        changer.color = new(0, 0, 0, 0);
+        return changer.DOColor(Color.black, power);
     }
 
     public Tween EndEffect(float duraction) {

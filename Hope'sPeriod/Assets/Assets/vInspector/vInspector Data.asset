@@ -13,6 +13,20 @@ MonoBehaviour:
   m_Name: vInspector Data
   m_EditorClassIdentifier: 
   bookmarks:
+  - _obj: {fileID: 11400000, guid: 17d8ea403ae43fd45ac45991031e5dcb, type: 2}
+    globalId:
+      globalObjectIdString: GlobalObjectId_V1-3-17d8ea403ae43fd45ac45991031e5dcb-11400000-0
+    isSceneGameObject: 0
+    isAsset: 1
+    _typeString: MultiTypeParser, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
+  - _obj: {fileID: 11400000, guid: 64311611f13a2bd4195162a4a9479664, type: 2}
+    globalId:
+      globalObjectIdString: GlobalObjectId_V1-3-64311611f13a2bd4195162a4a9479664-11400000-0
+    isSceneGameObject: 0
+    isAsset: 1
+    _typeString: SpreadInfo.ScriptDBDataTable, Assembly-CSharp, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
   - _obj: {fileID: 11400000, guid: 11ca7d59420788e4e8b30c30c46725e2, type: 2}
     globalId:
       globalObjectIdString: GlobalObjectId_V1-3-11ca7d59420788e4e8b30c30c46725e2-11400000-0

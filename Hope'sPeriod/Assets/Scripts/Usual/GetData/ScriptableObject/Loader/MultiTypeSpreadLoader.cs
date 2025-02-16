@@ -109,50 +109,51 @@ public class MultiTypeParser : DataParserBase {
     }
 
     private void SyncData(List<List<List<string>>> data, string dataTypeName) {
-        
+
+        Debug.Log(JsonConvert.SerializeObject(data, Formatting.Indented));
         Type dataType = Type.GetType($"{m_NameSpace}.{dataTypeName}");
         Type dataTableType = Type.GetType($"{m_NameSpace}.{dataTypeName}Table");
-        
+
         string directoryPath = $@"Assets\Resources\{m_NameSpace}\Generated\{dataTypeName}Table.asset";
         UnityEngine.Object targetTable = AssetDatabase.LoadAssetAtPath<UnityEngine.Object>(directoryPath);
-        
+
         if (targetTable is null) {
             targetTable = CreateInstance(dataTableType);
-        
+
             AssetDatabase.CreateAsset(targetTable, directoryPath);
             AssetDatabase.Refresh();
         }
-        
+
         List<(int, Object)> keyAndValue = new();
 
         int index = 0;
         bool useDictionary = m_DataLoader.UsingFirstRawToKey;
         foreach (var factor in data) {
-        
+
             List<TypeAndName> header;
             List<List<string>> rawDatas;
             (header, rawDatas) =  Divide(factor.Skip(useDictionary ? 1 : 0).ToList());
-            
-            
+
+
             int code = index++;
             if(useDictionary)
                 code = int.Parse(factor[0][0]);
-            
+
             FieldInfo[] fields = dataType.GetFields(BindingFlags.NonPublic | BindingFlags.Instance);
 
             List<Object> list = new();
             foreach (var rawData in rawDatas) {
 
                 if (rawData.Count == 0) break;
-                
+
                 if (string.IsNullOrEmpty(rawData[0])) break;
-                
+
                 Object row = Activator.CreateInstance(dataType);
                 for (int i = 0; i < fields.Length; i++) {
 
                     Type fieldType = fields[i].FieldType;
                     Object value = base.Parse(fieldType, rawData[i]);
-                    fields[i].SetValue(row, value);    
+                    fields[i].SetValue(row, value);
                 }
 
                 list.Add(row);
@@ -161,19 +162,19 @@ public class MultiTypeParser : DataParserBase {
             var fixList = ConvertList(list, dataType);
             keyAndValue.Add((code, fixList));
         }
-        
+
         FieldInfo dataTable = dataTableType.GetField("m_DataTable", BindingFlags.NonPublic | BindingFlags.Instance);
         MethodInfo addFunc = dataTable.FieldType.GetMethod("Add", BindingFlags.Public | BindingFlags.Instance);
         MethodInfo clearFunc = dataTable.FieldType.GetMethod("Clear", BindingFlags.Public | BindingFlags.Instance);
         Object target = dataTable.GetValue(targetTable);
-        
+
         clearFunc.Invoke(target, new object[] {});
-        
+
         foreach (var context in keyAndValue) {
 
             addFunc.Invoke(target, new object[] {context.Item1, context.Item2});
         }
-        
+
         //save On disk
         EditorUtility.SetDirty(targetTable);
         AssetDatabase.SaveAssets();

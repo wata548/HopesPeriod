@@ -92,8 +92,9 @@ sealed public class SetBackgroundScriptCommand : CommandBase {
 /// ex) ControleBackground(Pos = {1f,2f} | Zoom = 0.5f);
 /// </summary>
 sealed public class ControleBackgroundScriptCommand : CommandBase {
-    public Vector2 Pos { get; private set; }
-    public float Zoom { get; private set; }
+    public Vector2 Pos { get; protected set; }
+    public float Zoom { get; protected set; }
+    public float Power { get; protected set; }
 }
 /// <summary>
 /// ex) ClearBackground();
@@ -145,13 +146,21 @@ sealed public class SetPersonPosScriptCommand : CommandBase {
     public Vector2 Pos { get; private set; } = Vector2.Zero;
 }
 
-sealed public class StartChangeEffectScriptCommand : CommandBase {}
+sealed public class StartChangeEffectScriptCommand : CommandBase {
+    public bool Roll { get; private set; } 
+    public float Power { get; protected set; }
+}
 
 sealed public class ClearEffectScriptCommand : CommandBase {
     public float Power { get; protected set; }
 }
+sealed public class WaitScriptCommand:CommandBase
+{
+    public float Power { get; protected set; }
+}
 
 public enum ScriptCodeKeyword {
+    Wait,
     Move,
     Zoom,
     GeneratePerson,

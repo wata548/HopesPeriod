@@ -26,7 +26,6 @@ public class DefaultAndEnumDataParser: DataParserBase {
         if (string.IsNullOrEmpty(m_AddEnumsPath)) return;
         if (File.Exists(path)) {
             Debug.Log($"AddDataFile is already exist ({path})");
-            return;
         }
         
         List<List<string>> data = m_DataLoader.Load(m_AddEnumsPath);

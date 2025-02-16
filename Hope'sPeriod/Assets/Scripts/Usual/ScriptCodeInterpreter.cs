@@ -42,7 +42,9 @@ public class ScriptCodeInterpreter: MonoBehaviour {
     }
     private void ClasifyScript(ScriptCodeKeyword type, CommandBase command) {
         switch (type) {
-                
+            case ScriptCodeKeyword.Wait:
+                WaitScript(command as WaitScriptCommand);
+                break;
             case ScriptCodeKeyword.Move:
                 MoveScript(command as MoveScriptCommand);
                 break;
@@ -67,6 +69,9 @@ public class ScriptCodeInterpreter: MonoBehaviour {
             case ScriptCodeKeyword.SetBackground:
                 SetBackgroundScript(command as  SetBackgroundScriptCommand);
                 break;
+            case ScriptCodeKeyword.ClearBackground:
+                ClearBackgroundScript(command as ClearBackgroundScriptCommand);
+                break;
             case ScriptCodeKeyword.StartChangeEffect:
                 StartChangeEffectScript(command as StartChangeEffectScriptCommand);
                 break;
@@ -80,9 +85,15 @@ public class ScriptCodeInterpreter: MonoBehaviour {
         if (!command.Start())
             return;
 
-        ScenceChangeEffecter.Instance
-            .StartEffect()
-            .OnComplete(() => command.EndProcess());
+        if (command.Roll)
+            ScenceChangeEffecter.Instance
+                .StartEffect(command.Power)
+                .OnComplete(() => command.EndProcess());
+        else
+            ScenceChangeEffecter.Instance
+                .Appear(command.Power)
+                .OnComplete(() => command.EndProcess());
+
     }
 
     private void ClearEffectScript(ClearEffectScriptCommand command) {
@@ -100,6 +111,28 @@ public class ScriptCodeInterpreter: MonoBehaviour {
         background.enabled = true;
         background.sprite = Resources.Load<Sprite>($"Background/{command.Image}");
         command.EndProcess();
+    }
+    private void ClearBackgroundScript(ClearBackgroundScriptCommand command) {
+        if (!command.Start())
+            return;
+
+        background.sprite = null;
+        background.transform.localScale = new(1, 1);
+        background.transform.localPosition = new(0,0);
+        background.enabled = false;
+        command.EndProcess();
+    }
+    private void ControleBackgroundScript(ControleBackgroundScriptCommand command) {
+        if (!command.Start())
+            return;
+        
+        
+    }
+    private void WaitScript(WaitScriptCommand command) {
+        if (!command.Start())
+            return;
+
+        StartCoroutine(Wait.WaitAndDo(command.Power, () => command.EndProcess()));
     }
     private void SetMapScript(SetMapScriptCommand command) {
         
@@ -241,21 +274,25 @@ public class ScriptCodeInterpreter: MonoBehaviour {
 
         if (Input.GetKeyDown(KeyCode.R)) {
             
-            string input = @"StartChangeEffect();";
+            string input = @"StartChangeEffect(Power = .3f);";
             input += @"SetMap(MapCode = 8402);";
-            input += @"GeneratePerson(Code = 5001 | Pos = {1f , 1f} | View = l + u);";
-            input += @"Focus(Target = 5001);";
-            input += @"ClearEffect(Power = 0.3f);";
+            input += @"GeneratePerson(Code = 5002 | Pos = {1f , 1f} | View = l + u);"; 
+            input += @"Focus(Target = 5002);";
+            /*input += @"ClearEffect(Power = 0.3f);";
             input += @"Zoom(Percent = 0.7f| Power = 0.2f);";
-            input += @"Move(Target = 5001|Route=[u]|Loop = 8 | Follow = true);";
-            input += @"Move(Target = 5001| Route = [u,l,d,r] | Loop = 10 | Power = 0.1f | Follow = true);";
+            input += @"Move(Target = 5002|Route=[u]|Loop = 8 | Follow = true);";
+            input += @"Move(Target = 5002| Route = [u,l,d,r] | Loop = 10 | Power = 0.1f | Follow = true);";
             input += @"Zoom(Percent = 1f | Power = 1f);";
-            input += @"StartChangeEffect();";
+            input += @"StartChangeEffect(Power = .3f);";
             input += @"SetMap(MapCode = 8401);";
-            input += @"SetPersonPos(Target = 5001 | Pos = {0f, 0f});";
-            input += @"Focus(Target = 5001);";
+            input += @"SetPersonPos(Target = 5002 | Pos = {0f, 0f});";
+            input += @"Focus(Target = 5002);";*/
             input += @"ClearEffect(Power = 0.3f);";
-            input += @"Move(Target = 5001|Route=[r]|Loop = 10 | Follow = true);";
+            input += @"Move(Target = 5002|Route=[r]|Loop = 10 | Follow = true);";
+            input += @"SetBackground(Image = ""human"");";
+            input += @"Wait(Power = .5f);";
+            input += @"ClearBackground();";
+            input += @"Wait(Power = .5f);";
             input += @"SetBackground(Image = ""human"");";
             Interpret(input);
         }
