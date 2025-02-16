@@ -176,7 +176,7 @@ public enum ScriptCodeKeyword {
     ClearEffect
 };
 
-public static class ScriptCode {
+public static class ScriptCodeInterpreter {
     public class Parameter {
 
         public string Name;

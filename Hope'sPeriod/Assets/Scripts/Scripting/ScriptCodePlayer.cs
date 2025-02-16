@@ -1,12 +1,13 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using DG.Tweening;
 using UnityEditor.Searcher;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ScriptCodeInterpreter: MonoBehaviour {
+public class ScriptCodePlayer: MonoBehaviour {
 
     [SerializeField] private Image background;
     
@@ -26,59 +27,27 @@ public class ScriptCodeInterpreter: MonoBehaviour {
             animator.SetFloat("Speed", value.magnitude);
     }
     public void Interpret(string input) {
-            var list = ScriptCode.Interpret(input);
+        var list = ScriptCodeInterpreter.Interpret(input);
             
-            list[0].Item2.SetUsable(true);
-            for (int i = 0; i < list.Count - 1; i++) {
-                list[i].Item2.SetNext(list[i + 1].Item2);
-            }
-            process.AddRange(list);
+        //Set Next
+        list[0].Item2.SetUsable(true);
+        for (int i = 0; i < list.Count - 1; i++) {
+            list[i].Item2.SetNext(list[i + 1].Item2);
         }
+        process.AddRange(list);
+    }
     private void ScriptProcess() {
         foreach (var command in process) {
             ClasifyScript(command.Item1, command.Item2);
         }
         process = process.Where(command => !command.Item2.End()).ToList();
     }
+
+    #region ScriptPlayer  
     private void ClasifyScript(ScriptCodeKeyword type, CommandBase command) {
-        switch (type) {
-            case ScriptCodeKeyword.Wait:
-                WaitScript(command as WaitScriptCommand);
-                break;
-            case ScriptCodeKeyword.Move:
-                MoveScript(command as MoveScriptCommand);
-                break;
-            case ScriptCodeKeyword.GeneratePerson:
-                GeneratePersonScript(command as GeneratePersonScriptCommand);
-                break;
-            case ScriptCodeKeyword.SetPersonPos:
-                SetPersonPosScript(command as SetPersonPosScriptCommand);
-                break;
-            case ScriptCodeKeyword.Focus:
-                FocusScript(command as FocusScriptCommand);
-                break;
-            case ScriptCodeKeyword.Zoom:
-                ZoomScript(command as ZoomScriptCommand);
-                break;
-            case ScriptCodeKeyword.SetCameraPos:
-                SetCameraPosScript(command as SetCameraPosScriptCommand);
-                break;
-            case ScriptCodeKeyword.SetMap:
-                SetMapScript(command as SetMapScriptCommand);
-                break;
-            case ScriptCodeKeyword.SetBackground:
-                SetBackgroundScript(command as  SetBackgroundScriptCommand);
-                break;
-            case ScriptCodeKeyword.ClearBackground:
-                ClearBackgroundScript(command as ClearBackgroundScriptCommand);
-                break;
-            case ScriptCodeKeyword.StartChangeEffect:
-                StartChangeEffectScript(command as StartChangeEffectScriptCommand);
-                break;
-            case ScriptCodeKeyword.ClearEffect:
-                ClearEffectScript(command as ClearEffectScriptCommand);
-                break;
-        }
+
+        var play = typeof(ScriptCodePlayer).GetMethod($"{type.ToString()}Script", BindingFlags.NonPublic | BindingFlags.Instance)!;
+        play.Invoke(this, new[] { command });
     }
 
     private void StartChangeEffectScript(StartChangeEffectScriptCommand command) {
@@ -125,7 +94,6 @@ public class ScriptCodeInterpreter: MonoBehaviour {
     private void ControleBackgroundScript(ControleBackgroundScriptCommand command) {
         if (!command.Start())
             return;
-        
         
     }
     private void WaitScript(WaitScriptCommand command) {
@@ -269,11 +237,11 @@ public class ScriptCodeInterpreter: MonoBehaviour {
             .DOOrthoSize(command.Percent * DefaultZoom, command.Power)
             .OnComplete(() => command.EndProcess());
     }
+    #endregion
     
-    private void Update() {
-
+    private void SamplePlayer() {
         if (Input.GetKeyDown(KeyCode.R)) {
-            
+                    
             string input = @"StartChangeEffect(Power = .3f);";
             input += @"SetMap(MapCode = 8402);";
             input += @"GeneratePerson(Code = 5002 | Pos = {1f , 1f} | View = l + u);"; 
@@ -296,7 +264,11 @@ public class ScriptCodeInterpreter: MonoBehaviour {
             input += @"SetBackground(Image = ""human"");";
             Interpret(input);
         }
-        
+    }
+    
+    private void Update() {
+
+        SamplePlayer();
         ScriptProcess();
     }
 
