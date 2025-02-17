@@ -14,19 +14,27 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_DataTable:
     dataList:
+    - Key: 5000
+      Value:
+        m_Code: 5000
+        m_Name: ' '
     - Key: 5001
       Value:
         m_Code: 5001
-        m_Name: "\uD574\uC77C"
+        m_Name: ???
     - Key: 5002
       Value:
         m_Code: 5002
-        m_Name: "\uCE90\uBE4C"
+        m_Name: "\uD574\uC77C"
     - Key: 5003
       Value:
         m_Code: 5003
-        m_Name: "\uB9AC\uD53C"
+        m_Name: "\uCE90\uBE4C"
     - Key: 5004
       Value:
         m_Code: 5004
+        m_Name: "\uB9AC\uD53C"
+    - Key: 5005
+      Value:
+        m_Code: 5005
         m_Name: "\uC6D0\uD658"

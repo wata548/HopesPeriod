@@ -18,39 +18,38 @@ public static class TextExtension {
 
 
     private static readonly Dictionary<Effect, Func<float, Vector3>> match = new() {
-            { Effect.Flow, index => new Vector3(0, Mathf.Sin(index * 3f + Time.time) / 4f)},
-            { Effect.Shake, index => new Vector3(Random.Range(-0.3f, 0.3f), Random.Range(-0.5f, 0.5f), 0) / 5f },
+        { Effect.Flow, index => new Vector3(0, Mathf.Sin(index * 3f + Time.time) * 13f)},
+        { Effect.Shake, index => new Vector3(Random.Range(-0.3f, 0.3f), Random.Range(-0.65f, 0.65f)) * 10},
     };
     
-    /*public void StartTyping(TMP_Text text, string s, float interval = 0.1f) {
-        
-        text.text = "";
-        StartCoroutine(Typing(text,s, interval));
-    }*/
-        
-    public static IEnumerator Typing(this TMP_Text text, string context, float interval) {
+    public static IEnumerator Typing(this TMP_Text text, string context, float interval, Action callback = null) {
         
         bool tag = false;
         
         foreach (var character in context) {
         
-            if (character == '<' || character == '[') {
-                tag = true;
-            }
-        
-            if (character == '>' || character == ':')
-                tag = false;
             text.text += character;
-        
+            if(character == ']')
+                continue;
+            
+            if (character == '<' || character == '[')
+                tag = true;
+            
             if (!tag) {
                 EffectProcedure(text);
                 yield return new WaitForSeconds(interval);
             }
         
+            if (character == '>' || character == ':')
+                tag = false;
+        
         }
+
+        callback?.Invoke();
+        yield break;
     }
         
-    public static void EffectProcedure(TMP_Text text) {
+    public static void EffectProcedure(this TMP_Text text) {
         
         
         bool isEffectTypeTyping = false;
@@ -62,12 +61,14 @@ public static class TextExtension {
         
         int index = 0;
         bool effect = false;
-                
+
+        string s = "";
         foreach (var character in textInfo.characterInfo) {
         
             if(!character.isVisible) 
                 continue;
-        
+
+            s += character.character;
             //check effectType
             if (isEffectTypeTyping) {
                 if (character.character == ':') {
@@ -106,17 +107,19 @@ public static class TextExtension {
         
                 var tempIndex = character.vertexIndex + vertex;
                         
-                var origin = vertices[tempIndex];
-                vertices[tempIndex] = origin + move;
+                vertices[tempIndex] += move;
             }
             index++;
         }
-        
+
         foreach (var mesh in textInfo.meshInfo) {
         
             mesh.mesh.vertices = mesh.vertices;
+            mesh.mesh.RecalculateBounds();
         }
-        
+
+        text.UpdateVertexData(TMP_VertexDataUpdateFlags.All);
+
     }
     
     /// <summary>

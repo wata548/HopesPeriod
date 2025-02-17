@@ -10,6 +10,9 @@ using UnityEngine.UI;
 public class ScriptCodePlayer: MonoBehaviour {
 
     [SerializeField] private Image background;
+
+    [field: SerializeField] public BackgroundScripting script { get; private set; }
+    public static ScriptCodePlayer Instance { get; private set; } = null;
     
     private const int Infinity = 100;
     private const int DefaultCameraZPos = -10;
@@ -43,6 +46,8 @@ public class ScriptCodePlayer: MonoBehaviour {
         process = process.Where(command => !command.Item2.End()).ToList();
     }
 
+    public bool EndEvent() => process.Count <= 0;
+    
     #region ScriptPlayer  
     private void ClasifyScript(ScriptCodeKeyword type, CommandBase command) {
 
@@ -265,7 +270,11 @@ public class ScriptCodePlayer: MonoBehaviour {
             Interpret(input);
         }
     }
-    
+
+    private void Awake() {
+        Instance = this;
+    }
+
     private void Update() {
 
         SamplePlayer();

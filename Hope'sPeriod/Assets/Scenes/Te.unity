@@ -313,6 +313,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   background: {fileID: 1604391932}
+  <script>k__BackingField: {fileID: 0}
 --- !u!1 &853869037
 GameObject:
   m_ObjectHideFlags: 0
@@ -974,6 +975,7 @@ GameObject:
   - component: {fileID: 1955397321}
   - component: {fileID: 1955397320}
   - component: {fileID: 1955397322}
+  - component: {fileID: 1955397323}
   m_Layer: 5
   m_Name: ScriptShower-BackgroundType
   m_TagString: Untagged
@@ -1063,6 +1065,21 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
+--- !u!114 &1955397323
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1955397318}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8813b3965fc1498e81e103ee575f3b2e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <Box>k__BackingField: {fileID: 1955397320}
+  <Name>k__BackingField: {fileID: 1019064118}
+  <Context>k__BackingField: {fileID: 293897177}
 --- !u!1 &1959228387
 GameObject:
   m_ObjectHideFlags: 0
