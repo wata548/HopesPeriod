@@ -67,8 +67,6 @@ namespace SpreadInfo {
         BeforeTalking = 0,
         
         Talking = 1,
-        
-        AfterTalking = 2,
     }
     
     [System.SerializableAttribute()]

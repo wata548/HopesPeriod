@@ -26,13 +26,13 @@ public class WaveMovementButton: MonoBehaviour {
     }
 
     public void TurnOn() {
-        image.color = Color.white;
+        image.enabled = true;
         start = Time.time;
         on = true;
     }
 
     public void TurnOff() {
-        image.color = new Color(0, 0, 0, 0);
+        image.enabled = false;
         transform.localPosition = pos;
         on = false;
     }

@@ -1,16 +1,17 @@
 using SpreadInfo;
 using UnityEditor.Searcher;
+using UnityEngine;
 
-public class ScriptShower {
+public class ScriptShower: MonoBehaviour {
 
+    [SerializeField] private BackgroundScriptShower backgroundScript;
+    [SerializeField] private DefaultScriptShower defaultScript;
     private bool end = true;
     private bool start = false;
-    private bool justEvent = false;
     
-    private bool eventEnd = false;
-    private bool showEnd = false;
-
-    private Timing timing = Timing.BeforeTalking;
+    private bool startTalking = false;
+    private ScriptDBData currentData;
+    private ScriptDBDataTable table = null;
     
     public void Show(ScriptDBData data) {
 
@@ -19,42 +20,79 @@ public class ScriptShower {
         
         end = false;
         start = true;
-        eventEnd = false;
-        showEnd = false;
+        currentData = data;
         
-        justEvent = data.JustEvent;
-        timing = data.EventTiming;
-        
-        if (data.WindowType == WindowType.BackgroundImage) {
+        if (data.ClearContext)
+            backgroundScript.Erase();
             
-            if (data.ClearContext)
-                ScriptCodePlayer.Instance.script.Erase();
+        //StartEvent
+        ScriptCodePlayer.Instance.Interpret(data.Event);
             
-            if (data.JustEvent) {
+        if (data.JustEvent)
+            return;
+            
+        //Process of Event and Showing script run at same time
+        if (data.EventTiming == Timing.Talking) {
 
-                justEvent = true;
-                ScriptCodePlayer.Instance.Interpret(data.Event);
-                return;
-            }    
+            ScriptCodePlayer.Instance.Interpret(data.Event);
+            if (data.WindowType == WindowType.BackgroundImage) {
+                
+                backgroundScript.TurnOn();
+                defaultScript.TurnOff();
+                backgroundScript.ShowScript(data.Actor, data.Script);
+            }
+            else if (data.WindowType == WindowType.Default) {
+                
+                defaultScript.TurnOn();
+                backgroundScript.TurnOff();
+                defaultScript.ShowScript(data.Actor, data.Script, data.Profile);
+            }
+                
         }
     }
 
+    private int index = 0;
     private void Update() {
 
+        table ??= Resources.Load<ScriptDBDataTable>("SpreadInfo/Generated/ScriptDBDataTable");
+
+        if (Input.GetKeyDown(KeyCode.T)) {
+            Show(table.DataTable[6000][index]);
+        }
+        
+        //If didn't read info, code didn't run
         if (!start)
             return;
-        eventEnd = ScriptCodePlayer.Instance.EndEvent();
-        if (eventEnd) {
-            if (justEvent) {
-                start = false;
-                justEvent = false;
-                end = true;
-            }
-            else if (timing == Timing.BeforeTalking) {
-                
-            }
+        
+        bool eventEnd = ScriptCodePlayer.Instance.EndEvent();
+        //Next script
+        if (eventEnd && (currentData.JustEvent || backgroundScript.End || defaultScript.End)) {
+            start = false;
+            end = true;
+            startTalking = false;
+            backgroundScript.Use();
+            defaultScript.Use();
+            Show(table.DataTable[6000][index++]);
 
-            eventEnd = true;
+            return;
+        }
+        
+        //Start Show Talking
+        if (!startTalking && eventEnd && currentData.EventTiming == Timing.BeforeTalking) {
+
+            if (currentData.WindowType == WindowType.BackgroundImage) {
+                
+                backgroundScript.TurnOn();
+                defaultScript.TurnOff();
+                backgroundScript.ShowScript(currentData.Actor, currentData.Script);
+            }
+            else if (currentData.WindowType == WindowType.Default) {
+                
+                defaultScript.TurnOn();
+                backgroundScript.TurnOff();
+                defaultScript.ShowScript(currentData.Actor, currentData.Script, currentData.Profile);
+            }
+            startTalking = true;
         }   
     }
 }

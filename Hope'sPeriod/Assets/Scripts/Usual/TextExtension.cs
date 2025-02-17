@@ -22,12 +22,20 @@ public static class TextExtension {
         { Effect.Shake, index => new Vector3(Random.Range(-0.3f, 0.3f), Random.Range(-0.65f, 0.65f)) * 10},
     };
     
-    public static IEnumerator Typing(this TMP_Text text, string context, float interval, Action callback = null) {
-        
+    public static IEnumerator Typing(this TMP_Text text, string context, float interval, Action callback = null, Func<bool> breakCondition = null) {
+
+        text.text = "";
         bool tag = false;
         
         foreach (var character in context) {
-        
+
+            if (breakCondition?.Invoke() ?? false) {
+
+                text.text = context;
+                callback?.Invoke();
+                yield break;
+            }
+            
             text.text += character;
             if(character == ']')
                 continue;

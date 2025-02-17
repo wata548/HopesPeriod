@@ -11,7 +11,6 @@ public class ScriptCodePlayer: MonoBehaviour {
 
     [SerializeField] private Image background;
 
-    [field: SerializeField] public BackgroundScripting script { get; private set; }
     public static ScriptCodePlayer Instance { get; private set; } = null;
     
     private const int Infinity = 100;
@@ -30,6 +29,10 @@ public class ScriptCodePlayer: MonoBehaviour {
             animator.SetFloat("Speed", value.magnitude);
     }
     public void Interpret(string input) {
+        
+        if(string.IsNullOrEmpty(input))
+            return;
+        
         var list = ScriptCodeInterpreter.Interpret(input);
             
         //Set Next
@@ -43,6 +46,7 @@ public class ScriptCodePlayer: MonoBehaviour {
         foreach (var command in process) {
             ClasifyScript(command.Item1, command.Item2);
         }
+        //Remove already end event
         process = process.Where(command => !command.Item2.End()).ToList();
     }
 
@@ -115,7 +119,6 @@ public class ScriptCodePlayer: MonoBehaviour {
         if(prefabs is null)
             prefabs = Resources.Load<MapEventInfo>("MapPrefab/MapInfo");
 
-        Debug.Log("map");
         if (currentMap is not null)
             Destroy(currentMap);
         
@@ -141,7 +144,7 @@ public class ScriptCodePlayer: MonoBehaviour {
         if (actors.ContainsKey(command.Code))
             throw new Exception($"This actor{command.Code} is already exist");
         
-        var target = Instantiate(Resources.Load<GameObject>($"Actor/{command.Code}"));
+        var target = Instantiate(Resources.Load<GameObject>($"Actor/{command.Code}/Character"));
         target.transform.localPosition += DefaultPos + command.Pos.ToVec3();
         
         Animator animator = target.GetComponent<Animator>();
