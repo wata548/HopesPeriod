@@ -15,7 +15,8 @@ public class SettingWindow: MonoBehaviour {
     }
 
     private void TurnOff() {
-        
+
+        EverytimeEvent.StartEvent();
         TilePlayerPhysics.SetMovable(true);
         settingWindow.SetActive(false);
     }

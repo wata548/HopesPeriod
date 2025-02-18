@@ -131,7 +131,7 @@ public static class ScriptCodeInterpreter {
                     targetParam.SetValue(data, rawData.value);
             }
 
-            result.Add((commandType, (CommandBase)data));
+            result.Add((commandType, (ICommand)data));
 
         }
 
