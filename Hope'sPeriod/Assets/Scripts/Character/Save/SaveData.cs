@@ -7,12 +7,14 @@ using Newtonsoft.Json.Linq;
 using UnityEngine;
 
 public class SaveFormat {
+    public float PlayTime;
     public SaveCharacterInfo[] SaveCharacterInfo;
     public SaveItem[] SaveItem;
     public SavePos SavePos;
     public SaveMonster[] SaveMonster;
     public SaveFindEvent[] SaveFindEvent;
     public SaveFindItem[] SaveFindItem;
+    public SaveUseItem[] SaveUseItem;
 }
 
 public class SaveItem {
@@ -131,6 +133,20 @@ public class SaveCharacterInfo {
     }
 }
 
+public class SaveUseItem {
+    [JsonProperty]
+    public int Code { get; private set; }
+    [JsonProperty]
+    public int Count { get; private set; }
+
+    public SaveUseItem() { }
+
+    public SaveUseItem(int code, int count) {
+        Code = code;
+        Count = count;
+    }
+}
+
 public class SaveData {
 
     public static void Load(int index = 0) {
@@ -143,6 +159,7 @@ public class SaveData {
         
         foreach (var character in data.SaveCharacterInfo) {
 
+            //characterInfo Load
             var before = GameObject.Find($"{character.Name}Info");
             if(before is not null) 
                 GameObject.Destroy(before);
@@ -153,27 +170,20 @@ public class SaveData {
             info.Load(character);
         }
 
-        foreach (var item in data.SaveItem) {
-            Inventory.AddItem(item.Code, item.Amount);
-        }
-
-        foreach (var findItem in data.SaveFindItem) {
-            FindEventInfo.FindItem(findItem.Code, new(findItem.X, findItem.Y, findItem.Z));
-        }
-        foreach (var findEvent in data.SaveFindItem) {
-            FindEventInfo.FindItem(findEvent.Code, new(findEvent.X, findEvent.Y, findEvent.Z));
-        }
-
-        foreach (var monster in data.SaveMonster) {
-            MonsterInfo.Load(monster.Code, monster.KillCount);
-        }
+        PlayTime.Load(data.PlayTime);
+        ChapterInfo.Load(data.SavePos.Chapter);
+        Inventory.Load(data.SaveItem,data.SaveUseItem);
+        FindEventInfo.Load(data.SaveFindItem, data.SaveFindEvent);
+        MonsterInfo.Load(data.SaveMonster);
     }
     
     public static void Save(EachCharacterInfo[] playerInfos, int chapter, int mapCode, Vector2Int pos, int saveSlot) {
  
         var json = new JObject();
+        json.Add("PlayTime", PlayTime.Save());
         SerializeCharacter(json, playerInfos);
         SerializeInventory(json);
+        SerializeUseItem(json);
         SerializePos(json, chapter, mapCode, pos);
         SerializeMonster(json);
         SerializeFindEvent(json);
@@ -227,5 +237,11 @@ public class SaveData {
         var parse = JArray.Parse(JsonConvert.SerializeObject(fixInfos, Formatting.Indented));
         json.Add(nameof(SaveFindEvent), parse);
     }
-    
+
+    private static void SerializeUseItem(JObject json) {
+        var fixInfos = Inventory.Use
+            .Select(factor => new SaveUseItem(factor.Key, factor.Value));
+        var parse = JArray.Parse(JsonConvert.SerializeObject(fixInfos, Formatting.Indented));
+        json.Add(nameof(SaveUseItem), parse);
+    }
 }

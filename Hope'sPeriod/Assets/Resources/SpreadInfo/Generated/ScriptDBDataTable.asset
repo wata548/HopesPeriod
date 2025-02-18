@@ -21,7 +21,7 @@ MonoBehaviour:
         m_Actor: 0
         m_Script: 
         m_JustEvent: 1
-        m_ClearContext: 1
+        m_ClearContext: 0
         m_Event: 'StartChangeEffect(Roll = false | Power = 0f);
 
           SetBackground(Image
@@ -32,7 +32,7 @@ MonoBehaviour:
         m_Actor: 5002
         m_Script: "\uBBF8\uC548, \uC624\uBE60 \uD55C\uB3D9\uC548 \uBABB \uC62C \uAC70\uC57C."
         m_JustEvent: 0
-        m_ClearContext: 1
+        m_ClearContext: 0
         m_Event: ClearEffect(Power = .3f);
         m_EventTiming: 0
       - m_WindowType: 2
@@ -42,7 +42,7 @@ MonoBehaviour:
           \uC784\uC0C1\uC2E4\uD5D8\uC744 \uD558\uB294 \uC544\uB974\uBC14\uC774\uD2B8\uC5D0
           \uCC38\uC5EC\uD558\uAC8C \uB410\uC5B4."
         m_JustEvent: 0
-        m_ClearContext: 1
+        m_ClearContext: 0
         m_Event: 
         m_EventTiming: 0
       - m_WindowType: 2
@@ -51,15 +51,15 @@ MonoBehaviour:
         m_Script: "\uC774\uB2A5\uB825\uC790\uB9CC \uBAA8\uC9D1\uD558\uB294 \uC544\uB974\uBC14\uC774\uD2B8\uC778\uB370...
           \uAD1C\uCC2E\uACA0\uC9C0."
         m_JustEvent: 0
-        m_ClearContext: 1
-        m_Event: 
+        m_ClearContext: 0
+        m_Event: GetItem(Code = 2001| Count = 1);
         m_EventTiming: 0
       - m_WindowType: 2
         m_Profile: None
         m_Actor: 5002
         m_Script: "\uAD1C\uCC2E\uC744 \uAC70\uC57C."
         m_JustEvent: 0
-        m_ClearContext: 1
+        m_ClearContext: 0
         m_Event: 
         m_EventTiming: 0
       - m_WindowType: 2
@@ -67,7 +67,7 @@ MonoBehaviour:
         m_Actor: 5002
         m_Script: "\uC751. \uC815\uB9D0 \uAD1C\uCC2E\uC744 \uAC70\uC57C."
         m_JustEvent: 0
-        m_ClearContext: 1
+        m_ClearContext: 0
         m_Event: 
         m_EventTiming: 0
       - m_WindowType: 2
@@ -76,7 +76,7 @@ MonoBehaviour:
         m_Script: "\uBCD1\uC6D0\uBE44\uB294 \uC624\uBE60\uAC00 \uCC45\uC784\uC9C8\uAC8C,
           \uC728\uC544."
         m_JustEvent: 0
-        m_ClearContext: 1
+        m_ClearContext: 0
         m_Event: 
         m_EventTiming: 0
       - m_WindowType: 2
@@ -84,7 +84,7 @@ MonoBehaviour:
         m_Actor: 5002
         m_Script: "\uADF8\uB7EC\uB2C8\uAE4C, \uC728\uC774\uB294..."
         m_JustEvent: 0
-        m_ClearContext: 1
+        m_ClearContext: 0
         m_Event: 
         m_EventTiming: 0
       - m_WindowType: 2
@@ -92,7 +92,7 @@ MonoBehaviour:
         m_Actor: 5002
         m_Script: "\uC728\uC774\uB294 \uB9C8\uBC95\uCC98\uB7FC \uB0AB\uC790."
         m_JustEvent: 0
-        m_ClearContext: 1
+        m_ClearContext: 0
         m_Event: 
         m_EventTiming: 0
       - m_WindowType: 2
@@ -101,7 +101,7 @@ MonoBehaviour:
         m_Script: "\uC544\uBB34\uB7F0 \uAC71\uC815 \uB9D0\uACE0, \uB9C8\uBC95\uCC98\uB7FC
           \uB9D0\uB054\uD558\uAC8C \uB098\uC544\uBC84\uB9AC\uC790."
         m_JustEvent: 0
-        m_ClearContext: 1
+        m_ClearContext: 0
         m_Event: 
         m_EventTiming: 0
       - m_WindowType: 2
@@ -109,7 +109,7 @@ MonoBehaviour:
         m_Actor: 5002
         m_Script: ......
         m_JustEvent: 0
-        m_ClearContext: 1
+        m_ClearContext: 0
         m_Event: 
         m_EventTiming: 0
       - m_WindowType: 2
@@ -117,7 +117,7 @@ MonoBehaviour:
         m_Actor: 5002
         m_Script: "\uB2E4\uB140\uC62C\uAC8C."
         m_JustEvent: 0
-        m_ClearContext: 1
+        m_ClearContext: 0
         m_Event: 'StartChangeEffect(Roll = false | Power = 0.3f);
 
           SetBackground(Image
@@ -130,7 +130,7 @@ MonoBehaviour:
         m_Actor: 0
         m_Script: 
         m_JustEvent: 1
-        m_ClearContext: 1
+        m_ClearContext: 0
         m_Event: 'StartChangeEffect(Roll = false | Power = 0.3f);
 
           ClearBackground();
@@ -150,7 +150,7 @@ MonoBehaviour:
         m_Actor: 5002
         m_Script: "......\uC73C\uC73D..."
         m_JustEvent: 0
-        m_ClearContext: 1
+        m_ClearContext: 0
         m_Event: 
         m_EventTiming: 0
       - m_WindowType: 1
@@ -158,7 +158,7 @@ MonoBehaviour:
         m_Actor: 5002
         m_Script: "\uC65C \uC774\uB807\uAC8C \uBA38\uB9AC\uAC00 \uC544\uD504\uC9C0?"
         m_JustEvent: 0
-        m_ClearContext: 1
+        m_ClearContext: 0
         m_Event: 
         m_EventTiming: 0
       - m_WindowType: 1
@@ -166,15 +166,15 @@ MonoBehaviour:
         m_Actor: 5002
         m_Script: ......
         m_JustEvent: 0
-        m_ClearContext: 1
-        m_Event: 
+        m_ClearContext: 0
+        m_Event: GetItem(Code = 2001 | Count = 1);
         m_EventTiming: 0
       - m_WindowType: 1
         m_Profile: Skeptical
         m_Actor: 5002
         m_Script: "\uC870\uC6A9\uD574... "
         m_JustEvent: 0
-        m_ClearContext: 1
+        m_ClearContext: 0
         m_Event: 
         m_EventTiming: 0
       - m_WindowType: 1
@@ -182,7 +182,7 @@ MonoBehaviour:
         m_Actor: 5002
         m_Script: "\uBB34\uC2A8 \uC77C\uC774\uB77C\uB3C4 \uC0DD\uACBC\uB098?"
         m_JustEvent: 0
-        m_ClearContext: 1
+        m_ClearContext: 0
         m_Event: 
         m_EventTiming: 0
       - m_WindowType: 1
@@ -190,7 +190,7 @@ MonoBehaviour:
         m_Actor: 5002
         m_Script: "...\uD6C4\uC6B0."
         m_JustEvent: 0
-        m_ClearContext: 1
+        m_ClearContext: 0
         m_Event: 
         m_EventTiming: 0
       - m_WindowType: 1
@@ -199,7 +199,7 @@ MonoBehaviour:
         m_Script: "\uC77C\uB2E8 \uBB3C\uBD80\uD130 \uB9C8\uC2DC\uC790. \uADF8\uB9AC\uACE0
           \uC0DD\uAC01 \uC815\uB9AC\uB97C \uC880 \uD574\uBCF4\uC790."
         m_JustEvent: 0
-        m_ClearContext: 1
+        m_ClearContext: 0
         m_Event: 
         m_EventTiming: 0
       - m_WindowType: 1
@@ -208,8 +208,52 @@ MonoBehaviour:
         m_Script: "\uB0B4\uAC00 \uBB3C\uC744 \uC800\uCABD \uC11C\uB78D\uC5D0 \uB450\uC5C8\uB358
           \uAC83 \uAC19\uC740\uB370..."
         m_JustEvent: 0
-        m_ClearContext: 1
+        m_ClearContext: 0
         m_Event: 
+        m_EventTiming: 0
+      - m_WindowType: 1
+        m_Profile: None
+        m_Actor: 0
+        m_Script: 
+        m_JustEvent: 1
+        m_ClearContext: 1
+        m_Event: ShowTutorial(Code = 10001);
+        m_EventTiming: 0
+    - Key: 6002
+      Value:
+      - m_WindowType: 1
+        m_Profile: Blink
+        m_Actor: 5002
+        m_Script: "\uD558\uC544, \uC0B4 \uAC83 \uAC19\uB2E4."
+        m_JustEvent: 0
+        m_ClearContext: 0
+        m_Event: 
+        m_EventTiming: 0
+      - m_WindowType: 1
+        m_Profile: Default
+        m_Actor: 5002
+        m_Script: "\uC6D0\uB798 \uAC04\uD638\uC0AC \uC120\uC0DD\uB2D8\uC774 \uAE68\uC6B0\uB7EC
+          \uC628\uB2E4\uACE0 \uD558\uC168\uB294\uB370, \uC548 \uC624\uC168\uC73C\uB2C8\uAE4C..."
+        m_JustEvent: 0
+        m_ClearContext: 0
+        m_Event: 
+        m_EventTiming: 0
+      - m_WindowType: 1
+        m_Profile: Skeptical
+        m_Actor: 5002
+        m_Script: "\uC9C1\uC811 \uB098\uAC00\uBD10\uC57C \uD558\uB098?"
+        m_JustEvent: 0
+        m_ClearContext: 0
+        m_Event: 
+        m_EventTiming: 0
+      - m_WindowType: 1
+        m_Profile: None
+        m_Actor: 0
+        m_Script: 
+        m_JustEvent: 1
+        m_ClearContext: 1
+        m_Event: "Tutorial(iInfo= \"\uC624\uB978\uCABD \uBB38\uC73C\uB85C \uB2E4\uAC00\uAC00
+          \uBC16\uC73C\uB85C \uB098\uAC00\uC790.\");"
         m_EventTiming: 0
     - Key: 6001
       Value:
@@ -219,104 +263,5 @@ MonoBehaviour:
         m_Script: 
         m_JustEvent: 1
         m_ClearContext: 1
-        m_Event: 'StartChangeEffect(Roll = false | Power = 0f);
-
-          SetBackground(Image
-          = "CP1_Hospital1");'
-        m_EventTiming: 1
-      - m_WindowType: 2
-        m_Profile: None
-        m_Actor: 0
-        m_Script: "\uBBF8\uC548, \uC624\uBE60 \uD55C\uB3D9\uC548 \uBABB \uC62C \uAC70\uC57C."
-        m_JustEvent: 0
-        m_ClearContext: 1
-        m_Event: ClearEffect(Power = .3f);
-        m_EventTiming: 0
-      - m_WindowType: 2
-        m_Profile: None
-        m_Actor: 0
-        m_Script: "Spes\uB77C\uB294 \uD68C\uC0AC\uC5D0\uC11C \uC784\uC0C1\uC2E4\uD5D8\uC744
-          \uD558\uB294 \uC544\uB974\uBC14\uC774\uD2B8\uC5D0 \uCC38\uC5EC\uD558\uAC8C
-          \uB410\uC5B4."
-        m_JustEvent: 0
-        m_ClearContext: 1
-        m_Event: 
-        m_EventTiming: 0
-      - m_WindowType: 2
-        m_Profile: None
-        m_Actor: 0
-        m_Script: "\uC774\uB2A5\uB825\uC790\uB9CC \uBAA8\uC9D1\uD558\uB294 \uC544\uB974\uBC14\uC774\uD2B8\uC778\uB370...
-          \uAD1C\uCC2E\uACA0\uC9C0."
-        m_JustEvent: 0
-        m_ClearContext: 1
-        m_Event: 
-        m_EventTiming: 0
-      - m_WindowType: 2
-        m_Profile: None
-        m_Actor: 0
-        m_Script: "\uAD1C\uCC2E\uC744 \uAC70\uC57C."
-        m_JustEvent: 0
-        m_ClearContext: 1
-        m_Event: 
-        m_EventTiming: 0
-      - m_WindowType: 2
-        m_Profile: None
-        m_Actor: 0
-        m_Script: "\uC751. \uC815\uB9D0 \uAD1C\uCC2E\uC744 \uAC70\uC57C."
-        m_JustEvent: 0
-        m_ClearContext: 1
-        m_Event: 
-        m_EventTiming: 0
-      - m_WindowType: 2
-        m_Profile: None
-        m_Actor: 0
-        m_Script: "\uBCD1\uC6D0\uBE44\uB294 \uC624\uBE60\uAC00 \uCC45\uC784\uC9C8\uAC8C,
-          \uC728\uC544."
-        m_JustEvent: 0
-        m_ClearContext: 1
-        m_Event: 
-        m_EventTiming: 0
-      - m_WindowType: 2
-        m_Profile: None
-        m_Actor: 0
-        m_Script: "\uADF8\uB7EC\uB2C8\uAE4C, \uC728\uC774\uB294..."
-        m_JustEvent: 0
-        m_ClearContext: 1
-        m_Event: 
-        m_EventTiming: 0
-      - m_WindowType: 2
-        m_Profile: None
-        m_Actor: 0
-        m_Script: "\uC728\uC774\uB294 \uB9C8\uBC95\uCC98\uB7FC \uB0AB\uC790."
-        m_JustEvent: 0
-        m_ClearContext: 1
-        m_Event: 
-        m_EventTiming: 0
-      - m_WindowType: 2
-        m_Profile: None
-        m_Actor: 0
-        m_Script: "\uC544\uBB34\uB7F0 \uAC71\uC815 \uB9D0\uACE0, \uB9C8\uBC95\uCC98\uB7FC
-          \uB9D0\uB054\uD558\uAC8C \uB098\uC544\uBC84\uB9AC\uC790."
-        m_JustEvent: 0
-        m_ClearContext: 1
-        m_Event: 
-        m_EventTiming: 0
-      - m_WindowType: 2
-        m_Profile: None
-        m_Actor: 0
-        m_Script: ......
-        m_JustEvent: 0
-        m_ClearContext: 1
-        m_Event: 'StartChangeEffect(Roll = false | Power = 0.3f);
-
-          SetBackground(Image
-          = "CP1_Hospital2");'
-        m_EventTiming: 0
-      - m_WindowType: 2
-        m_Profile: None
-        m_Actor: 0
-        m_Script: "\uB2E4\uB140\uC62C\uAC8C."
-        m_JustEvent: 0
-        m_ClearContext: 1
-        m_Event: ClearEffect(Power = .3f);
+        m_Event: ShowTutorial(Code = 10001);
         m_EventTiming: 0

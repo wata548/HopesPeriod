@@ -86,16 +86,20 @@ public class MultiTypeParser : DataParserBase {
         }
     }
 
-    public void Sync(string path) {
-        if (new[] {m_NameSpace, path}.Any(string.IsNullOrEmpty)) {
+    public void Sync(List<string> paths) {
+        
+        
+        if (paths.Any(string.IsNullOrEmpty) || string.IsNullOrEmpty(m_NameSpace)) {
             throw new NullReferenceException("NameSpace and Path must not null or empty");
         }
-                
-        var rawDatas = m_DataLoader.Load(path);
+
+        List<List<List<string>>> rawDatas = new();
+        foreach (var path in paths) {
+            
+            rawDatas.AddRange(m_DataLoader.Load(path));
+        }
         
-        List<TypeAndName> header;
-        List<List<string>> data;
-        string dataTypeName = DataTypeName(path);
+        string dataTypeName = DataTypeName(paths[0]);
         
         Type dataType = Type.GetType($"{m_NameSpace}.{dataTypeName}");
         if (dataType is null) {

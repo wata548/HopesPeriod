@@ -57,20 +57,12 @@ public class MultiTypeSyncEditor: Editor {
         GUILayout.Label("It make data type (please press second and wait for loading)");
         if (GUILayout.Button("GenerateData")) {
             var parser = target as MultiTypeParser;
-
-            foreach (var factor in parser.Path) {
-
-                parser.Generate(factor);
-            }
+            parser.Generate(parser.Path[0]);
         }
         
         if (GUILayout.Button("SyncData")) {
             var parser = target as MultiTypeParser;
-
-            foreach (var factor in parser.Path) {
-                
-                parser.Sync(factor);
-            }
+            parser.Sync(parser.Path);
         }
     }
 

@@ -55,3 +55,17 @@ MonoBehaviour:
     isAsset: 1
     _typeString: MapEventInfo, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
+  - _obj: {fileID: 11400000, guid: fa1f5f2a8f8f45047a7f2f0fa410edd1, type: 2}
+    globalId:
+      globalObjectIdString: GlobalObjectId_V1-3-fa1f5f2a8f8f45047a7f2f0fa410edd1-11400000-0
+    isSceneGameObject: 0
+    isAsset: 1
+    _typeString: SpreadInfo.TutorialDBDataTable, Assembly-CSharp, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  - _obj: {fileID: 11400000, guid: 5562dd5fb6fc2124fba195b740e035ea, type: 2}
+    globalId:
+      globalObjectIdString: GlobalObjectId_V1-3-5562dd5fb6fc2124fba195b740e035ea-11400000-0
+    isSceneGameObject: 0
+    isAsset: 1
+    _typeString: SpreadInfo.EverytimeEventDBDataTable, Assembly-CSharp, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null

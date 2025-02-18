@@ -276,6 +276,12 @@ public class GetItemInfo {
         count = 0;
         condition = "";
     }
+
+    public GetItemInfo(int code, int count = 1) {
+        this.code = code;
+        this.count = count;
+        condition = "";
+    }
 }
 
 [Serializable]

@@ -17,5 +17,7 @@ MonoBehaviour:
   - ItemDB
   - SkillDB
   - ActorDB
+  - TutorialDB
+  - EverytimeEventDB
   m_AddEnumsPath: AddType
   m_DataLoader: {fileID: 11400000, guid: e661bbc669084434d928aa5b092fbfcc, type: 2}

@@ -28,7 +28,12 @@ public class ScriptShower: MonoBehaviour {
             
         //StartEvent
         ScriptCodePlayer.Instance.Interpret(data.Event);
-            
+
+        if (data.ClearContext) {
+            backgroundScript.TurnOff();
+            defaultScript.TurnOff();
+        }
+        
         if (data.JustEvent)
             return;
             
@@ -62,7 +67,7 @@ public class ScriptShower: MonoBehaviour {
 
         if (Input.GetKeyDown(KeyCode.T)) {
             index = 0;
-            Show(table.DataTable[6000][index]);
+            Show(table.DataTable[eventCode][index]);
         }
         
         //If didn't read info, code didn't run

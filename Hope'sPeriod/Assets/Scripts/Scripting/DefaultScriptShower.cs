@@ -59,7 +59,6 @@ public class DefaultScriptShower: MonoBehaviour {
 
     public void Next() {
 
-        Debug.Log("Click");
         if (!start)
             return;
         

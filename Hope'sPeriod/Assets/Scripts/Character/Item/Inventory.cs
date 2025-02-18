@@ -5,7 +5,8 @@ using System.Linq;
 public static class Inventory{
      
     public static SortedDictionary<int, int> Items{ get; private set; } = new();
-
+    public static Dictionary<int, int> Use { get; private set; } = new();
+    
     public static bool IsHave(int code, int count) {
         if (!Items.ContainsKey(code))
             return false;
@@ -54,6 +55,10 @@ public static class Inventory{
             return false;
         }
 
+        if (!Use.TryAdd(code, 1)) {
+            Use[code]++;
+        }
+        
         Items[code]--;
         ItemInfo.UseItemBattle(code, target);
         
@@ -70,7 +75,11 @@ public static class Inventory{
             if (Items[code] <= 0) {
                 return false;
             }
-    
+
+            if (!Use.TryAdd(code, 1)) {
+                Use[code]++;
+            }
+            
             Items[code]--;
             ItemInfo.UseItem(code, target);
             
@@ -82,5 +91,18 @@ public static class Inventory{
         GameFSM.Instance.SkipState();
     }
 
-   
+    private static void Clear() {
+        Use.Clear();
+        Items.Clear();
+    }
+
+    public static void Load(SaveItem[] items,SaveUseItem[] useItems) {
+        Clear();
+        foreach (var item in items) {
+            AddItem(item.Code, item.Amount);
+        }
+        foreach (var useItem in useItems) {
+            Use.Add(useItem.Code, useItem.Count);
+        }
+    }  
 }

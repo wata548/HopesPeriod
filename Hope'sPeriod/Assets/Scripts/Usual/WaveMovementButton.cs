@@ -10,7 +10,9 @@ public class WaveMovementButton: MonoBehaviour {
     private bool on = false;
     private Image image;
     private float start = 0;
-    private Vector2 pos; 
+    private Vector2 pos;
+
+    public bool On() => on;
     
     private void Awake() {
         image = GetComponent<Image>();

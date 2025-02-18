@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce438a4e1933a394b9a179d5a285dbad, type: 3}
+  m_Name: TutorialDBDataTable
+  m_EditorClassIdentifier: 
+  m_DataTable:
+    dataList:
+    - Key: 10001
+      Value:
+        m_Code: 10001
+        m_Info: "Tutorial(Info = \"WASD \uD639\uC740 \uBC29\uD5A5\uD0A4\uB97C \uC0AC\uC6A9\uD574
+          \uC774\uB3D9\uD558\uACE0, E\uB97C \uC0AC\uC6A9\uD574 \uC0C1\uD638\uC791\uC6A9
+          \uD558\uC790.\");"
+    - Key: 10002
+      Value:
+        m_Code: 10002
+        m_Info: "Tutorial(Info = \"Z\uB97C \uB20C\uB7EC \uC778\uBCA4\uD1A0\uB9AC\uB97C
+          \uC5F4\uACE0 \uBB3C\uC744 \uB9C8\uC2DC\uC790.\");"

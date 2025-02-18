@@ -10,7 +10,7 @@ using UnityEngine.UI;
 public class ScriptCodePlayer: MonoBehaviour {
 
     [SerializeField] private Image background;
-
+    
     public static ScriptCodePlayer Instance { get; private set; } = null;
     
     private const int Infinity = 100;
@@ -34,13 +34,19 @@ public class ScriptCodePlayer: MonoBehaviour {
             return;
         
         var list = ScriptCodeInterpreter.Interpret(input);
-            
-        //Set Next
-        list[0].Item2.SetUsable(true);
-        for (int i = 0; i < list.Count - 1; i++) {
-            list[i].Item2.SetNext(list[i + 1].Item2);
+
+        List<(ScriptCodeKeyword, CommandBase)> fixList = new();
+        foreach (var factor in list) {
+            fixList.Add((factor.Item1, (CommandBase)factor.Item2));
         }
-        process.AddRange(list);
+        
+        //Set Next
+        (fixList[0].Item2).SetUsable(true);
+        for (int i = 0; i < list.Count - 1; i++) {
+            (fixList[i].Item2).SetNext(fixList[i + 1].Item2);
+        }
+
+        process.AddRange(fixList);
     }
     private void ScriptProcess() {
         foreach (var command in process) {
@@ -245,6 +251,21 @@ public class ScriptCodePlayer: MonoBehaviour {
             .DOOrthoSize(command.Percent * DefaultZoom, command.Power)
             .OnComplete(() => command.EndProcess());
     }
+
+    private void GetItemScript(GetItemScriptCommand command) {
+        if (!command.Start())
+            return;
+
+        int count = command.Count;
+        if (count == 0)
+            count = 1;
+            
+        GetItemWindow.Instance.TurnOn(new GetItemInfo(command.Code, count));
+        StartCoroutine(Wait.WaitAndDo(GetItemWindow.Instance.Off, () => {
+            Debug.Log("end");
+            command.EndProcess();
+        }));
+    } 
     #endregion
     
     private void SamplePlayer() {

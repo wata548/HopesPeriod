@@ -91,7 +91,7 @@
   ],
   "SavePos": {
     "Chapter": 1,
-    "Code": 8401,
+    "Code": 8402,
     "X": 0,
     "Y": 0
   },
@@ -100,5 +100,7 @@
   "SaveFindEvent": [
   ],
   "SaveFindItem": [
+  ],
+  "SaveUseItem": [
   ]
 }

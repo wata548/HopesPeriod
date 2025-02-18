@@ -22,6 +22,8 @@ public class GetItemWindow: MonoBehaviour {
     private const float CompleteAppearPoint = -20f;
     private const float AppearTime = 0.55f;
     private const float MoveTime = 0.6f;
+
+    public bool Off() => !on;
     
     public void TurnOff() {
         on = false;
@@ -30,6 +32,7 @@ public class GetItemWindow: MonoBehaviour {
         window.color = windowColor;
         window.DOFade(0, 0);
         itemImage.color = Transparent;
+        cursor.gameObject.SetActive(false);
         cursor.TurnOff();
         itemName.color = Transparent;
         itemDescription.color = Transparent;
@@ -39,13 +42,18 @@ public class GetItemWindow: MonoBehaviour {
     }
 
     public void TurnOn(GetItemInfo itemInfo) {
+
+        Inventory.AddItem(itemInfo.Code, itemInfo.Count);
         
+        on = true;
         line.DOFade(1, AppearTime);
         window.DOFade(0.5f, AppearTime);
-        window.transform.DOLocalMoveY(CompleteAppearPoint, MoveTime).SetEase(Ease.OutBack).OnComplete(() => {
-            on = true;
-            cursor.TurnOn();
-        });
+        window.transform.DOLocalMoveY(CompleteAppearPoint, MoveTime)
+            .SetEase(Ease.OutBack)
+            .OnComplete(() => {
+                cursor.gameObject.SetActive(true);
+                cursor.TurnOn();
+            });
         
         itemImage.sprite = CodeInfo.LoadImage(itemInfo.Code);
         itemImage.DOFade(1, AppearTime);
