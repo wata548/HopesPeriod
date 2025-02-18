@@ -6,6 +6,13 @@ public static class Inventory{
      
     public static SortedDictionary<int, int> Items{ get; private set; } = new();
 
+    public static bool IsHave(int code, int count) {
+        if (!Items.ContainsKey(code))
+            return false;
+
+        return Items[code] >= count;
+    }
+    
     public static void AddItem(int code, int count) {
 
         if (!Items.TryAdd(code, count))

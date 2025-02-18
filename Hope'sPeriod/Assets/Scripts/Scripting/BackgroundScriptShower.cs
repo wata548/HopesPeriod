@@ -58,6 +58,7 @@ public class BackgroundScriptShower: MonoBehaviour {
 
     public void Next() {
 
+        Debug.Log("Click");
         if (!start)
             return;
         

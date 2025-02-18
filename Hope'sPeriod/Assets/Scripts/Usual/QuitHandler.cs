@@ -8,7 +8,7 @@ public class QuitHandler: MonoBehaviour {
     }
 
     private bool Quit() {
-        Process.GetCurrentProcess().Kill();
+        //Process.GetCurrentProcess().Kill();
         return true;
     }
 

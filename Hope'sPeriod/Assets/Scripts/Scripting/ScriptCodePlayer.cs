@@ -133,7 +133,7 @@ public class ScriptCodePlayer: MonoBehaviour {
             return;
  
         ShakeCamera.Instance.camera.transform
-            .DOLocalMove(DefaultPos + command.Pos.ToVec3(), command.Power)
+            .DOMove(DefaultPos + command.Pos.ToVec3(), command.Power)
             .OnComplete(() => command.EndProcess());
     }
     private void GeneratePersonScript(GeneratePersonScriptCommand command) {
@@ -226,12 +226,12 @@ public class ScriptCodePlayer: MonoBehaviour {
         if (!actors.TryGetValue(command.Target, out GameObject target))
             throw new Exception($"this actor({command.Target}) isn't exist");
 
-        var targetPos = command.Pos.ToVec3() + target.transform.localPosition;
+        var targetPos = command.Pos.ToVec3() + target.transform.localPosition + new Vector3(0,0.7f,0);
         targetPos.z = DefaultCameraZPos;
 
         float power = command.Power;
         ShakeCamera.Instance.camera.transform
-            .DOLocalMove(targetPos, power)
+            .DOMove(targetPos, power)
             .OnComplete(() => command.EndProcess());
     }
     private void ZoomScript(ZoomScriptCommand command) {
@@ -273,6 +273,19 @@ public class ScriptCodePlayer: MonoBehaviour {
             Interpret(input);
         }
     }
+
+    public void EndProcess() {
+        foreach (var person in actors) {
+            Destroy(person.Value);
+        }
+
+        actors.Clear();
+        Destroy(currentMap);
+        currentMap = null;
+
+        ShakeCamera.Instance.camera.transform.localPosition = new Vector3(0, 0.7f, -10);
+    }
+    
 
     private void Awake() {
         Instance = this;

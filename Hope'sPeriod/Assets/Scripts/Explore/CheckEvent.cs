@@ -59,8 +59,8 @@ public static class CheckEvent {
         
         //Didn't move map
         moveMap = false;
-        if (mapInfo.AutoInfo(mapCode, pos, out int code)) {
-            Debug.Log($"auto event {code}");
+        if (mapInfo.AutoInfo(mapCode, pos, out var info)) {
+            Debug.Log($"auto event {info.Code}");
         }
 
         return false;
@@ -81,7 +81,7 @@ public static class CheckEvent {
                 Debug.Log($"Get item {ItemInfo.Name(item.Code)} * {item.Count} at view point");
                 GetItemWindow.Instance.TurnOn(item);
             }
-            else if (mapInfo.PassiveInfo(mapCode, pos, out int interactCode)) {
+            else if (mapInfo.PassiveInfo(mapCode, pos, out var info)) {
                 Debug.Log($"?");
             }
         }

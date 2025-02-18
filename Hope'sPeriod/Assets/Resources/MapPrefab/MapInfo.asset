@@ -23,12 +23,19 @@ MonoBehaviour:
               roomName: "\uBCF5\uB3C4"
               autoEventList:
                 dataList:
-                - Key: {x: 14, y: 1}
-                  Value: 2001
+                - Key: {x: 14, y: 1, z: 0}
+                  Value:
+                    code: 0
+                    condition: 
               monsterList: 
               genProbability: 0
               itemList:
-                dataList: []
+                dataList:
+                - Key: {x: 0, y: 0, z: 0}
+                  Value:
+                    code: 0
+                    count: 0
+                    condition: 
               passiveEventList:
                 dataList: []
               moveEventList:
@@ -173,10 +180,11 @@ MonoBehaviour:
               genProbability: 0
               itemList:
                 dataList:
-                - Key: {x: -5, y: 3}
+                - Key: {x: -5, y: 3, z: 0}
                   Value:
                     code: 2001
                     count: 1
+                    condition: 
               passiveEventList:
                 dataList: []
               moveEventList:
@@ -199,10 +207,11 @@ MonoBehaviour:
               genProbability: 0
               itemList:
                 dataList:
-                - Key: {x: -5, y: 3}
+                - Key: {x: -5, y: 3, z: 0}
                   Value:
                     code: 2001
                     count: 1
+                    condition: 
               passiveEventList:
                 dataList: []
               moveEventList:
@@ -269,10 +278,11 @@ MonoBehaviour:
               genProbability: 0
               itemList:
                 dataList:
-                - Key: {x: 4, y: 3}
+                - Key: {x: 4, y: 3, z: 0}
                   Value:
                     code: 2001
                     count: 1
+                    condition: 
               passiveEventList:
                 dataList: []
               moveEventList:
@@ -387,10 +397,11 @@ MonoBehaviour:
               genProbability: 0
               itemList:
                 dataList:
-                - Key: {x: -5, y: 3}
+                - Key: {x: -5, y: 3, z: 0}
                   Value:
                     code: 2001
                     count: 1
+                    condition: 
               passiveEventList:
                 dataList: []
               moveEventList:
@@ -413,10 +424,11 @@ MonoBehaviour:
               genProbability: 0
               itemList:
                 dataList:
-                - Key: {x: -5, y: 3}
+                - Key: {x: -5, y: 3, z: 0}
                   Value:
                     code: 2001
                     count: 1
+                    condition: 
               passiveEventList:
                 dataList: []
               moveEventList:
@@ -483,10 +495,11 @@ MonoBehaviour:
               genProbability: 0
               itemList:
                 dataList:
-                - Key: {x: 4, y: 3}
+                - Key: {x: 4, y: 3, z: 0}
                   Value:
                     code: 2001
                     count: 1
+                    condition: 
               passiveEventList:
                 dataList: []
               moveEventList:

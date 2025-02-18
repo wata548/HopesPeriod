@@ -64,12 +64,15 @@ public class SaveFindItem {
     public int X { get; private set; }
     [JsonProperty]
     public int Y { get; private set; }
+    [JsonProperty]
+    public int Z { get; private set; }
 
     public SaveFindItem() {}
-    public SaveFindItem(int code, Vector2Int pos) {
+    public SaveFindItem(int code, Vector3Int pos) {
         Code = code;
         X = pos.x;
         Y = pos.y;
+        Z = pos.z;
     }
 }
 public class SaveFindEvent {
@@ -79,13 +82,17 @@ public class SaveFindEvent {
     public int X { get; private set; }
     [JsonProperty]
     public int Y { get; private set; }
+    [JsonProperty]
+    public int Z { get; private set; }
 
     public SaveFindEvent() {}
 
-    public SaveFindEvent(int code, Vector2Int pos) {
+    public SaveFindEvent(int code, Vector3Int pos) {
         Code = code;
         X = pos.x;
         Y = pos.y;
+        Z = pos.z;
+        
     }
 }
 public class SaveCharacterInfo {
@@ -151,10 +158,10 @@ public class SaveData {
         }
 
         foreach (var findItem in data.SaveFindItem) {
-            FindEventInfo.FindItem(findItem.Code, new(findItem.X, findItem.Y));
+            FindEventInfo.FindItem(findItem.Code, new(findItem.X, findItem.Y, findItem.Z));
         }
         foreach (var findEvent in data.SaveFindItem) {
-            FindEventInfo.FindItem(findEvent.Code, new(findEvent.X, findEvent.Y));
+            FindEventInfo.FindItem(findEvent.Code, new(findEvent.X, findEvent.Y, findEvent.Z));
         }
 
         foreach (var monster in data.SaveMonster) {

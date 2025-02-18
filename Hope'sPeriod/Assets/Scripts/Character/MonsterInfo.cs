@@ -14,5 +14,10 @@ public static class MonsterInfo {
         Monsters.Add(code, count);
     }
 
+    public static bool IsKill(int code, int count) {
+        if (!Monsters.ContainsKey(code))
+            return false;
 
+        return Monsters[code] >= count;
+    }
 }

@@ -8,6 +8,7 @@ public class ScriptShower: MonoBehaviour {
     [SerializeField] private DefaultScriptShower defaultScript;
     private bool end = true;
     private bool start = false;
+    private int eventCode = 6000;
     
     private bool startTalking = false;
     private ScriptDBData currentData;
@@ -54,9 +55,13 @@ public class ScriptShower: MonoBehaviour {
     private int index = 0;
     private void Update() {
 
+        if (eventCode == 0)
+            return;
+        
         table ??= Resources.Load<ScriptDBDataTable>("SpreadInfo/Generated/ScriptDBDataTable");
 
         if (Input.GetKeyDown(KeyCode.T)) {
+            index = 0;
             Show(table.DataTable[6000][index]);
         }
         
@@ -72,7 +77,11 @@ public class ScriptShower: MonoBehaviour {
             startTalking = false;
             backgroundScript.Use();
             defaultScript.Use();
-            Show(table.DataTable[6000][index++]);
+            if (table.DataTable[eventCode].Count <= index) {
+                EndProcess();
+            }
+            else
+                Show(table.DataTable[eventCode][index++]);
 
             return;
         }
@@ -94,5 +103,12 @@ public class ScriptShower: MonoBehaviour {
             }
             startTalking = true;
         }   
+    }
+
+    private void EndProcess() {
+        eventCode = 0;
+        defaultScript.TurnOff();
+        backgroundScript.TurnOff();
+        ScriptCodePlayer.Instance.EndProcess();
     }
 }
