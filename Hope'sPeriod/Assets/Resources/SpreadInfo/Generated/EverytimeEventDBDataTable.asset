@@ -25,7 +25,7 @@ MonoBehaviour:
     - Key: 20002
       Value:
         m_Code: 20002
-        m_Condition: 'IsChapterEqual(Chapter = 1 | Not = false);
+        m_Condition: 'IsChapterEqual(Chapter = 0 | Not = false);
 
           IsEventShowed(Code
           = 20002 | Not = true);'

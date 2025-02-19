@@ -178,7 +178,7 @@ public class SaveData {
         MonsterInfo.Load(data.SaveMonster);
     }
     
-    public static void Save(EachCharacterInfo[] playerInfos, int chapter, int mapCode, Vector2Int pos, int saveSlot) {
+    public static void Save(int saveSlot, EachCharacterInfo[] playerInfos, int chapter, int mapCode, Vector2Int pos) {
  
         var json = new JObject();
         json.Add("PlayTime", PlayTime.Save());
@@ -189,7 +189,7 @@ public class SaveData {
         SerializeMonster(json);
         SerializeFindEvent(json);
         SerializeFindItem(json);
-        File.WriteAllText(Application.streamingAssetsPath + $@"/SaveFile/SaveData{saveSlot + 1}.json", json.ToString(Formatting.Indented));
+        File.WriteAllText(Application.streamingAssetsPath + $@"/SaveFile/SaveData{saveSlot}.json", json.ToString(Formatting.Indented));
     }
 
     private static void SerializeCharacter(JObject json, EachCharacterInfo[] playerInfos) {

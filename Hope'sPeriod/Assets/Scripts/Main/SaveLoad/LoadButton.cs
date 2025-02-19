@@ -49,9 +49,18 @@ public class LoadButton: InteractButton {
         text.color = color;
     } 
     
-    public override void Click() {
-        if (!On) return;
+    public override void Click() {}
+
+    public void Load() {
+        if (!On)
+            return;
         SaveData.Load(Index);
         ScenceControler.Load("PlayMap");
+    }
+    
+    public void Save() {
+        Debug.Log(Index);
+        SaveData.Save(Index, CharacterInfoInventory.Instance.RawCharacterInfos.ToArray() ,ChapterInfo.Chapter, CheckEvent.MapCode, TilePlayerPhysics.Pos );
+        SetUp();
     }
 }

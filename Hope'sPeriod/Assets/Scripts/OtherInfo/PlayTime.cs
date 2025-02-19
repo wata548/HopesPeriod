@@ -9,7 +9,7 @@ public static class PlayTime {
         startTime = Time.time;
     }
 
-    public static float Save() => playTime + startTime - Time.time;
+    public static float Save() => playTime + Time.time - startTime ;
 }
 
 public static class ChapterInfo {

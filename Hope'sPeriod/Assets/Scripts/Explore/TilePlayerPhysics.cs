@@ -14,7 +14,9 @@ public class TilePlayerPhysics : MonoBehaviour {
     
     [SerializeField] private Image mapMoveEffect;
     [SerializeField] private TMP_Text mapName;
-    private Vector2Int pos;
+    private static Vector2Int pos;
+    public static Vector2Int Pos => pos;
+    
     public static bool Movable { get; private set; } = true;
     private static PlayerAnimation animation = null;
 
@@ -41,6 +43,8 @@ public class TilePlayerPhysics : MonoBehaviour {
     Vector2 playerVelocity = Vector2.zero;
 
     private CompositeGroupBase movement;
+
+    
     private void Awake() {
 
         int code;

@@ -1,20 +1,21 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.Serialization;
 
 public class CharacterInfoInventory: MonoBehaviour {
 
-    [SerializeField] private List<EachChararacterInfoInventory> characterinfos;
+    [field: SerializeField] public List<EachChararacterInfoInventory> Characterinfos { get; private set; }
     public static CharacterInfoInventory Instance { get; private set; } = null;
-    public List<EachChararacterInfoInventory> Characterinfos => characterinfos;
-    public EachChararacterInfoInventory GetCharacterInfo(int index) => characterinfos[index];
-
+    public EachChararacterInfoInventory GetCharacterInfo(int index) => Characterinfos[index];
+    public List<EachCharacterInfo> RawCharacterInfos => Characterinfos.Select(info => info.Info).ToList();
+    
     private void Awake() {
         Instance = this;
     }
 
     public void UpdateState() {
-        foreach (var character in characterinfos) {
+        foreach (var character in Characterinfos) {
             character.UpdateState();
         }
     }
