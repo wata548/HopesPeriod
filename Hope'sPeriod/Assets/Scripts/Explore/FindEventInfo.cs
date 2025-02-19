@@ -19,7 +19,7 @@ public static class FindEventInfo {
             FindEventInfo.FindItem(findItem.Code, new(findItem.X, findItem.Y, findItem.Z));
         }
         foreach (var findEvent in findEvents) {
-            FindEventInfo.FindItem(findEvent.Code, new(findEvent.X, findEvent.Y, findEvent.Z));
+            FindEventInfo.FindEvent(findEvent.Code, new(findEvent.X, findEvent.Y, findEvent.Z));
         }
     }
     

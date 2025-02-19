@@ -14,16 +14,16 @@ public class MapEventInfo : ScriptableObject {
 
     public string Name(int code) {
         return mapInfo[ConnectMapInfo.ToLayer(code)]
-            ?.RoomInfo[code]
-            ?.Name 
-            ?? throw new Exception($"check about code {code}");
+                   ?.RoomInfo[code]
+                   ?.Name 
+               ?? throw new Exception($"check about code {code}");
     }
     
     public GameObject Prefab(int code) {
         return mapInfo[ConnectMapInfo.ToLayer(code)]
-            ?.RoomInfo[code]
-            ?.MapPrefab
-            ?? throw new Exception($"check about code {code}");
+                   ?.RoomInfo[code]
+                   ?.MapPrefab
+               ?? throw new Exception($"check about code {code}");
     }
     
     public bool ConnectInfo(int code, Vector2Int pos, out ConnectMapInfo info, out GameObject prefab) {
@@ -50,7 +50,7 @@ public class MapEventInfo : ScriptableObject {
         
         bool result = mapInfo[ConnectMapInfo.ToLayer(code)]
                           ?.RoomInfo[code]
-                          ?.PassiveEventList(pos, out resultCode) 
+                          ?.PassiveEventList(pos, out resultCode, out var resultPos) 
                       ?? throw new Exception("check about code");
         
         return result;
@@ -60,20 +60,23 @@ public class MapEventInfo : ScriptableObject {
             
         bool result = mapInfo[ConnectMapInfo.ToLayer(code)]
                           ?.RoomInfo[code]
-                          ?.AutoEventList(pos, out resultCode) 
+                          ?.AutoEventList(pos, out resultCode, out var resultPos) 
                       ?? throw new Exception("check about code");
             
         return result;
     }
 
     public bool Item(int code, Vector2Int pos, out GetItemInfo item) {
-   
+
         item = new();
         bool result = mapInfo[ConnectMapInfo.ToLayer(code)]
                           ?.RoomInfo[code]
-                          ?.Item(pos, out item) 
+                          ?.Item(pos, out item, out var itemPos) 
                       ?? throw new Exception("check about code");
-                       
+
+        if(result) 
+            FindEventInfo.FindItem(code, itemPos);
+        
         return result;
     }
 
@@ -108,76 +111,26 @@ public class RoomEventInfo {
     public GameObject MapPrefab => mapPrefab;
     public string Name => roomName;
 
-    private bool IsTrueCondition(string condition) {
-        string vector = @"(Item|Event|Monster|Have)\((.*)\)";
-        string realNumber = @"(-?\d*)";
-        bool badCondition = condition.Contains('!');
-        Match match = Regex.Match(condition, vector); 
-        var values= match
-            .Groups[2].Value
-            .Split(',');
-        var type = match
-            .Groups[1].Value;
-        
-        bool temp = false;
-        if (match.Groups[1].Value == "Item") {
-                            
-            int mapCode = Convert.ToInt32(Regex.Match(values[0], realNumber).Groups[1].Value);
-            int x = Convert.ToInt32(Regex.Match(values[1], realNumber).Groups[1].Value);
-            int y = Convert.ToInt32(Regex.Match(values[2], realNumber).Groups[1].Value);
-            int z = Convert.ToInt32(Regex.Match(values[3], realNumber).Groups[1].Value);
-            temp = FindEventInfo.AlreadyItem(mapCode, new(x,y,z));
-        }
-        if (match.Groups[1].Value == "Event") {
-                            
-            int mapCode = Convert.ToInt32(Regex.Match(values[0], realNumber).Groups[1].Value);
-            int x = Convert.ToInt32(Regex.Match(values[1], realNumber).Groups[1].Value);
-            int y = Convert.ToInt32(Regex.Match(values[2], realNumber).Groups[1].Value);
-            int z = Convert.ToInt32(Regex.Match(values[3], realNumber).Groups[1].Value);
-            temp = FindEventInfo.AlreadyEvent(mapCode, new(x,y,z));
-        }
-        if (match.Groups[1].Value == "Monster") {
-            int target = Convert.ToInt32(Regex.Match(values[0], realNumber).Groups[1].Value);
-            int count = Convert.ToInt32(Regex.Match(values[0], realNumber).Groups[1].Value);
-        
-            temp = MonsterInfo.IsKill(target, count);
-        }
-        if (match.Groups[1].Value == "Have") {
-            int target = Convert.ToInt32(Regex.Match(values[0], realNumber).Groups[1].Value);
-            int count = Convert.ToInt32(Regex.Match(values[0], realNumber).Groups[1].Value);
-        
-            temp = Inventory.IsHave(target, count);
-        }
-
-        return !temp == badCondition;
-    }
-    
-    public bool Item(Vector2Int v, out GetItemInfo code) {
+    public bool Item(Vector2Int v, out GetItemInfo code, out Vector3Int pos) {
 
         var availablePersibilities = itemList
             .Where(pos => pos.Key.x == v.x && pos.Key.y == v.y)
-            .Select(pos => pos.Value)
             .ToList();
 
         foreach (var availablePersibility in availablePersibilities) {
             
-            var conditions = availablePersibility.Condition.Split('|');
-            bool result = true;
-            foreach (var condition in conditions) {
-                
-                //when didn't match condition
-                if (!IsTrueCondition(condition)) {
-                    result = false;
-                    break;
-                }
-            }
+            bool result = ScriptCodeInterpreter
+                .Interpret(availablePersibility.Value.Condition)
+                .ToCondition();
 
             if (result) {
-                code = availablePersibility;
+                code = availablePersibility.Value;
+                pos = availablePersibility.Key;
                 return true;
             }
         }
 
+        pos = Vector3Int.zero;
         code = null;
         return false;
     }
@@ -194,59 +147,46 @@ public class RoomEventInfo {
         return result;
     }
 
-    public bool AutoEventList(Vector2Int v, out EventInfo code) {
+    public bool AutoEventList(Vector2Int v, out EventInfo code, out Vector3Int pos ) {
         var availablePersibilities = autoEventList
             .Where(pos => pos.Key.x == v.x && pos.Key.y == v.y)
-            .Select(pos => pos.Value)
             .ToList();
 
         foreach (var availablePersibility in availablePersibilities) {
-            
-            var conditions = availablePersibility.Condition.Split('|');
-            bool result = true;
-            foreach (var condition in conditions) {
-                
-                //when didn't match condition
-                if (!IsTrueCondition(condition)) {
-                    result = false;
-                    break;
-                }
-            }
-
+            bool result = ScriptCodeInterpreter
+                .Interpret(availablePersibility.Value.Condition)
+                .ToCondition();
+         
             if (result) {
-                code = availablePersibility;
+                code = availablePersibility.Value;
+                pos = availablePersibility.Key;
                 return true;
-            }
+            }   
         }
 
+        pos = Vector3Int.zero;
         code = null;
         return false;
     }
-    public bool PassiveEventList(Vector2Int v, out EventInfo code) {
+    public bool PassiveEventList(Vector2Int v, out EventInfo code, out Vector3Int pos) {
         var availablePersibilities = passiveEventList
             .Where(pos => pos.Key.x == v.x && pos.Key.y == v.y)
-            .Select(pos => pos.Value)
             .ToList();
 
         foreach (var availablePersibility in availablePersibilities) {
             
-            var conditions = availablePersibility.Condition.Split('|');
-            bool result = true;
-            foreach (var condition in conditions) {
-                
-                //when didn't match condition
-                if (!IsTrueCondition(condition)) {
-                    result = false;
-                    break;
-                }
-            }
-
+            bool result = ScriptCodeInterpreter
+                .Interpret(availablePersibility.Value.Condition)
+                .ToCondition();
+            
             if (result) {
-                code = availablePersibility;
+                pos = availablePersibility.Key;
+                code = availablePersibility.Value;
                 return true;
             }
         }
 
+        pos = Vector3Int.zero;
         code = null;
         return false;
     }

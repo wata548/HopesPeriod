@@ -30,12 +30,7 @@ MonoBehaviour:
               monsterList: 
               genProbability: 0
               itemList:
-                dataList:
-                - Key: {x: 0, y: 0, z: 0}
-                  Value:
-                    code: 0
-                    count: 0
-                    condition: 
+                dataList: []
               passiveEventList:
                 dataList: []
               moveEventList:
@@ -179,12 +174,7 @@ MonoBehaviour:
               monsterList: 
               genProbability: 0
               itemList:
-                dataList:
-                - Key: {x: -5, y: 3, z: 0}
-                  Value:
-                    code: 2001
-                    count: 1
-                    condition: 
+                dataList: []
               passiveEventList:
                 dataList: []
               moveEventList:
@@ -207,11 +197,12 @@ MonoBehaviour:
               genProbability: 0
               itemList:
                 dataList:
-                - Key: {x: -5, y: 3, z: 0}
+                - Key: {x: -1, y: 0, z: 0}
                   Value:
-                    code: 2001
+                    code: 2002
                     count: 1
-                    condition: 
+                    condition: IsFindItem(MapCode = 8404 | X = -4 | Y = 3 | Z = 0
+                      | Not = true);
               passiveEventList:
                 dataList: []
               moveEventList:

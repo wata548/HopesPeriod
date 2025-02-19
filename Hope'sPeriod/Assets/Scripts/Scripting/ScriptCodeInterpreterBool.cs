@@ -37,6 +37,9 @@ sealed public class IsFindItemScriptCommand : BooleanCommandBase {
 
     protected override bool SimpleResult() {
         var pos = new Vector3Int(X, Y, Z);
+        if (!FindEventInfo.FindItemInfos.ContainsKey(MapCode))
+            return false;
+        
         return FindEventInfo.FindItemInfos[MapCode].Contains(pos);
     }
 }

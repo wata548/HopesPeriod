@@ -10,7 +10,6 @@ public static class CurrentMapInfo {
     }
 
     public static (int code, Vector2Int pos) Load() {
-        Debug.Log(code);
         return (code, pos);
     }
 }

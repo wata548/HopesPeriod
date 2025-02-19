@@ -59,7 +59,6 @@ public class LoadButton: InteractButton {
     }
     
     public void Save() {
-        Debug.Log(Index);
         SaveData.Save(Index, CharacterInfoInventory.Instance.RawCharacterInfos.ToArray() ,ChapterInfo.Chapter, CheckEvent.MapCode, TilePlayerPhysics.Pos );
         SetUp();
     }
