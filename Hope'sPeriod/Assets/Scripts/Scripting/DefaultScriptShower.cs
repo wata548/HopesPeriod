@@ -19,7 +19,7 @@ public class DefaultScriptShower: MonoBehaviour {
     private bool showAll  = false;
     public bool End { get; private set; } = false;
 
-    public void Use() {
+    public void StartSetUp() {
         End = false;
     }
 

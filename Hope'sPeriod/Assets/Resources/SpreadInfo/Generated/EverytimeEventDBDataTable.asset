@@ -17,5 +17,13 @@ MonoBehaviour:
     - Key: 20001
       Value:
         m_Code: 20001
-        m_Condition: Use(Target = 2001 | Count = 1);
+        m_Condition: 'IsUseItem(Code= 2001 | Count = 1 | Not = false);
+
+          IsEventShowed(Code
+          = 20001 | Not = true);'
         m_Target: 6002
+    - Key: 20002
+      Value:
+        m_Code: 20002
+        m_Condition: IsEventShowed(Code = 20002 | Not = true);
+        m_Target: 6000

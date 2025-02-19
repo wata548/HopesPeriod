@@ -16,10 +16,21 @@ public static class EverytimeEvent {
                 .Interpret(factor.Value.Condition)
                 .ToCondition();
 
-            if (available) {
+            if (!available)
+                continue;
 
-                Debug.Log($"{factor.Key}");
+            int code = factor.Value.Target;
+            FindEventInfo.StartEvent(factor.Key);
+            Debug.Log(factor.Key);
+            
+            
+            switch (code.ToCodeType()) {
+                case CodeType.Script :
+                    ScriptShower.Instance.StartScript(code);
+                    break;
             }
+
+            break;
         }
 
         return 0;

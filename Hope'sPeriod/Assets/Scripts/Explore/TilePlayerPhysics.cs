@@ -100,7 +100,7 @@ public class TilePlayerPhysics : MonoBehaviour {
         if (code == 0)
             return;
 
-        CurrentMapInfo.Save(CheckEvent.MapCode, pos);
+        CurrentMapInfo.SetData(CheckEvent.MapCode, pos);
         SetMovable(false);
         Debug.Log($"Meet Monster {code}");
         ShakeCamera.Instance.HShake(0.5f, 0.2f);

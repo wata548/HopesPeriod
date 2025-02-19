@@ -170,6 +170,7 @@ public class SaveData {
             info.Load(character);
         }
 
+        CurrentMapInfo.SetData(data.SavePos.Code, new(data.SavePos.X, data.SavePos.Y));
         PlayTime.Load(data.PlayTime);
         ChapterInfo.Load(data.SavePos.Chapter);
         Inventory.Load(data.SaveItem,data.SaveUseItem);

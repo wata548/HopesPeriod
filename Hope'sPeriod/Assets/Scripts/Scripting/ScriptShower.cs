@@ -6,13 +6,24 @@ public class ScriptShower: MonoBehaviour {
 
     [SerializeField] private BackgroundScriptShower backgroundScript;
     [SerializeField] private DefaultScriptShower defaultScript;
+    public static ScriptShower Instance { get; private set; }
+    
     private bool end = true;
     private bool start = false;
-    private int eventCode = 6000;
+    
+    private int eventCode = 0;
+    private int index = 0;
     
     private bool startTalking = false;
     private ScriptDBData currentData;
     private ScriptDBDataTable table = null;
+
+    public void StartScript(int code) {
+        SetTable();
+        eventCode = code;
+        index = 0;
+        Show(table.DataTable[eventCode][index]);
+    }
     
     public void Show(ScriptDBData data) {
 
@@ -41,52 +52,68 @@ public class ScriptShower: MonoBehaviour {
         if (data.EventTiming == Timing.Talking) {
 
             ScriptCodePlayer.Instance.Interpret(data.Event);
-            if (data.WindowType == WindowType.BackgroundImage) {
-                
-                backgroundScript.TurnOn();
-                defaultScript.TurnOff();
-                backgroundScript.ShowScript(data.Actor, data.Script);
-            }
-            else if (data.WindowType == WindowType.Default) {
-                
-                defaultScript.TurnOn();
-                backgroundScript.TurnOff();
-                defaultScript.ShowScript(data.Actor, data.Script, data.Profile);
-            }
-                
+            ShowScript(data.WindowType);
         }
     }
 
-    private int index = 0;
+    private void ShowScript(WindowType type) {
+        
+        
+        if (type == WindowType.BackgroundImage) {
+                            
+            backgroundScript.TurnOn();
+            defaultScript.TurnOff();
+            backgroundScript.ShowScript(currentData.Actor, currentData.Script);
+        }
+        else if ( type == WindowType.Default) {
+                            
+            defaultScript.TurnOn();
+            backgroundScript.TurnOff();
+            defaultScript.ShowScript(currentData.Actor, currentData.Script, currentData.Profile);
+        }
+    }
+    
+    private void EndProcess() {
+        eventCode = 0;
+        defaultScript.TurnOff();
+        backgroundScript.TurnOff();
+        ScriptCodePlayer.Instance.EndProcess();
+    }
+    
+    private void SetTable() => 
+        table ??= Resources.Load<ScriptDBDataTable>("SpreadInfo/Generated/ScriptDBDataTable");
+
+    private void Awake() {
+        Instance = this;
+    }
+    
     private void Update() {
 
         if (eventCode == 0)
             return;
-        
-        table ??= Resources.Load<ScriptDBDataTable>("SpreadInfo/Generated/ScriptDBDataTable");
 
-        if (Input.GetKeyDown(KeyCode.T)) {
-            index = 0;
-            Show(table.DataTable[eventCode][index]);
-        }
-        
-        //If didn't read info, code didn't run
+        SetTable();    
+
+        //check: is showing script start 
         if (!start)
             return;
         
         bool eventEnd = ScriptCodePlayer.Instance.EndEvent();
         //Next script
         if (eventEnd && (currentData.JustEvent || backgroundScript.End || defaultScript.End)) {
+            //SetUp
             start = false;
             end = true;
             startTalking = false;
-            backgroundScript.Use();
-            defaultScript.Use();
-            if (table.DataTable[eventCode].Count <= index) {
+            
+            if (table.DataTable[eventCode].Count <= index)
                 EndProcess();
-            }
-            else
+
+            else {
+                backgroundScript.StartSetUp();
+                defaultScript.StartSetUp();
                 Show(table.DataTable[eventCode][index++]);
+            }
 
             return;
         }
@@ -94,26 +121,10 @@ public class ScriptShower: MonoBehaviour {
         //Start Show Talking
         if (!startTalking && eventEnd && currentData.EventTiming == Timing.BeforeTalking) {
 
-            if (currentData.WindowType == WindowType.BackgroundImage) {
-                
-                backgroundScript.TurnOn();
-                defaultScript.TurnOff();
-                backgroundScript.ShowScript(currentData.Actor, currentData.Script);
-            }
-            else if (currentData.WindowType == WindowType.Default) {
-                
-                defaultScript.TurnOn();
-                backgroundScript.TurnOff();
-                defaultScript.ShowScript(currentData.Actor, currentData.Script, currentData.Profile);
-            }
+            ShowScript(currentData.WindowType);
             startTalking = true;
         }   
     }
 
-    private void EndProcess() {
-        eventCode = 0;
-        defaultScript.TurnOff();
-        backgroundScript.TurnOff();
-        ScriptCodePlayer.Instance.EndProcess();
-    }
+    
 }

@@ -42,9 +42,9 @@ sealed public class IsFindItemScriptCommand : BooleanCommandBase {
 }
 sealed public class IsEventShowedScriptCommand : BooleanCommandBase {
     
-    public int code { get; protected set; }
+    public int Code { get; protected set; }
     public override bool Not { get; protected set; }
-    protected override bool SimpleResult() => FindEventInfo.AlreadyEvent(code);
+    protected override bool SimpleResult() => FindEventInfo.AlreadyEvent(Code);
 }
 sealed public class IsHaveItemScriptCommand : BooleanCommandBase {
     
