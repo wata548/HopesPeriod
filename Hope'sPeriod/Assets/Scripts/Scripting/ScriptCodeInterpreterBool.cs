@@ -53,3 +53,10 @@ sealed public class IsHaveItemScriptCommand : BooleanCommandBase {
     public override bool Not { get; protected set; }
     protected override bool SimpleResult() => Inventory.Items[Code] >= Count;
 }
+sealed public class IsChapterEqualScriptCommand : BooleanCommandBase {
+    
+    public int Chapter { get; protected set; }
+    public override bool Not { get; protected set; }
+
+    protected override bool SimpleResult() => ChapterInfo.Chapter == Chapter;
+}

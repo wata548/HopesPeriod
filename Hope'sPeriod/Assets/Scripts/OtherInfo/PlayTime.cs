@@ -15,6 +15,6 @@ public static class PlayTime {
 public static class ChapterInfo {
     public static int Chapter { get; private set; } = 0;
 
-    public static void Load(int chapter) => Chapter = chapter;
+    public static void Set(int chapter) => Chapter = chapter;
     public static void NextChapter() => Chapter++;
 }

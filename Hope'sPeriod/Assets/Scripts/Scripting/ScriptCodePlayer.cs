@@ -52,10 +52,13 @@ public class ScriptCodePlayer: MonoBehaviour {
         foreach (var command in process) {
             ClasifyScript(command.Item1, command.Item2);
         }
+
         //Remove already end event
         process = process.Where(command => !command.Item2.End()).ToList();
     }
 
+    public int Count => process.Count;
+    
     public bool EndEvent() => process.Count <= 0;
     
     #region ScriptPlayer  
@@ -261,40 +264,18 @@ public class ScriptCodePlayer: MonoBehaviour {
             count = 1;
             
         GetItemWindow.Instance.TurnOn(new GetItemInfo(command.Code, count));
-        StartCoroutine(Wait.WaitAndDo(GetItemWindow.Instance.Off, () => {
-            Debug.Log("end");
-            command.EndProcess();
-        }));
-    } 
-    #endregion
-    
-    private void SamplePlayer() {
-        if (Input.GetKeyDown(KeyCode.R)) {
-                    
-            string input = @"StartChangeEffect(Power = .3f);";
-            input += @"SetMap(MapCode = 8402);";
-            input += @"GeneratePerson(Code = 5002 | Pos = {1f , 1f} | View = l + u);"; 
-            input += @"Focus(Target = 5002);";
-            /*input += @"ClearEffect(Power = 0.3f);";
-            input += @"Zoom(Percent = 0.7f| Power = 0.2f);";
-            input += @"Move(Target = 5002|Route=[u]|Loop = 8 | Follow = true);";
-            input += @"Move(Target = 5002| Route = [u,l,d,r] | Loop = 10 | Power = 0.1f | Follow = true);";
-            input += @"Zoom(Percent = 1f | Power = 1f);";
-            input += @"StartChangeEffect(Power = .3f);";
-            input += @"SetMap(MapCode = 8401);";
-            input += @"SetPersonPos(Target = 5002 | Pos = {0f, 0f});";
-            input += @"Focus(Target = 5002);";*/
-            input += @"ClearEffect(Power = 0.3f);";
-            input += @"Move(Target = 5002|Route=[r]|Loop = 10 | Follow = true);";
-            input += @"SetBackground(Image = ""human"");";
-            input += @"Wait(Power = .5f);";
-            input += @"ClearBackground();";
-            input += @"Wait(Power = .5f);";
-            input += @"SetBackground(Image = ""human"");";
-            Interpret(input);
-        }
+        StartCoroutine(Wait.WaitAndDo(GetItemWindow.Instance.Off, () => command.EndProcess()));
     }
 
+    private void SetChapterScript(SetChapterScriptCommand command) {
+        if (!command.Start())
+            return;
+        
+        ChapterInfo.Set(command.Code);
+        command.EndProcess();
+    }
+    #endregion
+    
     public void EndProcess() {
         foreach (var person in actors) {
             Destroy(person.Value);
@@ -314,7 +295,6 @@ public class ScriptCodePlayer: MonoBehaviour {
 
     private void Update() {
 
-        SamplePlayer();
         ScriptProcess();
     }
 

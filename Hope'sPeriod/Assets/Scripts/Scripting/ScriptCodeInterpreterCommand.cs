@@ -172,29 +172,49 @@ sealed public class ClearEffectScriptCommand : CommandBase {
 /// <summary>
 /// <para>Essential: Power(float)</para>
 /// </summary>
-sealed public class WaitScriptCommand:CommandBase
-{
+sealed public class WaitScriptCommand:CommandBase {
     public float Power { get; protected set; }
 }
 
+/// <summary>
+/// <para>Essential: Code(int)</para>
+/// </summary>
+sealed public class SetChapterScriptCommand : CommandBase {
+    public int Code { get; protected set; }
+} 
+
 public enum ScriptCodeKeyword {
     Wait,
+    Focus,
+    SetCameraPos,
     Move,
     Zoom,
+    
+    //MeetMonster,
+    //SetRealPos,
+    //SetRealMap,
+    
     GeneratePerson,
     SetPersonPos,
-    SetBackground,
-    ControleBackground,
-    ClearBackground,
     SetMap,
-    SetCameraPos,
+    GetItem,
+    
+    SetBackground,
+    //ControleBackground,
+    ClearBackground,
+    
     MakeSelect,
-    Focus,
+    
     StartChangeEffect,
     ClearEffect,
-    GetItem,
+    
+    SetChapter,
+    //Tutorial,
+    //ShowTutorial,
+    
     IsUseItem,
     IsHaveItem,
     IsFindItem,
-    IsEventShowed
+    IsEventShowed,
+    IsChapterEqual
 };

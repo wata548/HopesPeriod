@@ -18581,7 +18581,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1333658819}
-        m_TargetAssemblyTypeName: BackgroundScripting, Assembly-CSharp
+        m_TargetAssemblyTypeName: BackgroundScriptShower, Assembly-CSharp
         m_MethodName: Next
         m_Mode: 1
         m_Arguments:
@@ -20314,7 +20314,6 @@ GameObject:
   - component: {fileID: 1516990915}
   - component: {fileID: 1516990918}
   - component: {fileID: 1516990919}
-  - component: {fileID: 1516990920}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -20451,18 +20450,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7b2a6f3be320da044b29492ad5fcdd3e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1516990920
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1516990914}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ce377c4bd0c14907b4790bd2d050cb20, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1518103620

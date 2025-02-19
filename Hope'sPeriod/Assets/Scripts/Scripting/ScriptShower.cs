@@ -1,6 +1,7 @@
 using SpreadInfo;
 using UnityEditor.Searcher;
 using UnityEngine;
+using UnityEngine.WSA;
 
 public class ScriptShower: MonoBehaviour {
 
@@ -17,8 +18,9 @@ public class ScriptShower: MonoBehaviour {
     private bool startTalking = false;
     private ScriptDBData currentData;
     private ScriptDBDataTable table = null;
-
+    public int EventCode => eventCode;
     public void StartScript(int code) {
+        TilePlayerPhysics.SetMovable(false);
         SetTable();
         eventCode = code;
         index = 0;
@@ -74,10 +76,13 @@ public class ScriptShower: MonoBehaviour {
     }
     
     private void EndProcess() {
+        Debug.Log("end");
+        
         eventCode = 0;
         defaultScript.TurnOff();
         backgroundScript.TurnOff();
         ScriptCodePlayer.Instance.EndProcess();
+        TilePlayerPhysics.SetMovable(true);
     }
     
     private void SetTable() => 
@@ -99,8 +104,14 @@ public class ScriptShower: MonoBehaviour {
             return;
         
         bool eventEnd = ScriptCodePlayer.Instance.EndEvent();
+        if (index == 22) {
+            
+            Debug.Log($"{table.DataTable[eventCode].Count} {index} {ScriptCodePlayer.Instance.Count}");
+        }
+        if (!eventEnd) return;
+
         //Next script
-        if (eventEnd && (currentData.JustEvent || backgroundScript.End || defaultScript.End)) {
+        if (currentData.JustEvent || backgroundScript.End || defaultScript.End) {
             //SetUp
             start = false;
             end = true;
@@ -119,7 +130,7 @@ public class ScriptShower: MonoBehaviour {
         }
         
         //Start Show Talking
-        if (!startTalking && eventEnd && currentData.EventTiming == Timing.BeforeTalking) {
+        if (!startTalking && currentData.EventTiming == Timing.BeforeTalking) {
 
             ShowScript(currentData.WindowType);
             startTalking = true;

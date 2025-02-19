@@ -167,7 +167,7 @@ MonoBehaviour:
         m_Script: ......
         m_JustEvent: 0
         m_ClearContext: 0
-        m_Event: GetItem(Code = 2001 | Count = 1);
+        m_Event: 
         m_EventTiming: 0
       - m_WindowType: 1
         m_Profile: Skeptical
@@ -217,7 +217,7 @@ MonoBehaviour:
         m_Script: 
         m_JustEvent: 1
         m_ClearContext: 1
-        m_Event: ShowTutorial(Code = 10001);
+        m_Event: SetChapter(Code = 1);
         m_EventTiming: 0
     - Key: 6002
       Value:

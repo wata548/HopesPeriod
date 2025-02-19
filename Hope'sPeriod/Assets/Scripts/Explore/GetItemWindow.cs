@@ -38,7 +38,8 @@ public class GetItemWindow: MonoBehaviour {
         itemDescription.color = Transparent;
 
         window.transform.localPosition = new(0, StartAppearPoint);
-        TilePlayerPhysics.SetMovable(true);
+        if(ScriptShower.Instance.EventCode == 0)
+            TilePlayerPhysics.SetMovable(true);
     }
 
     public void TurnOn(GetItemInfo itemInfo) {
