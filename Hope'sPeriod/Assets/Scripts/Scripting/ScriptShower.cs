@@ -113,9 +113,13 @@ public class ScriptShower: MonoBehaviour {
             start = false;
             end = true;
             startTalking = false;
-            
-            if (table.DataTable[eventCode].Count <= index)
+
+            if (table.DataTable[eventCode].Count <= index) {
+                
+                backgroundScript.StartSetUp();
+                defaultScript.StartSetUp();
                 EndProcess();
+            }
 
             else {
                 backgroundScript.StartSetUp();
