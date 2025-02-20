@@ -191,6 +191,16 @@ sealed public class AddRealPosScriptCommand : CommandBase {
     public float Duraction { get; protected set; }
 }
 
+/// <summary>
+/// <para> Essential: Info(string)
+/// <para> Sub: Image(string), Title(string)
+/// </summary>
+sealed public class TutorialScriptCommand : CommandBase {
+    public string Info { get; protected set; }
+    public string Title { get; private set; }
+    public string Image { get; private set; }
+}
+
 public enum ScriptCodeKeyword {
     Wait,
     Focus,
@@ -217,7 +227,7 @@ public enum ScriptCodeKeyword {
     ClearEffect,
     
     SetChapter,
-    //Tutorial,
+    Tutorial,
     //ShowTutorial,
     
     IsUseItem,

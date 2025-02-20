@@ -33,20 +33,15 @@ public class ScriptCodePlayer: MonoBehaviour {
         if(string.IsNullOrEmpty(input))
             return;
         
-        var list = ScriptCodeInterpreter.Interpret(input);
+        var list = ScriptCodeInterpreter.InterpretToCommandBase(input);
 
-        List<(ScriptCodeKeyword, CommandBase)> fixList = new();
-        foreach (var factor in list) {
-            fixList.Add((factor.Item1, (CommandBase)factor.Item2));
-        }
-        
         //Set Next
-        (fixList[0].Item2).SetUsable(true);
+        (list[0].Item2).SetUsable(true);
         for (int i = 0; i < list.Count - 1; i++) {
-            (fixList[i].Item2).SetNext(fixList[i + 1].Item2);
+            (list[i].Item2).SetNext(list[i + 1].Item2);
         }
 
-        process.AddRange(fixList);
+        process.AddRange(list);
     }
     private void ScriptProcess() {
         foreach (var command in process) {

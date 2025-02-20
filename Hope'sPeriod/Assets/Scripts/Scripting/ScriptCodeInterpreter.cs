@@ -138,6 +138,15 @@ public static class ScriptCodeInterpreter {
         return result;
     }
 
+    public static List<(ScriptCodeKeyword, CommandBase)> InterpretToCommandBase(string input) {
+        var list = Interpret(input);
+        
+        List<(ScriptCodeKeyword, CommandBase)> result = new();
+        list.ForEach(factor => result.Add((factor.Item1, (CommandBase)factor.Item2)));
+
+        return result;
+    }
+    
     public static bool ToCondition(this List<(ScriptCodeKeyword, ICommand)> infos) {
         
         foreach (var info in infos) {
@@ -301,5 +310,6 @@ public static class ScriptCodeInterpreter {
         var parse = type.GetMethod("Parse", new[] { typeof(string) });
         return parse.Invoke(null, new[] { context });
     }
-    private static Type ToClass(this ScriptCodeKeyword keyword) => Type.GetType(keyword.ToString() + "ScriptCommand") ?? throw new Exception($"Make {keyword.ToString()}'s class");
+    private static Type ToClass(this ScriptCodeKeyword keyword) 
+        => Type.GetType(keyword.ToString() + "ScriptCommand") ?? throw new Exception($"Make {keyword.ToString()}'s class");
 }

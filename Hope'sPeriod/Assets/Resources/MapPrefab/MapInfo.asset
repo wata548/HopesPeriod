@@ -27,8 +27,8 @@ MonoBehaviour:
                   Value:
                     code: 0
                     condition: 
-              monsterList: 
-              genProbability: 0
+              monsterList: e9030000e9030000
+              genProbability: 1
               itemList:
                 dataList: []
               passiveEventList:
