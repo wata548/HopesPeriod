@@ -22,6 +22,11 @@ public class TilePlayerPhysics : MonoBehaviour {
     public static bool Movable { get; private set; } = true;
     private static PlayerAnimation animation = null;
 
+    public void SetPos(Vector2Int pos) {
+        TilePlayerPhysics.pos = pos;
+        gameObject.transform.localPosition = pos.ToVec3();
+    }
+    
     public static void SetMovable(bool target) {
 
         animation.SetOn(target);

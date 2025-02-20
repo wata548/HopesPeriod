@@ -143,7 +143,9 @@ public class InventoryButtonManager : InteractButtonManager {
                 InfoShower.SetKeBoardControlable(true);
         }
 
-        if (input) cursor.SetIndex(Selecting);
+        if (input) {
+            cursor.SetIndex(Selecting);
+        }
     }
 
     public void NextPage() {

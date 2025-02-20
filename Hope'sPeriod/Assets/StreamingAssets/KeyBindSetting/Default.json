@@ -20,15 +20,15 @@
     "REQUIRED_HOLD_TIME": 0.5
   },
   "Select": {
-    "key": "Return",
+    "key": "E",
     "REQUIRED_HOLD_TIME": 0.5
   },
   "Interaction": {
-    "key": "Return",
+    "key": "E",
     "REQUIRED_HOLD_TIME": 0.5
   },
   "Cancel": {
-    "key": "Escape",
+    "key": "Z",
     "REQUIRED_HOLD_TIME": 0.5
   }
 }

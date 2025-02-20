@@ -40,6 +40,8 @@ public class GetItemWindow: MonoBehaviour {
         window.transform.localPosition = new(0, StartAppearPoint);
         if(ScriptShower.Instance.EventCode == 0)
             TilePlayerPhysics.SetMovable(true);
+
+        CheckEvent.AutoEvent(TilePlayerPhysics.Pos);
     }
 
     public void TurnOn(GetItemInfo itemInfo) {

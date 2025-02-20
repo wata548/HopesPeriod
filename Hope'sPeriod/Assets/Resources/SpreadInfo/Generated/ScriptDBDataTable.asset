@@ -217,7 +217,9 @@ MonoBehaviour:
         m_Script: 
         m_JustEvent: 1
         m_ClearContext: 1
-        m_Event: SetChapter(Code = 1);
+        m_Event: 'ShowTutorial(Code = 10001);
+
+          SetChapter(Code = 1);'
         m_EventTiming: 0
     - Key: 6002
       Value:
@@ -252,7 +254,7 @@ MonoBehaviour:
         m_Script: 
         m_JustEvent: 1
         m_ClearContext: 1
-        m_Event: "Tutorial(iInfo= \"\uC624\uB978\uCABD \uBB38\uC73C\uB85C \uB2E4\uAC00\uAC00
+        m_Event: "Tutorial(Info = \"\uC624\uB978\uCABD \uBB38\uC73C\uB85C \uB2E4\uAC00\uAC00
           \uBC16\uC73C\uB85C \uB098\uAC00\uC790.\");"
         m_EventTiming: 0
     - Key: 6001

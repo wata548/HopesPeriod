@@ -16,12 +16,13 @@ public class TutorialWindow : MonoBehaviour {
     [SerializeField] private TMP_Text imageTypeContext;
     [SerializeField] private TMP_Text context;
 
+    public static TutorialWindow Instance { get; private set; } = null; 
     private List<TutorialScriptCommand> tutorialData;
     private int currentPage;
 
     public bool On { get; private set; } = false;
 
-    public void TurnOn() {
+    private void TurnOn() {
 
         window.SetActive(true);
         On = true;
@@ -84,13 +85,13 @@ public class TutorialWindow : MonoBehaviour {
         }
     }
     
-    public void TurnOff() {
+    private void TurnOff() {
         
         window.SetActive(false);
         On = false;
     }
 
     private void Awake() {
-        SetTutorial(TutorialInfo.Interpret(10001));
+        Instance = this;
     }
 }

@@ -280,6 +280,24 @@ public class ScriptCodePlayer: MonoBehaviour {
             .DOLocalMove(transform.localPosition + command.Pos.ToVec3(), command.Duraction)
             .OnComplete(() => command.EndProcess());
     }
+
+    private void TutorialScript(TutorialScriptCommand command) {
+
+        if (!command.Start())
+            return;
+        
+        TutorialWindow.Instance.SetTutorial(new(){command});
+        StartCoroutine(Wait.WaitAndDo(() => TutorialWindow.Instance.On, () => command.EndProcess()));
+    }
+
+    private void ShowTutorialScript(ShowTutorialScriptCommand command) {
+        if (!command.Start())
+            return;
+
+        var list = TutorialInfo.Interpret(command.Code);
+        TutorialWindow.Instance.SetTutorial(list);
+        StartCoroutine(Wait.WaitAndDo(() => TutorialWindow.Instance.On, () => command.EndProcess()));
+    }
     #endregion
     
     public void EndProcess() {
@@ -303,6 +321,4 @@ public class ScriptCodePlayer: MonoBehaviour {
 
         ScriptProcess();
     }
-
-      
 }

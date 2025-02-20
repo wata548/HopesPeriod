@@ -43,30 +43,42 @@ public static class CheckEvent {
     public static bool CheckAutoEvent(ref Vector2Int pos, GameObject player) {
 
         LoadMapInfo();
+        bool result = MoveEvent(ref pos, player);
+        if (result)
+            return true;
+        
+        //Didn't move map
+        moveMap = false;
+        return AutoEvent(pos);
+    }
+
+    public static bool MoveEvent(ref Vector2Int pos, GameObject player) {
         if (mapInfo.ConnectInfo(mapCode, pos, out ConnectMapInfo connectMapInfo, out GameObject mapPrefab)) {
-
+        
             if (moveMap) return false;
-
+        
             if (map is not null)
                 Object.Destroy(map);
-
+        
             Debug.Log(mapCode);
             map = Object.Instantiate(mapPrefab);
             mapCode = connectMapInfo.ConnectMapCode;
             SetItem(mapCode);
             player.transform.localPosition = DefaultPos + connectMapInfo.ConnectPos;
             pos = connectMapInfo.ConnectPos;
-
+        
             mapMoveEffect.color = Color.black;
             mapMoveEffect.DOFade(0, 0.7f).SetEase(Ease.InCubic);
             moveMap = true;
             return true;
         }
-        
-        //Didn't move map
-        moveMap = false;
-        if (mapInfo.AutoInfo(mapCode, pos, out var info)) {
 
+        return false;
+    }
+    
+    public static bool AutoEvent(Vector2Int pos) {
+        if (mapInfo.AutoInfo(mapCode, pos, out var info)) {
+        
             var codeType = info.Code.ToCodeType();
             switch (codeType) {
                 case CodeType.Script:
@@ -74,7 +86,7 @@ public static class CheckEvent {
                     break;
             }
         }
-
+        
         return false;
     }
 

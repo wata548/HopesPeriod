@@ -100,5 +100,6 @@
   },
   "SaveMonster": [],
   "SaveFindEvent": [],
+  "SaveEvent": [],
   "SaveFindItem": []
 }

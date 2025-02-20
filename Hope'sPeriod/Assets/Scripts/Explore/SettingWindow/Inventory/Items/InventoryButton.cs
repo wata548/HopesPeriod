@@ -28,6 +28,7 @@ public class InventoryButton: InteractButtonUI {
             
     }
 
+
     public void SelectCancel() {
         if (beforeIndex == -1)
             return;

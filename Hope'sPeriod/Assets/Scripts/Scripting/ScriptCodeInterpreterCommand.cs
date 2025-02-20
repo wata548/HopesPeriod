@@ -201,6 +201,13 @@ sealed public class TutorialScriptCommand : CommandBase {
     public string Image { get; private set; }
 }
 
+/// <summary>
+/// <para> Essential: Code(int)
+/// </summary>
+sealed public class ShowTutorialScriptCommand : CommandBase {
+    public int Code { get; protected set; }
+}
+
 public enum ScriptCodeKeyword {
     Wait,
     Focus,
@@ -228,7 +235,7 @@ public enum ScriptCodeKeyword {
     
     SetChapter,
     Tutorial,
-    //ShowTutorial,
+    ShowTutorial,
     
     IsUseItem,
     IsHaveItem,

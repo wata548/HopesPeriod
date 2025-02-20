@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
@@ -15,6 +16,7 @@ public class SaveFormat {
     public SaveFindEvent[] SaveFindEvent;
     public SaveFindItem[] SaveFindItem;
     public SaveUseItem[] SaveUseItem;
+    public List<int> SaveEvent;
 }
 
 public class SaveItem {
@@ -174,7 +176,7 @@ public class SaveData {
         PlayTime.Load(data.PlayTime);
         ChapterInfo.Set(data.SavePos.Chapter);
         Inventory.Load(data.SaveItem,data.SaveUseItem);
-        FindEventInfo.Load(data.SaveFindItem, data.SaveFindEvent);
+        FindEventInfo.Load(data.SaveFindItem, data.SaveFindEvent, data.SaveEvent);
         MonsterInfo.Load(data.SaveMonster);
     }
     
@@ -189,6 +191,7 @@ public class SaveData {
         SerializeMonster(json);
         SerializeFindEvent(json);
         SerializeFindItem(json);
+        SerializeEvent(json);
         File.WriteAllText(Application.streamingAssetsPath + $@"/SaveFile/SaveData{saveSlot}.json", json.ToString(Formatting.Indented));
     }
 
@@ -237,6 +240,12 @@ public class SaveData {
             .SelectMany(factor => factor);
         var parse = JArray.Parse(JsonConvert.SerializeObject(fixInfos, Formatting.Indented));
         json.Add(nameof(SaveFindEvent), parse);
+    }
+
+    private static void SerializeEvent(JObject json) {
+        var fixInfos = FindEventInfo.Events.ToList();
+        var parse = JArray.Parse(JsonConvert.SerializeObject(fixInfos, Formatting.Indented));
+        json.Add("SaveEvent", parse);
     }
 
     private static void SerializeUseItem(JObject json) {

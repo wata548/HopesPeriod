@@ -10,9 +10,10 @@ public static class FindEventInfo {
     private static void Clear() {
         FindItemInfos.Clear();
         FindEventInfos.Clear();
+        Events.Clear();
     }
 
-    public static void Load(SaveFindItem[] findItems, SaveFindEvent[] findEvents) {
+    public static void Load(SaveFindItem[] findItems, SaveFindEvent[] findEvents, List<int> events) {
         Clear();
         
         foreach (var findItem in findItems) {
@@ -20,6 +21,10 @@ public static class FindEventInfo {
         }
         foreach (var findEvent in findEvents) {
             FindEventInfo.FindEvent(findEvent.Code, new(findEvent.X, findEvent.Y, findEvent.Z));
+        }
+
+        foreach (var @event in events) {
+            Events.Add(@event);
         }
     }
     
