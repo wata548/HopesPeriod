@@ -44,12 +44,12 @@ public static class CheckEvent {
 
         LoadMapInfo();
         bool result = MoveEvent(ref pos, player);
-        if (result)
-            return true;
         
         //Didn't move map
-        moveMap = false;
-        return AutoEvent(pos);
+        if(!result) moveMap = false;
+        AutoEvent(pos);
+
+        return result;
     }
 
     public static bool MoveEvent(ref Vector2Int pos, GameObject player) {
@@ -76,7 +76,7 @@ public static class CheckEvent {
         return false;
     }
     
-    public static bool AutoEvent(Vector2Int pos) {
+    public static void AutoEvent(Vector2Int pos) {
         if (mapInfo.AutoInfo(mapCode, pos, out var info)) {
         
             var codeType = info.Code.ToCodeType();
@@ -86,8 +86,6 @@ public static class CheckEvent {
                     break;
             }
         }
-        
-        return false;
     }
 
     public static void CheckInteract(Vector2Int pos, Direction viewDirection) {

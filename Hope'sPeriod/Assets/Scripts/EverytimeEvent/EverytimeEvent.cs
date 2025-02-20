@@ -20,7 +20,7 @@ public static class EverytimeEvent {
                 continue;
 
             int code = factor.Value.Target;
-            FindEventInfo.StartEvent(factor.Key);
+            FindEventInfo.FindEvent(factor.Key);
             Debug.Log(factor.Key);
             
             

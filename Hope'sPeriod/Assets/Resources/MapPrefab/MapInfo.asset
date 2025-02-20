@@ -100,7 +100,19 @@ MonoBehaviour:
             Value:
               roomName: "\uB0A8\uC790 \uC219\uBC15\uC2E4 \uBCF5\uB3C4"
               autoEventList:
-                dataList: []
+                dataList:
+                - Key: {x: -2, y: 14, z: 0}
+                  Value:
+                    code: 6003
+                    condition: IsEventShowed(Code = 6003 | Not = true);
+                - Key: {x: -2, y: 15, z: 0}
+                  Value:
+                    code: 6003
+                    condition: IsEventShowed(Code = 6003 | Not = true);
+                - Key: {x: -2, y: 16, z: 0}
+                  Value:
+                    code: 6003
+                    condition: IsEventShowed(Code = 6003 | Not = true);
               monsterList: 
               genProbability: 0
               itemList:
@@ -125,11 +137,19 @@ MonoBehaviour:
                   Value:
                     connectMapCode: 8405
                     connectPos: {x: 0, y: -1}
+                - Key: {x: -2, y: 6}
+                  Value:
+                    connectMapCode: 8405
+                    connectPos: {x: 0, y: -1}
                 - Key: {x: -2, y: 16}
                   Value:
                     connectMapCode: 8404
                     connectPos: {x: 0, y: 0}
                 - Key: {x: -2, y: 15}
+                  Value:
+                    connectMapCode: 8404
+                    connectPos: {x: 0, y: -1}
+                - Key: {x: -2, y: 14}
                   Value:
                     connectMapCode: 8404
                     connectPos: {x: 0, y: -1}
@@ -141,6 +161,14 @@ MonoBehaviour:
                   Value:
                     connectMapCode: 8403
                     connectPos: {x: 0, y: -1}
+                - Key: {x: -2, y: 22}
+                  Value:
+                    connectMapCode: 8406
+                    connectPos: {x: 0, y: -1}
+                - Key: {x: 3, y: 6}
+                  Value:
+                    connectMapCode: 8408
+                    connectPos: {x: 0, y: 0}
                 - Key: {x: 3, y: 7}
                   Value:
                     connectMapCode: 8408
@@ -149,6 +177,10 @@ MonoBehaviour:
                   Value:
                     connectMapCode: 8408
                     connectPos: {x: 0, y: 1}
+                - Key: {x: 3, y: 14}
+                  Value:
+                    connectMapCode: 8407
+                    connectPos: {x: 0, y: 0}
                 - Key: {x: 3, y: 15}
                   Value:
                     connectMapCode: 8407
@@ -157,6 +189,10 @@ MonoBehaviour:
                   Value:
                     connectMapCode: 8407
                     connectPos: {x: 0, y: 1}
+                - Key: {x: 3, y: 22}
+                  Value:
+                    connectMapCode: 8406
+                    connectPos: {x: 0, y: 0}
                 - Key: {x: 3, y: 23}
                   Value:
                     connectMapCode: 8406
@@ -198,6 +234,10 @@ MonoBehaviour:
                     code: 6100
                     condition: IsUseItem(Code = 2002 | Count = 1 | Not = true);
                 - Key: {x: -1, y: -1, z: 0}
+                  Value:
+                    code: 6100
+                    condition: IsUseItem(Code = 2002 | Count = 1 | Not = true);
+                - Key: {x: -1, y: -2, z: 0}
                   Value:
                     code: 6100
                     condition: IsUseItem(Code = 2002 | Count = 1 | Not = true);

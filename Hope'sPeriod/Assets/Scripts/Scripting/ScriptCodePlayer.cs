@@ -298,6 +298,14 @@ public class ScriptCodePlayer: MonoBehaviour {
         TutorialWindow.Instance.SetTutorial(list);
         StartCoroutine(Wait.WaitAndDo(() => TutorialWindow.Instance.On, () => command.EndProcess()));
     }
+
+    private void MeetMonsterScript(MeetMonsterScriptCommand command) {
+        if (!command.Start())
+            return;
+
+        command.EndProcess();
+        TilePlayerPhysics.Instance.MeetMonsterEvent(command.Code);
+    }
     #endregion
     
     public void EndProcess() {
@@ -308,7 +316,8 @@ public class ScriptCodePlayer: MonoBehaviour {
         actors.Clear();
         Destroy(currentMap);
         currentMap = null;
-
+        background.enabled = false;
+        
         ShakeCamera.Instance.camera.transform.localPosition = new Vector3(0, 0.7f, -10);
     }
     

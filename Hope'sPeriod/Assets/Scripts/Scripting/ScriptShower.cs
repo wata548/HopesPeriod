@@ -23,6 +23,7 @@ public class ScriptShower: MonoBehaviour {
         Debug.Log($"Start Script: {code}");
         
         TilePlayerPhysics.SetMovable(false);
+        FindEventInfo.FindEvent(code);
         SetTable();
         eventCode = code;
         index = 0;

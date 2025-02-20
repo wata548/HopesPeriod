@@ -100,17 +100,20 @@ public class TilePlayerPhysics : MonoBehaviour {
 
             if (newPos != pos) {
                 pos = newPos;
-                if (CheckEvent.CheckAutoEvent(ref pos, gameObject)) {
+                bool moveMap = CheckEvent.CheckAutoEvent(ref pos, gameObject); 
+                if (moveMap) {
                     mapName.text = CheckEvent.MapName;
                 }
-                MeetMonsterEvent(CheckEvent.MeetMonster());
+                else {
+                    
+                    MeetMonsterEvent(CheckEvent.MeetMonster());
+                }
             }
         }
         CheckEvent.CheckInteract(pos, animation.Dir);
     }
     
-    
-    private void MeetMonsterEvent(int code) {
+    public void MeetMonsterEvent(int code) {
         if (code == 0)
             return;
 

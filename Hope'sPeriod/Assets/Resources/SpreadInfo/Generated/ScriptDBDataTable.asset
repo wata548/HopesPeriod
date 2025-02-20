@@ -52,7 +52,7 @@ MonoBehaviour:
           \uAD1C\uCC2E\uACA0\uC9C0."
         m_JustEvent: 0
         m_ClearContext: 0
-        m_Event: GetItem(Code = 2001| Count = 1);
+        m_Event: 
         m_EventTiming: 0
       - m_WindowType: 2
         m_Profile: None
@@ -256,6 +256,64 @@ MonoBehaviour:
         m_ClearContext: 1
         m_Event: "Tutorial(Info = \"\uC624\uB978\uCABD \uBB38\uC73C\uB85C \uB2E4\uAC00\uAC00
           \uBC16\uC73C\uB85C \uB098\uAC00\uC790.\");"
+        m_EventTiming: 0
+    - Key: 6003
+      Value:
+      - m_WindowType: 2
+        m_Profile: None
+        m_Actor: 0
+        m_Script: 
+        m_JustEvent: 1
+        m_ClearContext: 0
+        m_Event: 'StartChangeEffect(Roll = false | Power = 0f);
+
+          SetBackground(Image
+          = "CP1_BossMob1");'
+        m_EventTiming: 0
+      - m_WindowType: 2
+        m_Profile: None
+        m_Actor: 5002
+        m_Script: ......?
+        m_JustEvent: 0
+        m_ClearContext: 0
+        m_Event: ClearEffect(Power = .3f);
+        m_EventTiming: 0
+      - m_WindowType: 2
+        m_Profile: None
+        m_Actor: 5002
+        m_Script: "\uD53C...?"
+        m_JustEvent: 0
+        m_ClearContext: 0
+        m_Event: 
+        m_EventTiming: 0
+      - m_WindowType: 2
+        m_Profile: None
+        m_Actor: 5002
+        m_Script: "\uC5B4\uB514\uC11C \uB5A8\uC5B4\uC9C0\uB294......"
+        m_JustEvent: 0
+        m_ClearContext: 0
+        m_Event: 
+        m_EventTiming: 0
+      - m_WindowType: 2
+        m_Profile: None
+        m_Actor: 5002
+        m_Script: ......!!!
+        m_JustEvent: 0
+        m_ClearContext: 0
+        m_Event: 'StartChangeEffect(Roll = false | Power = 0.3f);
+
+          SetBackground(Image
+          = "CP1_BossMob2");
+
+          ClearEffect(Power = .3f);'
+        m_EventTiming: 0
+      - m_WindowType: 2
+        m_Profile: None
+        m_Actor: 0
+        m_Script: 
+        m_JustEvent: 1
+        m_ClearContext: 0
+        m_Event: MeetMonster(Code = 1001);
         m_EventTiming: 0
     - Key: 6001
       Value:

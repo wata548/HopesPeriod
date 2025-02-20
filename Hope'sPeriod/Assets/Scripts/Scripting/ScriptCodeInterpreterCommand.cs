@@ -208,6 +208,10 @@ sealed public class ShowTutorialScriptCommand : CommandBase {
     public int Code { get; protected set; }
 }
 
+sealed public class MeetMonsterScriptCommand : CommandBase {
+    public int Code { get; protected set; }
+}
+
 public enum ScriptCodeKeyword {
     Wait,
     Focus,
@@ -215,7 +219,7 @@ public enum ScriptCodeKeyword {
     Move,
     Zoom,
     
-    //MeetMonster,
+    MeetMonster,
     AddRealPos,
     //SetRealMap,
     
