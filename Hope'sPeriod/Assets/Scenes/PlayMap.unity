@@ -16727,7 +16727,7 @@ MonoBehaviour:
   m_Intensity: 0.9
   m_LightVolumeIntensity: 1
   m_LightVolumeEnabled: 0
-  m_ApplyToSortingLayers: 000000005d9be4d0c3d07666c7b50778671a0152c110789049490e2a
+  m_ApplyToSortingLayers: 000000005d9be4d0c3d07666c7b50778671a0152c110789049490e2a19325e88
   m_LightCookieSprite: {fileID: 0}
   m_DeprecatedPointLightCookieSprite: {fileID: 0}
   m_LightOrder: 0
@@ -23365,12 +23365,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   interval: {x: 0, y: -130, z: 0}
   defaultDegree: 0
-  defaultPos: {x: -70, y: 2036, z: 0}
+  defaultPos: {x: -70, y: 206, z: 0}
   intervalDegree: 0
   specialIndexes:
     dataList: []
   nextLine:
-    dataList: []
+    dataList:
+    - Key: 1
+      Value: {x: -70, y: 206}
 --- !u!114 &1647291364
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -26759,7 +26761,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1719062723
-  m_SortingLayer: 4
+  m_SortingLayer: 5
   m_SortingOrder: 0
   m_Sprite: {fileID: -3399296711132257926, guid: 57d9c220a7e76824eb40820cd402a687, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

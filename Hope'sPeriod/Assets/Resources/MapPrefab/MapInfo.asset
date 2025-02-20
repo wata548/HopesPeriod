@@ -197,11 +197,11 @@ MonoBehaviour:
               genProbability: 0
               itemList:
                 dataList:
-                - Key: {x: -1, y: 0, z: 0}
+                - Key: {x: -4, y: 2, z: 0}
                   Value:
                     code: 2002
                     count: 1
-                    condition: IsFindItem(MapCode = 8404 | X = -4 | Y = 3 | Z = 0
+                    condition: IsFindItem(MapCode = 8404 | X = -4 | Y = 2 | Z = 0
                       | Not = true);
               passiveEventList:
                 dataList: []

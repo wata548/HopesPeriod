@@ -74,8 +74,11 @@ public class MapEventInfo : ScriptableObject {
                           ?.Item(pos, out item, out var itemPos) 
                       ?? throw new Exception("check about code");
 
-        if(result) 
+        if (result) {
+            
             FindEventInfo.FindItem(code, itemPos);
+            
+        }
         
         return result;
     }
@@ -85,6 +88,12 @@ public class MapEventInfo : ScriptableObject {
                    ?.RoomInfo[code]
                    ?.MeetMonster() 
                ?? throw new Exception("check about code");
+    }
+
+    public List<(Vector3Int, GetItemInfo)> Items(int code) {
+        return mapInfo[ConnectMapInfo.ToLayer(code)]
+                   ?.RoomInfo[code].Items
+               ?? throw new Exception($"check about code {code}");
     }
 
 }
@@ -111,6 +120,8 @@ public class RoomEventInfo {
     public GameObject MapPrefab => mapPrefab;
     public string Name => roomName;
 
+
+    public List<(Vector3Int, GetItemInfo)> Items => itemList.Select(fac => (fac.Key, fac.Value)).ToList();
     public bool Item(Vector2Int v, out GetItemInfo code, out Vector3Int pos) {
 
         var availablePersibilities = itemList

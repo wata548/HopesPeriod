@@ -49,13 +49,16 @@ TagManager:
   - name: Shadow
     uniqueID: 1375804007
     locked: 0
-  - name: UnderFuniture
+  - name: UnderFurniture
     uniqueID: 2423787713
+    locked: 0
+  - name: Item
+    uniqueID: 2287874585
     locked: 0
   - name: Player
     uniqueID: 1719062723
     locked: 0
-  - name: UpperFuniture
+  - name: UpperFurniture
     uniqueID: 705579337
     locked: 0
   - name: FrontGround
