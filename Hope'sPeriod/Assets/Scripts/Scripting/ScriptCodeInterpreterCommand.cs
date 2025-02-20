@@ -181,7 +181,15 @@ sealed public class WaitScriptCommand:CommandBase {
 /// </summary>
 sealed public class SetChapterScriptCommand : CommandBase {
     public int Code { get; protected set; }
-} 
+}
+
+/// <summary>
+/// <para> Essential: Pos(Vector2), Duraction(float)</para>
+/// </summary>
+sealed public class AddRealPosScriptCommand : CommandBase {
+    public Vector2 Pos { get; protected set; }
+    public float Duraction { get; protected set; }
+}
 
 public enum ScriptCodeKeyword {
     Wait,
@@ -191,7 +199,7 @@ public enum ScriptCodeKeyword {
     Zoom,
     
     //MeetMonster,
-    //SetRealPos,
+    AddRealPos,
     //SetRealMap,
     
     GeneratePerson,

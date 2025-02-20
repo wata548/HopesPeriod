@@ -274,6 +274,17 @@ public class ScriptCodePlayer: MonoBehaviour {
         ChapterInfo.Set(command.Code);
         command.EndProcess();
     }
+
+    private void AddRealPosScript(AddRealPosScriptCommand command) {
+
+        if (!command.Start())
+            return;
+
+        var transform = TilePlayerPhysics.Instance.@Object.transform;
+        transform
+            .DOLocalMove(transform.localPosition + command.Pos.ToVec3(), command.Duraction)
+            .OnComplete(() => command.EndProcess());
+    }
     #endregion
     
     public void EndProcess() {

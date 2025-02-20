@@ -16,6 +16,8 @@ public class TilePlayerPhysics : MonoBehaviour {
     [SerializeField] private TMP_Text mapName;
     private static Vector2Int pos;
     public static Vector2Int Pos => pos;
+    public static TilePlayerPhysics Instance { get; private set; } = null;
+    
     
     public static bool Movable { get; private set; } = true;
     private static PlayerAnimation animation = null;
@@ -25,7 +27,7 @@ public class TilePlayerPhysics : MonoBehaviour {
         animation.SetOn(target);
         Movable = target;
     }
-    
+
     Rigidbody2D playerRigidbody = null;
 
     private Direction moveableDirection = DirectionInfo.All;
@@ -44,9 +46,12 @@ public class TilePlayerPhysics : MonoBehaviour {
 
     private CompositeGroupBase movement;
 
+    public GameObject @Object => gameObject;
     
     private void Awake() {
 
+        Instance = this;
+        
         int code;
         (code, pos) = CurrentMapInfo.Load();
         

@@ -16,4 +16,5 @@ MonoBehaviour:
   m_Path:
   - ScriptDB
   - ScriptDB2
+  - SimpleScriptDB
   m_DataLoader: {fileID: 11400000, guid: 71252c3d0ef6af14d8de4ddc2258051c, type: 2}

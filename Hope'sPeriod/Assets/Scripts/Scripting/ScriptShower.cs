@@ -20,11 +20,13 @@ public class ScriptShower: MonoBehaviour {
     private ScriptDBDataTable table = null;
     public int EventCode => eventCode;
     public void StartScript(int code) {
+        Debug.Log($"Start Script: {code}");
+        
         TilePlayerPhysics.SetMovable(false);
         SetTable();
         eventCode = code;
         index = 0;
-        Show(table.DataTable[eventCode][index]);
+        Show(table.DataTable[eventCode][index++]);
     }
     
     public void Show(ScriptDBData data) {
@@ -53,7 +55,6 @@ public class ScriptShower: MonoBehaviour {
         //Process of Event and Showing script run at same time
         if (data.EventTiming == Timing.Talking) {
 
-            ScriptCodePlayer.Instance.Interpret(data.Event);
             ShowScript(data.WindowType);
         }
     }
@@ -104,10 +105,6 @@ public class ScriptShower: MonoBehaviour {
             return;
         
         bool eventEnd = ScriptCodePlayer.Instance.EndEvent();
-        if (index == 22) {
-            
-            Debug.Log($"{table.DataTable[eventCode].Count} {index} {ScriptCodePlayer.Instance.Count}");
-        }
         if (!eventEnd) return;
 
         //Next script

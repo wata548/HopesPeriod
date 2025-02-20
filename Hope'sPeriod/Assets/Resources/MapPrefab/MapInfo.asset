@@ -192,7 +192,17 @@ MonoBehaviour:
             Value:
               roomName: "\uB0A8\uC790 \uC219\uBC15\uC2E4-2"
               autoEventList:
-                dataList: []
+                dataList:
+                - Key: {x: -1, y: 0, z: 0}
+                  Value:
+                    code: 6100
+                    condition: IsFindItem(MapCode = 8404 | X = -4 | Y = 2 | Z = 0
+                      | Not = true);
+                - Key: {x: -1, y: -1, z: 0}
+                  Value:
+                    code: 6100
+                    condition: IsFindItem(MapCode = 8404 | X = -4 | Y = 2 | Z = 0
+                      | Not = true);
               monsterList: 
               genProbability: 0
               itemList:

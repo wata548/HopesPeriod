@@ -66,7 +66,13 @@ public static class CheckEvent {
         //Didn't move map
         moveMap = false;
         if (mapInfo.AutoInfo(mapCode, pos, out var info)) {
-            Debug.Log($"auto event {info.Code}");
+
+            var codeType = info.Code.ToCodeType();
+            switch (codeType) {
+                case CodeType.Script:
+                    ScriptShower.Instance.StartScript(info.Code);
+                    break;
+            }
         }
 
         return false;

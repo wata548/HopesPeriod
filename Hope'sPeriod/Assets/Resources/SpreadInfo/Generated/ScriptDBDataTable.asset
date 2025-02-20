@@ -265,3 +265,14 @@ MonoBehaviour:
         m_ClearContext: 1
         m_Event: ShowTutorial(Code = 10001);
         m_EventTiming: 0
+    - Key: 6100
+      Value:
+      - m_WindowType: 1
+        m_Profile: Default
+        m_Actor: 5002
+        m_Script: "\uBA3C\uC800 \uBB3C\uC744 \uB9C8\uC2DC\uBA70 \uC548\uC815\uC744
+          \uCDE8\uD558\uC790."
+        m_JustEvent: 0
+        m_ClearContext: 1
+        m_Event: 'AddRealPos(Pos = {-1f,0f} | Duraction = 0.3f); '
+        m_EventTiming: 0
