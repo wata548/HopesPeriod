@@ -1,13 +1,11 @@
-using System;
 using UnityEngine;
 using System.Collections.Generic;
-using JetBrains.Annotations;
-using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
 
 public class Monster: MonoBehaviour {
 
     [SerializeField] private List<EnemyPatternBase> patterns = new();
+    [field: SerializeField]public bool IsBoss { get; private set; }
     [field: SerializeField]public int MaxHP { get; private set; }
     public static Monster Instance { get; private set; } = null;
     public bool IsPattern { get; private set; } = false;
@@ -35,5 +33,6 @@ public class Monster: MonoBehaviour {
 
     private void Awake() {
         Instance = this;
+        DontDestroyOnLoad(gameObject);
     }
 }

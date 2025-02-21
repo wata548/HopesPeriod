@@ -76,7 +76,7 @@ public class MapEventInfo : ScriptableObject {
 
         if (result) {
             
-            FindEventInfo.FindItem(code, itemPos);
+            AlreadyFindEventInfo.FindItem(code, itemPos);
             
         }
         

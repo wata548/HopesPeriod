@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-public class ContactMonster : MonoBehaviour {
+public class MonsterContactCheck : MonoBehaviour {
      
      //TODO: Invincibilty is not staic
      private bool Contact(GameObject contact) {

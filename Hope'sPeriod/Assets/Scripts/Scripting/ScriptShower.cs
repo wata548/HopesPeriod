@@ -149,7 +149,7 @@ public class ScriptShower: MonoBehaviour {
                 justTutorial = false;
                 
                 
-                FindEventInfo.FindEvent(EventCode);
+                AlreadyFindEventInfo.FindEvent(EventCode);
                 
                 backgroundScript.StartSetUp();
                 defaultScript.StartSetUp();

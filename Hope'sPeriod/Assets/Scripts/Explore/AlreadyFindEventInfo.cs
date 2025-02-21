@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public static class FindEventInfo {
+public static class AlreadyFindEventInfo {
 
     public static Dictionary<int, HashSet<Vector3Int>> FindItemInfos { get; private set; } = new();
     public static Dictionary<int, HashSet<Vector3Int>> FindEventInfos { get; private set; } = new();
@@ -17,10 +17,10 @@ public static class FindEventInfo {
         Clear();
         
         foreach (var findItem in findItems) {
-            FindEventInfo.FindItem(findItem.Code, new(findItem.X, findItem.Y, findItem.Z));
+            AlreadyFindEventInfo.FindItem(findItem.Code, new(findItem.X, findItem.Y, findItem.Z));
         }
         foreach (var findEvent in findEvents) {
-            FindEventInfo.FindEvent(findEvent.Code, new(findEvent.X, findEvent.Y, findEvent.Z));
+            AlreadyFindEventInfo.FindEvent(findEvent.Code, new(findEvent.X, findEvent.Y, findEvent.Z));
         }
 
         foreach (var @event in events) {

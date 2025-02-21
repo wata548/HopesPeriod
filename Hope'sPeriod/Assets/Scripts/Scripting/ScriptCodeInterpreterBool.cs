@@ -37,17 +37,17 @@ sealed public class IsFindItemScriptCommand : BooleanCommandBase {
 
     protected override bool SimpleResult() {
         var pos = new Vector3Int(X, Y, Z);
-        if (!FindEventInfo.FindItemInfos.ContainsKey(MapCode))
+        if (!AlreadyFindEventInfo.FindItemInfos.ContainsKey(MapCode))
             return false;
         
-        return FindEventInfo.FindItemInfos[MapCode].Contains(pos);
+        return AlreadyFindEventInfo.FindItemInfos[MapCode].Contains(pos);
     }
 }
 sealed public class IsEventShowedScriptCommand : BooleanCommandBase {
     
     public int Code { get; protected set; }
     public override bool Not { get; protected set; }
-    protected override bool SimpleResult() => FindEventInfo.AlreadyEvent(Code);
+    protected override bool SimpleResult() => AlreadyFindEventInfo.AlreadyEvent(Code);
 }
 sealed public class IsHaveItemScriptCommand : BooleanCommandBase {
     

@@ -6,6 +6,7 @@ using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Serialization;
 using Image = UnityEngine.UI.Image;
 using Vector2 = UnityEngine.Vector2;
 
@@ -13,7 +14,7 @@ using Vector2 = UnityEngine.Vector2;
 public class TilePlayerPhysics : MonoBehaviour {
     
     [SerializeField] private Image mapMoveEffect;
-    [SerializeField] private TMP_Text mapName;
+    [FormerlySerializedAs("mapName")] [SerializeField] private MapChanger mapChanger;
     private static Vector2Int pos;
     public static Vector2Int Pos => pos;
     public static TilePlayerPhysics Instance { get; private set; } = null;
@@ -102,7 +103,7 @@ public class TilePlayerPhysics : MonoBehaviour {
                 pos = newPos;
                 bool moveMap = CheckEvent.CheckAutoEvent(ref pos, gameObject); 
                 if (moveMap) {
-                    mapName.text = CheckEvent.MapName;
+                    mapChanger.Show(CheckEvent.MapName);
                 }
                 else {
                     
@@ -117,6 +118,7 @@ public class TilePlayerPhysics : MonoBehaviour {
         if (code == 0)
             return;
 
+        CurrentMonsterInfo.SetMonster(code);
         CurrentMapInfo.SetData(CheckEvent.MapCode, pos);
         SetMovable(false);
         Debug.Log($"Meet Monster {code}");

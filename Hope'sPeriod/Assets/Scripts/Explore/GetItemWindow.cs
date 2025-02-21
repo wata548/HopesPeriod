@@ -38,8 +38,11 @@ public class GetItemWindow: MonoBehaviour {
         itemDescription.color = Transparent;
 
         window.transform.localPosition = new(0, StartAppearPoint);
-        if(ScriptShower.Instance.EventCode == 0)
+        if (ScriptShower.Instance.EventCode == 0) {
+            
             TilePlayerPhysics.SetMovable(true);
+            SettingWindow.SetInteractable(true);
+        }
 
         CheckEvent.AutoEvent(TilePlayerPhysics.Pos);
         EverytimeEvent.StartEvent();
@@ -66,6 +69,7 @@ public class GetItemWindow: MonoBehaviour {
         itemDescription.DOFade(1, AppearTime);
         itemDescription.text = ItemInfo.Description(itemInfo.Code);
         TilePlayerPhysics.SetMovable(false);
+        SettingWindow.SetInteractable(false);
     }
     
     private void Awake() {

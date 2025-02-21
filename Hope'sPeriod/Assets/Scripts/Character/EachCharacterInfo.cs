@@ -103,6 +103,7 @@ public class EachCharacterInfo: MonoBehaviour {
         
         CurrentHp = 0;
         Debug.Log("character dead");
+        Destroy(Monster.Instance.gameObject);
                 
         Dead = true;
         return false;

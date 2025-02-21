@@ -171,12 +171,12 @@ public class SaveData {
             var info = target.AddComponent<EachCharacterInfo>();
             info.Load(character);
         }
-
+        
         CurrentMapInfo.SetData(data.SavePos.Code, new Vector2(data.SavePos.X, data.SavePos.Y));
         PlayTime.Load(data.PlayTime);
         ChapterInfo.Set(data.SavePos.Chapter);
         Inventory.Load(data.SaveItem,data.SaveUseItem);
-        FindEventInfo.Load(data.SaveFindItem, data.SaveFindEvent, data.SaveEvent);
+        AlreadyFindEventInfo.Load(data.SaveFindItem, data.SaveFindEvent, data.SaveEvent);
         MonsterInfo.Load(data.SaveMonster);
     }
     
@@ -220,7 +220,7 @@ public class SaveData {
     }
     
     private static void SerializeFindItem(JObject json) {
-        var fixInfos = FindEventInfo.FindItemInfos
+        var fixInfos = AlreadyFindEventInfo.FindItemInfos
             .Select(findItem => {
                 var items = findItem.Value
                     .Select(factor => new SaveFindItem(findItem.Key, factor));
@@ -231,7 +231,7 @@ public class SaveData {
         json.Add(nameof(SaveFindItem), parse);
     }
     private static void SerializeFindEvent(JObject json) {
-        var fixInfos = FindEventInfo.FindEventInfos
+        var fixInfos = AlreadyFindEventInfo.FindEventInfos
             .Select(findEvent => {
                 var events = findEvent.Value
                     .Select(factor => new SaveFindEvent(findEvent.Key, factor));
@@ -243,7 +243,7 @@ public class SaveData {
     }
 
     private static void SerializeEvent(JObject json) {
-        var fixInfos = FindEventInfo.Events.ToList();
+        var fixInfos = AlreadyFindEventInfo.Events.ToList();
         var parse = JArray.Parse(JsonConvert.SerializeObject(fixInfos, Formatting.Indented));
         json.Add("SaveEvent", parse);
     }
