@@ -30,3 +30,13 @@ MonoBehaviour:
           IsEventShowed(Code
           = 20002 | Not = true);'
         m_Target: 6000
+    - Key: 20003
+      Value:
+        m_Code: 20003
+        m_Condition: 'IsHaveItem(Code = 2002 | Count = 1 | Not = false);
+
+          IsEventShowed(Code
+          = 6000 | Not = false);
+
+          IsEventShowed(Code = 20003 | Not = true);'
+        m_Target: 10002

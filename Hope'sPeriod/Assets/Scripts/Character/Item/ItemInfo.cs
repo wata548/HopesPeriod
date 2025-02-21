@@ -12,7 +12,8 @@ public enum CodeType {
     Script = 6,
     SimpleInteract = 7,
     Map = 8,
-    Skill = 9
+    Skill = 9,
+    Tutorial = 10
 };
 
 public static class ItemInfo {

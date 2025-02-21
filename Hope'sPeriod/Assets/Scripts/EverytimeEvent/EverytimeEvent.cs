@@ -28,6 +28,9 @@ public static class EverytimeEvent {
                 case CodeType.Script :
                     ScriptShower.Instance.StartScript(code);
                     break;
+                case CodeType.Tutorial:
+                    ScriptShower.Instance.ShowTutorial(code);
+                    break;
             }
 
             break;

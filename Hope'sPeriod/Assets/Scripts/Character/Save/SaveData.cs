@@ -47,14 +47,14 @@ public class SavePos {
     [JsonProperty]
     public int Code { get; private set; }
     [JsonProperty]
-    public int X { get; private set; }
+    public float X { get; private set; }
     [JsonProperty]
-    public int Y { get; private set; }
+    public float Y { get; private set; }
    [JsonProperty] 
    public int Chapter { get; private set; }
 
     public SavePos() {}
-    public SavePos(int code, Vector2Int pos, int chapter) {
+    public SavePos(int code, Vector2 pos, int chapter) {
         Code = code;
         X = pos.x;
         Y = pos.y;
@@ -172,7 +172,7 @@ public class SaveData {
             info.Load(character);
         }
 
-        CurrentMapInfo.SetData(data.SavePos.Code, new(data.SavePos.X, data.SavePos.Y));
+        CurrentMapInfo.SetData(data.SavePos.Code, new Vector2(data.SavePos.X, data.SavePos.Y));
         PlayTime.Load(data.PlayTime);
         ChapterInfo.Set(data.SavePos.Chapter);
         Inventory.Load(data.SaveItem,data.SaveUseItem);
@@ -180,7 +180,7 @@ public class SaveData {
         MonsterInfo.Load(data.SaveMonster);
     }
     
-    public static void Save(int saveSlot, EachCharacterInfo[] playerInfos, int chapter, int mapCode, Vector2Int pos) {
+    public static void Save(int saveSlot, EachCharacterInfo[] playerInfos, int chapter, int mapCode, Vector2 pos) {
  
         var json = new JObject();
         json.Add("PlayTime", PlayTime.Save());
@@ -207,7 +207,7 @@ public class SaveData {
         json.Add(nameof(SaveItem), jInfo);
     }
 
-    private static void SerializePos(JObject json, int chapter, int code, Vector2Int pos) {
+    private static void SerializePos(JObject json, int chapter, int code, Vector2 pos) {
         var fixInfos = new SavePos(code, pos, chapter);
         JObject parse = JObject.Parse(JsonConvert.SerializeObject(fixInfos, Formatting.Indented));
         json.Add(nameof(SavePos), parse);

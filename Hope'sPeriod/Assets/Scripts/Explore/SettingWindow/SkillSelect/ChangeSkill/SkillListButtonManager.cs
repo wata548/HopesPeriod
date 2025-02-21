@@ -31,7 +31,7 @@ public class SkillListButtonManager: InteractButtonManager {
         shower.SetSkill(button.Code);
         button.SetColor(ActiveColor);
         cursor.SetIndex(target.Index);
-        
+       
     }
 
     public override void SelectOut(InteractButton target) {

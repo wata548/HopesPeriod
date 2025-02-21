@@ -56,9 +56,8 @@ public class TilePlayerPhysics : MonoBehaviour {
     private void Awake() {
 
         Instance = this;
-        
-        int code;
-        (code, pos) = CurrentMapInfo.Load();
+
+        (int code, Vector2 pos) = CurrentMapInfo.Load();
         
         animation = GetComponent<PlayerAnimation>();
         movement = new CompositeGroupBase(gameObject)
@@ -80,7 +79,8 @@ public class TilePlayerPhysics : MonoBehaviour {
         
         CheckEvent.SetEffect(mapMoveEffect);
         CheckEvent.SetMap(code);
-        transform.localPosition = pos.ToVec2();
+        transform.localPosition = pos;
+        TilePlayerPhysics.pos = pos.ToVec2Int();
     }
 
     void Update() {

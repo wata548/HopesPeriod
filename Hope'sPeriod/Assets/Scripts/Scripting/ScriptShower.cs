@@ -16,14 +16,21 @@ public class ScriptShower: MonoBehaviour {
     private int index = 0;
     
     private bool startTalking = false;
+    private bool justTutorial = false;
     private ScriptDBData currentData;
     private ScriptDBDataTable table = null;
     public int EventCode => eventCode;
     public void StartScript(int code) {
         Debug.Log($"Start Script: {code}");
+
+        if (this.eventCode != 0) {
+
+            Debug.Log($"Script({code}) is canceled");
+            return;
+        }
         
         TilePlayerPhysics.SetMovable(false);
-        FindEventInfo.FindEvent(code);
+        SettingWindow.SetInteractable(false);
         SetTable();
         eventCode = code;
         index = 0;
@@ -39,8 +46,8 @@ public class ScriptShower: MonoBehaviour {
         start = true;
         currentData = data;
         
-        if (data.ClearContext)
-            backgroundScript.Erase();
+        //if (data.ClearContext)
+            //backgroundScript.Erase();
             
         //StartEvent
         ScriptCodePlayer.Instance.Interpret(data.Event);
@@ -58,6 +65,27 @@ public class ScriptShower: MonoBehaviour {
 
             ShowScript(data.WindowType);
         }
+    }
+
+    public void ShowTutorial(int code) {
+         Debug.Log($"Start Tutorial: {code}");
+                
+         TilePlayerPhysics.SetMovable(false);
+         SetTable();
+         eventCode = code;
+         justTutorial = true;
+        
+        if(!end)
+            return;
+                
+        end = false;
+        start = true;
+        currentData = new();
+
+        string eventInfo = $"ShowTutorial( Code = {code});";
+        
+        ScriptCodePlayer.Instance.Interpret(eventInfo);
+        return;
     }
 
     private void ShowScript(WindowType type) {
@@ -84,6 +112,7 @@ public class ScriptShower: MonoBehaviour {
         defaultScript.TurnOff();
         backgroundScript.TurnOff();
         ScriptCodePlayer.Instance.EndProcess();
+        SettingWindow.SetInteractable(true);
         TilePlayerPhysics.SetMovable(true);
     }
     
@@ -109,19 +138,27 @@ public class ScriptShower: MonoBehaviour {
         if (!eventEnd) return;
 
         //Next script
-        if (currentData.JustEvent || backgroundScript.End || defaultScript.End) {
+        if (justTutorial || currentData.JustEvent || backgroundScript.End || defaultScript.End) {
             //SetUp
             start = false;
             end = true;
             startTalking = false;
 
-            if (table.DataTable[eventCode].Count <= index) {
+            //End Script
+            if (justTutorial || table.DataTable[eventCode].Count <= index) {
+                justTutorial = false;
+                
+                
+                FindEventInfo.FindEvent(EventCode);
                 
                 backgroundScript.StartSetUp();
                 defaultScript.StartSetUp();
                 EndProcess();
+                Debug.Log("Script End");
+                EverytimeEvent.StartEvent();
             }
 
+            //Next Script
             else {
                 backgroundScript.StartSetUp();
                 defaultScript.StartSetUp();

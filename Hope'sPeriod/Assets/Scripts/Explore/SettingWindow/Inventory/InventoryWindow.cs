@@ -32,7 +32,4 @@ public class InventoryWindow: MonoBehaviour {
         target.TurnOff();
     }
 
-    private void Start() {
-        TurnOff();
-    }
 }

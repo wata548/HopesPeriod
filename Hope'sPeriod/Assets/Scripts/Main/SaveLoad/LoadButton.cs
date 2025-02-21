@@ -59,7 +59,10 @@ public class LoadButton: InteractButton {
     }
     
     public void Save() {
-        SaveData.Save(Index, CharacterInfoInventory.Instance.RawCharacterInfos.ToArray() ,ChapterInfo.Chapter, CheckEvent.MapCode, TilePlayerPhysics.Pos );
+
+        var pos = TilePlayerPhysics.Instance.Object.transform.localPosition;
+        var characterInfo = CharacterInfoInventory.Instance.RawCharacterInfos.ToArray();
+        SaveData.Save(Index, characterInfo ,ChapterInfo.Chapter, CheckEvent.MapCode, pos );
         SetUp();
     }
 }

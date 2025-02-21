@@ -42,6 +42,7 @@ public class GetItemWindow: MonoBehaviour {
             TilePlayerPhysics.SetMovable(true);
 
         CheckEvent.AutoEvent(TilePlayerPhysics.Pos);
+        EverytimeEvent.StartEvent();
     }
 
     public void TurnOn(GetItemInfo itemInfo) {

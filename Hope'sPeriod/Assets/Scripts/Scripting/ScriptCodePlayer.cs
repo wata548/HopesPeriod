@@ -287,7 +287,7 @@ public class ScriptCodePlayer: MonoBehaviour {
             return;
         
         TutorialWindow.Instance.SetTutorial(new(){command});
-        StartCoroutine(Wait.WaitAndDo(() => TutorialWindow.Instance.On, () => command.EndProcess()));
+        StartCoroutine(Wait.WaitAndDo(() => !TutorialWindow.Instance.On, () => command.EndProcess()));
     }
 
     private void ShowTutorialScript(ShowTutorialScriptCommand command) {
@@ -296,7 +296,7 @@ public class ScriptCodePlayer: MonoBehaviour {
 
         var list = TutorialInfo.Interpret(command.Code);
         TutorialWindow.Instance.SetTutorial(list);
-        StartCoroutine(Wait.WaitAndDo(() => TutorialWindow.Instance.On, () => command.EndProcess()));
+        StartCoroutine(Wait.WaitAndDo(() => !TutorialWindow.Instance.On, () => command.EndProcess()));
     }
 
     private void MeetMonsterScript(MeetMonsterScriptCommand command) {

@@ -29,7 +29,7 @@ public static class CheckEvent {
     public static void SetMap(int code) {
         mapCode = code;
         LoadMapInfo();
-        SetItem(code);
+        //SetItem(code);
         
         map = Object.Instantiate(mapInfo.Prefab(code));
     }
@@ -63,7 +63,7 @@ public static class CheckEvent {
             Debug.Log(mapCode);
             map = Object.Instantiate(mapPrefab);
             mapCode = connectMapInfo.ConnectMapCode;
-            SetItem(mapCode);
+            //SetItem(mapCode);
             player.transform.localPosition = DefaultPos + connectMapInfo.ConnectPos;
             pos = connectMapInfo.ConnectPos;
         
@@ -84,6 +84,9 @@ public static class CheckEvent {
                 case CodeType.Script:
                     ScriptShower.Instance.StartScript(info.Code);
                     break;
+                case CodeType.Tutorial:
+                    ScriptShower.Instance.ShowTutorial(info.Code);
+                    break;
             }
         }
     }
@@ -96,12 +99,12 @@ public static class CheckEvent {
             var direction = viewDirection.ConvertVector().ToVec2Int();
         
             if (mapInfo.Item(mapCode, pos, out var item)) {
-                SetItem(mapCode);
+                //SetItem(mapCode);
                 Debug.Log($"Get item {ItemInfo.Name(item.Code)} * {item.Count} at current pos");
                 GetItemWindow.Instance.TurnOn(item);
             }
             else if (mapInfo.Item(mapCode, pos + direction, out item)) {
-                SetItem(mapCode);
+                //SetItem(mapCode);
                 Debug.Log($"Get item {ItemInfo.Name(item.Code)} * {item.Count} at view point");
                 GetItemWindow.Instance.TurnOn(item);
             }

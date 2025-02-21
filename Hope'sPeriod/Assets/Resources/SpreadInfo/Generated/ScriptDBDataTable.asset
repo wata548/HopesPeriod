@@ -336,3 +336,13 @@ MonoBehaviour:
         m_ClearContext: 0
         m_Event: 'AddRealPos(Pos = {-1f,0f} | Duraction = 0.3f); '
         m_EventTiming: 0
+    - Key: 6101
+      Value:
+      - m_WindowType: 1
+        m_Profile: Default
+        m_Actor: 5002
+        m_Script: "\uC544\uBB34 \uAC83\uB3C4 \uC5C6\uB294 \uB4EF\uD558\uB2E4."
+        m_JustEvent: 0
+        m_ClearContext: 0
+        m_Event: 
+        m_EventTiming: 0

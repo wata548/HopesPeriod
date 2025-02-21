@@ -11,7 +11,7 @@ public class SkillSelectButton: InteractButtonUI {
     private TMP_Text skillName;
 
     private Tween animation = null;
-    private const float ActiveSize = 1.2f;
+    private const float ActiveSize = 1.1f;
     private const float ActiveDuraction = 0.2f;
     private static int select = -1;
     

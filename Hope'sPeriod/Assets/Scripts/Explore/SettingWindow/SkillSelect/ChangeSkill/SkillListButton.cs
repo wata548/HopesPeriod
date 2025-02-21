@@ -9,6 +9,9 @@ public class SkillListButton: InteractButtonUI {
     
     public override void Click() {
 
+        if (!On)
+            return;
+        
         Parse(Manager).Click(Code);
     }
 
