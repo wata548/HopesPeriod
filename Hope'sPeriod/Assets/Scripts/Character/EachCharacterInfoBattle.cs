@@ -15,6 +15,7 @@ public class EachCharacterInfoBattle : MonoBehaviour {
     [SerializeField] private TMP_Text hpChange;
     [SerializeField] private TMP_Text mpChange;
     private EachCharacterInfo info;
+    private List<ShowEffect> showEffect = new(); 
     
     //==================================================||Field 
     
@@ -37,7 +38,57 @@ public class EachCharacterInfoBattle : MonoBehaviour {
     public float CurrentMp => info.CurrentMp;
     //public string Name => Regex.Match(info.gameObject.name, @"(.*)Info").Groups[1].Value;
     private Color originColor;
-        
+
+    public void SetEffectImage() {
+
+        int index = 0;
+        if (Shield.Type != DefenceType.None) {
+            
+            if (showEffect.Count >= index)
+                Generate(index);
+            showEffect[index++].Set(Shield);
+        }
+        if (Attract.Duration > 0) {
+            if (showEffect.Count >= index)
+                Generate(index);
+            showEffect[index++].Set(Attract);
+        }
+
+        foreach (var effect in Effects) {
+            if (showEffect.Count >= index)
+                Generate(index);
+            showEffect[index++].Set(Attract);
+        }
+
+        for (int i = index; i < showEffect.Count; i++) {
+            showEffect[i].Destroy();
+        }
+
+        showEffect = showEffect.Take(index).ToList();
+
+
+        ShowEffect Generate(int index) {
+
+            const float size = 0.6f;
+
+            var image = Instantiate(Resources.Load<GameObject>("EffectImage/Icon"), transform);
+            
+            var effect = image
+                .GetComponent<ShowEffect>();
+            showEffect.Add(effect);
+
+            var interval = Vector3.zero;
+            if (index % 2 == 1) {
+                interval.y = -size;
+            }
+
+            interval.x = (index / 2) * size;
+            image.transform.localPosition += interval;
+            
+            return effect;
+        }
+    }
+    
     public void SetAttract(int code) {
         Attract = new(ItemInfo.Attract(code),
             ItemInfo.AttractDuration(code));
@@ -105,7 +156,7 @@ public class EachCharacterInfoBattle : MonoBehaviour {
     
             effect.TurnUpdate();
         }
-    
+        
         Effects = Effects.Where(info => info.Type != EffectType.None).ToList();
     }
     public bool UseMp(float power) {

@@ -104,6 +104,11 @@ public class SkillShower: MonoBehaviour {
             skill = () => MonsterSlider.Instance.GetDamage(SkillInfo.Attack(code));
         else
             skill = () => SkillInfo.UseSkill(index, code, target);
+
+        foreach (var character in CharactersInfoBattle.Instance.CharacterInfos) {
+            
+            skill += character.SetEffectImage;
+        }
         StartCoroutine(Wait.WaitAndDo(UseDelay, skill));
     }
 }

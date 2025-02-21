@@ -98,6 +98,10 @@ public class GameFSM: MonoBehaviour {
 
     private void PlayerTurnStartSetting() {
         if (!playerTurnStart) {
+            foreach (var character in CharactersInfoBattle.Instance.CharacterInfos) {
+                character.SetEffectImage();
+            }
+            
             playerTurnStart = true;
             PlayerTurnState = PlayerTurnState.SelectBehavior;
                         
@@ -140,6 +144,9 @@ public class GameFSM: MonoBehaviour {
             
             case PlayerTurnState.Shield:
                 CharactersInfoBattle.Instance.ShieldOn();
+                foreach (var character in CharactersInfoBattle.Instance.CharacterInfos) {
+                    character.SetEffectImage();
+                }
                 SkipState();
                 break;
             
@@ -166,7 +173,7 @@ public class GameFSM: MonoBehaviour {
         State = GameState.Win;
     }
     public void SetPlayerTurnState(PlayerTurnState newState) {
-
+        
         bool isPlayerTurn = State == GameState.PlayerAttack;
         bool isSelectState = PlayerTurnState == PlayerTurnState.SelectBehavior;
         if (!isPlayerTurn || !isSelectState)

@@ -2,7 +2,11 @@ using System;
 using SpreadInfo;
 using System.Collections.Generic;
 
-public class EffectInfo {
+public interface IEffect {
+    public float Duration{ get;}
+}
+
+public class EffectInfo: IEffect {
 
     public static Dictionary<EffectType, string> MatchKorean = new() {
         { EffectType.Slow, "슬로우" },
@@ -10,8 +14,10 @@ public class EffectInfo {
     };
      
     public EffectType Type { get; private set; }
+
     public float Power { get; private set; }
-    public int Duration { get; private set; }
+    
+    public float Duration { get; private set; }
 
     public EffectInfo(EffectType type, float power, int duration) {
         Type = type;

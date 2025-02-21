@@ -2,9 +2,9 @@ using SpreadInfo;
 using Unity.Mathematics.Geometry;
 using UnityEngine;
 
-public class ShieldInfo {
+public class ShieldInfo: IEffect {
     public DefenceType Type { get; private set; }
-    public float Power { get; private set; }
+    public float Duration { get; private set; }
     public bool Reflect { get; private set; }
 
     public (bool, float) ApplyDamage(float power) {
@@ -18,21 +18,21 @@ public class ShieldInfo {
                 MonsterSlider.Instance.GetDamage((int)(power * 0.3f));
                 return (true, 0);
             }
-            power = Mathf.Ceil(power * (Power - (int)Power));
+            power = Mathf.Ceil(power * (Duration - (int)Duration));
             return (true, power);
         }
 
-        if (power < Power) {
+        if (power < Duration) {
 
             if (Reflect) MonsterSlider.Instance.GetDamage((int)(power * 0.3f));
-            Power -= power;
+            Duration -= power;
             return (true, 0);
         }
 
-        if (Reflect) MonsterSlider.Instance.GetDamage((int)(Power * 0.3f));
-        power -= (int)Power;
+        if (Reflect) MonsterSlider.Instance.GetDamage((int)(Duration * 0.3f));
+        power -= (int)Duration;
         Type = DefenceType.None;
-        Power = 0;
+        Duration = 0;
         Reflect = false;
 
         return (true, power);
@@ -42,19 +42,19 @@ public class ShieldInfo {
 
         if (Type != DefenceType.Time) return;
 
-        Power--;
-        if (Power >= 1) return; 
+        Duration--;
+        if (Duration >= 1) return; 
         
         Type = DefenceType.None;
-        Power = 0;
+        Duration = 0;
         Reflect = false;
     }
 
     public ShieldInfo(DefenceType type, float power, bool reflect) {
         Type = type;
         
-        Power = power;
-        if (Type == DefenceType.Time) Power++;
+        Duration = power;
+        if (Type == DefenceType.Time) Duration++;
         
         Reflect = reflect;
     }

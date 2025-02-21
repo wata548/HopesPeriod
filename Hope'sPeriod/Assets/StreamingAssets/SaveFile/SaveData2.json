@@ -1,5 +1,5 @@
 {
-  "PlayTime": 59.08138,
+  "PlayTime": 101.023415,
   "SaveCharacterInfo": [
     {
       "Exist": true,
@@ -91,19 +91,35 @@
       "Amount": 6
     }
   ],
-  "SaveUseItem": [],
+  "SaveUseItem": [
+    {
+      "Code": 2002,
+      "Count": 1
+    }
+  ],
   "SavePos": {
     "Code": 8404,
-    "X": -5.912432,
-    "Y": -0.433268964,
+    "X": -0.892354965,
+    "Y": -1.463005,
     "Chapter": 1
   },
   "SaveMonster": [],
   "SaveFindEvent": [],
-  "SaveFindItem": [],
+  "SaveFindItem": [
+    {
+      "Code": 8404,
+      "X": -4,
+      "Y": 2,
+      "Z": 0
+    }
+  ],
   "SaveEvent": [
     20002,
     6000,
-    20003
+    6100,
+    20001,
+    6002,
+    20003,
+    10002
   ]
 }

@@ -1,5 +1,5 @@
 {
-  "PlayTime": 94.5725,
+  "PlayTime": 100.165306,
   "SaveCharacterInfo": [
     {
       "Exist": true,
@@ -8,14 +8,14 @@
       "Skill": [
         9101,
         9102,
-        0,
-        0
+        9103,
+        9104
       ],
       "HaveSkill": [
         9101,
         9102,
-        0,
-        0
+        9103,
+        9104
       ],
       "MaximumHp": 100.0,
       "CurrentHp": 80.0,
@@ -23,20 +23,20 @@
       "CurrentMp": 130.0
     },
     {
-      "Exist": false,
+      "Exist": true,
       "Dead": false,
       "Name": "Cavil",
       "Skill": [
         9201,
         9202,
-        0,
-        0
+        9203,
+        9204
       ],
       "HaveSkill": [
         9201,
         9202,
-        0,
-        0
+        9203,
+        9204
       ],
       "MaximumHp": 120.0,
       "CurrentHp": 120.0,
@@ -44,20 +44,20 @@
       "CurrentMp": 105.0
     },
     {
-      "Exist": false,
+      "Exist": true,
       "Dead": false,
       "Name": "Lippi",
       "Skill": [
         9301,
         9302,
-        0,
-        0
+        9303,
+        9304
       ],
       "HaveSkill": [
         9301,
         9302,
-        0,
-        0
+        9303,
+        9304
       ],
       "MaximumHp": 95.0,
       "CurrentHp": 95.0,
@@ -100,7 +100,7 @@
   "SavePos": {
     "Code": 8404,
     "X": -0.892354965,
-    "Y": -2.98450041,
+    "Y": -1.463005,
     "Chapter": 1
   },
   "SaveMonster": [],
@@ -118,6 +118,8 @@
     6000,
     6100,
     20001,
-    6002
+    6002,
+    20003,
+    10002
   ]
 }

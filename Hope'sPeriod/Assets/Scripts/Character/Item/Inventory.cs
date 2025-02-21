@@ -88,6 +88,9 @@ public static class Inventory{
 
     private static void CallBackMainFsm() {
 
+        foreach (var character in CharactersInfoBattle.Instance.CharacterInfos) {
+            character.SetEffectImage();
+        }
         GameFSM.Instance.SkipState();
     }
 
