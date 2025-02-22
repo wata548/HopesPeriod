@@ -5,7 +5,7 @@ using UnityEngine;
 
 [RequireComponent(typeof(Collider2D))]
 public abstract class InteractButtonScence : InteractButton {
-    void CheckClicK() {
+    void CheckClick() {
 
         if (!Manager.Interactable)
             return;
@@ -19,6 +19,6 @@ public abstract class InteractButtonScence : InteractButton {
     }
 
     private void Update() {
-        CheckClicK();
+        CheckClick();
     }
 }

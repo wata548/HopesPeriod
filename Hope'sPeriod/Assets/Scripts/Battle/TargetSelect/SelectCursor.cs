@@ -13,7 +13,7 @@ public class SelectCursor: MonoBehaviour {
 
    //==================================================||Field 
     private SpriteRenderer renderer = null;
-    private readonly Vector2 defaultPosition = new(-2, 1.7f);
+    private readonly Vector2 defaultPosition = new(-2.26f, 1.7f);
     private readonly Vector2 selectInterval = new(5.86f, 0);
 
    //==================================================||Method 

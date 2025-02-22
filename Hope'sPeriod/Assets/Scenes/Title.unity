@@ -178,6 +178,7 @@ MonoBehaviour:
   window: {fileID: 1774924407}
   cursor: {fileID: 1178145145}
   main: {fileID: 1652036238}
+  IsMain: 1
 --- !u!1 &79556017
 GameObject:
   m_ObjectHideFlags: 0

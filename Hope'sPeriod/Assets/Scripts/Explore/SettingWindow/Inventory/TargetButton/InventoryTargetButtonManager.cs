@@ -1,5 +1,3 @@
-using System;
-using UnityEditor.SceneTemplate;
 using UnityEngine;
 
 public class InventoryTargetButtonManager: InteractButtonManager {

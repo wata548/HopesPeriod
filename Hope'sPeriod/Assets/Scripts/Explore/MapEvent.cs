@@ -2,9 +2,6 @@ using System;
 using UnityEngine;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text.RegularExpressions;
-using Mono.Cecil.Cil;
-using Unity.Mathematics;
 using Random = UnityEngine.Random;
 
 [CreateAssetMenu(menuName = "MapEventInfo")]

@@ -1,7 +1,5 @@
 using SpreadInfo;
-using UnityEditor.Searcher;
 using UnityEngine;
-using UnityEngine.WSA;
 
 public class ScriptShower: MonoBehaviour {
 
@@ -46,9 +44,6 @@ public class ScriptShower: MonoBehaviour {
         start = true;
         currentData = data;
         
-        //if (data.ClearContext)
-            //backgroundScript.Erase();
-            
         //StartEvent
         ScriptCodePlayer.Instance.Interpret(data.Event);
 

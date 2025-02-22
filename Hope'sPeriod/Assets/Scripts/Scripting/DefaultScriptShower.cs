@@ -1,8 +1,5 @@
-using System;
 using TMPro;
-using UnityEditor.Searcher;
 using UnityEngine;
-using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 public class DefaultScriptShower: MonoBehaviour {
