@@ -28,3 +28,91 @@ MonoBehaviour:
         m_Info: "Tutorial(Title = \"\uC544\uC774\uD15C \uC0AC\uC6A9\uBC95\" | Info
           = \"Z\uB97C \uB20C\uB7EC \uC778\uBCA4\uD1A0\uB9AC\uB97C \uC5F4\uACE0 \uC544\uC774\uD15C\uC744
           \uC0AC\uC6A9\uD558\uC790.\" | Image =\"Tutorial/UseItem\");"
+    - Key: 10003
+      Value:
+        m_Code: 10003
+        m_Info: "Tutorial(Title = \"\uC804\uD22C \uC124\uBA85 - <size=60%>\uD654\uBA74</size>\"
+          | Info = \"\uC704\uC758 \uBC14\uB294 <color=#ff0000><size=120%>\uC0DD\uC874\uC758\uC9C0</size></color>\uC774\uBA70
+          \uBC14\uB2E5\uC774 \uB418\uBA74 \uC804\uD22C\uC5D0 <size=120%>\uD328\uBC30</size>\uD569\uB2C8\uB2E4.
+          \" | Image = \"Tutorial/HpBar\");\nTutorial(Title = \"\uC804\uD22C \uC124\uBA85
+          - <size=60%>\uD654\uBA74</size>\" | Info = \"\uC544\uB798\uC758 \uBC14\uB294
+          <color=#ff0000><size=120%>\uC800\uD56D\uB825</size></color>\uC73C\uB85C
+          <u>\uACF5\uACA9\uD558\uAE30 \uC704\uD574 \uD544\uC694</u>\uD569\uB2C8\uB2E4.\"
+          | Image = \"Tutorial/MpBar\");\nTutorial(Title = \"\uC804\uD22C \uC124\uBA85
+          - <size=60%>\uD654\uBA74</size>\" | Info = \"\uCD5C\uC0C1\uB2E8 \uD770\uC0C9\uC758
+          \uBC14\uB294 <color=#ff0000><size=120%>\uC801\uC758 \uCCB4\uB825</size></color>\uC73C\uB85C
+          \uBC14\uB2E5\uC774 \uB418\uBA74 \uC804\uD22C\uC5D0 <size=120%>\uC2B9\uB9AC</size>\uD569\uB2C8\uB2E4.
+          \" | Image = \"Tutorial/EnemyHpBar\");"
+    - Key: 10004
+      Value:
+        m_Code: 10004
+        m_Info: "Tutorial(Title = \"\uC804\uD22C \uC124\uBA85 - <size=60%>\uB0B4
+          \uCC28\uB840</size>\" | Info = \"\uC801\uC758 \uACF5\uACA9\uC774 \uB05D\uB098\uBA74
+          \uC6B0\uB9AC\uC758 \uD134\uC774 \uCC3E\uC544\uC635\uB2C8\uB2E4. \uC790\uC2E0\uC758
+          \uD134\uC5D0\uB294 3\uAC00\uC9C0 \uC911 \uD55C\uAC00\uC9C0\uB97C \uC120\uD0DD\uD560
+          \uC218 \uC788\uC2B5\uB2C8\uB2E4.\" | Image = \"Tutorial/SelectMenu\");\nTutorial(Title
+          = \"\uC804\uD22C \uC124\uBA85 - <size=60%>\uB0B4 \uCC28\uB840</size>\"
+          | Info = \"\uCCAB\uBC88\uC9F8\uB294 <size=120%><color=#ff0000>\uACF5\uACA9</size></color>\uC73C\uB85C
+          \uC801\uC744 \uACF5\uACA9\uD569\uB2C8\uB2E4.\" | Image = \"Tutorial/AttackMenu\");\nTutorial(Title
+          = \"\uC804\uD22C \uC124\uBA85 - <size=60%>\uB0B4 \uCC28\uB840</size>\"
+          | Info = \"\uACF5\uACA9\uC744 \uC120\uD0DD\uD558\uBA74 \uC2A4\uD0AC \uB9AC\uC2A4\uD2B8\uAC00
+          \uB098\uC624\uBA70 \uC624\uB978\uCABD \uD0A4{\uAE30\uBCF8\uD0A4: D}\uB97C
+          \uB20C\uB7EC \uCC28\uB840\uB97C \uB118\uAE38 \uC218 \uC788\uC2B5\uB2C8\uB2E4.{\uC800\uD56D\uB825\uC744
+          10\uD68C\uBCF5\uD569\uB2C8\uB2E4.}\" | Image = \"Tutorial/SkillInfoMenu\");\nTutorial(Title
+          = \"\uC804\uD22C \uC124\uBA85 - <size=60%>\uB0B4 \uCC28\uB840</size>\"
+          | Info = \"\uC2A4\uD0AC\uC758 \uC815\uD655\uD55C \uB0B4\uC6A9\uC740 \uBA54\uC778\uD654\uBA74\uC5D0\uC11C
+          \uC2A4\uD0AC\uCC3D\uC5D0\uC11C \uC790\uC138\uD788 \uBCFC \uC218 \uC788\uC2B5\uB2C8\uB2E4.\"
+          | Image = \"Tutorial/SkillMenu\");\nTutorial(Title = \"\uC804\uD22C \uC124\uBA85
+          - <size=60%>\uB0B4 \uCC28\uB840</size>\" | Info = \"\uB450\uBC88\uC9F8\uB85C
+          <size=120%><color=#ff0000>\uC544\uC774\uD15C</size></color>\uC73C\uB85C
+          \uC544\uC774\uD15C\uC744 \uD558\uB098 \uC0AC\uC6A9\uD560 \uC218 \uC788\uC2B5\uB2C8\uB2E4.\"
+          | Image = \"Tutorial/ItemListMenu\");\nTutorial(Title = \"\uC804\uD22C
+          \uC124\uBA85 - <size=60%>\uB0B4 \uCC28\uB840</size>\" | Info = \"\uC138\uBC88\uC9F8\uB85C
+          <size=120%><color=#ff0000>\uBC29\uC5B4</size></color>\uB85C \uC55E\uC73C\uB85C
+          2\uD134\uAC04 30%\uC758 \uB370\uBBF8\uC9C0\uB9CC \uBC1B\uC2B5\uB2C8\uB2E4.\"
+          | Image = \"Tutorial/DefenseMenu\");"
+    - Key: 10005
+      Value:
+        m_Code: 10005
+        m_Info: "Tutorial(Title = \"\uC804\uD22C \uC124\uBA85 - <size=60%>\uB3C4\uBC1C</size>\"
+          | Info = \"<size=120%><color=#ff0000>\uB3C4\uBC1C</size></color>\uC740
+          \uC801\uC758 \uC2E0\uACBD\uC744 \uB044\uB294 \uC2A4\uD0AC\uB85C \uC2A4\uD0AC
+          \uC0AC\uC6A9 \uC2DC \uC801\uC774 \uAC00\uD558\uB294 \uC804\uCCB4 \uB370\uBBF8\uC9C0
+          \uC911 \uC77C\uC815 \uBE44\uC911\uB9CC\uD07C \uB300\uC2E0 \uB9DE\uC73C\uBA70
+          \uC774 \uC218\uCE58\uB294 \uC544\uC774\uCF58\uC5D0 \uCEE4\uC11C\uB97C \uC62C\uB824
+          \uD655\uC778\uD560 \uC218 \uC788\uC2B5\uB2C8\uB2E4.\" | Image = \"EffectImage/Attract\");\nTutorial(Title
+          = \"\uC804\uD22C \uC124\uBA85 - <size=60%>\uB3C4\uBC1C</size>\" | Info
+          = \"\uB3C4\uBC1C \uD6A8\uACFC\uB97C \uC5EC\uB7EC\uBA85\uC774 \uBC1C\uB3D9
+          \uC911\uC77C \uB54C \uADF8 \uC911 \uBE44\uC911\uC774 \uAC00\uC7A5 \uB192\uC740
+          \uD6A8\uACFC\uB9CC \uC801\uC6A9\uB429\uB2C8\uB2E4.\" | Image = \"EffectImage/Attract\");"
+    - Key: 10006
+      Value:
+        m_Code: 10006
+        m_Info: "Tutorial(Title = \"\uC804\uD22C \uC124\uBA85 - <size=60%>\uBC29\uC5B4</size>\"
+          | Info = \"<size=120%><color=#ff0000>\uBC29\uC5B4</size></color>\uB294
+          \uC801\uC758 \uACF5\uACA9\uC744 \uB9C9\uC544\uC8FC\uB294 \uC720\uC6A9\uD55C
+          \uB3C4\uAD6C\uC785\uB2C8\uB2E4.\" | Image = \"EffectImage/Shield\");\nTutorial(Title
+          = \"\uC804\uD22C \uC124\uBA85 - <size=60%>\uBC29\uC5B4</size>\" | Info
+          = \"\uBC29\uD328\uC5D0\uB294 <u>\uD30C\uAD34\uD615</u>\uACFC <u>\uC9C0\uC18D\uD615</u>\uC73C\uB85C
+          \uB098\uB258\uBA70 \uD30C\uAD34\uD615\uC740 \uC77C\uC815 \uB370\uBBF8\uC9C0
+          \uB9CC\uD07C \uB300\uC2E0 \uBC29\uD328\uAC00 \uB9C9\uC544\uC8FC\uB294 \uD615\uD0DC\uC774\uBA70,
+          \uC9C0\uC18D\uD615\uC740 \uC77C\uC815\uC2DC\uAC04 \uB3D9\uC548 \uB370\uBBF8\uC9C0\uC758
+          \uC77C\uBD80\uB97C \uAC10\uC18C\uC2DC\uD0B5\uB2C8\uB2E4.\" | Image = \"EffectImage/Shield\");\nTutorial(Title
+          = \"\uC804\uD22C \uC124\uBA85 - <size=60%>\uBC29\uC5B4</size>\" | Info
+          = \"\uB610\uD55C \uBC18\uC0AC\uD615 \uBC29\uD328 \uB610\uD55C \uC874\uC7AC\uD558\uBA70
+          \uC801\uC758 \uACF5\uACA9\uC744 \uD295\uACA8\uB0B4\uC5B4 \uC801\uC5D0\uAC8C
+          \uC785\uD799\uB2C8\uB2E4.\" | Image = \"EffectImage/AbsoluteShield\");\nTutorial(Title
+          = \"\uC804\uD22C \uC124\uBA85 - <size=60%>\uBC29\uC5B4</size>\" | Info
+          = \"\uB9C8\uC9C0\uB9C9\uC73C\uB85C \uBC29\uD328\uB294 \uC911\uCCA9\uB418\uC9C0
+          \uC54A\uC2B5\uB2C8\uB2E4.{\uC774\uC804\uC5D0 \uBC29\uD328\uAC00 \uC788\uC5C8\uC744
+          \uB54C \uC0C8\uB85C\uC6B4 \uBC29\uD328\uB97C \uC801\uC6A9\uC2DC\uD0A4\uBA74
+          \uC774\uC804\uC758 \uBC29\uD328\uB294 \uC5C6\uC5B4\uC9D1\uB2C8\uB2E4.}\"
+          | Image = \"EffectImage/AbsoluteShield\");"
+    - Key: 10007
+      Value:
+        m_Code: 10007
+        m_Info: "Tutorial(Title = \"\uC804\uD22C \uC124\uBA85 - <size=80%>\uACF5\uACA9\uB825
+          \uC0C1\uC2B9</size>\"| Info = \"<size=120%><color=#ff0000>\uACF5\uACA9\uB825
+          \uC0C1\uC2B9 \uD6A8\uACFC</color></size>\uB294 \uC77C\uC815 \uC2DC\uAC04\uB3D9\uC548
+          \uC785\uD788\uB294 \uB370\uBBF8\uC9C0\uB97C \uC62C\uB824\uC90D\uB2C8\uB2E4.\"
+          | Image =\"EffectImage/AttackUp\"); "

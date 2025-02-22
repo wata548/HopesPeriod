@@ -73,16 +73,17 @@ public class TutorialWindow : MonoBehaviour {
             nextButtonText.text = "다음으로";
         
         title.text = info.Title;
+        string contextInfo = info.Info.Replace('{', '(').Replace('}', ')');
         if (string.IsNullOrEmpty(info.Image)) {
             
-            context.text = info.Info;
+            context.text = contextInfo;
             imageTypeContext.text = "";
             imageInfo.color= new(0,0,0,0);
         }
         else {
 
             context.text = "";
-            imageTypeContext.text = info.Info;
+            imageTypeContext.text = contextInfo;
             imageInfo.color = Color.white;
             imageInfo.sprite = Resources.Load<Sprite>(info.Image);
         }

@@ -164,6 +164,7 @@ public static class ScriptCodeInterpreter {
 
         Match match = Regex.Match(input, keywordPattern);
 
+        Debug.Log(match.Groups[0].Value);
         Debug.Log($"{match.Groups[1].Value} + Char({match.Groups[0].Value.Length})");
         keyword = Enum.Parse<ScriptCodeKeyword>(match.Groups[1].Value);
         List<(Parameter, object)> result = new();
