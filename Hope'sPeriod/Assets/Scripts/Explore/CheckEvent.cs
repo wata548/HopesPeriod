@@ -78,16 +78,19 @@ public static class CheckEvent {
     
     public static void AutoEvent(Vector2Int pos) {
         if (mapInfo.AutoInfo(mapCode, pos, out var info)) {
-        
-            var codeType = info.Code.ToCodeType();
-            switch (codeType) {
-                case CodeType.Script:
-                    ScriptShower.Instance.StartScript(info.Code);
-                    break;
-                case CodeType.Tutorial:
-                    ScriptShower.Instance.ShowTutorial(info.Code);
-                    break;
-            }
+            StartEvent(info.Code);
+        }
+    }
+
+    public static void StartEvent(int code) {
+        var codeType = code.ToCodeType();
+        switch (codeType) {
+            case CodeType.Script:
+                ScriptShower.Instance.StartScript(code);
+                break;
+            case CodeType.Tutorial:
+                ScriptShower.Instance.ShowTutorial(code);
+                break;
         }
     }
 
@@ -109,7 +112,7 @@ public static class CheckEvent {
                 GetItemWindow.Instance.TurnOn(item);
             }
             else if (mapInfo.PassiveInfo(mapCode, pos, out var info)) {
-                Debug.Log($"?");
+                StartEvent(info.Code);
             }
         }
     }

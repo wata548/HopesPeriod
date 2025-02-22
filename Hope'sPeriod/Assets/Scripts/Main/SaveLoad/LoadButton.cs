@@ -22,6 +22,9 @@ public class LoadButton: InteractButton {
         
         text = GetComponentInChildren<TMP_Text>();
         if (Index == 0) {
+            if(text is not null)
+                text.text = "처음부터";
+
             On = true;
             return;
         }

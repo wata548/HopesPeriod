@@ -49,6 +49,9 @@ public class MapEventInfo : ScriptableObject {
                           ?.RoomInfo[code]
                           ?.PassiveEventList(pos, out resultCode, out var resultPos) 
                       ?? throw new Exception("check about code");
+
+        if (result)
+            AlreadyFindEventInfo.FindEvent(code, resultPos);
         
         return result;
     }
@@ -60,6 +63,9 @@ public class MapEventInfo : ScriptableObject {
                           ?.AutoEventList(pos, out resultCode, out var resultPos) 
                       ?? throw new Exception("check about code");
             
+        if(result)
+            AlreadyFindEventInfo.FindEvent(code, resultPos);
+        
         return result;
     }
 
@@ -71,11 +77,8 @@ public class MapEventInfo : ScriptableObject {
                           ?.Item(pos, out item, out var itemPos) 
                       ?? throw new Exception("check about code");
 
-        if (result) {
-            
+        if (result)
             AlreadyFindEventInfo.FindItem(code, itemPos);
-            
-        }
         
         return result;
     }

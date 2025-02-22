@@ -25,7 +25,7 @@ public class ShowEffectInfo: MonoBehaviour {
     
     public void SetData(Vector2 pos, string info) {
 
-        pos -= new Vector2(960, 540);
+        pos -= new Vector2(Screen.width, Screen.height) * 0.5f;
         
         text.text = info;
         rect.localPosition = pos;

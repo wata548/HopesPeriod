@@ -1,26 +1,26 @@
 {
-  "PlayTime": 48.7724724,
+  "PlayTime": 29.4777737,
   "SaveCharacterInfo": [
     {
       "Exist": true,
       "Dead": false,
       "Name": "Heail",
       "Skill": [
-        9102,
         9101,
+        9102,
         0,
         0
       ],
       "HaveSkill": [
-        9102,
         9101,
+        9102,
         0,
         0
       ],
       "MaximumHp": 100.0,
       "CurrentHp": 100.0,
       "MaximumMp": 130.0,
-      "CurrentMp": 130.0
+      "CurrentMp": 105.0
     },
     {
       "Exist": false,
@@ -68,19 +68,14 @@
   "SaveItem": [
     {
       "Code": 2002,
-      "Amount": 0
+      "Amount": 1
     }
   ],
-  "SaveUseItem": [
-    {
-      "Code": 2002,
-      "Count": 1
-    }
-  ],
+  "SaveUseItem": [],
   "SavePos": {
     "Code": 8404,
-    "X": -4.12929,
-    "Y": -0.0455763265,
+    "X": -1.87500834,
+    "Y": 0.27724123,
     "Chapter": 1
   },
   "SaveMonster": [],
@@ -97,7 +92,8 @@
     20002,
     6000,
     20003,
-    10002
+    10002,
+    6100
   ],
   "SaveTutorial": [
     10001,
