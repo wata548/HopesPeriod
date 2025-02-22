@@ -31,6 +31,7 @@ public class UseButtonManager: InteractButtonManager {
         Code = 0;
         SetEmpty();
         keyBoardControlable = false;
+        
         cursor.SetIndex(0);
         Interactable = true;
     }
@@ -59,7 +60,7 @@ public class UseButtonManager: InteractButtonManager {
                 button.gameObject.SetActive(true);
             }
 
-            Parse(buttons[0]).Text.color = Disactive;
+            Parse(buttons[0]).Text.color = Active;
         }
     }
 
@@ -84,10 +85,15 @@ public class UseButtonManager: InteractButtonManager {
                 
                 Parse(buttons[0]).Text.color = Disusable;
                 itemListManager.ItemListRefresh(true);
-            } 
-                
-            else 
-                Parse(buttons[0]).Text.color = Disactive;
+            }
+
+            else {
+                if(Selecting == 0)
+                    Parse(buttons[0]).Text.color = Active;
+                else 
+                    Parse(buttons[0]).Text.color = Disactive;
+                    
+            }
         }
     }
     

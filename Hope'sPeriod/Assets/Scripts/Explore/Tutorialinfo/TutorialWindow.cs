@@ -46,6 +46,9 @@ public class TutorialWindow : MonoBehaviour {
     }
 
     public void PriviousPage() {
+        if (currentPage <= 1)
+            return;
+        
         currentPage--;
         SetTutorial(tutorialData[currentPage - 1]);
     }
@@ -93,5 +96,15 @@ public class TutorialWindow : MonoBehaviour {
 
     private void Awake() {
         Instance = this;
+    }
+
+    private void Update() {
+        if (!On)
+            return;
+
+        if (InputManager.Instance.ClickAndHold(KeyTypes.Select)) 
+            NextPage();
+        else if (InputManager.Instance.ClickAndHold(KeyTypes.Cancel))
+            PriviousPage();
     }
 }

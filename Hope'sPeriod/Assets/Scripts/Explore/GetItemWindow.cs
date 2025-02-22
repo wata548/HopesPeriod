@@ -23,7 +23,7 @@ public class GetItemWindow: MonoBehaviour {
     private const float AppearTime = 0.55f;
     private const float MoveTime = 0.6f;
 
-    public bool Off() => !on;
+    public bool On => on;
     
     public void TurnOff() {
         on = false;

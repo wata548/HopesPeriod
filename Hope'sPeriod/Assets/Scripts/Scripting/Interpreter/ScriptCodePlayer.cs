@@ -259,7 +259,7 @@ public class ScriptCodePlayer: MonoBehaviour {
             count = 1;
             
         GetItemWindow.Instance.TurnOn(new GetItemInfo(command.Code, count));
-        StartCoroutine(Wait.WaitAndDo(GetItemWindow.Instance.Off, () => command.EndProcess()));
+        StartCoroutine(Wait.WaitAndDo(() => GetItemWindow.Instance.On, () => command.EndProcess()));
     }
 
     private void SetChapterScript(SetChapterScriptCommand command) {

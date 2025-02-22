@@ -13,6 +13,9 @@ public class SettingCategoryButton: InteractButtonUI {
 
     public override void Click() {
 
+        if (!Manager.Interactable)
+            return;
+        
         Parse(Manager).Click(Index);
     }
 

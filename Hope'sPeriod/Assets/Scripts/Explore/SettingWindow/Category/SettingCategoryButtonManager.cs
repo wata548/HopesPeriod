@@ -8,15 +8,11 @@ public class SettingCategoryButtonManager: InteractButtonManager {
     [SerializeField] private InventoryWindow inventory;
     [SerializeField] private CharacterSelectButtonManager skillCharacterShower;
     [SerializeField] private SkillSelectButtonManager skillListShower; 
-    [SerializeField] private LoadButtonOnPlayManager save; 
-    public override void SelectIn(InteractButton target) {
-        throw new System.NotImplementedException();
-    }
+    [SerializeField] private LoadButtonOnPlayManager save;
+    [SerializeField] private TutorialButtonManager tutorial;
+    public override void SelectIn(InteractButton target) { }
+    public override void SelectOut(InteractButton target) { }
 
-    public override void SelectOut(InteractButton target) {
-        throw new System.NotImplementedException();
-    }
-    
     private void TurnOnInventory() {
         TurnOff();
         inventory.TurnOn();
@@ -38,6 +34,7 @@ public class SettingCategoryButtonManager: InteractButtonManager {
     private void TurnOnManual() {
                
         TurnOff();
+        tutorial.TurnOn();
     }
     private void QuitGame() {
         ScenceControler.Load("Title");
@@ -48,6 +45,7 @@ public class SettingCategoryButtonManager: InteractButtonManager {
         skillCharacterShower.TurnOff();
         skillListShower.TurnOff();
         save.TurnOff();
+        tutorial.TurnOff();
     }
 
     public void Click(int index = 0) {

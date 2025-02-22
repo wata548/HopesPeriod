@@ -44,12 +44,21 @@ public class DefaultScriptShower: MonoBehaviour {
         if (!start)
             return;
         
+        //Keyboard control
+        bool otherWindow = GetItemWindow.Instance.On || TutorialWindow.Instance.On;
+        if (!otherWindow && InputManager.Instance.ClickAndHold(KeyTypes.Select)) {
+        
+            Next();
+        }
+        
+        //show Animation
         updateCount++;
         if (updateCount % 2 == 0) {
             updateCount = 0;
             context.EffectProcedure();
         }
 
+        //auto skip
         if (showAll && Time.time - time >= AutoSkipSecond) {
             showAll = false;
             start = false;

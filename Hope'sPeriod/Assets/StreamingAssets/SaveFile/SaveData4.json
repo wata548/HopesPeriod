@@ -101,5 +101,6 @@
   "SaveMonster": [],
   "SaveFindEvent": [],
   "SaveEvent": [],
-  "SaveFindItem": []
+  "SaveFindItem": [],
+  "SaveTutorial": []
 }

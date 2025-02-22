@@ -1,4 +1,5 @@
 using System;
+using UnityEditor.SceneTemplate;
 using UnityEngine;
 
 public class InventoryTargetButtonManager: InteractButtonManager {
@@ -42,14 +43,21 @@ public class InventoryTargetButtonManager: InteractButtonManager {
             return;
 
         if (InputManager.Instance.ClickAndHold(KeyTypes.Left)) {
-            
+            var temp = Selecting;
             PriviousButton();
-            SelectIn(buttons[Selecting]);
+            if (buttons[Selecting].gameObject.gameObject.activeSelf)
+                SelectIn(buttons[Selecting]);
+            else
+                Selecting = temp;
         }
 
         if (InputManager.Instance.ClickAndHold(KeyTypes.Right)) {
+            var temp = Selecting;
             NextButton();
-            SelectIn(buttons[Selecting]);
+            if (buttons[Selecting].gameObject.gameObject.activeSelf)
+                SelectIn(buttons[Selecting]);
+            else
+                Selecting = temp;
         }
 
         if (InputManager.Instance.ClickAndHold(KeyTypes.Cancel))

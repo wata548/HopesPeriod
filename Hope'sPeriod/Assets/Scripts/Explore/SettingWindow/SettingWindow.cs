@@ -9,12 +9,14 @@ public class SettingWindow: MonoBehaviour {
     [SerializeField] private SettingCategoryButtonManager window;
     private bool on = false;
     private static bool interactable = true;
-    
+
     public static void SetInteractable(bool value) => interactable = value;
     
     private void TurnOn() {
+        
         TilePlayerPhysics.SetMovable(false);
         settingWindow.SetActive(true);
+        window.SetInteractable(true);
         window.Click();
     }
 
@@ -23,6 +25,8 @@ public class SettingWindow: MonoBehaviour {
         EverytimeEvent.StartEvent();
         if(ScriptShower.Instance.EventCode == 0)
             TilePlayerPhysics.SetMovable(true);
+        
+        window.SetInteractable(false);
         settingWindow.SetActive(false);
     }
 

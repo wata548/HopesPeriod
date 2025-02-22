@@ -37,7 +37,7 @@ public class ScriptShower: MonoBehaviour {
         Show(table.DataTable[eventCode][index++]);
     }
     
-    public void Show(ScriptDBData data) {
+    private void Show(ScriptDBData data) {
 
         if(!end)
             return;
@@ -128,6 +128,8 @@ public class ScriptShower: MonoBehaviour {
         if (eventCode == 0)
             return;
 
+        
+        
         SetTable();    
 
         //check: is showing script start 

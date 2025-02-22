@@ -17,6 +17,7 @@ public class SaveFormat {
     public SaveFindItem[] SaveFindItem;
     public SaveUseItem[] SaveUseItem;
     public List<int> SaveEvent;
+    public List<int> SaveTutorial;
 }
 
 public class SaveItem {
@@ -50,8 +51,8 @@ public class SavePos {
     public float X { get; private set; }
     [JsonProperty]
     public float Y { get; private set; }
-   [JsonProperty] 
-   public int Chapter { get; private set; }
+    [JsonProperty] 
+    public int Chapter { get; private set; }
 
     public SavePos() {}
     public SavePos(int code, Vector2 pos, int chapter) {
@@ -178,6 +179,7 @@ public class SaveData {
         Inventory.Load(data.SaveItem,data.SaveUseItem);
         AlreadyFindEventInfo.Load(data.SaveFindItem, data.SaveFindEvent, data.SaveEvent);
         MonsterInfo.Load(data.SaveMonster);
+        TutorialInfo.Load(data.SaveTutorial);
     }
     
     public static void Save(int saveSlot, EachCharacterInfo[] playerInfos, int chapter, int mapCode, Vector2 pos) {
@@ -192,6 +194,7 @@ public class SaveData {
         SerializeFindEvent(json);
         SerializeFindItem(json);
         SerializeEvent(json);
+        SerializeTutorial(json);
         File.WriteAllText(Application.streamingAssetsPath + $@"/SaveFile/SaveData{saveSlot}.json", json.ToString(Formatting.Indented));
     }
 
@@ -253,5 +256,10 @@ public class SaveData {
             .Select(factor => new SaveUseItem(factor.Key, factor.Value));
         var parse = JArray.Parse(JsonConvert.SerializeObject(fixInfos, Formatting.Indented));
         json.Add(nameof(SaveUseItem), parse);
+    }
+    private static void SerializeTutorial(JObject json) {
+        var fixInfos = TutorialInfo.Save();
+        var parse = JArray.Parse(JsonConvert.SerializeObject(fixInfos, Formatting.Indented));
+        json.Add("SaveTutorial", parse);
     }
 }
