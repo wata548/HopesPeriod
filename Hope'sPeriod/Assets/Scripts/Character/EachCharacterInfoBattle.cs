@@ -57,7 +57,7 @@ public class EachCharacterInfoBattle : MonoBehaviour {
         foreach (var effect in Effects) {
             if (showEffect.Count >= index)
                 Generate(index);
-            showEffect[index++].Set(Attract);
+            showEffect[index++].Set(effect);
         }
 
         for (int i = index; i < showEffect.Count; i++) {

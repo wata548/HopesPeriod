@@ -50,10 +50,10 @@ public class ShowEffect: MonoBehaviour {
         imageName += target.Type.ToString();
     
         image.sprite = Resources.Load<Sprite>(imageName);
-        Duration();
+        Duration(true);
     }
 
-    private void Duration() {
+    private void Duration(bool isEffect = false) {
         duration.text = ((int)effect.Duration).ToString();
     }
     

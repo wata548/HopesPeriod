@@ -54,7 +54,6 @@ public class ShieldInfo: IEffect {
         Type = type;
         
         Duration = power;
-        if (Type == DefenceType.Time) Duration++;
         
         Reflect = reflect;
     }

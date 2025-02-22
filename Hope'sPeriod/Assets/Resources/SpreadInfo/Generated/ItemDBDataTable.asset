@@ -183,7 +183,7 @@ MonoBehaviour:
         m_DEFType: 2
         m_DEFReflect: 1
         m_ATR: 1
-        m_ATRCon: 1
+        m_ATRCon: 2
         m_Effect: 0
         m_EffectPower: 0
         m_EffectCon: 0

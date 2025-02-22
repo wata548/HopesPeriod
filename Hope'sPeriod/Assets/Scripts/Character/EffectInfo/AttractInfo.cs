@@ -13,7 +13,7 @@ public class AttractInfo: IEffect {
     public AttractInfo(float power, int duraction = 1) {
 
         Power = power;
-        Duration = duraction + 1;
+        Duration = duraction;
     }
 
     public void TurnUpdate() {
