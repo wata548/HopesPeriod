@@ -98,9 +98,6 @@ public class GameFSM: MonoBehaviour {
 
     private void PlayerTurnStartSetting() {
         if (!playerTurnStart) {
-            foreach (var character in CharactersInfoBattle.Instance.CharacterInfos) {
-                character.SetEffectImage();
-            }
             
             playerTurnStart = true;
             PlayerTurnState = PlayerTurnState.SelectBehavior;
@@ -108,6 +105,11 @@ public class GameFSM: MonoBehaviour {
             Player.Instance.Object.transform.DOLocalMove(selectPlayerPos, 0.5f);
             MapSizeManager.Instance.Move(selectMapPos);
             MapSizeManager.Instance.Resize(selectMapScale);
+            
+            CharactersInfoBattle.Instance.TurnUpdate();
+            foreach (var character in CharactersInfoBattle.Instance.CharacterInfos) {
+                character.SetEffectImage();
+            }
                             
             Player.Instance.Movement
                 .SetApply<CompoInput>(Direction.None);
@@ -237,7 +239,5 @@ public class GameFSM: MonoBehaviour {
         
         ItemListButtonManager.Instance.TurnOff();
         SkillButtonManager.Instance.TurnOff();
-        CharactersInfoBattle.Instance.TurnUpdate();
-         
     }
 }

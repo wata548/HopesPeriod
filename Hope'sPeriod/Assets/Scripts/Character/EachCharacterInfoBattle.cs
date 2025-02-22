@@ -44,18 +44,18 @@ public class EachCharacterInfoBattle : MonoBehaviour {
         int index = 0;
         if (Shield.Type != DefenceType.None) {
             
-            if (showEffect.Count >= index)
+            if (showEffect.Count <= index)
                 Generate(index);
             showEffect[index++].Set(Shield);
         }
         if (Attract.Duration > 0) {
-            if (showEffect.Count >= index)
+            if (showEffect.Count <= index)
                 Generate(index);
             showEffect[index++].Set(Attract);
         }
 
         foreach (var effect in Effects) {
-            if (showEffect.Count >= index)
+            if (showEffect.Count <= index)
                 Generate(index);
             showEffect[index++].Set(effect);
         }
