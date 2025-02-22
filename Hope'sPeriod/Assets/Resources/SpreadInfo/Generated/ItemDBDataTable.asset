@@ -88,7 +88,7 @@ MonoBehaviour:
         m_HealHP: 0
         m_HealsHP: 20
         m_Revive: 0
-        m_ReviveAll: 0
+        m_ReviveAll: 1
         m_HealMP: 0
         m_HealsMP: 0
         m_DEFPower: 0

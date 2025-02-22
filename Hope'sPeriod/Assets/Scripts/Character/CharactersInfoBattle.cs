@@ -152,7 +152,9 @@ public class CharactersInfoBattle: MonoBehaviour {
             .Where(character => character.Exist)
             .All(character => character.Dead);
         if (gameOver) {
-            StartCoroutine(Wait.WaitAndDo(1, () => SceneManager.LoadScene("GameOver")));
+            
+            Destroy(Monster.Instance.gameObject);
+            StartCoroutine(Wait.WaitAndDo(1, () => ScenceControler.Load("GameOver")));
         }
         return GameOver = gameOver;
     }

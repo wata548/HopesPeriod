@@ -90,7 +90,7 @@ public class GameFSM: MonoBehaviour {
         } 
         else if (!end && State == GameState.Win) {
 
-            ScenceControler.Load("PlayMap");
+            StartCoroutine(Wait.WaitAndDo(1, () => ScenceControler.Load("PlayMap")));
             SkillButtonManager.Instance.TurnOff();
             end = true;
         }

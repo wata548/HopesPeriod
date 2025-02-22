@@ -143,7 +143,10 @@ MonoBehaviour:
           Focus(Target
           = 5002|Power = 0f);
 
-          ClearEffect(Power = 0.3f);'
+          Wait(Power = 0.5f);
+
+          ClearEffect(Power
+          = 0.5f);'
         m_EventTiming: 0
       - m_WindowType: 1
         m_Profile: Sick

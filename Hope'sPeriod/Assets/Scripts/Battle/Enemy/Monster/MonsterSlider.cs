@@ -32,6 +32,8 @@ public class MonsterSlider: Slider {
             CurrentHp = 0;
             Dead = true;
             Debug.Log("win");
+
+            Destroy(Monster.Instance.gameObject);
             GameFSM.Instance.Win();
         }
         else {
