@@ -48,3 +48,11 @@ MonoBehaviour:
           IsEventShowed(Code
           = 20004 | Not = true);'
         m_Target: 6004
+    - Key: 20005
+      Value:
+        m_Code: 20005
+        m_Condition: 'IsEventShowed(Code = 20005 | Not = true);
+
+          IsEventShowed(Code
+          = 6004 | Not = false);'
+        m_Target: 6102

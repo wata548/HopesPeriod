@@ -35,15 +35,15 @@ MonoBehaviour:
                 dataList: []
               moveEventList:
                 dataList:
-                - Key: {x: 4, y: 5}
+                - Key: {x: 4, y: 7}
                   Value:
                     connectMapCode: 8416
                     connectPos: {x: 0, y: 0}
-                - Key: {x: 5, y: 5}
+                - Key: {x: 5, y: 7}
                   Value:
                     connectMapCode: 8416
                     connectPos: {x: 1, y: 0}
-                - Key: {x: 12, y: 5}
+                - Key: {x: 12, y: 7}
                   Value:
                     connectMapCode: 8402
                     connectPos: {x: 0, y: 0}

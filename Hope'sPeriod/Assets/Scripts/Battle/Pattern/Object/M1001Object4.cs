@@ -9,7 +9,7 @@ using Vector3 = UnityEngine.Vector3;
 public class M1001Object4: BaseEnemy {
     public override CompositeGroupBase MoveComposite { get; protected set; } = null;
     public override ContactStrategy ContactStrategy { get; protected set; } = null;
-    public override float Damage { get; protected set; } = 5 * 3;
+    public override float Damage { get; protected set; } = 7;
 
     private const float WidthLength = 8;
     private const float HeightLength = 3;
@@ -30,7 +30,6 @@ public class M1001Object4: BaseEnemy {
         position.x *= -1;
         MoveComposite.GetType<CompoLinear>()
             .SetTarget(position);
-
     }
     
     private void Awake() {

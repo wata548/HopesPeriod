@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.Numerics;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -15,6 +16,7 @@ public class M1001Pattern2: EnemyPatternBase{
     private readonly Vector2 fieldRange = new Vector2(8.5f, 4.5f);
     private readonly Vector2 safeZoneRange = new Vector2(5.5f, 3f);
     private const float startMove = 1.5f;
+    [SerializeField] private List<Sprite> images = new();
     
     IEnumerator WaitAndSpawn(float time, int count) {
 
@@ -31,6 +33,7 @@ public class M1001Pattern2: EnemyPatternBase{
             }
 
             var newObject = Instantiate(prefab);
+            newObject.GetComponent<SpriteRenderer>().sprite = images[Random.Range(0, images.Count)];
             StartCoroutine(Wait.WaitAndDo(startMove, () => newObject.AddComponent<M1001Object2>()));
             newObject.transform.position = pos;
 

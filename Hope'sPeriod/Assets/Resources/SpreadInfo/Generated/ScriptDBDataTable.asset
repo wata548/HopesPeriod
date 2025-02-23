@@ -309,7 +309,7 @@ MonoBehaviour:
           SetBackground(Image = "CP1_BossMob3");
 
           Wait(Power
-          = 1.5f);
+          = 1f);
 
           ClearEffect(Power = 0f);'
         m_EventTiming: 0
@@ -363,8 +363,8 @@ MonoBehaviour:
         m_Script: ......
         m_JustEvent: 0
         m_ClearContext: 0
-        m_Event: 
-        m_EventTiming: 0
+        m_Event: SetBackground(Image ="Black"| FadeTime = 1f);
+        m_EventTiming: 1
       - m_WindowType: 1
         m_Profile: Sick2
         m_Actor: 5002
@@ -374,9 +374,26 @@ MonoBehaviour:
         m_Event: 
         m_EventTiming: 0
       - m_WindowType: 1
-        m_Profile: Default
+        m_Profile: Cavil_Secret
         m_Actor: 5001
         m_Script: "\uC624? \uBB50\uC57C, \uC0AC\uB78C\uC774\uB2E4!"
+        m_JustEvent: 0
+        m_ClearContext: 0
+        m_Event: 
+        m_EventTiming: 0
+      - m_WindowType: 1
+        m_Profile: Cavil_Secret
+        m_Actor: 5001
+        m_Script: "\uC800\uAE30, \uB4E4\uB9AC\uC2ED\uB2C8\uAE4C? \uC608? \uC5B4,
+          \uC5B4\uC5B4\uC5B4. \uC7A0\uC2DC\uB9CC, \uC65C \uC4F0\uB7EC\uC9C0\uC2ED\uB2C8\uAE4C?!"
+        m_JustEvent: 0
+        m_ClearContext: 0
+        m_Event: 
+        m_EventTiming: 0
+      - m_WindowType: 1
+        m_Profile: Cavil_Secret
+        m_Actor: 5001
+        m_Script: "\uC774\uBD10, \uC800\uAE30... \uC544, \uC9C4\uC9DC...!"
         m_JustEvent: 0
         m_ClearContext: 0
         m_Event: 
@@ -408,6 +425,28 @@ MonoBehaviour:
         m_Profile: Default
         m_Actor: 5002
         m_Script: "\uC544\uBB34 \uAC83\uB3C4 \uC5C6\uB294 \uB4EF\uD558\uB2E4."
+        m_JustEvent: 0
+        m_ClearContext: 0
+        m_Event: 
+        m_EventTiming: 0
+    - Key: 6102
+      Value:
+      - m_WindowType: 1
+        m_Profile: Default
+        m_Actor: 5002
+        m_Script: "\uC5EC\uAE30\uAE4C\uC9C0 \uAD6C\uD604\uB418\uC5C8\uC2B5\uB2C8\uB2E4.\\n\uC774
+          \uC55E\uC5D0\uB294 \uC5EC\uB7EC \uB9F5\uB9CC \uB0A8\uC544\uC788\uC2B5\uB2C8\uB2E4."
+        m_JustEvent: 0
+        m_ClearContext: 0
+        m_Event: 
+        m_EventTiming: 0
+    - Key: 6103
+      Value:
+      - m_WindowType: 1
+        m_Profile: Default
+        m_Actor: 5002
+        m_Script: "\uC5EC\uAE30\uAE4C\uC9C0 \uAD6C\uD604\uB418\uC5C8\uC2B5\uB2C8\uB2E4.\\n\uC774
+          \uC55E\uC5D0\uB294 \uC5EC\uB7EC \uB9F5\uB9CC \uB0A8\uC544\uC788\uC2B5\uB2C8\uB2E4."
         m_JustEvent: 0
         m_ClearContext: 0
         m_Event: 

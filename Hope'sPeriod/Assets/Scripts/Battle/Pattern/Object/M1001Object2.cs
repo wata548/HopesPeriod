@@ -5,7 +5,7 @@ using UnityEngine;
 public class M1001Object2: BaseEnemy {
     public override CompositeGroupBase MoveComposite { get; protected set; }
     public override ContactStrategy ContactStrategy { get; protected set; }
-    public override float Damage { get; protected set; } = 10 * 3f;
+    public override float Damage { get; protected set; } = 10;
 
     private void Disactive(GameObject target) {
         if (target.transform.CompareTag("Player")) {
@@ -24,7 +24,9 @@ public class M1001Object2: BaseEnemy {
             .SetPower<CompoLinear>(speed);
 
         rigidbody2D ??= GetComponent<Rigidbody2D>();
-        MoveComposite.GetType<CompoLinear>().SetTarget(Player.transform.position);
+        MoveComposite.GetType<CompoLinear>()
+            .SetTarget(Player.transform.position)
+            .SetView();
     }
 
     private void FixedUpdate() {

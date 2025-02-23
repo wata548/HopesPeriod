@@ -1175,6 +1175,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   patterns:
   - {fileID: 1344570407906380142}
+  - {fileID: 5392367031444609614}
+  - {fileID: 1739103006783414126}
+  - {fileID: 7514801916452867708}
   <IsBoss>k__BackingField: 1
   <MaxHP>k__BackingField: 100
 --- !u!114 &1344570407906380142
@@ -1191,7 +1194,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   prefab: {fileID: 8637454088067648208, guid: 0c4d7a89717316f4898d053cd4a3dae5, type: 3}
   left: {fileID: 5890374470511982525, guid: 3abb0019bc52d72418c84529082cfae7, type: 3}
-  right: {fileID: 5890374470511982525, guid: 3abb0019bc52d72418c84529082cfae7, type: 3}
+  right: {fileID: 5890374470511982525, guid: a33d05a2205de9748b480dd4d6b94e57, type: 3}
 --- !u!114 &5392367031444609614
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1205,6 +1208,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   prefab: {fileID: 939007637741152505, guid: 554ee297a7b10d240b0cddb7c2e60613, type: 3}
+  images:
+  - {fileID: -852495541512626098, guid: 31e745470e03488409e4461d821c9e48, type: 3}
+  - {fileID: -4786490970852089639, guid: 0f4d064a481657b4faf03586b2749e6b, type: 3}
+  - {fileID: 7178029279597677544, guid: 8e131449e5d763e43a8db649681984df, type: 3}
+  - {fileID: 3611328583111057198, guid: 5c25c4bc6f237c34f8dca83e929f80c0, type: 3}
+  - {fileID: -2546608473994464285, guid: d83e72ed1dffe744da8e9092173acf19, type: 3}
 --- !u!114 &1739103006783414126
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1222,6 +1231,12 @@ MonoBehaviour:
   - {fileID: 7426180067499675814}
   - {fileID: 3209295953104211084}
   - {fileID: 7783724880768018129}
+  images:
+  - {fileID: -852495541512626098, guid: 31e745470e03488409e4461d821c9e48, type: 3}
+  - {fileID: -4786490970852089639, guid: 0f4d064a481657b4faf03586b2749e6b, type: 3}
+  - {fileID: 7178029279597677544, guid: 8e131449e5d763e43a8db649681984df, type: 3}
+  - {fileID: 3611328583111057198, guid: 5c25c4bc6f237c34f8dca83e929f80c0, type: 3}
+  - {fileID: -2546608473994464285, guid: d83e72ed1dffe744da8e9092173acf19, type: 3}
 --- !u!114 &7514801916452867708
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1237,6 +1252,9 @@ MonoBehaviour:
   prefab: {fileID: 939007637741152505, guid: fa69df85109555644b98641750081d4f, type: 3}
   leftWarn: {fileID: 6796046698625145734}
   rightWarn: {fileID: 4408627999274616290}
+  images:
+  - {fileID: -115905611593759255, guid: 8d0913554fa68c347b0f04e7a136579d, type: 3}
+  - {fileID: -5373023442346949821, guid: a80004ef58a22894f8dd814cc470371f, type: 3}
 --- !u!1 &9152965101720083495
 GameObject:
   m_ObjectHideFlags: 0

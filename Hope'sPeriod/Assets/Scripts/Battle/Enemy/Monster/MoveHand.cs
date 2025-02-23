@@ -57,8 +57,8 @@ public class MoveHand: MonoBehaviour {
         }
         else {
             var fix = (transform as RectTransform);
-            fix.localPosition = appearPos;
             fix.DOLocalMove(defaultPos, 1.5f)
+                .OnStart(() => fix.localPosition = appearPos)
                 .OnComplete(() => {
                     state = HandState.Default;
                 });

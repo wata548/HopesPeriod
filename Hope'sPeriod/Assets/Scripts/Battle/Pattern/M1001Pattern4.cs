@@ -1,6 +1,8 @@
 using System.Collections;
+using System.Collections.Generic;
 using DG.Tweening;
 using UnityEngine;
+using UnityEngine.UI;
 using Random = UnityEngine.Random;
 using Vector2 = UnityEngine.Vector2;
 using Vector3 = UnityEngine.Vector3;
@@ -13,6 +15,7 @@ public class M1001Pattern4: EnemyPatternBase {
     [SerializeField] private GameObject prefab;
     [SerializeField] private GameObject leftWarn;
     [SerializeField] private GameObject rightWarn;
+    [SerializeField] private List<Sprite> images;
 
     private void StartWarning(bool direction) {
         if (direction) {
@@ -59,6 +62,9 @@ public class M1001Pattern4: EnemyPatternBase {
 
             yield return new WaitForSeconds(time);
             var newObject = Instantiate(prefab);
+            var renderer = newObject.GetComponent<SpriteRenderer>();
+            renderer.sprite = images[Random.Range(0, images.Count)];
+            renderer.flipX = direction;
             newObject.AddComponent<M1001Object4>();
             var a = newObject.GetComponent<M1001Object4>();
             a.SetPos(direction);
@@ -78,6 +84,10 @@ public class M1001Pattern4: EnemyPatternBase {
 
             yield return new WaitForSeconds(time);
             var newObject = Instantiate(prefab);
+            var renderer = newObject.GetComponent<SpriteRenderer>();
+            renderer.sprite = images[Random.Range(0, images.Count)];
+            renderer.flipX = direction;
+            
             newObject.AddComponent<M1001Object4>();
             var a = newObject.GetComponent<M1001Object4>();
             a.SetPos(direction);

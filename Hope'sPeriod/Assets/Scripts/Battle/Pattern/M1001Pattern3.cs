@@ -1,8 +1,11 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.Numerics;
 using DG.Tweening;
+using Unity.Mathematics;
 using UnityEngine;
+using UnityEngine.UI;
 using Random = UnityEngine.Random;
 using Vector2 = UnityEngine.Vector2;
 using Vector3 = UnityEngine.Vector3;
@@ -14,6 +17,7 @@ public class M1001Pattern3: EnemyPatternBase{
     public override bool End { get; protected set; } = false;
     [SerializeField] private GameObject prefab;
     [SerializeField] private SpriteRenderer[] warning = new SpriteRenderer[3];
+    [SerializeField] private List<Sprite> images = new();
     private const float WidthCount = 4;
     private const float HeightCount = 6;
     private readonly Vector3 defaultPosition = new(-2.5f, 3.5f, -1);
@@ -39,6 +43,8 @@ public class M1001Pattern3: EnemyPatternBase{
                 yield return new WaitForSeconds(Density);
                 for (int k = 0; k < WidthCount; k++) {
                     var newObject = Instantiate(prefab);
+                    newObject.transform.rotation = quaternion.Euler(0, 0, Random.Range(-60, 60));
+                    newObject.GetComponent<SpriteRenderer>().sprite = images[Random.Range(0, images.Count)];
                     newObject.AddComponent<M1001Object3>();
 
                     pos.x++;

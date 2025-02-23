@@ -1,11 +1,12 @@
 using System;
 using System.Security.Cryptography;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class M1001Object3: BaseEnemy {
     public override CompositeGroupBase MoveComposite { get; protected set; }
     public override ContactStrategy ContactStrategy { get; protected set; }
-    public override float Damage { get; protected set; } = 10 * 3f;
+    public override float Damage { get; protected set; } = 10;
 
     private void Disactive(GameObject target) {
         if (target.transform.CompareTag("Player")) {
@@ -25,7 +26,8 @@ public class M1001Object3: BaseEnemy {
         rigidbody2D ??= GetComponent<Rigidbody2D>();
         var position = transform.position;
         position.y = -10;
-        MoveComposite.GetType<CompoLinear>().SetTarget(position);
+        MoveComposite.GetType<CompoLinear>().SetTarget(position); 
+        transform.localPosition += new Vector3(Random.Range(-0.1f, 0.1f), Random.Range(-0.1f, 0.1f));
     }
 
     private void FixedUpdate() {

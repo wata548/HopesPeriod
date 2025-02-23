@@ -7,6 +7,7 @@ public class M1001Pattern1: EnemyPatternBase {
     [SerializeField] private GameObject prefab;
     [SerializeField] private GameObject left;
     [SerializeField] private GameObject right;
+    
     private static readonly Vector3 defaultPos = new(5.28f, 2.04f, -1);
     private static float boxSize = 2.5f;
     private static float startMove = 0.5f;
