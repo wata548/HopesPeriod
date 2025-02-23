@@ -1,5 +1,5 @@
 {
-  "PlayTime": 38.1812744,
+  "PlayTime": 118.242287,
   "SaveCharacterInfo": [
     {
       "Exist": true,
@@ -18,9 +18,9 @@
         0
       ],
       "MaximumHp": 100.0,
-      "CurrentHp": 100.0,
+      "CurrentHp": 70.0,
       "MaximumMp": 130.0,
-      "CurrentMp": 130.0
+      "CurrentMp": 70.0
     },
     {
       "Exist": false,
@@ -78,12 +78,17 @@
     }
   ],
   "SavePos": {
-    "Code": 8402,
-    "X": -1.9000001,
-    "Y": 16.13,
+    "Code": 8401,
+    "X": 13.0,
+    "Y": 4.330001,
     "Chapter": 1
   },
-  "SaveMonster": [],
+  "SaveMonster": [
+    {
+      "Code": 1001,
+      "KillCount": 1
+    }
+  ],
   "SaveFindEvent": [
     {
       "Code": 8402,
@@ -106,10 +111,16 @@
     20003,
     10002,
     20001,
-    6002
+    6002,
+    6003
   ],
   "SaveTutorial": [
     10001,
-    10002
+    10002,
+    10003,
+    10004,
+    10005,
+    10006,
+    10007
   ]
 }

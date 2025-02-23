@@ -321,6 +321,66 @@ MonoBehaviour:
         m_ClearContext: 0
         m_Event: MeetMonster(Code = 1001);
         m_EventTiming: 0
+    - Key: 6004
+      Value:
+      - m_WindowType: 1
+        m_Profile: Skeptical2
+        m_Actor: 5002
+        m_Script: "\uD5C8\uC5B5, \uC73C, \uC544..."
+        m_JustEvent: 0
+        m_ClearContext: 0
+        m_Event: 
+        m_EventTiming: 0
+      - m_WindowType: 1
+        m_Profile: Sick
+        m_Actor: 5002
+        m_Script: "\uC800\uAC74, \uC800\uAC74 \uB300\uCCB4 \uBB50\uC57C...?"
+        m_JustEvent: 0
+        m_ClearContext: 0
+        m_Event: 
+        m_EventTiming: 0
+      - m_WindowType: 1
+        m_Profile: Sick
+        m_Actor: 5002
+        m_Script: "\uC778\uAC04\uCC98\uB7FC \uC0DD\uACBC\uB294\uB370, \uC778\uAC04\uC774,
+          \uC544\uB2CC \uAC83\uC774, \uAF2D......"
+        m_JustEvent: 0
+        m_ClearContext: 0
+        m_Event: 
+        m_EventTiming: 0
+      - m_WindowType: 1
+        m_Profile: Skeptical
+        m_Actor: 5002
+        m_Script: "......\uAD34\uBB3C \uAC19\uC544. \uC778\uAC04\uC774 \uBCC0\uD615\uB418\uC5B4
+          \uD0C4\uC0DD\uD55C, \uADF8\uB7F0 \uAD34\uBB3C..."
+        m_JustEvent: 0
+        m_ClearContext: 1
+        m_Event: 
+        m_EventTiming: 0
+      - m_WindowType: 1
+        m_Profile: Sick2
+        m_Actor: 5002
+        m_Script: ......
+        m_JustEvent: 0
+        m_ClearContext: 0
+        m_Event: 
+        m_EventTiming: 0
+      - m_WindowType: 1
+        m_Profile: Sick2
+        m_Actor: 5002
+        m_Script: "\uC5B4\uC9C0\uB7EC\uC6CC..."
+        m_JustEvent: 0
+        m_ClearContext: 0
+        m_Event: 
+        m_EventTiming: 0
+      - m_WindowType: 1
+        m_Profile: Default
+        m_Actor: 5001
+        m_Script: "\uC624? \uBB50\uC57C, \uC0AC\uB78C\uC774\uB2E4!"
+        m_JustEvent: 0
+        m_ClearContext: 0
+        m_Event: 
+        m_EventTiming: 0
     - Key: 6001
       Value:
       - m_WindowType: 1

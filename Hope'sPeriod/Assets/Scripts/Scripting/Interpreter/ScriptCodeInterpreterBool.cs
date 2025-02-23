@@ -71,3 +71,10 @@ sealed public class IsChapterEqualScriptCommand : BooleanCommandBase {
 
     protected override bool SimpleResult() => ChapterInfo.Chapter == Chapter;
 }
+
+sealed public class IsKillMonsterScriptCommand : BooleanCommandBase {
+    public override bool Not { get; protected set; }
+    public int Code { get; protected set; }
+    public int Count { get; protected set; }
+    protected override bool SimpleResult() => (MonsterInfo.IsKill(Code, Count));
+}

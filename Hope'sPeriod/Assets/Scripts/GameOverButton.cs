@@ -21,7 +21,6 @@ public class GameOverButton: MonoBehaviour {
         }
         else {
             SaveData.Load(-1);
-            MonsterInfo.MakeMonster();
             ScenceControler.Load("Battle");
         }
     }

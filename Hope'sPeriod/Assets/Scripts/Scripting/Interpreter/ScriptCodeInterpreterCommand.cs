@@ -250,5 +250,6 @@ public enum ScriptCodeKeyword {
     IsHaveItem,
     IsFindItem,
     IsEventShowed,
-    IsChapterEqual
+    IsChapterEqual,
+    IsKillMonster
 };

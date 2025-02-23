@@ -40,3 +40,11 @@ MonoBehaviour:
 
           IsEventShowed(Code = 20003 | Not = true);'
         m_Target: 10002
+    - Key: 20004
+      Value:
+        m_Code: 20004
+        m_Condition: 'IsKillMonster(Code = 1001 | Count = 1 | Not = false);
+
+          IsEventShowed(Code
+          = 20004 | Not = true);'
+        m_Target: 6004

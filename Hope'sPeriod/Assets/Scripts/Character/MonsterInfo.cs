@@ -46,7 +46,6 @@ public static class MonsterInfo {
             SaveData.Save(-1, playerInfo, ChapterInfo.Chapter, CheckEvent.MapCode, pos);
         }
     
-        MakeMonster();
     }
     public static void Kill() {
         GameObject.Destroy(Monster.Instance.gameObject);

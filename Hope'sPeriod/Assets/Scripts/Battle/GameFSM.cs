@@ -51,6 +51,7 @@ public class GameFSM: MonoBehaviour {
 
     private bool end = false;
     private bool tutorialShowing = false;
+    
     private void Update() {
 
         if (MonsterSlider.Instance.Dead) {
@@ -59,7 +60,7 @@ public class GameFSM: MonoBehaviour {
         }
             
         if (State == GameState.BattleStart) {
-            
+
             //first interface tutorial
             if (!tutorialShowing && MonsterInfo.IsFirstBattle) {
 

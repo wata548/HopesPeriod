@@ -37,7 +37,6 @@ public class MainButton: InteractButtonUI {
 
     public void StartButton() {
         
-        
         SaveData.Load();
 
         Warnnning.Instance

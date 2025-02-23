@@ -7,9 +7,11 @@ using UnityEngine.SceneManagement;
 public static class ScenceControler {
 
     public static string targetScence;
+    
     public static void Load(string name) {
         targetScence = name;
         SceneManager.LoadSceneAsync("Loading");
+
     }
 
     public static IEnumerator LoadScenceAsync(Action<float> showProgress) {

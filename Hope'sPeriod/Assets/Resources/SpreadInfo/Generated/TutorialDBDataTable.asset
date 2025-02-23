@@ -30,15 +30,21 @@ MonoBehaviour:
       Value:
         m_Code: 10003
         m_Info: "Tutorial(Title = \"\uC804\uD22C \uC124\uBA85 - <size=60%>\uD654\uBA74</size>\"
-          | Info = \"\uC704\uC758 \uBC14\uB294 <color=#ff0000><size=105%>\uC0DD\uC874\uC758\uC9C0</size></color>\uC774\uBA70
+          | Info = \"\uC790 \uC804\uD22C\uAC00 \uC2DC\uC791\uB418\uC5C8\uC2B5\uB2C8\uB2E4.\\n\uC804\uD22C\uB294
+          \uC0C1\uB300\uC758 \uACF5\uACA9 \uD6C4 \uC790\uC2E0\uC758 \uD134\uC774
+          \uC624\uACE0, \\n\uC790\uC2E0\uC758 \uD134\uC774 \uB05D\uB098\uBA74 \uC0C1\uB300\uC758
+          \uACF5\uACA9\uC774 \uB2E4\uC2DC\uC624\uB294 \uBC29\uC2DD\uC73C\uB85C \uC9C4\uD589\uB429\uB2C8\uB2E4.\"
+          );\nTutorial(Title = \"\uC804\uD22C \uC124\uBA85 - <size=60%>\uD654\uBA74</size>\"
+          | Info = \"\uADF8\uB7FC \uBA3C\uC800 \uC0C1\uB2E8\uC758 \uB9C9\uB300\uB294
+          <color=#ff0000><size=105%>\uC0DD\uC874\uC758\uC9C0</size></color>\uC774\uBA70
           \uBC14\uB2E5\uC774 \uB418\uBA74 \uC804\uD22C\uC5D0 <size=120%>\uD328\uBC30</size>\uD569\uB2C8\uB2E4.
           \" | Image = \"Tutorial/HpBar\");\nTutorial(Title = \"\uC804\uD22C \uC124\uBA85
-          - <size=60%>\uD654\uBA74</size>\" | Info = \"\uC544\uB798\uC758 \uBC14\uB294
+          - <size=60%>\uD654\uBA74</size>\" | Info = \"\uD558\uB2E8\uC758 \uB9C9\uB300\uB294
           <color=#ff0000><size=105%>\uC800\uD56D\uB825</size></color>\uC73C\uB85C
           <u>\uACF5\uACA9\uD558\uAE30 \uC704\uD574 \uD544\uC694</u>\uD569\uB2C8\uB2E4.\"
           | Image = \"Tutorial/MpBar\");\nTutorial(Title = \"\uC804\uD22C \uC124\uBA85
           - <size=60%>\uD654\uBA74</size>\" | Info = \"\uCD5C\uC0C1\uB2E8 \uD770\uC0C9\uC758
-          \uBC14\uB294 <color=#ff0000><size=105%>\uC801\uC758 \uCCB4\uB825</size></color>\uC73C\uB85C
+          \uB9C9\uB300\uB294 <color=#ff0000><size=105%>\uC801\uC758 \uCCB4\uB825</size></color>\uC73C\uB85C
           \uBC14\uB2E5\uC774 \uB418\uBA74 \uC804\uD22C\uC5D0 <size=120%>\uC2B9\uB9AC</size>\uD569\uB2C8\uB2E4.
           \" | Image = \"Tutorial/EnemyHpBar\");"
     - Key: 10004

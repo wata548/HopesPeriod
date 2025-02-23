@@ -60,6 +60,8 @@ public class MonsterSlider: Slider {
 
     private void Awake() {
 
+        MonsterInfo.MakeMonster();
+        
         base.Awake();
         
         if (Instance == null) Instance = this;
