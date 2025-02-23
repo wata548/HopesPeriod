@@ -22,10 +22,10 @@ MonoBehaviour:
         m_Script: 
         m_JustEvent: 1
         m_ClearContext: 0
-        m_Event: 'StartChangeEffect(Roll = false | Power = 0f);
+        m_Event: 'SetBackground(Image = "Black");
 
           SetBackground(Image
-          = "CP1_Hospital1");'
+          = "CP1_Hospital1"  | Upper = T | FadeTime = 1f);'
         m_EventTiming: 1
       - m_WindowType: 2
         m_Profile: None
@@ -33,7 +33,10 @@ MonoBehaviour:
         m_Script: "\uBBF8\uC548, \uC624\uBE60 \uD55C\uB3D9\uC548 \uBABB \uC62C \uAC70\uC57C."
         m_JustEvent: 0
         m_ClearContext: 0
-        m_Event: ClearEffect(Power = .3f);
+        m_Event: 'SetBackground(Image = "CP1_Hospital1");
+
+          ClearBackground(Upper
+          = T);'
         m_EventTiming: 0
       - m_WindowType: 2
         m_Profile: None
@@ -306,7 +309,7 @@ MonoBehaviour:
           SetBackground(Image = "CP1_BossMob3");
 
           Wait(Power
-          = 1f);
+          = 1.5f);
 
           ClearEffect(Power = 0f);'
         m_EventTiming: 0

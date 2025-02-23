@@ -28,7 +28,7 @@ MonoBehaviour:
                     code: 0
                     condition: 
               monsterList: e9030000e9030000
-              genProbability: 0.3
+              genProbability: 0
               itemList:
                 dataList: []
               passiveEventList:
@@ -37,11 +37,11 @@ MonoBehaviour:
                 dataList:
                 - Key: {x: 4, y: 5}
                   Value:
-                    connectMapCode: 8402
+                    connectMapCode: 8416
                     connectPos: {x: 0, y: 0}
                 - Key: {x: 5, y: 5}
                   Value:
-                    connectMapCode: 8402
+                    connectMapCode: 8416
                     connectPos: {x: 1, y: 0}
                 - Key: {x: 12, y: 5}
                   Value:
@@ -61,40 +61,40 @@ MonoBehaviour:
                     connectPos: {x: 0, y: 0}
                 - Key: {x: 31, y: 5}
                   Value:
-                    connectMapCode: 8402
+                    connectMapCode: 8417
                     connectPos: {x: 0, y: 0}
                 - Key: {x: 32, y: 5}
                   Value:
-                    connectMapCode: 8402
-                    connectPos: {x: 0, y: 0}
+                    connectMapCode: 8417
+                    connectPos: {x: 1, y: 0}
                 - Key: {x: 33, y: 5}
                   Value:
-                    connectMapCode: 8402
-                    connectPos: {x: 0, y: 0}
+                    connectMapCode: 8417
+                    connectPos: {x: 2, y: 0}
                 - Key: {x: 5, y: -5}
                   Value:
-                    connectMapCode: 8402
+                    connectMapCode: 8418
                     connectPos: {x: 0, y: 0}
                 - Key: {x: 6, y: -5}
                   Value:
-                    connectMapCode: 8402
-                    connectPos: {x: 0, y: 0}
+                    connectMapCode: 8418
+                    connectPos: {x: 1, y: 0}
                 - Key: {x: 7, y: -5}
                   Value:
-                    connectMapCode: 8402
-                    connectPos: {x: 0, y: 0}
+                    connectMapCode: 8418
+                    connectPos: {x: 2, y: 0}
                 - Key: {x: 28, y: -5}
                   Value:
-                    connectMapCode: 8402
+                    connectMapCode: 8419
                     connectPos: {x: 0, y: 0}
                 - Key: {x: 29, y: -5}
                   Value:
-                    connectMapCode: 8402
-                    connectPos: {x: 0, y: 0}
+                    connectMapCode: 8419
+                    connectPos: {x: 1, y: 0}
                 - Key: {x: 30, y: -5}
                   Value:
-                    connectMapCode: 8402
-                    connectPos: {x: 0, y: 0}
+                    connectMapCode: 8419
+                    connectPos: {x: 2, y: 0}
               mapPrefab: {fileID: 1961659621655338074, guid: 464ce0f2dc39216409d390b88530fafc, type: 3}
           - Key: 8402
             Value:
@@ -574,3 +574,103 @@ MonoBehaviour:
                     connectMapCode: 8409
                     connectPos: {x: 3, y: 8}
               mapPrefab: {fileID: 610627443237383314, guid: 9d9e7c83756e7cb4c882bcd66274efda, type: 3}
+          - Key: 8416
+            Value:
+              roomName: "3\uCE35 \uBCF5\uB3C4"
+              autoEventList:
+                dataList: []
+              monsterList: 
+              genProbability: 0
+              itemList:
+                dataList: []
+              passiveEventList:
+                dataList: []
+              moveEventList:
+                dataList:
+                - Key: {x: 0, y: 0}
+                  Value:
+                    connectMapCode: 8409
+                    connectPos: {x: 3, y: 7}
+                - Key: {x: 0, y: 1}
+                  Value:
+                    connectMapCode: 8409
+                    connectPos: {x: 3, y: 8}
+              mapPrefab: {fileID: 610627443237383314, guid: 9d9e7c83756e7cb4c882bcd66274efda, type: 3}
+          - Key: 8417
+            Value:
+              roomName: "\uAD00\uB9AC\uC2E4"
+              autoEventList:
+                dataList: []
+              monsterList: 
+              genProbability: 0
+              itemList:
+                dataList: []
+              passiveEventList:
+                dataList: []
+              moveEventList:
+                dataList:
+                - Key: {x: 0, y: 0}
+                  Value:
+                    connectMapCode: 8401
+                    connectPos: {x: 31, y: 5}
+                - Key: {x: 1, y: 0}
+                  Value:
+                    connectMapCode: 8401
+                    connectPos: {x: 32, y: 5}
+                - Key: {x: 2, y: 0}
+                  Value:
+                    connectMapCode: 8401
+                    connectPos: {x: 33, y: 5}
+              mapPrefab: {fileID: 610627443237383314, guid: 86198acefb3547542abc679aa5bf1e8a, type: 3}
+          - Key: 8418
+            Value:
+              roomName: "\uC57D\uD488 \uBCF4\uAD00\uC2E4"
+              autoEventList:
+                dataList: []
+              monsterList: 
+              genProbability: 0
+              itemList:
+                dataList: []
+              passiveEventList:
+                dataList: []
+              moveEventList:
+                dataList:
+                - Key: {x: 0, y: 0}
+                  Value:
+                    connectMapCode: 8401
+                    connectPos: {x: 5, y: -5}
+                - Key: {x: 1, y: 0}
+                  Value:
+                    connectMapCode: 8401
+                    connectPos: {x: 6, y: -5}
+                - Key: {x: 2, y: 0}
+                  Value:
+                    connectMapCode: 8401
+                    connectPos: {x: 7, y: -5}
+              mapPrefab: {fileID: 610627443237383314, guid: df8e28be39e704740a52715cc4f326ab, type: 3}
+          - Key: 8419
+            Value:
+              roomName: "\uC758\uBB34\uC2E4"
+              autoEventList:
+                dataList: []
+              monsterList: 
+              genProbability: 0
+              itemList:
+                dataList: []
+              passiveEventList:
+                dataList: []
+              moveEventList:
+                dataList:
+                - Key: {x: 0, y: 0}
+                  Value:
+                    connectMapCode: 8401
+                    connectPos: {x: 28, y: -5}
+                - Key: {x: 1, y: 0}
+                  Value:
+                    connectMapCode: 8401
+                    connectPos: {x: 29, y: -5}
+                - Key: {x: 2, y: 0}
+                  Value:
+                    connectMapCode: 8401
+                    connectPos: {x: 30, y: -5}
+              mapPrefab: {fileID: 610627443237383314, guid: df8e28be39e704740a52715cc4f326ab, type: 3}

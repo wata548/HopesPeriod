@@ -1,7 +1,9 @@
 using System;
 using System.IO;
+using DG.Tweening;
 using Newtonsoft.Json;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class LoadButton: InteractButton {
@@ -57,8 +59,20 @@ public class LoadButton: InteractButton {
     public void Load() {
         if (!On)
             return;
-        SaveData.Load(Index);
-        ScenceControler.Load("PlayMap");
+        if (Index != 0) {
+            
+            SaveData.Load(Index);
+            ScenceControler.Load("PlayMap");
+            return;
+        }
+
+        Warnnning.Instance
+            .StartAnimation()
+            .OnComplete(() => {
+                
+                SaveData.Load(Index);
+                ScenceControler.Load("PlayMap");
+            });
     }
     
     public void Save() {

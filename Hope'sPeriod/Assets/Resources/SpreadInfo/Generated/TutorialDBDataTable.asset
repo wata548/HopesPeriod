@@ -18,10 +18,8 @@ MonoBehaviour:
       Value:
         m_Code: 10001
         m_Info: "Tutorial(Title = \"\uAE30\uBCF8 \uC870\uC791\uBC95\" | Info = \"WASD
-          \uD639\uC740 \uBC29\uD5A5\uD0A4\uB97C \uC0AC\uC6A9\uD574 \uC774\uB3D9\uD558\uACE0,
-          E\uB97C \uC0AC\uC6A9\uD574 \uC0C1\uD638\uC791\uC6A9 \uD558\uC790.\");\nTutorial(Title
-          = \"\uAE30\uBCF8 \uC870\uC791\uBC95\" | Info = \"\uBB3C\uC744 \uCC59\uAE30\uC790\"
-          | Image = \"CodeImage/Item/2002\");"
+          \uD639\uC740 \uBC29\uD5A5\uD0A4\uB97C \uC0AC\uC6A9\uD574 \uC774\uB3D9\uD558\uACE0,\\nE\uB97C
+          \uB20C\uB7EC \uC0C1\uD638\uC791\uC6A9 \uD558\uC790.\");"
     - Key: 10002
       Value:
         m_Code: 10002
@@ -32,15 +30,15 @@ MonoBehaviour:
       Value:
         m_Code: 10003
         m_Info: "Tutorial(Title = \"\uC804\uD22C \uC124\uBA85 - <size=60%>\uD654\uBA74</size>\"
-          | Info = \"\uC704\uC758 \uBC14\uB294 <color=#ff0000><size=120%>\uC0DD\uC874\uC758\uC9C0</size></color>\uC774\uBA70
+          | Info = \"\uC704\uC758 \uBC14\uB294 <color=#ff0000><size=105%>\uC0DD\uC874\uC758\uC9C0</size></color>\uC774\uBA70
           \uBC14\uB2E5\uC774 \uB418\uBA74 \uC804\uD22C\uC5D0 <size=120%>\uD328\uBC30</size>\uD569\uB2C8\uB2E4.
           \" | Image = \"Tutorial/HpBar\");\nTutorial(Title = \"\uC804\uD22C \uC124\uBA85
           - <size=60%>\uD654\uBA74</size>\" | Info = \"\uC544\uB798\uC758 \uBC14\uB294
-          <color=#ff0000><size=120%>\uC800\uD56D\uB825</size></color>\uC73C\uB85C
+          <color=#ff0000><size=105%>\uC800\uD56D\uB825</size></color>\uC73C\uB85C
           <u>\uACF5\uACA9\uD558\uAE30 \uC704\uD574 \uD544\uC694</u>\uD569\uB2C8\uB2E4.\"
           | Image = \"Tutorial/MpBar\");\nTutorial(Title = \"\uC804\uD22C \uC124\uBA85
           - <size=60%>\uD654\uBA74</size>\" | Info = \"\uCD5C\uC0C1\uB2E8 \uD770\uC0C9\uC758
-          \uBC14\uB294 <color=#ff0000><size=120%>\uC801\uC758 \uCCB4\uB825</size></color>\uC73C\uB85C
+          \uBC14\uB294 <color=#ff0000><size=105%>\uC801\uC758 \uCCB4\uB825</size></color>\uC73C\uB85C
           \uBC14\uB2E5\uC774 \uB418\uBA74 \uC804\uD22C\uC5D0 <size=120%>\uC2B9\uB9AC</size>\uD569\uB2C8\uB2E4.
           \" | Image = \"Tutorial/EnemyHpBar\");"
     - Key: 10004
@@ -52,7 +50,7 @@ MonoBehaviour:
           \uD134\uC5D0\uB294 3\uAC00\uC9C0 \uC911 \uD55C\uAC00\uC9C0\uB97C \uC120\uD0DD\uD560
           \uC218 \uC788\uC2B5\uB2C8\uB2E4.\" | Image = \"Tutorial/SelectMenu\");\nTutorial(Title
           = \"\uC804\uD22C \uC124\uBA85 - <size=60%>\uB0B4 \uCC28\uB840</size>\"
-          | Info = \"\uCCAB\uBC88\uC9F8\uB294 <size=120%><color=#ff0000>\uACF5\uACA9</size></color>\uC73C\uB85C
+          | Info = \"\uCCAB\uBC88\uC9F8\uB294 <size=105%><color=#ff0000>\uACF5\uACA9</size></color>\uC73C\uB85C
           \uC801\uC744 \uACF5\uACA9\uD569\uB2C8\uB2E4.\" | Image = \"Tutorial/AttackMenu\");\nTutorial(Title
           = \"\uC804\uD22C \uC124\uBA85 - <size=60%>\uB0B4 \uCC28\uB840</size>\"
           | Info = \"\uACF5\uACA9\uC744 \uC120\uD0DD\uD558\uBA74 \uC2A4\uD0AC \uB9AC\uC2A4\uD2B8\uAC00
@@ -64,18 +62,18 @@ MonoBehaviour:
           \uC2A4\uD0AC\uCC3D\uC5D0\uC11C \uC790\uC138\uD788 \uBCFC \uC218 \uC788\uC2B5\uB2C8\uB2E4.\"
           | Image = \"Tutorial/SkillMenu\");\nTutorial(Title = \"\uC804\uD22C \uC124\uBA85
           - <size=60%>\uB0B4 \uCC28\uB840</size>\" | Info = \"\uB450\uBC88\uC9F8\uB85C
-          <size=120%><color=#ff0000>\uC544\uC774\uD15C</size></color>\uC73C\uB85C
+          <size=105%><color=#ff0000>\uC544\uC774\uD15C</size></color>\uC73C\uB85C
           \uC544\uC774\uD15C\uC744 \uD558\uB098 \uC0AC\uC6A9\uD560 \uC218 \uC788\uC2B5\uB2C8\uB2E4.\"
           | Image = \"Tutorial/ItemListMenu\");\nTutorial(Title = \"\uC804\uD22C
           \uC124\uBA85 - <size=60%>\uB0B4 \uCC28\uB840</size>\" | Info = \"\uC138\uBC88\uC9F8\uB85C
-          <size=120%><color=#ff0000>\uBC29\uC5B4</size></color>\uB85C \uC55E\uC73C\uB85C
+          <size=105%><color=#ff0000>\uBC29\uC5B4</size></color>\uB85C \uC55E\uC73C\uB85C
           2\uD134\uAC04 30%\uC758 \uB370\uBBF8\uC9C0\uB9CC \uBC1B\uC2B5\uB2C8\uB2E4.\"
           | Image = \"Tutorial/DefenseMenu\");"
     - Key: 10005
       Value:
         m_Code: 10005
         m_Info: "Tutorial(Title = \"\uC804\uD22C \uC124\uBA85 - <size=60%>\uB3C4\uBC1C</size>\"
-          | Info = \"<size=120%><color=#ff0000>\uB3C4\uBC1C</size></color>\uC740
+          | Info = \"<size=105%><color=#ff0000>\uB3C4\uBC1C</size></color>\uC740
           \uC801\uC758 \uC2E0\uACBD\uC744 \uB044\uB294 \uC2A4\uD0AC\uB85C \uC2A4\uD0AC
           \uC0AC\uC6A9 \uC2DC \uC801\uC774 \uAC00\uD558\uB294 \uC804\uCCB4 \uB370\uBBF8\uC9C0
           \uC911 \uC77C\uC815 \uBE44\uC911\uB9CC\uD07C \uB300\uC2E0 \uB9DE\uC73C\uBA70
@@ -89,7 +87,7 @@ MonoBehaviour:
       Value:
         m_Code: 10006
         m_Info: "Tutorial(Title = \"\uC804\uD22C \uC124\uBA85 - <size=60%>\uBC29\uC5B4</size>\"
-          | Info = \"<size=120%><color=#ff0000>\uBC29\uC5B4</size></color>\uB294
+          | Info = \"<size=105%><color=#ff0000>\uBC29\uC5B4</size></color>\uB294
           \uC801\uC758 \uACF5\uACA9\uC744 \uB9C9\uC544\uC8FC\uB294 \uC720\uC6A9\uD55C
           \uB3C4\uAD6C\uC785\uB2C8\uB2E4.\" | Image = \"EffectImage/Shield\");\nTutorial(Title
           = \"\uC804\uD22C \uC124\uBA85 - <size=60%>\uBC29\uC5B4</size>\" | Info
@@ -112,7 +110,7 @@ MonoBehaviour:
       Value:
         m_Code: 10007
         m_Info: "Tutorial(Title = \"\uC804\uD22C \uC124\uBA85 - <size=80%>\uACF5\uACA9\uB825
-          \uC0C1\uC2B9</size>\"| Info = \"<size=120%><color=#ff0000>\uACF5\uACA9\uB825
+          \uC0C1\uC2B9</size>\"| Info = \"<size=105%><color=#ff0000>\uACF5\uACA9\uB825
           \uC0C1\uC2B9 \uD6A8\uACFC</color></size>\uB294 \uC77C\uC815 \uC2DC\uAC04\uB3D9\uC548
           \uC785\uD788\uB294 \uB370\uBBF8\uC9C0\uB97C \uC62C\uB824\uC90D\uB2C8\uB2E4.\"
           | Image =\"EffectImage/AttackUp\"); "

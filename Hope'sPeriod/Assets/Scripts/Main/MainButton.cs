@@ -2,9 +2,10 @@ using System;
 using DG.Tweening;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class MainButton: InteractButtonUI {
-    public override void Click() => Manager.SetInteractable(false); 
+    public override void Click() => Manager.SetInteractable(false);
 
     private float fontSize;
     private const float ActivePower = 1.2f;
@@ -35,8 +36,13 @@ public class MainButton: InteractButtonUI {
     }
 
     public void StartButton() {
+        
+        
         SaveData.Load();
-        ScenceControler.Load("PlayMap");
+
+        Warnnning.Instance
+            .StartAnimation()
+            .OnComplete(() => ScenceControler.Load("PlayMap"));
     }
     
     public void Awake() {
