@@ -93,6 +93,8 @@ sealed public class GeneratePersonScriptCommand : CommandBase {
 /// </summary>
 sealed public class SetBackgroundScriptCommand : CommandBase {
     public string Image { get; protected set; }
+    public float FadeTime { get; private set; }
+    public bool Upper { get; private set; }
 }
 /// <summary>
 /// <para>Essential: Pos(Vector2), Zoom(float), Power(float)</para>
@@ -103,11 +105,14 @@ sealed public class ControleBackgroundScriptCommand : CommandBase {
     public float Zoom { get; protected set; }
     public float Power { get; protected set; }
 }
+
 /// <summary>
 /// No Parameter
 /// ex) ClearBackground();
 /// </summary>
-sealed public class ClearBackgroundScriptCommand : CommandBase { }
+sealed public class ClearBackgroundScriptCommand : CommandBase {
+    public bool Upper { get; private set; }
+}
 /// <summary>
 /// <para>Essential: MapCode(int)</para>
 /// <para>Sub: Pos(Vector2)</para>

@@ -7,7 +7,7 @@ public class BackgroundScriptShower: MonoBehaviour {
     [SerializeField] private TMP_Text nameText;
     [SerializeField] private TMP_Text context;
     [SerializeField] private WaveMovementButton skipButton;
-    private const float Interval = 0.1f;
+    private const float Interval = 0.07f;
     private const float AutoSkipSecond = 3f;
     private float time;
     

@@ -33,7 +33,7 @@ public class MonsterSlider: Slider {
             Dead = true;
             Debug.Log("win");
 
-            Destroy(Monster.Instance.gameObject);
+            MonsterInfo.Kill();
             GameFSM.Instance.Win();
         }
         else {

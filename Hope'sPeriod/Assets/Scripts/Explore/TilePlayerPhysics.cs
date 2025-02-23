@@ -118,7 +118,7 @@ public class TilePlayerPhysics : MonoBehaviour {
         if (code == 0)
             return;
 
-        CurrentMonsterInfo.SetMonster(code);
+        MonsterInfo.SetMonster(code);
         CurrentMapInfo.SetData(CheckEvent.MapCode, pos);
         SetMovable(false);
         Debug.Log($"Meet Monster {code}");

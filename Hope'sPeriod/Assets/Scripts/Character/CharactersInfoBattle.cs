@@ -69,7 +69,7 @@ public class CharactersInfoBattle: MonoBehaviour {
         }
     }
     
-    public void ShieldOn(DefenceType type = DefenceType.Time, float power = 1.3f) {
+    public void ShieldOn(DefenceType type = DefenceType.Time, float power = 2.3f) {
 
         foreach (var character in characterInfos.Where(character => character.Exist)) {
 

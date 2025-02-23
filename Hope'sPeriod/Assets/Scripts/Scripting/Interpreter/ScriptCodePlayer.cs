@@ -10,6 +10,7 @@ using UnityEngine.UI;
 public class ScriptCodePlayer: MonoBehaviour {
 
     [SerializeField] private Image background;
+    [SerializeField] private Image upperBackground;
     
     public static ScriptCodePlayer Instance { get; private set; } = null;
     
@@ -90,18 +91,24 @@ public class ScriptCodePlayer: MonoBehaviour {
         if (!command.Start())
             return;
 
-        background.enabled = true;
-        background.sprite = Resources.Load<Sprite>($"Background/{command.Image}");
-        command.EndProcess();
+        var target = command.Upper ? upperBackground : background;
+
+        target.DOFade(0, 0);
+        target.enabled = true;
+        target.sprite = Resources.Load<Sprite>($"Background/{command.Image}");
+        target.DOFade(1, command.FadeTime)
+            .OnComplete(command.EndProcess);
     }
     private void ClearBackgroundScript(ClearBackgroundScriptCommand command) {
         if (!command.Start())
             return;
 
-        background.sprite = null;
-        background.transform.localScale = new(1, 1);
-        background.transform.localPosition = new(0,0);
-        background.enabled = false;
+        var target = command.Upper ? upperBackground : background;
+        
+        target.sprite = null;
+        target.transform.localScale = new(1, 1);
+        target.transform.localPosition = new(0,0);
+        target.enabled = false;
         command.EndProcess();
     }
     private void ControleBackgroundScript(ControleBackgroundScriptCommand command) {
@@ -317,6 +324,7 @@ public class ScriptCodePlayer: MonoBehaviour {
         Destroy(currentMap);
         currentMap = null;
         background.enabled = false;
+        upperBackground.enabled = false;
         
         ShakeCamera.Instance.camera.transform.localPosition = new Vector3(0, 0.7f, -10);
     }

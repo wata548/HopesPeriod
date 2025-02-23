@@ -18,6 +18,9 @@ public class ButtonInteract: MonoBehaviour, IPointerEnterHandler, IPointerExitHa
     private Vector3 defaultSize;
     private Tween animation = null;
     private bool isOn = false;
+    public static bool Interactable = false;
+    public static void SetInteractable(bool value) => Interactable = value;
+    
     
     private void Awake() {
 
@@ -28,7 +31,7 @@ public class ButtonInteract: MonoBehaviour, IPointerEnterHandler, IPointerExitHa
 
     private bool CheckInteractable() {
 
-        return GameFSM.Instance.PlayerTurnState == PlayerTurnState.SelectBehavior;
+        return Interactable && GameFSM.Instance.PlayerTurnState == PlayerTurnState.SelectBehavior;
     }
     
     public void StartAnimation() {

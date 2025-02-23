@@ -76,6 +76,8 @@ public class ButtonInteractManager: MonoBehaviour {
                 foreach (var button in buttons) {
                     button.gameObject.SetActive(false);
                 }
+
+                ButtonInteract.SetInteractable(false);
             }
             return;
         }

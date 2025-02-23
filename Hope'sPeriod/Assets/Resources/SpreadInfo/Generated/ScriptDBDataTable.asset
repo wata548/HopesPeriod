@@ -118,12 +118,7 @@ MonoBehaviour:
         m_Script: "\uB2E4\uB140\uC62C\uAC8C."
         m_JustEvent: 0
         m_ClearContext: 0
-        m_Event: 'StartChangeEffect(Roll = false | Power = 0.3f);
-
-          SetBackground(Image
-          = "CP1_Hospital2");
-
-          ClearEffect(Power = .3f);'
+        m_Event: SetBackground(Image = "CP1_Hospital2");
         m_EventTiming: 0
       - m_WindowType: 2
         m_Profile: None
@@ -273,29 +268,29 @@ MonoBehaviour:
           SetBackground(Image
           = "CP1_BossMob1");'
         m_EventTiming: 0
-      - m_WindowType: 2
-        m_Profile: None
+      - m_WindowType: 1
+        m_Profile: Flustered
         m_Actor: 5002
-        m_Script: ......?
+        m_Script: "......\uD53C?"
         m_JustEvent: 0
         m_ClearContext: 0
         m_Event: ClearEffect(Power = .3f);
         m_EventTiming: 0
-      - m_WindowType: 2
-        m_Profile: None
+      - m_WindowType: 1
+        m_Profile: Flustered
         m_Actor: 5002
-        m_Script: "\uD53C...?"
+        m_Script: "\uBC14\uB2E5\uC5D0 \uC6EC \uD53C\uAC00 \uC774\uB807\uAC8C..."
         m_JustEvent: 0
         m_ClearContext: 0
         m_Event: 
         m_EventTiming: 0
-      - m_WindowType: 2
-        m_Profile: None
+      - m_WindowType: 1
+        m_Profile: Default
         m_Actor: 5002
-        m_Script: "\uC5B4\uB514\uC11C \uB5A8\uC5B4\uC9C0\uB294......"
+        m_Script: "\uC751?"
         m_JustEvent: 0
-        m_ClearContext: 0
-        m_Event: 
+        m_ClearContext: 1
+        m_Event: SetBackground(Image = "CP1_BossMob2"| Upper = T | FadeTime = 0.5f);
         m_EventTiming: 0
       - m_WindowType: 2
         m_Profile: None
@@ -305,12 +300,17 @@ MonoBehaviour:
         m_ClearContext: 0
         m_Event: 'StartChangeEffect(Roll = false | Power = 0.3f);
 
-          SetBackground(Image
-          = "CP1_BossMob2");
+          ClearBackground(Upper
+          = true);
 
-          ClearEffect(Power = .3f);'
+          SetBackground(Image = "CP1_BossMob3");
+
+          Wait(Power
+          = 1f);
+
+          ClearEffect(Power = 0f);'
         m_EventTiming: 0
-      - m_WindowType: 2
+      - m_WindowType: 1
         m_Profile: None
         m_Actor: 0
         m_Script: 

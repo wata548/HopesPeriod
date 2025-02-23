@@ -22,6 +22,8 @@ public static class TutorialInfo {
         data.ForEach(element => ShowedTutorial.Add(element));
     }
 
+    public static void OpenTutorial(int code) => ShowedTutorial.Add(code);
+    
     public static string Title(int code) {
         SetTable();
         if (!table.DataTable.ContainsKey(code))

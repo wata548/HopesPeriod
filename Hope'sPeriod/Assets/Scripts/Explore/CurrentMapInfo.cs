@@ -19,32 +19,3 @@ public static class CurrentMapInfo {
         return (code, pos);
     }
 }
-
-public static class CurrentMonsterInfo {
-
-    private static int code = 0;
-    private static GameObject monster;
-    public static bool IsBoss { get; private set; } = false;
-    
-    public static void SetMonster(int code) {
-        
-        CurrentMonsterInfo.code = code;
-        monster = Resources.Load<GameObject>($"Monster/M{code}/M{code}");
-        
-        if (monster is null)
-            throw new Exception($"This monster({code}) isn't exist");
-
-        IsBoss = monster?.GetComponent<Monster>().IsBoss ?? false;
-        if (IsBoss) {
-            var playerInfo = CharacterInfoInventory.Instance.RawCharacterInfos.ToArray();
-            var pos = TilePlayerPhysics.Instance.Object.transform.localPosition;
-            SaveData.Save(-1, playerInfo, ChapterInfo.Chapter, CheckEvent.MapCode, pos);
-        }
-
-        MakeMonster();
-    }
-
-    public static void MakeMonster() {
-        GameObject.Instantiate(monster);
-    }
-}

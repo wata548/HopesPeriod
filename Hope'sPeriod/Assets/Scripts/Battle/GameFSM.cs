@@ -50,6 +50,7 @@ public class GameFSM: MonoBehaviour {
     private bool needPlayerTurnUpdate = true;
 
     private bool end = false;
+    private bool tutorialShowing = false;
     private void Update() {
 
         if (MonsterSlider.Instance.Dead) {
@@ -58,7 +59,21 @@ public class GameFSM: MonoBehaviour {
         }
             
         if (State == GameState.BattleStart) {
-            SkipState();
+            
+            //first interface tutorial
+            if (!tutorialShowing && MonsterInfo.IsFirstBattle) {
+
+                var info = TutorialInfo.Interpret(10003);
+                TutorialWindow.Instance.SetTutorial(info);
+                tutorialShowing = true;
+                StartCoroutine(Wait.WaitAndDo(() => !TutorialWindow.Instance.On, () => {
+                    SkipState();
+                    tutorialShowing = false;
+                }));
+                
+            }
+            else if(!MonsterInfo.IsFirstBattle)
+                SkipState();
         }
 
         else if (State == GameState.BeforeSkill) {
@@ -79,6 +94,7 @@ public class GameFSM: MonoBehaviour {
         }
 
         else if (State == GameState.AfterSkill) {
+
             SkipState();
         }
 
@@ -105,7 +121,7 @@ public class GameFSM: MonoBehaviour {
             Player.Instance.Object.transform.DOLocalMove(selectPlayerPos, 0.5f);
             MapSizeManager.Instance.Move(selectMapPos);
             MapSizeManager.Instance.Resize(selectMapScale);
-            
+
             CharactersInfoBattle.Instance.TurnUpdate();
             foreach (var character in CharactersInfoBattle.Instance.CharacterInfos) {
                 character.SetEffectImage();
@@ -113,6 +129,26 @@ public class GameFSM: MonoBehaviour {
                             
             Player.Instance.Movement
                 .SetApply<CompoInput>(Direction.None);
+            
+            //First battle tutorial
+            bool alreadyShow = TutorialInfo.ShowedTutorial.Contains(10004);
+            if (!alreadyShow && !tutorialShowing && MonsterInfo.IsFirstBattle) {
+
+                TutorialInfo.OpenTutorial(10005);
+                TutorialInfo.OpenTutorial(10006);
+                TutorialInfo.OpenTutorial(10007);
+                
+                tutorialShowing = true;
+                var info = TutorialInfo.Interpret(10004);
+                TutorialWindow.Instance.SetTutorial(info);
+                StartCoroutine(Wait.WaitAndDo(() => !TutorialWindow.Instance.On, () => {
+                    ButtonInteract.SetInteractable(true);
+                    tutorialShowing = false;
+                }));
+                                        
+            }
+            else if(!MonsterInfo.IsFirstBattle || (alreadyShow && !tutorialShowing))
+                ButtonInteract.SetInteractable(true);
         }
     }
 

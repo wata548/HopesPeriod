@@ -1,5 +1,5 @@
 {
-  "PlayTime": 29.4777737,
+  "PlayTime": 37.71698,
   "SaveCharacterInfo": [
     {
       "Exist": true,
@@ -20,7 +20,7 @@
       "MaximumHp": 100.0,
       "CurrentHp": 100.0,
       "MaximumMp": 130.0,
-      "CurrentMp": 105.0
+      "CurrentMp": 130.0
     },
     {
       "Exist": false,
@@ -68,10 +68,15 @@
   "SaveItem": [
     {
       "Code": 2002,
-      "Amount": 1
+      "Amount": 0
     }
   ],
-  "SaveUseItem": [],
+  "SaveUseItem": [
+    {
+      "Code": 2002,
+      "Count": 1
+    }
+  ],
   "SavePos": {
     "Code": 8404,
     "X": -1.87500834,
@@ -93,7 +98,9 @@
     6000,
     20003,
     10002,
-    6100
+    6100,
+    20001,
+    6002
   ],
   "SaveTutorial": [
     10001,
