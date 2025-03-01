@@ -27,7 +27,7 @@ public class Monster: MonoBehaviour {
     private void Update() {
         if (IsPattern) {
 
-            IsPattern = patterns[index].End;
+            IsPattern = patterns[index].Active;
         }
     }
 

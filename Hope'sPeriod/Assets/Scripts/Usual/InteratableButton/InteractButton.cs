@@ -83,7 +83,11 @@ public abstract class InteractButtonManager: MonoBehaviour {
 
    //==================================================||Method 
 
-   public void SetInteractable(bool interactable) => Interactable = interactable;
+   public virtual void SetInteractable(bool interactable) {
+       Selecting = 0;
+       Before = -1;
+       Interactable = interactable;
+   }
    
     protected void UpdateState() {
 

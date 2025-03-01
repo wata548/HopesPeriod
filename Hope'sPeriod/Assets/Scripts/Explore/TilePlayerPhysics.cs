@@ -101,9 +101,11 @@ public class TilePlayerPhysics : MonoBehaviour {
 
             if (newPos != pos) {
                 pos = newPos;
-                bool moveMap = CheckEvent.CheckAutoEvent(ref pos, gameObject); 
+                bool moveMap = CheckEvent.CheckAutoEvent(pos, gameObject, out var result); 
                 if (moveMap) {
-                    mapChanger.Show(CheckEvent.MapName);
+                    pos = result;
+                    mapChanger.Show(CheckEvent.MapName); 
+                    CheckEvent.CheckAutoEvent(pos, gameObject, out result); 
                 }
                 else {
                     

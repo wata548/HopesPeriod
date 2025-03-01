@@ -3,7 +3,7 @@ using DG.Tweening;
 using UnityEngine;
 
 public class M1001Pattern1: EnemyPatternBase {
-    public override bool End { get; protected set; } = false;
+    public override bool Active { get; protected set; } = false;
     [SerializeField] private GameObject prefab;
     [SerializeField] private GameObject left;
     [SerializeField] private GameObject right;
@@ -17,7 +17,7 @@ public class M1001Pattern1: EnemyPatternBase {
 
         int before = -1;
         int index = -1;
-        End = true;
+        Active = true;
         for (int i = 0; i < count; i++) {
 
             yield return new WaitForSeconds(time * 1.1f + waitTime);
@@ -73,7 +73,7 @@ public class M1001Pattern1: EnemyPatternBase {
         }
         yield return new WaitForSeconds(time * 1.65f + waitTime + 2);
 
-        End = false;
+        Active = false;
     }
 
     public override void StartPattern() {

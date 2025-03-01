@@ -194,7 +194,8 @@ public class ScriptCodePlayer: MonoBehaviour {
             ShakeCamera.Instance.camera.transform.localPosition = pos;
         }
 
-        int loop = command.Loop;    
+        int loop = command.Loop;
+        if (loop == 0) loop = 1;
         if (loop == -1) {
             loop = Infinity;
             command.EndProcess();

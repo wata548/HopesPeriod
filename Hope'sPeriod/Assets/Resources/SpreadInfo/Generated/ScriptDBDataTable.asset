@@ -128,7 +128,7 @@ MonoBehaviour:
         m_Actor: 0
         m_Script: 
         m_JustEvent: 1
-        m_ClearContext: 0
+        m_ClearContext: 1
         m_Event: 'StartChangeEffect(Roll = false | Power = 0.3f);
 
           ClearBackground();
@@ -445,8 +445,7 @@ MonoBehaviour:
       - m_WindowType: 1
         m_Profile: Default
         m_Actor: 5002
-        m_Script: "\uC5EC\uAE30\uAE4C\uC9C0 \uAD6C\uD604\uB418\uC5C8\uC2B5\uB2C8\uB2E4.\\n\uC774
-          \uC55E\uC5D0\uB294 \uC5EC\uB7EC \uB9F5\uB9CC \uB0A8\uC544\uC788\uC2B5\uB2C8\uB2E4."
+        m_Script: "\uC544\uC9C1\uAC00\uBCF4\uC9C0 \uB9D0\uC790"
         m_JustEvent: 0
         m_ClearContext: 0
         m_Event: 

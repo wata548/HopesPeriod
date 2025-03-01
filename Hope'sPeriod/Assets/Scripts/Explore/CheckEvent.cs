@@ -40,19 +40,20 @@ public static class CheckEvent {
         return mapInfo.MeetMonster(mapCode);
     }
 
-    public static bool CheckAutoEvent(ref Vector2Int pos, GameObject player) {
+    public static bool CheckAutoEvent(Vector2Int pos, GameObject player, out Vector2Int resultPos) {
 
         LoadMapInfo();
-        bool result = MoveEvent(ref pos, player);
+        bool result = MoveEvent(pos, player, out resultPos);
         
         //Didn't move map
-        if(!result) moveMap = false;
         AutoEvent(pos);
 
         return result;
     }
 
-    public static bool MoveEvent(ref Vector2Int pos, GameObject player) {
+    public static bool MoveEvent(Vector2Int pos, GameObject player, out Vector2Int resultPos) {
+        resultPos = Vector2Int.zero;
+        
         if (mapInfo.ConnectInfo(mapCode, pos, out ConnectMapInfo connectMapInfo, out GameObject mapPrefab)) {
         
             if (moveMap) return false;
@@ -65,7 +66,7 @@ public static class CheckEvent {
             mapCode = connectMapInfo.ConnectMapCode;
             //SetItem(mapCode);
             player.transform.localPosition = DefaultPos + connectMapInfo.ConnectPos;
-            pos = connectMapInfo.ConnectPos;
+            resultPos = connectMapInfo.ConnectPos;
         
             mapMoveEffect.color = Color.black;
             mapMoveEffect.DOFade(0, 0.7f).SetEase(Ease.InCubic);
@@ -73,6 +74,7 @@ public static class CheckEvent {
             return true;
         }
 
+        moveMap = false;
         return false;
     }
     

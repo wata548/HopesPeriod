@@ -14,7 +14,7 @@ using Vector3 = UnityEngine.Vector3;
 //Time: 10(0.6 + 1) + 1 = 17
 public class M1001Pattern3: EnemyPatternBase{
 
-    public override bool End { get; protected set; } = false;
+    public override bool Active { get; protected set; } = false;
     [SerializeField] private GameObject prefab;
     [SerializeField] private SpriteRenderer[] warning = new SpriteRenderer[3];
     [SerializeField] private List<Sprite> images = new();
@@ -26,7 +26,7 @@ public class M1001Pattern3: EnemyPatternBase{
     private const float Density = 0.1f;
     IEnumerator WaitAndSpawn(float time, int count) {
 
-        End = true;
+        Active = true;
         for (int i = 0; i < count; i++) {
 
             var pos = defaultPosition;
@@ -57,7 +57,7 @@ public class M1001Pattern3: EnemyPatternBase{
         }
 
         yield return new WaitForSeconds(1);
-        End = false;
+        Active = false;
     }
 
     public override void StartPattern() {

@@ -11,7 +11,7 @@ using Vector3 = UnityEngine.Vector3;
 //Time: 2 * (0.5 * 10 + 2.5) = 15
 public class M1001Pattern4: EnemyPatternBase {
 
-    public override bool End { get; protected set; } = false;
+    public override bool Active { get; protected set; } = false;
     [SerializeField] private GameObject prefab;
     [SerializeField] private GameObject leftWarn;
     [SerializeField] private GameObject rightWarn;
@@ -40,7 +40,7 @@ public class M1001Pattern4: EnemyPatternBase {
     
     IEnumerator WaitAndSpawn(float time, int count) {
 
-        End = true;
+        Active = true;
 
         
         bool direction = (Random.Range(0, 1 + 1) == 1);
@@ -100,7 +100,7 @@ public class M1001Pattern4: EnemyPatternBase {
             .SetApply<CompoInput>(DirectionInfo.All);
         yield return new WaitForSeconds(time * 5);
 
-        End = false;
+        Active = false;
     }
 
     public override void StartPattern() {

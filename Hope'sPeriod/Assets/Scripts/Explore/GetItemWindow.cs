@@ -24,8 +24,13 @@ public class GetItemWindow: MonoBehaviour {
     private const float MoveTime = 0.6f;
 
     public bool On => on;
+    private Tween showAnimation = null;
     
     public void TurnOff() {
+
+        if (showAnimation is not null)
+            showAnimation.Kill();
+        
         on = false;
         
         line.color = Transparent;
@@ -33,8 +38,7 @@ public class GetItemWindow: MonoBehaviour {
         window.DOFade(0, 0);
         itemImage.color = Transparent;
         cursor.gameObject.SetActive(false);
-        cursor.TurnOff();
-        itemName.color = Transparent;
+        cursor.TurnOff(); itemName.color = Transparent;
         itemDescription.color = Transparent;
 
         window.transform.localPosition = new(0, StartAppearPoint);
@@ -53,23 +57,26 @@ public class GetItemWindow: MonoBehaviour {
         Inventory.AddItem(itemInfo.Code, itemInfo.Count);
         
         on = true;
-        line.DOFade(1, AppearTime);
-        window.DOFade(0.5f, AppearTime);
-        window.transform.DOLocalMoveY(CompleteAppearPoint, MoveTime)
-            .SetEase(Ease.OutBack)
-            .OnComplete(() => {
-                cursor.gameObject.SetActive(true);
-                cursor.TurnOn();
-            });
-        
+        Sequence appear = DOTween.Sequence(); 
         itemImage.sprite = CodeInfo.LoadImage(itemInfo.Code);
-        itemImage.DOFade(1, AppearTime);
-        itemName.DOFade(1, AppearTime);
         itemName.text = ItemInfo.Name(itemInfo.Code) + $" ×{itemInfo.Count}".SetSize(0.75f);
-        itemDescription.DOFade(1, AppearTime);
         itemDescription.text = ItemInfo.Description(itemInfo.Code);
+        
+        appear.Join(line.DOFade(1, AppearTime))
+            .Join(window.DOFade(0.5f, AppearTime))
+            .Join(window.transform.DOLocalMoveY(CompleteAppearPoint, MoveTime)
+                .SetEase(Ease.OutBack)
+                .OnComplete(() => {
+                    cursor.gameObject.SetActive(true);
+                    cursor.TurnOn();
+                }))
+            .Join(itemImage.DOFade(1, AppearTime))
+            .Join(itemName.DOFade(1, AppearTime))
+            .Join(itemDescription.DOFade(1, AppearTime));
         TilePlayerPhysics.SetMovable(false);
         SettingWindow.SetInteractable(false);
+
+        showAnimation = appear;
     }
     
     private void Awake() {

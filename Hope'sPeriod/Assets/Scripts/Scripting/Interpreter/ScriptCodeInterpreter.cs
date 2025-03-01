@@ -35,7 +35,7 @@ public static class ScriptCodeInterpreter {
         { typeof(string), @"""(.*?)""" },
         { typeof(bool), @"^\s*(true|false|t|f|True|False|T|F)" },
         { typeof(int), @"^\s*(-?\d*)" },
-        { typeof(float), @"^\s*(-?\d*\.?\d+)f" },
+        { typeof(float), @"^\s*(-?\d*\.?\d?)f" },
         { typeof(Direction), "(.*)"},
         { typeof(List<>), @"^\s*\[(.*)\]"},
         { typeof(Vector2), @"^\s*\{(.*)\}"},

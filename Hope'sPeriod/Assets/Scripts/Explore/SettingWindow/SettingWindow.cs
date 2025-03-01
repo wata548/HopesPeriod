@@ -18,9 +18,10 @@ public class SettingWindow: MonoBehaviour {
         settingWindow.SetActive(true);
         window.SetInteractable(true);
         window.Click();
+        on = true;
     }
 
-    private void TurnOff() {
+    public void TurnOff() {
 
         EverytimeEvent.StartEvent();
         if(ScriptShower.Instance.EventCode == 0)
@@ -28,6 +29,7 @@ public class SettingWindow: MonoBehaviour {
         
         window.SetInteractable(false);
         settingWindow.SetActive(false);
+        on = false;
     }
 
     private void Start() {
@@ -44,8 +46,6 @@ public class SettingWindow: MonoBehaviour {
                 TurnOff();
             else
                 TurnOn();
-
-            on = !on;
         }
     }
 }

@@ -1,3 +1,5 @@
+using System;
+using TMPro;
 using UnityEngine;
 
 public class InventoryTargetButtonManager: InteractButtonManager {
@@ -7,12 +9,14 @@ public class InventoryTargetButtonManager: InteractButtonManager {
     public UseButtonManager ItemInfo => itemInfo;
     [SerializeField] private InventoryButtonManager inventoryButtonManager;
     [SerializeField] private CategoryButtonManager categoryButtonManager;
+    [SerializeField] private GameObject targetSelectMessage;
     
     public int Code { get; private set; }
-    
+
     public void TurnOn(int code) {
         
         cursor.TurnOn();
+        targetSelectMessage.SetActive(true);
         cursor.gameObject.SetActive(true);
         Code = code;
         Interactable = true;
@@ -23,6 +27,7 @@ public class InventoryTargetButtonManager: InteractButtonManager {
     }
 
     public void TurnOff() {
+        targetSelectMessage.SetActive(false);
         cursor.gameObject.SetActive(false);
         Interactable = false;
         itemInfo.SetInteractable(true);
@@ -58,7 +63,17 @@ public class InventoryTargetButtonManager: InteractButtonManager {
                 Selecting = temp;
         }
 
-        if (InputManager.Instance.ClickAndHold(KeyTypes.Cancel))
+        if (InputManager.Instance.Click(KeyTypes.Select)) {
+            Parse(buttons[Selecting]).Click();
+        }
+        else if (InputManager.Instance.Click(KeyTypes.Cancel))
             TurnOff();
+    }
+
+    private InventoryTargetButton Parse(InteractButton button) {
+        if (button is not InventoryTargetButton result)
+            throw new TypeMissMatched(button.gameObject, typeof(InventoryTargetButton));
+
+        return result;
     }
 }

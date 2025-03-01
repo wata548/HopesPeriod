@@ -11,7 +11,7 @@ using Vector3 = UnityEngine.Vector3;
 //Time: 0.5 * 15 + 3 = 10.5
 public class M1001Pattern2: EnemyPatternBase{
 
-    public override bool End { get; protected set; } = false;
+    public override bool Active { get; protected set; } = false;
     [SerializeField] private GameObject prefab;
     private readonly Vector2 fieldRange = new Vector2(8.5f, 4.5f);
     private readonly Vector2 safeZoneRange = new Vector2(5.5f, 3f);
@@ -20,7 +20,7 @@ public class M1001Pattern2: EnemyPatternBase{
     
     IEnumerator WaitAndSpawn(float time, int count) {
 
-        End = true;
+        Active = true;
         for (int i = 0; i < count; i++) {
 
             yield return new WaitForSeconds(time);
@@ -40,7 +40,7 @@ public class M1001Pattern2: EnemyPatternBase{
         }
         yield return new WaitForSeconds(startMove * 2);
 
-        End = false;
+        Active = false;
     }
 
     public override void StartPattern() {
