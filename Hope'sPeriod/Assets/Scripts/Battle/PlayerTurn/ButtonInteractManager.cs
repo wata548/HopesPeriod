@@ -67,7 +67,7 @@ public class ButtonInteractManager: MonoBehaviour {
         }
     }
 
-    private void ShowButton() {
+    public void ShowButton() {
         
         if (GameFSM.Instance.State != GameState.PlayerAttack) {
             if (isActive) {
@@ -87,14 +87,17 @@ public class ButtonInteractManager: MonoBehaviour {
             isActive = true;
             foreach (var button in buttons) {
                 button.gameObject.SetActive(true);
+                button.EndAnimation();
             }
+            buttons[0].StartAnimation();
+
+            selectType = ButtonType.Attack;
         }
     }
     
     
     private void Update() {
 
-        ShowButton(); 
         SelectBehavior();
     }
 

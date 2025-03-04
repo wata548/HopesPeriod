@@ -13,14 +13,14 @@ public class ButtonInteract: MonoBehaviour, IPointerEnterHandler, IPointerExitHa
     private TMP_Text text;
     private const float InteractSize = 1.2f;
     private const float Duraction = 0.2f;
-    private readonly Color interactColor = Color.yellow;
+    private static readonly Color interactColor = Color.yellow;
+    
     private Color defaultColor;
     private Vector3 defaultSize;
     private Tween animation = null;
     private bool isOn = false;
     public static bool Interactable = false;
     public static void SetInteractable(bool value) => Interactable = value;
-    
     
     private void Awake() {
 
@@ -53,7 +53,7 @@ public class ButtonInteract: MonoBehaviour, IPointerEnterHandler, IPointerExitHa
         if (animation != null && animation.IsPlaying()) {
             animation.Kill();
         }
-        text.transform.DOScale(defaultSize, 0);
+        text.transform.localScale = defaultSize;
         text.color = defaultColor; 
     }
     

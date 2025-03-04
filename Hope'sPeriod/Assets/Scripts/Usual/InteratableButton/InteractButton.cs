@@ -75,7 +75,7 @@ public abstract class InteractButtonManager: MonoBehaviour {
 
     [SerializeField] protected List<InteractButton> buttons;
 
-    //if it is false, you can't interact this
+    //if it is false, you can't interact buttons
     public abstract bool Interactable { get; protected set; }
     public int Selecting { get; protected set; } = 0;
     

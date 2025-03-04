@@ -1136,6 +1136,7 @@ GameObject:
   - component: {fileID: 5392367031444609614}
   - component: {fileID: 1739103006783414126}
   - component: {fileID: 7514801916452867708}
+  - component: {fileID: 4985819738134336162}
   m_Layer: 0
   m_Name: M1001
   m_TagString: Untagged
@@ -1174,10 +1175,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   patterns:
-  - {fileID: 1344570407906380142}
-  - {fileID: 5392367031444609614}
-  - {fileID: 1739103006783414126}
-  - {fileID: 7514801916452867708}
+  - <State>k__BackingField: 0.5
+    <Patterns>k__BackingField:
+    - {fileID: 4985819738134336162}
+  - <State>k__BackingField: 1
+    <Patterns>k__BackingField:
+    - {fileID: 1344570407906380142}
+    - {fileID: 5392367031444609614}
+    - {fileID: 1739103006783414126}
+    - {fileID: 7514801916452867708}
   <IsBoss>k__BackingField: 1
   <MaxHP>k__BackingField: 100
 --- !u!114 &1344570407906380142
@@ -1255,6 +1261,21 @@ MonoBehaviour:
   images:
   - {fileID: -115905611593759255, guid: 8d0913554fa68c347b0f04e7a136579d, type: 3}
   - {fileID: -5373023442346949821, guid: a80004ef58a22894f8dd814cc470371f, type: 3}
+--- !u!114 &4985819738134336162
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8598517032769159695}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36e223ea392f40d88d8b93e1cd968881, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  patterns:
+  - {fileID: 5392367031444609614}
+  - {fileID: 1739103006783414126}
 --- !u!1 &9152965101720083495
 GameObject:
   m_ObjectHideFlags: 0

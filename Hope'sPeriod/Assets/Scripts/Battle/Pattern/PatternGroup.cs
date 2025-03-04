@@ -10,7 +10,7 @@ public class PatternGroup: EnemyPatternBase {
 
         Active = true;
         foreach (var pattern in patterns)
-            pattern.StartPattern();
+            pattern.GrouptPattern();
         bool result = false;
         while (!result) {
 
@@ -27,6 +27,9 @@ public class PatternGroup: EnemyPatternBase {
         Active = false;
     }
     public override void StartPattern() {
+        MapSizeManager.Instance.Default();
         StartCoroutine(pattern());
     }
+
+    public override void GrouptPattern() {}
 }

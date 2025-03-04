@@ -108,4 +108,8 @@ public class M1001Pattern4: EnemyPatternBase {
         MapSizeManager.Instance.Default();
         StartCoroutine(WaitAndSpawn(0.5f, 20));
     }
+
+    public override void GrouptPattern() {
+        StartCoroutine(WaitAndSpawn(0.5f, 20));
+    }
 };

@@ -61,6 +61,8 @@ public class GameFSM: MonoBehaviour {
             
         if (State == GameState.BattleStart) {
 
+            ButtonInteractManager.Instance.ShowButton();
+            
             //first interface tutorial
             if (!tutorialShowing && MonsterInfo.IsFirstBattle) {
 
@@ -88,7 +90,7 @@ public class GameFSM: MonoBehaviour {
                 Monster.Instance.StartPattern();
                 isPattern = true;
             }
-            if (!Monster.Instance.IsPattern) {
+            if (!Monster.Instance.IsShowingPattern) {
                 State++;
                 isPattern = false;
             }
@@ -118,18 +120,19 @@ public class GameFSM: MonoBehaviour {
             
             playerTurnStart = true;
             PlayerTurnState = PlayerTurnState.SelectBehavior;
-                        
+                
+            //field Setting
             Player.Instance.Object.transform.DOLocalMove(selectPlayerPos, 0.5f);
             MapSizeManager.Instance.Move(selectMapPos);
             MapSizeManager.Instance.Resize(selectMapScale);
+            Player.Instance.Movement
+                .SetApply<CompoInput>(Direction.None);
 
+            //effectTurnUpdate
             CharactersInfoBattle.Instance.TurnUpdate();
             foreach (var character in CharactersInfoBattle.Instance.CharacterInfos) {
                 character.SetEffectImage();
             }
-                            
-            Player.Instance.Movement
-                .SetApply<CompoInput>(Direction.None);
             
             //First battle tutorial
             bool alreadyShow = TutorialInfo.ShowedTutorial.Contains(10004);
@@ -144,12 +147,16 @@ public class GameFSM: MonoBehaviour {
                 TutorialWindow.Instance.SetTutorial(info);
                 StartCoroutine(Wait.WaitAndDo(() => !TutorialWindow.Instance.On, () => {
                     ButtonInteract.SetInteractable(true);
+                    ButtonInteractManager.Instance.ShowButton();
                     tutorialShowing = false;
                 }));
                                         
             }
-            else if(!MonsterInfo.IsFirstBattle || (alreadyShow && !tutorialShowing))
+            else if (!MonsterInfo.IsFirstBattle || (alreadyShow && !tutorialShowing)) {
+                
                 ButtonInteract.SetInteractable(true);
+                ButtonInteractManager.Instance.ShowButton();
+            }
         }
     }
 
@@ -248,6 +255,7 @@ public class GameFSM: MonoBehaviour {
                     //State set
                     State = GameState.BeforeSkill;
                     PlayerTurnState = PlayerTurnState.SelectBehavior;
+                    ButtonInteractManager.Instance.ShowButton();
                     
                     //express need to update
                     playerTurnStart = false;

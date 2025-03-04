@@ -1,33 +1,48 @@
+using System;
 using UnityEngine;
 using System.Collections.Generic;
 using Random = UnityEngine.Random;
 
+[Serializable]
+public class StatePatterns {
+    [field: SerializeField] 
+    public float State { get; private set; }
+    [field: SerializeField]
+    public List<EnemyPatternBase> Patterns { get; private set; }
+}
+
 public class Monster: MonoBehaviour {
 
-    [SerializeField] private List<EnemyPatternBase> patterns = new();
+    [SerializeField] private List<StatePatterns> patterns = new();
     [field: SerializeField]public bool IsBoss { get; private set; }
     [field: SerializeField]public int MaxHP { get; private set; }
     public static Monster Instance { get; private set; } = null;
-    public bool IsPattern { get; private set; } = false;
-    private int index = 0;
+    public bool IsShowingPattern { get; private set; } = false;
+    private EnemyPatternBase currentPattern = null;
 
     public bool StartPattern() {
 
-        if (IsPattern)
+        if (IsShowingPattern)
             return false;
 
-        IsPattern = true;
-        index = Random.Range(0, patterns.Count);
-        Debug.Log($"Pattern({index}) start");
-        patterns[index].StartPattern();
+        IsShowingPattern = true;
+        
+        float hpPercent = (float)MonsterSlider.Instance.CurrentHp / MaxHP;
+        int index = 0;
+        while(index < patterns.Count && hpPercent > patterns[index].State) {
+            index++;
+        }
+
+        int randomIndex = Random.Range(0, patterns[index].Patterns.Count);
+        currentPattern = patterns[index].Patterns[randomIndex];
+        currentPattern.StartPattern();
 
         return true;
     }
 
     private void Update() {
-        if (IsPattern) {
-
-            IsPattern = patterns[index].Active;
+        if (IsShowingPattern) {
+            IsShowingPattern = currentPattern.Active;
         }
     }
 
