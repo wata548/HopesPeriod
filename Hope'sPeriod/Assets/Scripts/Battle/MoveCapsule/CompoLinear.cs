@@ -4,7 +4,7 @@ using Quaternion = UnityEngine.Quaternion;
 using Vector2 = UnityEngine.Vector2;
 
 public class CompoLinear: MoveComposite {
-    public CompoLinear(GameObject owner) : base(owner) {
+    public CompoLinear(GameObject owner = null) : base(owner) {
     }
 
     public override int Priority { get; protected set; } = 1;

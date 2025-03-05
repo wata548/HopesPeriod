@@ -50,6 +50,6 @@ public class M1001Pattern2: EnemyPatternBase{
     }
 
     public override void GrouptPattern() {
-        StartCoroutine(WaitAndSpawn(0.8f, 15));
+        StartCoroutine(WaitAndSpawn(0.8f, 17));
     }
 };

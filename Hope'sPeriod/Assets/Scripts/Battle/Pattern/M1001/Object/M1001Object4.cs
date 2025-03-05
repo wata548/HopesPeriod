@@ -24,11 +24,13 @@ public class M1001Object4: BaseEnemy {
 
     public void SetPos(bool direction) {
 
-        var position = new Vector3((direction ? -1 : 1) * WidthLength, Random.Range(-HeightLength, HeightLength), -1);
+        var x = (direction ? -1 : 1) * WidthLength;
+        var y = Random.Range(-HeightLength, HeightLength);
+        var position = new Vector3(x, y, -1);
         transform.position = position;
 
         position.x *= -1;
-        MoveComposite.GetType<CompoLinear>()
+        MoveComposite.GetComposite<CompoLinear>()
             .SetTarget(position);
     }
     

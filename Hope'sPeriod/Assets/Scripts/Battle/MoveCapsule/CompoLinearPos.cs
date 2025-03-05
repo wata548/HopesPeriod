@@ -2,7 +2,7 @@ using DG.Tweening;
 using UnityEngine;
 
 public class CompoLinearPos: MoveComposite {
-    public CompoLinearPos(GameObject owner) : base(owner) {
+    public CompoLinearPos(GameObject owner = null) : base(owner) {
     }
 
     public override int Priority { get; protected set; } = 1;

@@ -89,8 +89,8 @@ public class M1001Pattern4: EnemyPatternBase {
             renderer.flipX = direction;
             
             newObject.AddComponent<M1001Object4>();
-            var a = newObject.GetComponent<M1001Object4>();
-            a.SetPos(direction);
+            var @object = newObject.GetComponent<M1001Object4>();
+            @object.SetPos(direction);
 
         }
 

@@ -23,7 +23,7 @@ public class ItemListButton : InteractButtonUI {
     private bool needUpdate = false;
     public bool Show { get; private set; } = true;
     
-    private const float AppearTime = 0.3f;
+    private const float AppearTime = 0;
 
     public void TurnOff() {
         onMouse = false;

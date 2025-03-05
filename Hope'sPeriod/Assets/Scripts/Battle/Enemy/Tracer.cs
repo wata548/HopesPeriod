@@ -33,7 +33,7 @@ public class Tracer : BaseEnemy {
             .AddComposite(new CompoTrace(null));
         
         MoveComposite.SetPower<CompoTrace>(speed)
-            .GetType<CompoTrace>()
+            .GetComposite<CompoTrace>()
             .SetTarget(Player);
         
         enemy ??= GetComponent<Rigidbody2D>();

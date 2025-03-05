@@ -25,7 +25,7 @@ public class SkillButton: InteractButtonUI {
     
     public bool Show { get; private set; } = true;
     
-    private const float AppearTime = 0.3f;
+    private const float AppearTime = 0f;
 
     public void TurnOff() {
         onMouse = false;

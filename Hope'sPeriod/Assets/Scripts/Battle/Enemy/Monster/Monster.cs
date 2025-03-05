@@ -28,6 +28,8 @@ public class Monster: MonoBehaviour {
         IsShowingPattern = true;
         
         float hpPercent = (float)MonsterSlider.Instance.CurrentHp / MaxHP;
+        
+        //Select skill
         int index = 0;
         while(index < patterns.Count && hpPercent > patterns[index].State) {
             index++;

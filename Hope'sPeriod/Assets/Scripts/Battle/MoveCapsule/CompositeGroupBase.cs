@@ -23,7 +23,7 @@ public class CompositeGroupBase : MoveComposite {
         return Collider.ContactInfo.Contact;
     }
     
-    public CompositeGroupBase(GameObject owner) : base(owner) {}
+    public CompositeGroupBase(GameObject owner = null) : base(owner) {}
 
     public override Vector2 Play(Vector2 currentVelo, Vector2 nextVelo, Direction contactInfo = Direction.None) {
 
@@ -43,10 +43,10 @@ public class CompositeGroupBase : MoveComposite {
         Collider = colliderSetting;
         return this;
     }
-    
+
     public CompositeGroupBase SetPower<T>(float power) where T : MoveComposite {
 
-        foreach (var composite in GetTypes<T>()) {
+        foreach (var composite in GetComposites<T>()) {
         
             composite.Power = power;
         }
@@ -55,19 +55,19 @@ public class CompositeGroupBase : MoveComposite {
 
      public float GetPower<T>() where T : MoveComposite {
 
-         return GetType<T>().Power;
+         return GetComposite<T>().Power;
      }
      
     public List<float> GetPowers<T>() where T : MoveComposite {
         
-        return GetTypes<T>()
+        return GetComposites<T>()
             .Select(T => T.Power)
             .ToList();
     }
 
     public CompositeGroupBase SetApply<T>(Direction apply) where T : MoveComposite {
 
-        foreach (var composite in GetTypes<T>()) {
+        foreach (var composite in GetComposites<T>()) {
         
             composite.Apply = apply;
         }
@@ -77,7 +77,7 @@ public class CompositeGroupBase : MoveComposite {
 
     public CompositeGroupBase AddApply<T>(Direction apply) where T : MoveComposite {
 
-        foreach (var composite in GetTypes<T>()) {
+        foreach (var composite in GetComposites<T>()) {
 
             composite.Apply |= apply;
         }
@@ -87,7 +87,7 @@ public class CompositeGroupBase : MoveComposite {
 
     public CompositeGroupBase ExtractApply<T>(Direction apply) where T : MoveComposite {
         
-        foreach (var composite in GetTypes<T>()) {
+        foreach (var composite in GetComposites<T>()) {
         
             composite.Apply |= ~apply;
         }
@@ -97,16 +97,16 @@ public class CompositeGroupBase : MoveComposite {
 
     public List<Direction> GetApplys<T>() where T : MoveComposite {
 
-         return GetTypes<T>()
+         return GetComposites<T>()
             .Select(T => T.Apply)
             .ToList();
     }
     public Direction GetApply<T>() where T : MoveComposite {
 
-        return GetType<T>().Apply;
+        return GetComposite<T>().Apply;
     }
 
-    public List<T> GetTypes<T>() where T : MoveComposite {
+    public List<T> GetComposites<T>() where T : MoveComposite {
 
         List<T> list = composites
             .OfType<T>()
@@ -114,9 +114,9 @@ public class CompositeGroupBase : MoveComposite {
 
         return list;
     }
-    public T GetType<T>() where T : MoveComposite {
+    public T GetComposite<T>() where T : MoveComposite {
 
-        return GetTypes<T>()[0];
+        return GetComposites<T>()[0];
     }
 
     public CompositeGroupBase AddComposite(MoveComposite composite) {

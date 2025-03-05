@@ -10,7 +10,7 @@ public sealed class CompoGravity : MoveComposite {
 
     private float gravityScale = 0;
 
-    public CompoGravity(GameObject owner): base(owner) {}
+    public CompoGravity(GameObject owner = null): base(owner) {}
     public override Vector2 Play(Vector2 currentVelo, Vector2 nextVelo, Direction contactInfo) {
      
         if (Apply.ContainOpposite()) {

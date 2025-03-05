@@ -15,7 +15,7 @@ public sealed class CompoTrace : MoveComposite {
     private GameObject target = null;
     public override GameObject Owner { get; protected set; }
 
-    public CompoTrace(GameObject owner) : base(owner) {}
+    public CompoTrace(GameObject owner = null) : base(owner) {}
     
     public CompoTrace SetTarget(GameObject target) {
         this.target = target;

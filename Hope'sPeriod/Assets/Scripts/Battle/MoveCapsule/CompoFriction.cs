@@ -12,7 +12,7 @@ public sealed class CompoFriction : MoveComposite {
 
     public float trashhold = 0.1f;
 
-    public CompoFriction(GameObject owner) : base(owner) {}
+    public CompoFriction(GameObject owner = null) : base(owner) {}
     
     public override Vector2 Play(Vector2 currentVelo, Vector2 nextVelo, Direction contactInfo) {
 

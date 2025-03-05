@@ -29,7 +29,7 @@ public static class CheckEvent {
     public static void SetMap(int code) {
         mapCode = code;
         LoadMapInfo();
-        //SetItem(code);
+        SetItem(code);
         
         map = Object.Instantiate(mapInfo.Prefab(code));
     }
@@ -64,7 +64,7 @@ public static class CheckEvent {
             Debug.Log(mapCode);
             map = Object.Instantiate(mapPrefab);
             mapCode = connectMapInfo.ConnectMapCode;
-            //SetItem(mapCode);
+            SetItem(mapCode);
             player.transform.localPosition = DefaultPos + connectMapInfo.ConnectPos;
             resultPos = connectMapInfo.ConnectPos;
         
@@ -104,12 +104,12 @@ public static class CheckEvent {
             var direction = viewDirection.ConvertVector().ToVec2Int();
         
             if (mapInfo.Item(mapCode, pos, out var item)) {
-                //SetItem(mapCode);
+                SetItem(mapCode);
                 Debug.Log($"Get item {ItemInfo.Name(item.Code)} * {item.Count} at current pos");
                 GetItemWindow.Instance.TurnOn(item);
             }
             else if (mapInfo.Item(mapCode, pos + direction, out item)) {
-                //SetItem(mapCode);
+                SetItem(mapCode);
                 Debug.Log($"Get item {ItemInfo.Name(item.Code)} * {item.Count} at view point");
                 GetItemWindow.Instance.TurnOn(item);
             }
@@ -129,22 +129,26 @@ public static class CheckEvent {
         
         var items = mapInfo.Items(mapCode);
 
-        foreach (var item in items) {
+        foreach ((Vector3Int pos, GetItemInfo sub) item in items) {
             bool check = ScriptCodeInterpreter
-                .Interpret(item.Item2.Condition)
+                .Interpret(item.sub.Condition)
                 .ToCondition();
             
             if(!check) 
                 continue;
 
-            var newItem = new GameObject();
-            var renderer = newItem.AddComponent<SpriteRenderer>();
-            renderer.sprite = Resources.Load<Sprite>($"CodeImage/Item/{item.Item2.Code}");
-            renderer.sortingLayerID = SortingLayer.NameToID("Item");
-            newItem.transform.localPosition = item.Item1;
-            newItem.transform.localScale = new(0.5f, 0.5f);
+            var target = Resources.Load<GameObject>("EtcPrefabs/ItemLocationShower");
+            var newItem = GameObject.Instantiate(target);
+            Vector3 pos = item.pos;
+            
+            //interval
+            pos.y += 0.05f;
+            
+            newItem.transform.localPosition = pos;
+            newItem.transform.localScale = new(0.2f, 0.2f);
 
-            itemObjects.Add(item.Item1, newItem);
+            newItem.GetComponent<WaveMove>().SetUp();
+            itemObjects.Add(item.pos, newItem);
         }
     }
 }

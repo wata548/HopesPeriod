@@ -1,7 +1,7 @@
 using UnityEngine;
 
 public class CompoRoute: MoveComposite {
-    public CompoRoute(GameObject owner) : base(owner) {
+    public CompoRoute(GameObject owner = null) : base(owner) {
     }
 
     public override int Priority { get; protected set; } = 1;

@@ -8,7 +8,7 @@ public sealed class CompoInput : MoveComposite {
     public override float Power { get; set; } = 5;
     public override GameObject Owner { get; protected set; }
 
-    public CompoInput(GameObject owner) : base(owner) {}
+    public CompoInput(GameObject owner = null) : base(owner) {}
     
     //This function be not impacted by past or current velocity
     public override Vector2 Play(Vector2 currentVelo, Vector2 nextVelo, Direction contactInfo) {

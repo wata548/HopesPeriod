@@ -14,7 +14,7 @@ public abstract class MoveComposite: IComparable<MoveComposite> {
         return this;
     }
 
-    public MoveComposite(GameObject owner) => Owner = owner;
+    public MoveComposite(GameObject owner = null) => Owner = owner;
 
     public abstract Vector2 Play(Vector2 currentVelo, Vector2 nextVelo, Direction contactInfo = Direction.None);
 
