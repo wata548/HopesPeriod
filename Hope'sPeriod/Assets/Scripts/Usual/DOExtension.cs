@@ -6,6 +6,9 @@ using UnityEngine.UI;
 
 public static  class DOExtention {
 
+    public static Tween DORepeat(this Tween target, int count) {
+        return target.SetLoops(count);
+    }
     public static Tween DOBlink(this SpriteRenderer target, float appear = 0, float stay = 0, float disappear = 0, float power = 1, float underPower = 0) {
 
         if (appear < 0 || stay < 0 || disappear < 0 || power is < 0 or > 1 || underPower is < 0 or > 1)

@@ -7,8 +7,8 @@ public class M1101Object1: BaseEnemy {
     public override float Damage { get; protected set; }
     private Rigidbody2D rigidbody2D = null;
     
-    private const float WidthLength = 6.5f;
-    private const float HeightLength = 4f;
+    private const float WidthLength = 7.5f;
+    private const float HeightLength = 5f;
    
     public void SetPos(Vector2 pos) {
         MoveComposite.GetComposite<CompoLinear>()
