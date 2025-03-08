@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.03.00">
+	<object class="AudioFile" id="{17d70927-e87c-4cd7-b95e-dd18a70a8b89}">
+		<property name="assetPath">
+			<value>UI/Ssk.wav</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>48</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>0.11908333333333333</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{8b73823f-b1bc-48b0-8ee3-e9eef5630903}</destination>
+		</relationship>
+	</object>
+</objects>

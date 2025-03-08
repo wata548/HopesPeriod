@@ -21,6 +21,7 @@ public abstract class CircleAttack: EnemyPatternBase {
         var startDegree = middleDegree + limitDegree * 0.5f;
         var clockDirection = false;
         if (useClockDirection) {
+            
             clockDirection = Random.Range(0, 1f) > 0.5f ? true : false;
             if (clockDirection) {
                 startDegree = middleDegree - limitDegree * 0.5f;
