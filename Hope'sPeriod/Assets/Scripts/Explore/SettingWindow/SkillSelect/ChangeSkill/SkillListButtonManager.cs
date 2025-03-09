@@ -135,6 +135,7 @@ public class SkillListButtonManager: InteractButtonManager {
     
     private void Awake() {
         base.Awake();
+        
         foreach (var button in buttons) {
             Parse(button).SetUp();
         }

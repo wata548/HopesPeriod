@@ -42,10 +42,10 @@ MonoBehaviour:
   Path: Assets/FMOD/sounds/Build/Desktop/UI.bank
   Name: UI
   StudioPath: bank:/UI
-  lastModified: 638770771229464845
+  lastModified: 638771191941857492
   FileSizes:
   - Name: Desktop
-    Value: 2656
+    Value: 4704
   Exists: 1
 --- !u!114 &-296096571047507584
 MonoBehaviour:
@@ -101,7 +101,7 @@ MonoBehaviour:
   - {fileID: 6486811969002845802}
   StringsBanks:
   - {fileID: 6996113657496164779}
-  cacheTime: 638770771229464845
+  cacheTime: 638771191941857492
   cacheVersion: 131846
 --- !u!114 &193939819374954667
 MonoBehaviour:

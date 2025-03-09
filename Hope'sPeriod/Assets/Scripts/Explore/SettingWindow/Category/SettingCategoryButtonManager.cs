@@ -1,4 +1,5 @@
 using System;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -10,7 +11,13 @@ public class SettingCategoryButtonManager: InteractButtonManager {
     [SerializeField] private SkillSelectButtonManager skillListShower; 
     [SerializeField] private LoadButtonOnPlayManager save;
     [SerializeField] private TutorialButtonManager tutorial;
-    
+
+    public override void SetInteractable(bool interactable) {
+        base.SetInteractable(interactable);
+        if (interactable)
+            SettingCategoryButton.SetColor(Parse(buttons[0]).Context);
+    }
+
     public override void SelectIn(InteractButton target) { }
     public override void SelectOut(InteractButton target) { }
 
@@ -67,5 +74,13 @@ public class SettingCategoryButtonManager: InteractButtonManager {
     private void Awake() {
         base.Awake();
         UseSelectSound = false;
+        UseClickSound = true;
+    }
+
+    private SettingCategoryButton Parse(InteractButton target) {
+        if (target is not SettingCategoryButton result)
+            throw new TypeMissMatched(target.gameObject, typeof(SettingCategoryButton));
+
+        return result;
     }
 }

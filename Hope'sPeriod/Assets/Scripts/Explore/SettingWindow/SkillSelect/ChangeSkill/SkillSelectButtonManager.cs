@@ -57,4 +57,10 @@ public class SkillSelectButtonManager: InteractButtonManager {
     }
 
     public SkillSelectButton GetButton(int index) => Parse(buttons[index]);
+
+    private void Awake() {
+        base.Awake();
+        UseClickSound = true;
+        UseSelectSound = false;
+    }
 }

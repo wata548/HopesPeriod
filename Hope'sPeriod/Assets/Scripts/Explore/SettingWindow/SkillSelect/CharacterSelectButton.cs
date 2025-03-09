@@ -19,6 +19,7 @@ public class CharacterSelectButton: InteractButtonUI {
     }
     public override void Click() {
         Parse(Manager).Click(Index);
+        ClickSound();
     }
 
     private CharacterSelectButtonManager Parse(InteractButtonManager manager) {

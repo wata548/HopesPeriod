@@ -8,6 +8,8 @@ public class CategoryButton: InteractButtonUI {
     [SerializeField] private TMP_Text buttonName;
     public override void Click() {
         if (!Manager.Interactable) return;
+
+        ClickSound();
         Parse(Manager).SetSelect(Index);
     }
 

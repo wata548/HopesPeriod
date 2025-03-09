@@ -55,6 +55,7 @@ public class SkillSelectButton: InteractButtonUI {
         }
 
         select = Index;
+        ClickSound();
         Active();
         
         Parse(Manager).ListTurnOn(Index);

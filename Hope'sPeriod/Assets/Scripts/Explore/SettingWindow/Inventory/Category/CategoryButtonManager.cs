@@ -30,6 +30,12 @@ public class CategoryButtonManager: InteractButtonManager {
 
         inventoryButton.SetCategory(buttonMatchCategory[select]);
     }
+
+    private void Awake() {
+        base.Awake();
+        UseClickSound = true;
+        UseSelectSound = false;
+    }
     
     private static CategoryButton Parse(InteractButton button) {
 

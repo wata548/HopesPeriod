@@ -32,6 +32,8 @@ public class ButtonInteractManager: MonoBehaviour {
             button.EndAnimation();
         }
 
+        AudioManager.Instance.PlayOne(FmodEvents.Instance.SelectIn);
+
         selectType = type;
         target.StartAnimation();
     }

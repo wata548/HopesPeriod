@@ -42,6 +42,8 @@ public class CharacterSelectButtonManager: InteractButtonManager {
     private void Start() {
         TurnOff();
         skillSelect.TurnOff();
+        UseClickSound = true;
+        UseSelectSound = false;
     }
 
     private CharacterSelectButton Parse(InteractButton button) {

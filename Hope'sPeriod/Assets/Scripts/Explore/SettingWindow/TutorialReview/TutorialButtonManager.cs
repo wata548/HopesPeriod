@@ -7,7 +7,7 @@ public class TutorialButtonManager: InteractButtonManager {
     public override bool Interactable { get; protected set; } = false;
     [SerializeField] private TMP_Text page;
     [SerializeField] private GameObject window;
-    [field: SerializeField] public SettingCategoryButtonManager manager { get; private set; }
+    [field: SerializeField] public SettingCategoryButtonManager Manager { get; private set; }
     private const int ShowCount = 5;
     
     public override void SelectIn(InteractButton target) {}

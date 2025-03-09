@@ -32,7 +32,7 @@ public class TutorialButton: InteractButtonUI {
         if (!On)
             return;
 
-        Parse(Manager).manager.SetInteractable(false);
+        Parse(Manager).Manager.SetInteractable(false);
         SettingWindow.SetInteractable(false);
         Manager.SetInteractable(false);
         
@@ -41,7 +41,7 @@ public class TutorialButton: InteractButtonUI {
         StartCoroutine(Wait.WaitAndDo(() => ScriptShower.Instance.EventCode == 0, () => {
             SettingWindow.SetInteractable(true);
             Manager.SetInteractable(true);
-            Parse(Manager).manager.SetInteractable(true);
+            Parse(Manager).Manager.SetInteractable(true);
         }));
     }
 
