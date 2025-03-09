@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <objects serializationModel="Studio.02.03.00">
-	<object class="AudioFile" id="{98454014-411c-47d1-93d0-cdb4d1031a57}">
+	<object class="AudioFile" id="{5de9ccee-c15a-429b-b813-7b0c04460d82}">
 		<property name="assetPath">
-			<value>Step/Footsteps, Human, Tile, Run SND62090.wav</value>
+			<value>Step/Unrealistic/Marker 01.wav</value>
 		</property>
 		<property name="frequencyInKHz">
-			<value>96</value>
+			<value>44.0999985</value>
 		</property>
 		<property name="channelCount">
-			<value>1</value>
+			<value>2</value>
 		</property>
 		<property name="length">
-			<value>2.7184166666666667</value>
+			<value>0.40000000000000002</value>
 		</property>
 		<relationship name="masterAssetFolder">
 			<destination>{8b73823f-b1bc-48b0-8ee3-e9eef5630903}</destination>

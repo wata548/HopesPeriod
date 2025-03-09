@@ -5,7 +5,8 @@ using UnityEngine;
 public class SettingCategoryButton: InteractButtonUI {
 
     private TMP_Text context;
-
+    private static TMP_Text beforeSelect = null;
+    
     private void Awake() {
 
         context = GetComponentInChildren<TMP_Text>();
@@ -13,6 +14,10 @@ public class SettingCategoryButton: InteractButtonUI {
 
     public override void Click() {
 
+        if(beforeSelect is not null)
+            beforeSelect.color = Color.white;
+        context.color = Color.yellow;
+        
         if (!Manager.Interactable)
             return;
         

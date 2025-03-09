@@ -1,17 +1,9 @@
-
-using FMODUnity;
-using UnityEngine;
-
 public class MainButtonManager: InteractButtonManager {
     public override bool Interactable { get; protected set; } = true;
     
-    [Header("Audio Sources")]
-    [SerializeField] private EventReference hoverSound;
-    
-    
     public override void SelectIn(InteractButton target) {
         Parse(target).Active();
-        AudioManager.Instance.PlayOne(hoverSound);
+        AudioManager.Instance.PlayOne(FmodEvents.Instance.SelectIn);
     }
 
     public override void SelectOut(InteractButton target) {

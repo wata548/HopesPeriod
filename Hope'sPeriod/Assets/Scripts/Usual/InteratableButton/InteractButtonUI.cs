@@ -1,1 +1,4 @@
-public abstract class InteractButtonUI: InteractButton {}
+public abstract class InteractButtonUI : InteractButton {
+    
+    
+}

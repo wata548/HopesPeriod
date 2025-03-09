@@ -7,9 +7,13 @@ public class Warnnning: MonoBehaviour {
 
     [SerializeField] private Image warnning;
     [SerializeField] private GameObject warnningBack;
+    [SerializeField] private MainButtonManager mainButtonManger;
     public static Warnnning Instance { get; private set; }
 
     public Tween StartAnimation() {
+
+        mainButtonManger.SetInteractable(false);
+        
         Sequence warnningAnimation = DOTween.Sequence();
         return warnningAnimation
             .Append(warnning.DOFade(1, 1f)

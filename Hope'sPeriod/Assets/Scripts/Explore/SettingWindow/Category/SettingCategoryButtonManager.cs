@@ -10,6 +10,7 @@ public class SettingCategoryButtonManager: InteractButtonManager {
     [SerializeField] private SkillSelectButtonManager skillListShower; 
     [SerializeField] private LoadButtonOnPlayManager save;
     [SerializeField] private TutorialButtonManager tutorial;
+    
     public override void SelectIn(InteractButton target) { }
     public override void SelectOut(InteractButton target) { }
 
@@ -49,6 +50,7 @@ public class SettingCategoryButtonManager: InteractButtonManager {
     }
 
     public void Click(int index = 0) {
+
         Action action = index switch {
         
             0 => TurnOnInventory,
@@ -60,5 +62,10 @@ public class SettingCategoryButtonManager: InteractButtonManager {
         };
                 
         action?.Invoke();
+    }
+
+    private void Awake() {
+        base.Awake();
+        UseSelectSound = false;
     }
 }

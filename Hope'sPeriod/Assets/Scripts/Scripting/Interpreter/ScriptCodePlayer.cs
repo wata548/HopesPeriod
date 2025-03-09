@@ -95,7 +95,6 @@ public class ScriptCodePlayer: MonoBehaviour {
         target.DOFade(0, 0);
         target.enabled = true;
         target.sprite = Resources.Load<Sprite>($"Background/{command.Image}");
-        Debug.Log(command.FadeTime);
         target.DOFade(1, command.FadeTime)
             .OnComplete(command.EndProcess);
     }

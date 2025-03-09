@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.03.00">
+	<object class="AudioFile" id="{5c8684b1-8670-4af9-bb12-4b4668334435}">
+		<property name="assetPath">
+			<value>Step/Unrealistic/Marker 04.wav</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>44.0999985</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>0.41999999999999998</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{8b73823f-b1bc-48b0-8ee3-e9eef5630903}</destination>
+		</relationship>
+	</object>
+</objects>

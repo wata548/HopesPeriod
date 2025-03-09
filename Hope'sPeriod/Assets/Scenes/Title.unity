@@ -2112,6 +2112,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1243057474}
   - component: {fileID: 1243057473}
+  - component: {fileID: 1243057475}
   m_Layer: 0
   m_Name: AudioManager
   m_TagString: Untagged
@@ -2146,6 +2147,39 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1243057475
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1243057472}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c2fd59cd103a4ea5a97c0616b0025a09, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <SelectIn>k__BackingField:
+    Guid:
+      Data1: 1707041092
+      Data2: 1330321834
+      Data3: 1148356538
+      Data4: 132809622
+    Path: event:/SelectIn
+  <Click>k__BackingField:
+    Guid:
+      Data1: 1643026501
+      Data2: 1221395272
+      Data3: -990082658
+      Data4: -289020335
+    Path: event:/Click
+  <Walk>k__BackingField:
+    Guid:
+      Data1: -1354585741
+      Data2: 1124016804
+      Data3: -1053093242
+      Data4: 125058023
+    Path: event:/Walk
 --- !u!1 &1298996603
 GameObject:
   m_ObjectHideFlags: 0
@@ -3281,13 +3315,6 @@ MonoBehaviour:
   - {fileID: 156541471}
   - {fileID: 465334494}
   - {fileID: 1773635819}
-  hoverSound:
-    Guid:
-      Data1: 1707041092
-      Data2: 1330321834
-      Data3: 1148356538
-      Data4: 132809622
-    Path: event:/SelectIn
 --- !u!224 &1652036239
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4024,6 +4051,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   warnning: {fileID: 2024328115}
   warnningBack: {fileID: 1452584364}
+  mainButtonManger: {fileID: 1652036238}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

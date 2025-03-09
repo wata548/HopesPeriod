@@ -62,8 +62,14 @@ public class InventoryButtonManager : InteractButtonManager {
 
             int code = 0;
             if (i < factorSize) code = factors[i];
-            
-            fixButtons[i].SetCode(code);
+
+            if (code == 0) {
+                fixButtons[i].gameObject.SetActive(false);
+            }
+            else {
+                fixButtons[i].gameObject.SetActive(true);
+                fixButtons[i].SetCode(code);
+            }
         }
 
         if (selectCancel)

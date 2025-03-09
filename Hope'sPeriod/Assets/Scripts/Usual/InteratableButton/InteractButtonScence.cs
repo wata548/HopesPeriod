@@ -14,6 +14,8 @@ public abstract class InteractButtonScence : InteractButton {
             return;
         
         if (Input.GetMouseButtonDown(0)) {
+            if (Manager.UseClickSound)
+                AudioManager.Instance.PlayOne(FmodEvents.Instance.Click);
             Click();
         }
     }

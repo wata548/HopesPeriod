@@ -5,7 +5,11 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class MainButton: InteractButtonUI {
-    public override void Click() => Manager.SetInteractable(false);
+    public override void Click() {
+        
+        Manager.SetInteractable(false);
+        AudioManager.Instance.PlayOne(FmodEvents.Instance.Click);
+    }
 
     private float fontSize;
     private const float ActivePower = 1.2f;
@@ -36,7 +40,7 @@ public class MainButton: InteractButtonUI {
     }
 
     public void StartButton() {
-        
+
         SaveData.Load();
 
         Warnnning.Instance

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.03.00">
+	<object class="EncodableAsset" id="{31f32a68-6dce-47f4-a001-e558d60dcdb3}">
+		<property name="assetPath">
+			<value>Step/Tile/</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{8b73823f-b1bc-48b0-8ee3-e9eef5630903}</destination>
+		</relationship>
+	</object>
+</objects>

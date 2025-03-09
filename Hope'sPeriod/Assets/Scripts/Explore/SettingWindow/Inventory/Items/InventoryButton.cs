@@ -39,17 +39,10 @@ public class InventoryButton: InteractButtonUI {
     public void SetCode(int code) {
 
         Code = code; 
-        if (code == 0) {
-            On = false;
-            icon.color = new(0, 0, 0, 0);
-            frame.color = new(0, 0, 0, 0);
-        }
-        else {
-            On = true;
-            icon.sprite = CodeInfo.LoadImage(Code);
-            icon.color = Color.white;
-            frame.color = Color.white;
-        }
+        On = true;
+        icon.sprite = CodeInfo.LoadImage(Code);
+        icon.color = Color.white;
+        frame.color = Color.white;
     }
     
     private void Awake() {
@@ -66,4 +59,3 @@ public class InventoryButton: InteractButtonUI {
         return inventoryManager;
     }
 }
-

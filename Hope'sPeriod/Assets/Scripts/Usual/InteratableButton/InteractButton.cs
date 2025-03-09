@@ -77,6 +77,8 @@ public abstract class InteractButtonManager: MonoBehaviour {
 
     //if it is false, you can't interact buttons
     public abstract bool Interactable { get; protected set; }
+    public bool UseSelectSound { get; protected set; } = true;
+    public bool UseClickSound { get; protected set; } = false;
     public int Selecting { get; protected set; } = 0;
     
     public int Before { get; set; } = -1;
@@ -105,6 +107,9 @@ public abstract class InteractButtonManager: MonoBehaviour {
         }
 
         buttons[Selecting].SetIsOn(true);
+        if (UseSelectSound)
+            AudioManager.Instance.PlayOne(FmodEvents.Instance.SelectIn);
+            
         SelectIn(buttons[Selecting]);
         Before = Selecting;
     }

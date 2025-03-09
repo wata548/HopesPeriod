@@ -10,7 +10,8 @@ public class ContactInfo {
     }
 
     public void ContactOut(Direction dir) {
-
+        if ((Contact & dir) == 0)
+            return;
         Contact ^= dir;
     }
 }

@@ -15,9 +15,18 @@ public class AudioManager: MonoBehaviour {
             Instance = this;
         }
         else {
-            Destroy(this);
+            Destroy(gameObject);
         }
     }
+
+    public bool IsPlaying(EventInstance sound) {
+        PLAYBACK_STATE state;
+        sound.getPlaybackState(out state);
+        return state == PLAYBACK_STATE.PLAYING;
+    }
+    
+    public EventInstance CreateInstance(EventReference sound)
+        => RuntimeManager.CreateInstance(sound);
 
     public void PlayOne(EventReference sound)
         => RuntimeManager.PlayOneShot(sound);
