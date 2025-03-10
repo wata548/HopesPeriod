@@ -3,11 +3,21 @@ using UnityEngine;
 using System.Collections.Generic;
 using System.Linq;
 using TMPro;
+using UnityEngine.Serialization;
 
 public class KeyBind: MonoBehaviour {
 
-    [SerializeField] private TMP_Text shower;
+    
+   //==================================================||Serialize 
+    [SerializeField] private TMP_Text settingShower;
+    [SerializeField] private GameObject showKey;
+    [SerializeField] private TMP_Text showKeyText;
+   //==================================================||Members 
     private static int select = 0; 
+    private static int index = 0;
+    private static readonly Color Selected = Color.red;
+    private static readonly Color NotSelected = Color.gray;
+    private bool isShowerOn = false;
     
     private readonly static List<(string korean, string fileName)> bindType = new () {
         ("WASD", "Default"),
@@ -16,30 +26,27 @@ public class KeyBind: MonoBehaviour {
 
     private readonly static Dictionary<KeyTypes, string> keyTypeKorean = new() {
         { KeyTypes.Cancel, "취소" },
-        { KeyTypes.Select, "선택 / 상호 작용" },
+        { KeyTypes.Select, "선택 / 상호 작용".SetSize(0.7f) },
         { KeyTypes.Up, "위쪽" },
         { KeyTypes.Down, "아래쪽" },
         { KeyTypes.Left, "왼쪽" },
         { KeyTypes.Right, "오른쪽" },
-    };
-
-    private int index = 0;
-
-    public void Show() {
-        shower.text = bindType[select].korean;
-    }
-
+    }; 
+    //==================================================||Method
     public void SelectKeySetting() {
+        select = index;
         InputManager.Instance.KeySettingLoad(bindType[select].fileName);
+        Refresh();
     }
 
-    public string ShowSettng(string fileName) {
+    public void ShowSetting() {
         var keys = Enum
             .GetValues(typeof(KeyTypes))
             .Cast<KeyTypes>()
-            .Where(key => key != KeyTypes.Interaction)
+            .Where(key => key != KeyTypes.Interaction && key != KeyTypes.Jump)
             .ToList();
 
+        var fileName = bindType[index].fileName;
         var Mapinginfo = InputManager.Instance.DeserializeJson(fileName);
         string info = "";
         
@@ -59,10 +66,35 @@ public class KeyBind: MonoBehaviour {
             info += $"{keyTypeKorean[key]} : {keyName}\n";
         }
 
-        return info;
+        isShowerOn = true;
+        showKey.SetActive(true);
+        showKeyText.text = info;
     }
     
     public void NextButton() {
         index = (index + 1) % 2;
+        Refresh();
+    }
+
+    public void Refresh() {
+        
+        settingShower.text = bindType[index].korean;
+        settingShower.color = index == select ? Selected : NotSelected;
+
+        if (isShowerOn) {
+            ShowSetting();
+        }
+    }
+
+    public void ShowerTurnOff() {
+        showKey.SetActive(false);
+        isShowerOn = false;
+    }
+    
+    private void Update() {
+
+        if (isShowerOn && InputManager.Instance.Click(KeyTypes.Cancel)) {
+            ShowerTurnOff();
+        }
     }
 }

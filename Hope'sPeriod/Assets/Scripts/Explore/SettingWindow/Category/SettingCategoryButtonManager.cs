@@ -11,7 +11,8 @@ public class SettingCategoryButtonManager: InteractButtonManager {
     [SerializeField] private SkillSelectButtonManager skillListShower; 
     [SerializeField] private LoadButtonOnPlayManager save;
     [SerializeField] private TutorialButtonManager tutorial;
-
+    [SerializeField] private SettingWindowManager setting;
+    
     public override void SetInteractable(bool interactable) {
         base.SetInteractable(interactable);
         if (interactable)
@@ -36,8 +37,9 @@ public class SettingCategoryButtonManager: InteractButtonManager {
         save.TurnOn();
     } 
     private void TurnOnSetting() {
-               
+
         TurnOff();
+        setting.TurnOn();
     }
     private void TurnOnManual() {
                
@@ -54,6 +56,7 @@ public class SettingCategoryButtonManager: InteractButtonManager {
         skillListShower.TurnOff();
         save.TurnOff();
         tutorial.TurnOff();
+        setting.TurnOff();
     }
 
     public void Click(int index = 0) {

@@ -216,7 +216,7 @@ public class InputManager : MonoBehaviour
 
         if (!File.Exists(path)) {
 
-            throw new Exception("This file is not exsist. Please check file name");
+            throw new Exception($"This file is not exsist({fileName}). Please check file name");
         }
 
         string json = File.ReadAllText(path);

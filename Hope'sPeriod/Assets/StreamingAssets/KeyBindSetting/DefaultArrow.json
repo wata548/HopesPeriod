@@ -20,10 +20,14 @@
     "REQUIRED_HOLD_TIME": 0.5
   },
   "SELECT": {
-    "key": "X",
+    "key": "Z",
     "REQUIRED_HOLD_TIME": 0.5
   },
   "INTERACTION": {
+    "key": "Z",
+    "REQUIRED_HOLD_TIME": 0.5
+  },
+  "Cancel":{
     "key": "X",
     "REQUIRED_HOLD_TIME": 0.5
   }
