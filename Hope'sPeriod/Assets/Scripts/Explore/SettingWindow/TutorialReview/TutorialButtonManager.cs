@@ -84,6 +84,10 @@ public class TutorialButtonManager: InteractButtonManager {
 
         return result;
     }
-    
-    
+
+    private void Awake() {
+        base.Awake();
+        UseClickSound = true;
+        UseSelectSound = false;
+    }
 }

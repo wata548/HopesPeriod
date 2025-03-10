@@ -10,10 +10,17 @@ public class MainButtonManager: InteractButtonManager {
         Parse(target).Disactive();
     }
 
+    public void Init() {
+        foreach (var button in buttons) {
+            SelectOut(button);
+        }
+    }
+
     private MainButton Parse(InteractButton button) {
         if (button is not MainButton result)
             throw new TypeMissMatched(button.gameObject, typeof(MainButton));
 
         return result;
     } 
+    
 }

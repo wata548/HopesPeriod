@@ -1,4 +1,5 @@
 using System;
+using System.CodeDom;
 using DG.Tweening;
 using TMPro;
 using UnityEngine;
@@ -6,6 +7,8 @@ using UnityEngine.UI;
 
 public class MainButton: InteractButtonUI {
     public override void Click() {
+
+        ToMainButtonManager(Manager).Init();
         
         Manager.SetInteractable(false);
         AudioManager.Instance.PlayOne(FmodEvents.Instance.Click);
@@ -53,4 +56,11 @@ public class MainButton: InteractButtonUI {
         text = GetComponentInChildren<TMP_Text>();
         fontSize = text.fontSize;
     }
+    
+    public static MainButtonManager ToMainButtonManager(InteractButtonManager manager) {
+        if (manager is not MainButtonManager result)
+            throw new TypeMissMatched(manager.gameObject, typeof(MainButtonManager));
+
+        return result;
+    }  
 }

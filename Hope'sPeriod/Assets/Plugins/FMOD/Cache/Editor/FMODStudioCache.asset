@@ -42,10 +42,10 @@ MonoBehaviour:
   Path: Assets/FMOD/sounds/Build/Desktop/UI.bank
   Name: UI
   StudioPath: bank:/UI
-  lastModified: 638771191941857492
+  lastModified: 638771631737470741
   FileSizes:
   - Name: Desktop
-    Value: 4704
+    Value: 6784
   Exists: 1
 --- !u!114 &-296096571047507584
 MonoBehaviour:
@@ -96,12 +96,13 @@ MonoBehaviour:
   - {fileID: -296096571047507584}
   - {fileID: -2381844371047289336}
   - {fileID: 614563827096059747}
+  - {fileID: 5137676206707650667}
   EditorParameters: []
   MasterBanks:
   - {fileID: 6486811969002845802}
   StringsBanks:
   - {fileID: 6996113657496164779}
-  cacheTime: 638771191941857492
+  cacheTime: 638771631737470741
   cacheVersion: 131846
 --- !u!114 &193939819374954667
 MonoBehaviour:
@@ -152,7 +153,34 @@ MonoBehaviour:
   - {fileID: 9157535821097423191}
   IsStream: 0
   Is3D: 0
-  IsOneShot: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &5137676206707650667
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Dialogue
+  m_EditorClassIdentifier: 
+  Path: event:/Dialogue
+  Guid:
+    Data1: 11666116
+    Data2: 1285968129
+    Data3: -918993007
+    Data4: -258225023
+  Banks:
+  - {fileID: -2369436682224511013}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
@@ -172,10 +200,10 @@ MonoBehaviour:
   Path: Assets/FMOD/sounds/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638770771229116042
+  lastModified: 638771392362341656
   FileSizes:
   - Name: Desktop
-    Value: 1074
+    Value: 1378
   Exists: 1
 --- !u!114 &6996113657496164779
 MonoBehaviour:
@@ -192,10 +220,10 @@ MonoBehaviour:
   Path: Assets/FMOD/sounds/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638770771229126479
+  lastModified: 638771392362352000
   FileSizes:
   - Name: Desktop
-    Value: 982
+    Value: 1094
   Exists: 1
 --- !u!114 &9157535821097423191
 MonoBehaviour:
@@ -212,7 +240,7 @@ MonoBehaviour:
   Path: Assets/FMOD/sounds/Build/Desktop/Enviroment.bank
   Name: Enviroment
   StudioPath: bank:/Enviroment
-  lastModified: 638770771229095019
+  lastModified: 638771490424702251
   FileSizes:
   - Name: Desktop
     Value: 71488

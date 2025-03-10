@@ -120,7 +120,12 @@ public class InputManager : MonoBehaviour
             return false;
         }
 
-        return KeyMapper[type].Click();
+        var inputByMouse = false; 
+        if (type == KeyTypes.Cancel) {
+            inputByMouse = Input.GetMouseButtonDown(1);
+        }
+        
+        return inputByMouse | KeyMapper[type].Click();
 
     }
 
@@ -190,12 +195,11 @@ public class InputManager : MonoBehaviour
     }
 
     // Change Key Mapping
-    public void KeySettingLoad(Dictionary<KeyTypes, KeyState> newKeyMapper) {
+    private void KeySettingLoad(Dictionary<KeyTypes, KeyState> newKeyMapper) {
 
         KeyMapper = newKeyMapper;
     }
     public void KeySettingLoad(string fileName) {
-
         
         var newSettig = DeserializeJson(fileName);
         KeySettingLoad(newSettig);

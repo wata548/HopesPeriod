@@ -8,7 +8,6 @@ public class LoadButtonManager: InteractButtonManager {
     [SerializeField] private GameObject window;
     [SerializeField] private Cursor cursor;
     [SerializeField] private MainButtonManager main;
-    [SerializeField] private bool IsMain = true;
     
     public void TurnOn() {
         Interactable = true;
@@ -19,8 +18,7 @@ public class LoadButtonManager: InteractButtonManager {
         Interactable = false;
         window.SetActive(false);
         
-        if(IsMain)
-            main.SetInteractable(true);
+        main.SetInteractable(true);
     }
     public override void SelectIn(InteractButton target) {
         

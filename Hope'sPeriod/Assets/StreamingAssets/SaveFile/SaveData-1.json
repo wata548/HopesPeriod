@@ -1,5 +1,5 @@
 {
-  "PlayTime": 1108.23352,
+  "PlayTime": 33.2889252,
   "SaveCharacterInfo": [
     {
       "Exist": true,
@@ -8,124 +8,87 @@
       "Skill": [
         9101,
         9102,
-        9103,
-        9104
+        0,
+        0
       ],
       "HaveSkill": [
         9101,
         9102,
-        9103,
-        9104
+        0,
+        0
       ],
       "MaximumHp": 100.0,
-      "CurrentHp": 8.0,
+      "CurrentHp": 100.0,
       "MaximumMp": 130.0,
-      "CurrentMp": 0.0
+      "CurrentMp": 130.0
     },
     {
-      "Exist": true,
+      "Exist": false,
       "Dead": false,
       "Name": "Cavil",
       "Skill": [
         9201,
         9202,
-        9203,
-        9204
+        0,
+        0
       ],
       "HaveSkill": [
         9201,
         9202,
-        9203,
-        9204
+        0,
+        0
       ],
       "MaximumHp": 120.0,
-      "CurrentHp": 11.0,
+      "CurrentHp": 120.0,
       "MaximumMp": 105.0,
-      "CurrentMp": 15.0
+      "CurrentMp": 105.0
     },
     {
-      "Exist": true,
+      "Exist": false,
       "Dead": false,
       "Name": "Lippi",
       "Skill": [
         9301,
         9302,
-        9303,
-        9304
+        0,
+        0
       ],
       "HaveSkill": [
         9301,
         9302,
-        9303,
-        9304
+        0,
+        0
       ],
       "MaximumHp": 95.0,
-      "CurrentHp": 8.0,
+      "CurrentHp": 95.0,
       "MaximumMp": 140.0,
-      "CurrentMp": 100.0
+      "CurrentMp": 140.0
     }
   ],
   "SaveItem": [
     {
-      "Code": 2001,
-      "Amount": 10
-    },
-    {
       "Code": 2002,
-      "Amount": 10
-    },
-    {
-      "Code": 2003,
-      "Amount": 10
-    },
-    {
-      "Code": 2004,
-      "Amount": 10
-    },
-    {
-      "Code": 2005,
-      "Amount": 10
-    },
-    {
-      "Code": 2006,
-      "Amount": 10
+      "Amount": 0
     }
   ],
   "SaveUseItem": [
     {
       "Code": 2002,
-      "Count": 10
-    },
-    {
-      "Code": 2003,
-      "Count": 10
-    },
-    {
-      "Code": 2005,
-      "Count": 1
-    },
-    {
-      "Code": 2006,
       "Count": 1
     }
   ],
   "SavePos": {
-    "Code": 8401,
-    "X": 8.0,
-    "Y": -0.69999975,
+    "Code": 8402,
+    "X": -1.80000019,
+    "Y": 16.13,
     "Chapter": 1
   },
-  "SaveMonster": [
-    {
-      "Code": 1001,
-      "KillCount": 4
-    }
-  ],
+  "SaveMonster": [],
   "SaveFindEvent": [
     {
-      "Code": 8401,
-      "X": 14,
-      "Y": 1,
+      "Code": 8402,
+      "X": -2,
+      "Y": 16,
       "Z": 0
     }
   ],
@@ -143,26 +106,10 @@
     20003,
     10002,
     20001,
-    6002,
-    6003,
-    10001,
-    10004,
-    10003,
-    10005,
-    10006,
-    10007,
-    20004,
-    6004,
-    20005,
-    6102
+    6002
   ],
   "SaveTutorial": [
     10001,
-    10002,
-    10003,
-    10004,
-    10005,
-    10006,
-    10007
+    10002
   ]
 }

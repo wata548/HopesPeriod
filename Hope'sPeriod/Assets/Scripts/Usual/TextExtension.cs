@@ -4,7 +4,9 @@ using TMPro;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using FMODUnity;
 using Random = UnityEngine.Random;
+using STOP_MODE = FMOD.Studio.STOP_MODE;
 
 [Serializable]
 public enum Effect {
@@ -16,17 +18,24 @@ public enum Effect {
 
 public static class TextExtension {
 
-
+    private static EventReference typingSound;
+    private static bool isSetTypingSound = false;
+    
     private static readonly Dictionary<Effect, Func<float, Vector3>> match = new() {
         { Effect.Flow, index => new Vector3(0, Mathf.Sin(index * 3f + Time.time) * 13f)},
         { Effect.Shake, index => new Vector3(Random.Range(-0.3f, 0.3f), Random.Range(-0.65f, 0.65f)) * 10},
     };
     
     public static IEnumerator Typing(this TMP_Text text, string context, float interval, Action callback = null, Func<bool> breakCondition = null) {
-
+        if (!isSetTypingSound) {
+            typingSound = FmodEvents.Instance.Dialogue;
+            isSetTypingSound = true;
+        }
+        
         text.text = "";
         bool tag = false;
-        
+
+        int index = 0;
         foreach (var character in context) {
 
             if (breakCondition?.Invoke() ?? false) {
@@ -45,6 +54,12 @@ public static class TextExtension {
             
             if (!tag) {
                 EffectProcedure(text);
+                
+                if (!char.IsWhiteSpace(character))
+                    AudioManager.Instance.PlayOne(typingSound);
+                
+                
+                
                 yield return new WaitForSeconds(interval);
             }
         
