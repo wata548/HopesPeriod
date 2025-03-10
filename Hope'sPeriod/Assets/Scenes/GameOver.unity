@@ -3082,7 +3082,7 @@ MonoBehaviour:
   window: {fileID: 1285935856}
   cursor: {fileID: 849784473}
   main: {fileID: 0}
-  IsMain: 0
+  isMain: 0
 --- !u!224 &2147217734
 RectTransform:
   m_ObjectHideFlags: 0

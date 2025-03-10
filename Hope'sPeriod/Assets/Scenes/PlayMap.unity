@@ -13147,6 +13147,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   window: {fileID: 1634564365}
   keySetting: {fileID: 1799366486}
+  volumeControlers:
+  - {fileID: 180398191}
+  - {fileID: 1552113793}
+  - {fileID: 2045292547}
 --- !u!1 &633880891
 GameObject:
   m_ObjectHideFlags: 0
@@ -17486,7 +17490,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &869034157
 RectTransform:
   m_ObjectHideFlags: 0
