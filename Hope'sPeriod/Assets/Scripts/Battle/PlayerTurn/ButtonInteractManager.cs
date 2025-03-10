@@ -39,7 +39,8 @@ public class ButtonInteractManager: MonoBehaviour {
     }
 
     private void SelectBehavior() {
-
+        if (GameFSM.Instance.State != GameState.PlayerAttack)
+            return;
         if (GameFSM.Instance.PlayerTurnState != PlayerTurnState.SelectBehavior)
             return;
 
