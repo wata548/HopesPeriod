@@ -8,6 +8,7 @@ public enum ButtonType{
     Attack = 0,
     Item = 1,
     Shield = 2,
+    Run = 3
 }
 
 
@@ -16,12 +17,13 @@ public enum ButtonType{
 public class ButtonInteractManager: MonoBehaviour {
 
     public static ButtonInteractManager Instance { get; private set; } = null;
-    [SerializeField] private ButtonInteract[] buttons = new ButtonInteract[3];
+    [SerializeField] private ButtonInteract[] buttons = new ButtonInteract[4];
 
     public static readonly Dictionary<ButtonType, PlayerTurnState> MatchButtonAndState = new() {
         { ButtonType.Attack , PlayerTurnState.Attack},
         { ButtonType.Item   , PlayerTurnState.Item},
-        { ButtonType.Shield , PlayerTurnState.Shield}
+        { ButtonType.Shield , PlayerTurnState.Shield},
+        { ButtonType.Run    , PlayerTurnState.Run}
     };
     
     private ButtonType selectType = ButtonType.Attack;
@@ -45,7 +47,7 @@ public class ButtonInteractManager: MonoBehaviour {
             return;
 
         if(InputManager.Instance.ClickAndHold(KeyTypes.Right)) {
-            if (selectType == ButtonType.Shield) {
+            if (selectType == ButtonType.Run) {
                 SelectButton(buttons[(int)ButtonType.Attack], ButtonType.Attack);
             }
             else {
@@ -56,7 +58,7 @@ public class ButtonInteractManager: MonoBehaviour {
         
         if (InputManager.Instance.ClickAndHold(KeyTypes.Left)) {
             if (selectType == ButtonType.Attack) {
-                SelectButton(buttons[(int)ButtonType.Shield], ButtonType.Shield);
+                SelectButton(buttons[(int)ButtonType.Run], ButtonType.Run);
             }
             else {
                                     

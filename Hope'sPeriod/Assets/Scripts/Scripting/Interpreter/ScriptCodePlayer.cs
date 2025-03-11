@@ -310,7 +310,6 @@ public class ScriptCodePlayer: MonoBehaviour {
         if (!command.Start())
             return;
 
-        command.EndProcess();
         TilePlayerPhysics.Instance.MeetMonsterEvent(command.Code);
     }
     #endregion

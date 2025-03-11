@@ -16,7 +16,7 @@ public class VolumeSetttingWindow: MonoBehaviour {
         }
     }
 
-    private void TurnOff() {
+    public void TurnOff() {
         interactable = false;
         window.SetActive(false);
         main.SetInteractable(true);

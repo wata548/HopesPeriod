@@ -14,6 +14,7 @@ public class StatePatterns {
 public class Monster: MonoBehaviour {
 
     [SerializeField] private List<StatePatterns> patterns = new();
+    [field: SerializeField] public float RunRate = 0.5f;
     [field: SerializeField]public bool IsBoss { get; private set; }
     [field: SerializeField]public int MaxHP { get; private set; }
     public static Monster Instance { get; private set; } = null;

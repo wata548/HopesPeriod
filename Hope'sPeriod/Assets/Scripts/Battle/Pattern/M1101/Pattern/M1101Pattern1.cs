@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.Animations;
 using Random = UnityEngine.Random;
 
+//sin attack
 public class M1101Pattern1: EnemyPatternBase {
     [SerializeField] private GameObject bullet;
     [SerializeField] private GameObject hWarnning;

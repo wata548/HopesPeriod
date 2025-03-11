@@ -44,6 +44,10 @@ public class MainButton: InteractButtonUI {
 
     public void StartButton() {
 
+        if (!Manager.Interactable)
+            return;
+        
+        Manager.SetInteractable(false);
         SaveData.Load();
 
         Warnnning.Instance

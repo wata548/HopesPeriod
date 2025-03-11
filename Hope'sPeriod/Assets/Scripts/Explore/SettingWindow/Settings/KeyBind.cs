@@ -12,6 +12,7 @@ public class KeyBind: MonoBehaviour {
     [SerializeField] private TMP_Text settingShower;
     [SerializeField] private GameObject showKey;
     [SerializeField] private TMP_Text showKeyText;
+    [SerializeField] private CloseButtonText closeButton;
    //==================================================||Members 
     private static int select = 0; 
     private static int index = 0;
@@ -37,6 +38,7 @@ public class KeyBind: MonoBehaviour {
         select = index;
         InputManager.Instance.KeySettingLoad(bindType[select].fileName);
         Refresh();
+        closeButton.UpdateText();
     }
 
     public void ShowSetting() {

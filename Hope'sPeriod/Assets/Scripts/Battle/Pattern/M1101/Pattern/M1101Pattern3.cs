@@ -1,6 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
+//trace trap
 public class M1101Pattern3: EnemyPatternBase {
     public override bool Active { get; protected set; }
     [SerializeField] private SpriteRenderer warnning;
@@ -35,6 +36,6 @@ public class M1101Pattern3: EnemyPatternBase {
     }
 
     public override void GrouptPattern() {
-        throw new System.NotImplementedException();
+        StartCoroutine(Pattern(10, 10));
     }
 }

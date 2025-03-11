@@ -2,6 +2,7 @@ using System;
 using DG.Tweening;
 using UnityEngine;
 using UnityEngine.Serialization;
+using Random = UnityEngine.Random;
 
 public enum GameState {
     
@@ -10,7 +11,8 @@ public enum GameState {
     MonsterSkill,
     AfterSkill,
     PlayerAttack,
-    Win
+    Win,
+    Run
 }
 
 public enum PlayerTurnState {
@@ -20,12 +22,15 @@ public enum PlayerTurnState {
     AttackTarget,
     Item,
     ItemTarget,
-    Shield
+    Shield,
+    Run
 }
 
 public class GameFSM: MonoBehaviour {
 
     [SerializeField] private SkillShower skillShower;
+    [SerializeField] private RunMessage runMessage;
+    
     private readonly Vector3 selectPlayerPos = new(0, 0, -1);
     private readonly Vector3 selectMapPos = new(0, 0.35f, -0.7f);
     private readonly Vector2 selectMapScale = new(13, 6);
@@ -112,6 +117,12 @@ public class GameFSM: MonoBehaviour {
             StartCoroutine(Wait.WaitAndDo(1, () => ScenceControler.Load("PlayMap")));
             SkillButtonManager.Instance.TurnOff();
             end = true;
+        } 
+        else if (!end && State == GameState.Run) {
+         
+            StartCoroutine(Wait.WaitAndDo(1, () => ScenceControler.Load("PlayMap")));
+            SkillButtonManager.Instance.TurnOff();
+            end = true;
         }
     }
 
@@ -194,6 +205,20 @@ public class GameFSM: MonoBehaviour {
                     character.SetEffectImage();
                 }
                 SkipState();
+                break;
+            
+            case PlayerTurnState.Run:
+                if (Monster.Instance.IsBoss) {
+                    runMessage.Show(RunMessage.RunCase.Boss, () => SkipState());
+                }
+                else {
+
+                    bool isSucced = (Random.Range(0, 1f) <= Monster.Instance.RunRate);
+                    if(isSucced)
+                        runMessage.Show(RunMessage.RunCase.Success, () => State = GameState.Run);
+                    else
+                        runMessage.Show(RunMessage.RunCase.Fail, () => SkipState());
+                }
                 break;
             
             default:

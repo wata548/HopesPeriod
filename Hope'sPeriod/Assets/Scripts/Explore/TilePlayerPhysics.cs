@@ -14,7 +14,7 @@ using Vector2 = UnityEngine.Vector2;
 public class TilePlayerPhysics : MonoBehaviour {
     
     [SerializeField] private Image mapMoveEffect;
-    [FormerlySerializedAs("mapName")] [SerializeField] private MapChanger mapChanger;
+    [SerializeField] private MapChanger mapChanger;
     private static Vector2Int pos;
     public static Vector2Int Pos => pos;
     public static TilePlayerPhysics Instance { get; private set; } = null;
@@ -123,6 +123,8 @@ public class TilePlayerPhysics : MonoBehaviour {
         MonsterInfo.SetMonster(code);
         CurrentMapInfo.SetData(CheckEvent.MapCode, pos);
         SetMovable(false);
+        SettingWindow.SetInteractable(false);
+        
         Debug.Log($"Meet Monster {code}");
         ShakeCamera.Instance.HShake(0.5f, 0.2f);
         ScenceChangeEffecter.Instance.StartEffect()

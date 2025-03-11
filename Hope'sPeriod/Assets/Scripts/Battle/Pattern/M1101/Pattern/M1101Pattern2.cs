@@ -1,6 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
+//around circle trace
 public class M1101Pattern2: EnemyPatternBase {
     public override bool Active { get; protected set; }
     [SerializeField] private GameObject prefab;

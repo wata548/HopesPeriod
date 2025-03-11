@@ -1184,6 +1184,7 @@ MonoBehaviour:
     - {fileID: 5392367031444609614}
     - {fileID: 1739103006783414126}
     - {fileID: 7514801916452867708}
+  RunRate: 0.5
   <IsBoss>k__BackingField: 1
   <MaxHP>k__BackingField: 100
 --- !u!114 &1344570407906380142
