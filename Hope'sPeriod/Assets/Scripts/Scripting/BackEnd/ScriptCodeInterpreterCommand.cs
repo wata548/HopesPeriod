@@ -138,6 +138,7 @@ sealed public class SetCameraPosScriptCommand : CommandBase {
 /// </summary> 
 sealed public class MakeSelectScriptCommand : CommandBase {
     public List<string> Factor { get; protected set; }
+    public List<int> NextEvent { get; protected set; }
     public string Title { get; private set; }
 }
 /// <summary>
@@ -217,6 +218,10 @@ sealed public class MeetMonsterScriptCommand : CommandBase {
     public int Code { get; protected set; }
 }
 
+sealed public class ShowMessageScriptCommand : CommandBase {
+    public string Context { get; protected set; }
+}
+
 public enum ScriptCodeKeyword {
     Wait,
     Focus,
@@ -245,6 +250,7 @@ public enum ScriptCodeKeyword {
     SetChapter,
     Tutorial,
     ShowTutorial,
+    ShowMessage,
     
     IsUseItem,
     IsHaveItem,

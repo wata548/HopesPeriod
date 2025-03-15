@@ -21,6 +21,9 @@ namespace SpreadInfo {
         private string m_Name;
         
         [UnityEngine.SerializeField()]
+        private string m_SimpleEffectDescription;
+        
+        [UnityEngine.SerializeField()]
         private string m_DetailDescription;
         
         [UnityEngine.SerializeField()]
@@ -53,6 +56,12 @@ namespace SpreadInfo {
         public string Name {
             get {
                 return this.m_Name;
+            }
+        }
+        
+        public string SimpleEffectDescription {
+            get {
+                return this.m_SimpleEffectDescription;
             }
         }
         

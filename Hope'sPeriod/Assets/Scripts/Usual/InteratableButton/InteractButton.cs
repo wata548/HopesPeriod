@@ -73,7 +73,7 @@ public abstract class InteractButton: MonoBehaviour, IPointerEnterHandler, IPoin
 /// </summary>
 public abstract class InteractButtonManager: MonoBehaviour {
 
-    [SerializeField] protected List<InteractButton> buttons;
+    [SerializeField] protected List<InteractButton> buttons = new();
 
     //if it is false, you can't interact buttons
     public abstract bool Interactable { get; protected set; }
@@ -158,15 +158,19 @@ public abstract class InteractButtonManager: MonoBehaviour {
    //==================================================||Abstract Function 
     public abstract void SelectIn(InteractButton target);
     public abstract void SelectOut(InteractButton target);
+
+    protected void SetIndex() {
+        int index = 0;
+        foreach (var button in buttons) {
+                    
+            button.Manager = this;
+            button.Index = index++;
+        }
+    }
     
    //==================================================||Unity Function 
     protected void Awake() {
 
-        int index = 0;
-        foreach (var button in buttons) {
-            
-            button.Manager = this;
-            button.Index = index++;
-        }
+        SetIndex();
     }
 }

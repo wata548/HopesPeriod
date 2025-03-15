@@ -408,6 +408,17 @@ MonoBehaviour:
         m_ClearContext: 1
         m_Event: ShowTutorial(Code = 10001);
         m_EventTiming: 0
+    - Key: 6200
+      Value:
+      - m_WindowType: 1
+        m_Profile: None
+        m_Actor: 0
+        m_Script: 
+        m_JustEvent: 1
+        m_ClearContext: 1
+        m_Event: MakeSelect(Factor = [ "dfs", "rw"] | Title = "34"  | NextEvent =
+          [6000, 6002]);
+        m_EventTiming: 0
     - Key: 6100
       Value:
       - m_WindowType: 1

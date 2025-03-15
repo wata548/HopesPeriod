@@ -49,7 +49,7 @@ public class GetItemWindow: MonoBehaviour {
         }
 
         CheckEvent.AutoEvent(TilePlayerPhysics.Pos);
-        EverytimeEvent.StartEvent();
+        EverytimeEvent.CheckEvent();
     }
 
     public void TurnOn(GetItemInfo itemInfo) {

@@ -54,7 +54,7 @@ MonoBehaviour:
         m_Info: "Tutorial(Title = \"\uC804\uD22C \uC124\uBA85 - <size=60%>\uB0B4
           \uCC28\uB840</size>\" | Info = \"\uC801\uC758 \uACF5\uACA9\uC774 \uB05D\uB098\uBA74
           \uC6B0\uB9AC\uC758 \uD134\uC774 \uCC3E\uC544\uC635\uB2C8\uB2E4. \uC790\uC2E0\uC758
-          \uD134\uC5D0\uB294 3\uAC00\uC9C0 \uC911 \uD55C\uAC00\uC9C0\uB97C \uC120\uD0DD\uD560
+          \uD134\uC5D0\uB294 4\uAC00\uC9C0 \uC911 \uD55C\uAC00\uC9C0\uB97C \uC120\uD0DD\uD560
           \uC218 \uC788\uC2B5\uB2C8\uB2E4.\" | Image = \"Tutorial/SelectMenu\");\nTutorial(Title
           = \"\uC804\uD22C \uC124\uBA85 - <size=60%>\uB0B4 \uCC28\uB840</size>\"
           | Info = \"\uCCAB\uBC88\uC9F8\uB294 <size=105%><color=#ff0000>\uACF5\uACA9</size></color>\uC73C\uB85C
@@ -75,7 +75,11 @@ MonoBehaviour:
           \uC124\uBA85 - <size=60%>\uB0B4 \uCC28\uB840</size>\" | Info = \"\uC138\uBC88\uC9F8\uB85C
           <size=105%><color=#ff0000>\uBC29\uC5B4</size></color>\uB85C \uC55E\uC73C\uB85C
           2\uD134\uAC04 30%\uC758 \uB370\uBBF8\uC9C0\uB9CC \uBC1B\uC2B5\uB2C8\uB2E4.\"
-          | Image = \"Tutorial/DefenseMenu\");"
+          | Image = \"Tutorial/DefenseMenu\");\nTutorial(Title = \"\uC804\uD22C \uC124\uBA85
+          - <size=60%>\uB0B4 \uCC28\uB840</size>\" | Info = \"\uB9C8\uC9C0\uB9C9\uC73C\uB85C
+          <size=105%><color=#ff0000>\uB3C4\uC8FC</size></color>\uB85C \uD655\uB960\uC801\uC73C\uB85C
+          \uC804\uD22C\uB97C \uAC74\uB108\uB744\uACE0 \uB3C4\uB9DD\uAC08 \uC218 \uC788\uC2B5\uB2C8\uB2E4.\"
+          | Image = \"Tutorial/RunMenu\");"
     - Key: 10005
       Value:
         m_Code: 10005

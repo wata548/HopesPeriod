@@ -8,7 +8,7 @@ public static class EverytimeEvent {
         dataTable ??= Resources.Load<EverytimeEventDBDataTable>("SpreadInfo/Generated/EverytimeEventDBDataTable");
     }
 
-    public static int StartEvent() {
+    public static int CheckEvent() {
         SetTable();
 
         foreach (var factor in dataTable.DataTable) {

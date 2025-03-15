@@ -12,6 +12,7 @@ public class ScriptShower: MonoBehaviour {
     
     private int eventCode = 0;
     private int index = 0;
+    public int ConnectEvent { get; set; } = 0;
     
     private bool startTalking = false;
     private bool justTutorial = false;
@@ -102,8 +103,14 @@ public class ScriptShower: MonoBehaviour {
     
     private void EndProcess() {
         Debug.Log("end");
-        
         eventCode = 0;
+        
+        if (ConnectEvent != 0) {
+            StartScript(ConnectEvent);
+            ConnectEvent = 0;
+            return;
+        }
+        
         defaultScript.TurnOff();
         backgroundScript.TurnOff();
         ScriptCodePlayer.Instance.EndProcess();
@@ -152,7 +159,7 @@ public class ScriptShower: MonoBehaviour {
                 defaultScript.StartSetUp();
                 EndProcess();
                 Debug.Log("Script End");
-                EverytimeEvent.StartEvent();
+                EverytimeEvent.CheckEvent();
             }
 
             //Next Script

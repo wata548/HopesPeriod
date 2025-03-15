@@ -275,12 +275,13 @@ public static class ScriptCodeInterpreter {
                    + $"\nessential: {string.Join(", ", essential?.Select(param => param.ToString()) ?? new string[1])}") { }
     }
     private static object Parse(Type type, string context) {
-        if (string.IsNullOrEmpty(context))
-            throw new Exception("parse target should not null or empty");
 
         if (type == typeof(string))
             return context;
 
+        if (string.IsNullOrEmpty(context))
+            throw new Exception("parse target should not null or empty");
+        
         if (type == typeof(Direction)) {
 
             string[] directions = context.Split('+');

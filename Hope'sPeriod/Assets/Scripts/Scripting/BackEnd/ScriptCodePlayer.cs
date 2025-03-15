@@ -84,7 +84,7 @@ public class ScriptCodePlayer: MonoBehaviour {
 
         ScenceChangeEffecter.Instance
             .EndEffect(command.Power)
-            .OnComplete(() => command.EndProcess());
+            .OnComplete(command.EndProcess);
     }
     private void SetBackgroundScript(SetBackgroundScriptCommand command) {
         if (!command.Start())
@@ -144,7 +144,7 @@ public class ScriptCodePlayer: MonoBehaviour {
  
         ShakeCamera.Instance.camera.transform
             .DOMove(DefaultPos + command.Pos.ToVec3(), command.Power)
-            .OnComplete(() => command.EndProcess());
+            .OnComplete(command.EndProcess);
     }
     private void GeneratePersonScript(GeneratePersonScriptCommand command) {
 
@@ -243,7 +243,7 @@ public class ScriptCodePlayer: MonoBehaviour {
         float power = command.Power;
         ShakeCamera.Instance.camera.transform
             .DOMove(targetPos, power)
-            .OnComplete(() => command.EndProcess());
+            .OnComplete(command.EndProcess);
     }
     private void ZoomScript(ZoomScriptCommand command) {
 
@@ -254,7 +254,7 @@ public class ScriptCodePlayer: MonoBehaviour {
         
         ShakeCamera.Instance.camera
             .DOOrthoSize(command.Percent * DefaultZoom, command.Power)
-            .OnComplete(() => command.EndProcess());
+            .OnComplete(command.EndProcess);
     }
 
     private void GetItemScript(GetItemScriptCommand command) {
@@ -266,7 +266,7 @@ public class ScriptCodePlayer: MonoBehaviour {
             count = 1;
             
         GetItemWindow.Instance.TurnOn(new GetItemInfo(command.Code, count));
-        StartCoroutine(Wait.WaitAndDo(() => GetItemWindow.Instance.On, () => command.EndProcess()));
+        StartCoroutine(Wait.WaitAndDo(() => GetItemWindow.Instance.On, command.EndProcess));
     }
 
     private void SetChapterScript(SetChapterScriptCommand command) {
@@ -285,7 +285,7 @@ public class ScriptCodePlayer: MonoBehaviour {
         var transform = TilePlayerPhysics.Instance.@Object.transform;
         transform
             .DOLocalMove(transform.localPosition + command.Pos.ToVec3(), command.Duraction)
-            .OnComplete(() => command.EndProcess());
+            .OnComplete(command.EndProcess);
     }
 
     private void TutorialScript(TutorialScriptCommand command) {
@@ -294,7 +294,7 @@ public class ScriptCodePlayer: MonoBehaviour {
             return;
         
         TutorialWindow.Instance.SetTutorial(new(){command});
-        StartCoroutine(Wait.WaitAndDo(() => !TutorialWindow.Instance.On, () => command.EndProcess()));
+        StartCoroutine(Wait.WaitAndDo(() => !TutorialWindow.Instance.On, command.EndProcess));
     }
 
     private void ShowTutorialScript(ShowTutorialScriptCommand command) {
@@ -303,7 +303,7 @@ public class ScriptCodePlayer: MonoBehaviour {
 
         var list = TutorialInfo.Interpret(command.Code);
         TutorialWindow.Instance.SetTutorial(list);
-        StartCoroutine(Wait.WaitAndDo(() => !TutorialWindow.Instance.On, () => command.EndProcess()));
+        StartCoroutine(Wait.WaitAndDo(() => !TutorialWindow.Instance.On, command.EndProcess));
     }
 
     private void MeetMonsterScript(MeetMonsterScriptCommand command) {
@@ -311,6 +311,25 @@ public class ScriptCodePlayer: MonoBehaviour {
             return;
 
         TilePlayerPhysics.Instance.MeetMonsterEvent(command.Code);
+    }
+
+    private void ShowMessageScript(ShowMessageScriptCommand command) {
+        if (!command.Start())
+            return;
+
+        MessageWindow.Instance.TurnOn(command.Context);
+        StartCoroutine(Wait.WaitAndDo(() => !MessageWindow.Instance.On, command.EndProcess));
+    }
+
+    private void MakeSelectScript(MakeSelectScriptCommand command) {
+        if (!command.Start())
+            return;
+
+        SelectWindow.Instance.ShowSelect(command.Factor,command.NextEvent, command.Title);
+        StartCoroutine(Wait.WaitAndDo(() => !SelectWindow.Instance.Interactable, () => {
+            command.EndProcess();
+            ScriptShower.Instance.ConnectEvent = SelectWindow.Instance.EndEvent();
+        }));
     }
     #endregion
     

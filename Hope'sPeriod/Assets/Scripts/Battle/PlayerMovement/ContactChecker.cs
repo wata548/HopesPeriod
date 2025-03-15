@@ -27,7 +27,7 @@ public class ContactChecker : MonoBehaviour {
         if(collision.CompareTag("Field") || collision.CompareTag("Structures")) {
 
             contactInfo.ContactIn(checkerDirection);
-            Debug.Log($"{checkerDirection} connected");
+            //Debug.Log($"{checkerDirection} connected");
         }
     } 
     private void OnTriggerExit2D(Collider2D collision) {
@@ -38,7 +38,7 @@ public class ContactChecker : MonoBehaviour {
         if (collision.CompareTag("Field") || collision.CompareTag("Structures")) {
          
             contactInfo.ContactOut(checkerDirection);
-            Debug.Log($"{checkerDirection} connect out {contactInfo.Contact}");
+            //Debug.Log($"{checkerDirection} connect out {contactInfo.Contact}");
         }
     }
 }

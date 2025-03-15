@@ -86,7 +86,7 @@ public class DefaultAndEnumDataParser: DataParserBase {
         string dataTypeName = DataTypeName(path);
         Type dataType = Type.GetType($"{m_NameSpace}.{dataTypeName}");
                 
-        if (dataType is null) {
+        if (true/*dataType is null*/) {
             //make DataType
             GenerateDataType(dataTypeName, header);
             AssetDatabase.Refresh();

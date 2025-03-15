@@ -34,7 +34,7 @@ public class M1101Pattern2: EnemyPatternBase {
     }
     
     public override void StartPattern() {
-        MapSizeManager.Instance.Resize(new(5, 5));
+        MapSizeManager.Instance.Resize(new Vector2(5f, 5f));
         //MapSizeManager.Instance.Move(ne)
         StartCoroutine(Generate(3, 5, 8, 0.13f, 0.9f));
     }

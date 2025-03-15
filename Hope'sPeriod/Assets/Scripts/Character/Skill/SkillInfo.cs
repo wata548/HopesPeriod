@@ -98,17 +98,19 @@ public static class SkillInfo {
         return ItemInfo.NeedSelect(itemCode);
     }
 
-    public static int               ToSkillItem(int code)       => code - 7000;
-    public static string            Name(int code)              => GetData(code)?.Name                  ?? "wait";
-    public static string            DetailDescription(int code) => GetData(code)?.DetailDescription     ?? "wait";
-    public static string            Description(int code)       => GetData(code)?.Description           ?? "wait";
-    public static int               UseHp(int code)             => GetData(code)?.UseHP                 ?? -1;
-    public static int               UseMp(int code)             => GetData(code)?.UseMP                 ?? -1;
-    public static int               Attack(int code)            => GetData(code)?.ATK                   ?? -1;
-    public static int               AttackDuration(int code)    => GetData(code)?.ATKCon                ?? -1;
-    public static bool              SkillItem(int code)         => GetData(code)?.SkillItem             ?? false;
-    public static int               SkillItemDuration(int code) => GetData(code)?.SkillItemCon          ?? -1;
-
+    public static int               ToSkillItem(int code)           => code - 7000;
+    public static string            Name(int code)                      => GetData(code)?.Name                      ?? "wait";
+    public static string            DetailDescription(int code)         => GetData(code)?.DetailDescription         ?? "wait";
+    public static string            Description(int code)               => GetData(code)?.Description               ?? "wait";
+    public static int               UseHp(int code)                     => GetData(code)?.UseHP                     ?? -1;
+    public static int               UseMp(int code)                     => GetData(code)?.UseMP                     ?? -1;
+    public static int               Attack(int code)                    => GetData(code)?.ATK                       ?? -1;
+    public static int               AttackDuration(int code)            => GetData(code)?.ATKCon                    ?? -1;
+    public static bool              SkillItem(int code)                 => GetData(code)?.SkillItem                 ?? false;
+    public static int               SkillItemDuration(int code)         => GetData(code)?.SkillItemCon              ?? -1;
+    public static string            SimpleEffectDescription(int code)   => GetData(code)?.SimpleEffectDescription   ?? "wait";
+    
+    
     public static bool Useable(int characterIndex, int code) {
         
         var character = CharactersInfoBattle.Instance.CharacterInfo(characterIndex);

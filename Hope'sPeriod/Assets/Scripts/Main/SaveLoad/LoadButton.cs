@@ -57,6 +57,11 @@ public class LoadButton: InteractButton {
     public override void Click() {}
 
     public void Load() {
+        if (!Manager.Interactable)
+            return;
+
+        Manager.SetInteractable(false);
+        
         if (!On)
             return;
         if (Index != 0) {

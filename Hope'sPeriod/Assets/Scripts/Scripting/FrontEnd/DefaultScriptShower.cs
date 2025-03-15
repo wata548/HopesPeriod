@@ -2,12 +2,13 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class BackgroundScriptShower: MonoBehaviour {
+public class DefaultScriptShower: MonoBehaviour {
+    [SerializeField] private Image profile;
     [SerializeField] private Image box;
     [SerializeField] private TMP_Text nameText;
     [SerializeField] private TMP_Text context;
     [SerializeField] private WaveMovementButton skipButton;
-    private const float Interval = 0.07f;
+    private const float Interval = 0.1f;
     private const float AutoSkipSecond = 3f;
     private float time;
     
@@ -18,12 +19,12 @@ public class BackgroundScriptShower: MonoBehaviour {
     public void StartSetUp() {
         End = false;
     }
-    
+
     public void TurnOn() {
         box.gameObject.SetActive(true);
         skipButton.gameObject.SetActive(true);
     }
-    
+
     public void TurnOff() {
         box.gameObject.SetActive(false);
         skipButton.gameObject.SetActive(false);
@@ -41,13 +42,13 @@ public class BackgroundScriptShower: MonoBehaviour {
             return;
         
         //Keyboard control
-        bool otherWindow = GetItemWindow.Instance.On || TutorialWindow.Instance.On;
+        bool otherWindow = GetItemWindow.Instance.On || TutorialWindow.Instance.On || MessageWindow.Instance.On;
         if (!otherWindow && InputManager.Instance.ClickAndHold(KeyTypes.Select)) {
-                
+        
             Next();
         }
         
-        //script animation
+        //show Animation
         updateCount++;
         if (updateCount % 2 == 0) {
             updateCount = 0;
@@ -78,12 +79,14 @@ public class BackgroundScriptShower: MonoBehaviour {
     }
 
     private bool skip = false;
-    public void ShowScript(int actor, string context) {
+    public void ShowScript(int actor, string context, string profile) {
 
         start = true;
         showAll = false;
 
         Erase();
+
+        this.profile.sprite = Resources.Load<Sprite>($"Actor/{actor}/Profile/{profile}");
         nameText.text = ActorInfo.Name(actor);
         StartCoroutine(this.context.Typing(context, Interval, () => {
             showAll = true;

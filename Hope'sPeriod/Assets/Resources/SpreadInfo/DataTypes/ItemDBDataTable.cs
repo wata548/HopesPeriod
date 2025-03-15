@@ -68,6 +68,9 @@ namespace SpreadInfo {
         [UnityEngine.SerializeField()]
         private SpreadInfo.EffectTargetType m_EffectTarget;
         
+        [UnityEngine.SerializeField()]
+        private int m_GetSkill;
+        
         public int Code {
             get {
                 return this.m_Code;
@@ -173,6 +176,12 @@ namespace SpreadInfo {
         public SpreadInfo.EffectTargetType EffectTarget {
             get {
                 return this.m_EffectTarget;
+            }
+        }
+        
+        public int GetSkill {
+            get {
+                return this.m_GetSkill;
             }
         }
     }

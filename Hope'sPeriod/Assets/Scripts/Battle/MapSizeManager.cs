@@ -20,31 +20,29 @@ public class MapSizeManager : MonoBehaviour {
         Instance = this;
     }
 
-    public void Move(Vector3 pos) {
+    public void Move(Vector3 pos, float duration = Duration) {
 
-        map.transform.DOLocalMove(pos, Duration).SetEase(Ease.InOutCubic);
+        map.transform.DOLocalMove(pos, duration).SetEase(Ease.InOutCubic);
         pos.z += 0.1f;
-        outline.transform.DOLocalMove(pos, Duration).SetEase(Ease.InOutCubic);
+        outline.transform.DOLocalMove(pos, duration).SetEase(Ease.InOutCubic);
     }
 
-    public void Move() {
-        Move(Vector3.zero);
+    public void Move(float duration = Duration) {
+        Move(Vector3.zero, duration);
     }
     
-    public void Resize(Vector2 size) {
+    public void Resize(Vector2 size, float duration = Duration) {
 
-        map.transform.DOScale(size, Duration).SetEase(Ease.InOutCubic);
-        outline.transform.DOScale(size.Add(OutlineInterval), Duration).SetEase(Ease.InOutCubic);
+        map.transform.DOScale(size, duration).SetEase(Ease.InOutCubic);
+        outline.transform.DOScale(size.Add(OutlineInterval), duration).SetEase(Ease.InOutCubic);
     }
 
-    public void Resize() {
-        
-        map.transform.DOScale(defaultMapSize, Duration).SetEase(Ease.InOutCubic);
-        outline.transform.DOScale(defaultMapSize.Add(OutlineInterval), Duration).SetEase(Ease.InOutCubic);
+    public void Resize(float duration = Duration) {
+        Resize(defaultMapSize, duration);
     }
 
-    public void Default() {
-        Resize();
-        Move();
+    public void Default(float duration = Duration) {
+        Resize(defaultMapSize, duration);
+        Move(defaultMapSize, duration);
     }
 }
