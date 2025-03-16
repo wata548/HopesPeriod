@@ -16,6 +16,8 @@ public class EachCharacterInfo: MonoBehaviour {
     public float CurrentHp { get; private set; } = 100;
     public float MaximumMp { get; private set; } = 100;
     public float CurrentMp { get; private set; } = 50;
+    public int Love { get; private set; } = 0;
+    
     private bool dead;
     public bool Dead {
         get {
@@ -28,6 +30,10 @@ public class EachCharacterInfo: MonoBehaviour {
     }
 
     //==================================================| Method 
+
+    public void ActiveCharacter()
+        => Exist = true;
+    
     public void SetSkill(int index, int code) {
         if (index >= SkillCountLimit) {
             throw new OutOfRange(0, SkillCountLimit - 1, index);
@@ -131,6 +137,8 @@ public class EachCharacterInfo: MonoBehaviour {
     public void Load(SaveCharacterInfo info) {
         Exist = info.Exist;
         Dead = info.Dead;
+        Love = info.Love;
+        
         skill = info.Skill.ToList();
         while (skill.Count < SkillCountLimit) {
             skill.Add(0);

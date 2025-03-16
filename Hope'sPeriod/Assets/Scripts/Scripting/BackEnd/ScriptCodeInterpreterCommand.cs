@@ -222,6 +222,10 @@ sealed public class ShowMessageScriptCommand : CommandBase {
     public string Context { get; protected set; }
 }
 
+sealed public class AddPlayerScriptCommand : CommandBase {
+    public int Index { get; protected set; }
+}
+
 public enum ScriptCodeKeyword {
     Wait,
     Focus,
@@ -251,6 +255,7 @@ public enum ScriptCodeKeyword {
     Tutorial,
     ShowTutorial,
     ShowMessage,
+    AddPlayer,
     
     IsUseItem,
     IsHaveItem,

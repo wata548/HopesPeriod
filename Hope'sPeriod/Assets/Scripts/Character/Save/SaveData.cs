@@ -119,7 +119,9 @@ public class SaveCharacterInfo {
     public float MaximumMp { get; private set; }
     [JsonProperty]
     public float CurrentMp { get; private set; }
-
+    [JsonProperty]
+    public int Love { get; private set; }
+    
     public SaveCharacterInfo() {}
 
     public SaveCharacterInfo(EachCharacterInfo playerInfo) {
@@ -127,6 +129,8 @@ public class SaveCharacterInfo {
         Name = Regex.Match(playerInfo.gameObject.name, @"(.*)Info").Groups[1].Value;
         Exist = playerInfo.Exist;
         Dead = playerInfo.Dead;
+        Love = playerInfo.Love;
+        
         Skill = playerInfo.Skill.ToArray();
         HaveSkill = playerInfo.Skill.ToArray();
         MaximumHp = playerInfo.MaximumHp;
@@ -159,7 +163,9 @@ public class SaveData {
         else 
             rawData = File.ReadAllText(Application.streamingAssetsPath + $@"/SaveFile/SaveData{index}.json");
         var data = JsonConvert.DeserializeObject<SaveFormat>(rawData);
-        
+
+        //SetCharacterInfo
+        CharacterInfoManager.Clear();
         foreach (var character in data.SaveCharacterInfo) {
 
             //characterInfo Load
@@ -171,6 +177,8 @@ public class SaveData {
             target.name = $"{character.Name}Info";
             var info = target.AddComponent<EachCharacterInfo>();
             info.Load(character);
+            
+            CharacterInfoManager.Add(info);
         }
         
         CurrentMapInfo.SetData(data.SavePos.Code, new Vector2(data.SavePos.X, data.SavePos.Y));

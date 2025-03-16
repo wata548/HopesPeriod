@@ -411,14 +411,15 @@ MonoBehaviour:
     - Key: 6200
       Value:
       - m_WindowType: 1
-        m_Profile: None
-        m_Actor: 0
-        m_Script: 
-        m_JustEvent: 1
-        m_ClearContext: 1
-        m_Event: MakeSelect(Factor = [ "dfs", "rw"] | Title = "34"  | NextEvent =
-          [6000, 6002]);
-        m_EventTiming: 0
+        m_Profile: Default
+        m_Actor: 5002
+        m_Script: "\uC544\uBB34\uB9D0 \uC544\uBB34\uB9D0 \uC544\uBB34\uB9D0"
+        m_JustEvent: 0
+        m_ClearContext: 0
+        m_Event: "AddPlayer(Index = 2);\nMakeSelect(Factor = [ \"1\uBC88 \uC120\uD0DD\uC9C0\",
+          \"2\uBC88 \uC120\uD0DD\uC9C0\"] | Title = \"\uC120\uD0DD\"  | NextEvent
+          = [6000, 6002]);"
+        m_EventTiming: 1
     - Key: 6100
       Value:
       - m_WindowType: 1

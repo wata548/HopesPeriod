@@ -331,6 +331,15 @@ public class ScriptCodePlayer: MonoBehaviour {
             ScriptShower.Instance.ConnectEvent = SelectWindow.Instance.EndEvent();
         }));
     }
+
+    private void AddPlayerScript(AddPlayerScriptCommand command) {
+
+        if (!command.Start())
+            return;
+
+        CharacterInfoManager.Characters[command.Index - 1].ActiveCharacter();
+        command.EndProcess();
+    }
     #endregion
     
     public void EndProcess() {
