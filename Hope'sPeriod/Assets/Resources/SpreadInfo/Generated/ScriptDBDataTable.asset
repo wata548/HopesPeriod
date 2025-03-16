@@ -14,6 +14,28 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_DataTable:
     dataList:
+    - Key: 6001
+      Value:
+      - m_WindowType: 1
+        m_Profile: None
+        m_Actor: 0
+        m_Script: 
+        m_JustEvent: 1
+        m_ClearContext: 1
+        m_Event: ShowTutorial(Code = 10001);
+        m_EventTiming: 0
+    - Key: 6999
+      Value:
+      - m_WindowType: 1
+        m_Profile: Default
+        m_Actor: 5002
+        m_Script: "\uC544\uBB34\uB9D0 \uC544\uBB34\uB9D0 \uC544\uBB34\uB9D0"
+        m_JustEvent: 0
+        m_ClearContext: 0
+        m_Event: "AddPlayer(Index = 2);\nMakeSelect(Factor = [ \"1\uBC88 \uC120\uD0DD\uC9C0\",
+          \"2\uBC88 \uC120\uD0DD\uC9C0\"] | Title = \"\uC120\uD0DD\"  | NextEvent
+          = [6000, 6002]);"
+        m_EventTiming: 1
     - Key: 6000
       Value:
       - m_WindowType: 2
@@ -398,29 +420,7 @@ MonoBehaviour:
         m_ClearContext: 0
         m_Event: 
         m_EventTiming: 0
-    - Key: 6001
-      Value:
-      - m_WindowType: 1
-        m_Profile: None
-        m_Actor: 0
-        m_Script: 
-        m_JustEvent: 1
-        m_ClearContext: 1
-        m_Event: ShowTutorial(Code = 10001);
-        m_EventTiming: 0
-    - Key: 6200
-      Value:
-      - m_WindowType: 1
-        m_Profile: Default
-        m_Actor: 5002
-        m_Script: "\uC544\uBB34\uB9D0 \uC544\uBB34\uB9D0 \uC544\uBB34\uB9D0"
-        m_JustEvent: 0
-        m_ClearContext: 0
-        m_Event: "AddPlayer(Index = 2);\nMakeSelect(Factor = [ \"1\uBC88 \uC120\uD0DD\uC9C0\",
-          \"2\uBC88 \uC120\uD0DD\uC9C0\"] | Title = \"\uC120\uD0DD\"  | NextEvent
-          = [6000, 6002]);"
-        m_EventTiming: 1
-    - Key: 6100
+    - Key: 6005
       Value:
       - m_WindowType: 1
         m_Profile: Default
@@ -431,7 +431,7 @@ MonoBehaviour:
         m_ClearContext: 0
         m_Event: 'AddRealPos(Pos = {-1f,0f} | Duraction = 0.3f); '
         m_EventTiming: 0
-    - Key: 6101
+    - Key: 6006
       Value:
       - m_WindowType: 1
         m_Profile: Default
@@ -441,7 +441,7 @@ MonoBehaviour:
         m_ClearContext: 0
         m_Event: 
         m_EventTiming: 0
-    - Key: 6102
+    - Key: 6007
       Value:
       - m_WindowType: 1
         m_Profile: Default

@@ -96,6 +96,7 @@ public class TilePlayerPhysics : MonoBehaviour {
         playerRigidbody.linearVelocity = velocity;
         animation.SetSpeed(velocity);
 
+        
         if (velocity != Vector2.zero) {
             var newPos = (transform.localPosition.ToVec2() + PivotPos).ToVec2Int();
 

@@ -59,7 +59,9 @@ public class ButtonInteract: MonoBehaviour, IPointerEnterHandler, IPointerExitHa
     
     public void OnPointerEnter(PointerEventData eventData) {
 
-        ButtonInteractManager.Instance.SelectButton(this, type);
+        if (CheckInteractable()) {
+            ButtonInteractManager.Instance.SelectButton(this, type);
+        }
     }
 
     public void OnPointerExit(PointerEventData eventData) {
@@ -69,7 +71,7 @@ public class ButtonInteract: MonoBehaviour, IPointerEnterHandler, IPointerExitHa
 
     public void OnPointerMove(PointerEventData eventData) {
 
-        if (!isOn) {
+        if (!isOn && CheckInteractable()) {
             ButtonInteractManager.Instance.SelectButton(this, type);
         }
     }

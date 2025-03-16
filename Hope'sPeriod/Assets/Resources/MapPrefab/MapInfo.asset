@@ -231,15 +231,15 @@ MonoBehaviour:
                 dataList:
                 - Key: {x: -1, y: 0, z: 0}
                   Value:
-                    code: 6100
+                    code: 6005
                     condition: IsUseItem(Code = 2002 | Count = 1 | Not = true);
                 - Key: {x: -1, y: -1, z: 0}
                   Value:
-                    code: 6100
+                    code: 6005
                     condition: IsUseItem(Code = 2002 | Count = 1 | Not = true);
                 - Key: {x: -1, y: -2, z: 0}
                   Value:
-                    code: 6100
+                    code: 6005
                     condition: IsUseItem(Code = 2002 | Count = 1 | Not = true);
               monsterList: 
               genProbability: 0

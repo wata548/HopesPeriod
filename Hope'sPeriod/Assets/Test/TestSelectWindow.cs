@@ -8,7 +8,7 @@ public class TestSelectWindow: MonoBehaviour {
     private void Update() {
 
         if (Input.GetKeyDown(KeyCode.W)) {
-            ScriptShower.Instance.StartScript(6200);
+            ScriptShower.Instance.StartScript(6999);
         }
     }
 }

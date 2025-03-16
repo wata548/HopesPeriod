@@ -11,12 +11,14 @@ public class MapSizeManager : MonoBehaviour {
     [SerializeField] private GameObject map;
     [SerializeField] private GameObject outline;
     private Vector2 defaultMapSize;
+    private Vector2 defaultMapPos;
     private const float OutlineInterval = 0.2f;
     private const float Duration = 0.5f;
     
     private void Awake() {
 
         defaultMapSize = map.transform.localScale;
+        defaultMapPos = map.transform.localPosition;
         Instance = this;
     }
 
@@ -43,6 +45,6 @@ public class MapSizeManager : MonoBehaviour {
 
     public void Default(float duration = Duration) {
         Resize(defaultMapSize, duration);
-        Move(defaultMapSize, duration);
+        Move(defaultMapPos, duration);
     }
 }

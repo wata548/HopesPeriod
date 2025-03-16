@@ -10,8 +10,11 @@ public class PlayerAnimation: MonoBehaviour {
     private Vector2 direction;
     public Direction Dir { get; private set; }
     private MoveComposite input;
-    private bool on = false;
 
+    private bool isWalking = false; 
+    private bool on = false;
+    
+//==================================================||
     public void SetOn(bool on) => this.on = on;
 
     private EventInstance walkSound;
@@ -32,8 +35,13 @@ public class PlayerAnimation: MonoBehaviour {
         if(!inputDirection.Approximately(Vector2.zero))
             SetAnimation(inputDirection);
     }
+    
+   //==================================================|| 
 
     private void Sound(Vector2 velo) {
+        if (!isWalking)
+            return;
+        
         if (velo.magnitude >= 0.1f) {
             bool isPlaying = AudioManager.Instance.IsPlaying(walkSound);
             if (!isPlaying) {
@@ -66,11 +74,9 @@ public class PlayerAnimation: MonoBehaviour {
     }
 
     public void SetSpeed(Vector2 power) {
-        animator.SetFloat("Speed", power.magnitude);
-    }
-    
-    public void SetSpeed(float power) {
-        
-        animator.SetFloat("Speed", power);
+
+        var speed = power.magnitude;
+        isWalking = speed > 0.1f;
+        animator.SetFloat("Speed", speed);
     }
 }

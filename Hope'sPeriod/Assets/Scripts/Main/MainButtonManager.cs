@@ -1,3 +1,5 @@
+using System;
+
 public class MainButtonManager: InteractButtonManager {
     public override bool Interactable { get; protected set; } = true;
     
@@ -21,6 +23,5 @@ public class MainButtonManager: InteractButtonManager {
             throw new TypeMissMatched(button.gameObject, typeof(MainButton));
 
         return result;
-    } 
-    
+    }
 }

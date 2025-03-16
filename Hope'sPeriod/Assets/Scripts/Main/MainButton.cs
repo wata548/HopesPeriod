@@ -11,7 +11,6 @@ public class MainButton: InteractButtonUI {
         ToMainButtonManager(Manager).Init();
         
         Manager.SetInteractable(false);
-        AudioManager.Instance.PlayOne(FmodEvents.Instance.Click);
     }
 
     private float fontSize;
