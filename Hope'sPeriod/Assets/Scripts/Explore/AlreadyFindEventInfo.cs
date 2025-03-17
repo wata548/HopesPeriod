@@ -41,7 +41,11 @@ public static class AlreadyFindEventInfo {
     }
 
     public static bool AlreadyEvent(int code) => Events.Contains(code);
-    public static void FindEvent(int code) => Events.Add(code);
+
+    public static void FindEvent(int code) {
+        if(!AlreadyEvent(code))    
+            Events.Add(code);
+    }
 
     public static bool AlreadyItem(int mapCode, Vector3Int pos) => FindItemInfos?[mapCode]?.Contains(pos) ?? false;
     public static bool AlreadyEvent(int mapCode, Vector3Int pos) => FindEventInfos?[mapCode]?.Contains(pos) ?? false;

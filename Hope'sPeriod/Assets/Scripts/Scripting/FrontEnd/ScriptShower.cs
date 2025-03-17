@@ -20,6 +20,7 @@ public class ScriptShower: MonoBehaviour {
     private ScriptDBDataTable table = null;
     public int EventCode => eventCode;
     public void StartScript(int code) {
+        
         Debug.Log($"Start Script: {code}");
 
         if (this.eventCode != 0) {
@@ -27,6 +28,7 @@ public class ScriptShower: MonoBehaviour {
             Debug.Log($"Script({code}) is canceled");
             return;
         }
+        AlreadyFindEventInfo.FindEvent(code);
         
         TilePlayerPhysics.SetMovable(false);
         SettingWindow.SetInteractable(false);
@@ -64,12 +66,21 @@ public class ScriptShower: MonoBehaviour {
     }
 
     public void ShowTutorial(int code) {
-         Debug.Log($"Start Tutorial: {code}");
-                
-         TilePlayerPhysics.SetMovable(false);
-         SetTable();
-         eventCode = code;
-         justTutorial = true;
+        
+        AlreadyFindEventInfo.FindEvent(code);
+        Debug.Log($"Start Tutorial: {code}");
+        if (this.eventCode != 0) {
+         
+            Debug.Log($"Script({code}) is canceled");
+            return;
+        }
+        AlreadyFindEventInfo.FindEvent(code);
+        
+        TilePlayerPhysics.SetMovable(false);
+        SettingWindow.SetInteractable(false);
+        SetTable();
+        eventCode = code;
+        justTutorial = true;
         
         if(!end)
             return;
@@ -105,6 +116,7 @@ public class ScriptShower: MonoBehaviour {
         Debug.Log("end");
         eventCode = 0;
         
+        //next script
         if (ConnectEvent != 0) {
             StartScript(ConnectEvent);
             ConnectEvent = 0;
@@ -129,8 +141,6 @@ public class ScriptShower: MonoBehaviour {
 
         if (eventCode == 0)
             return;
-
-        
         
         SetTable();    
 
@@ -151,9 +161,6 @@ public class ScriptShower: MonoBehaviour {
             //End Script
             if (justTutorial || table.DataTable[eventCode].Count <= index) {
                 justTutorial = false;
-                
-                
-                AlreadyFindEventInfo.FindEvent(EventCode);
                 
                 backgroundScript.StartSetUp();
                 defaultScript.StartSetUp();

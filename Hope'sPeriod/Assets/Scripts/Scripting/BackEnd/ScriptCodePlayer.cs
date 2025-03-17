@@ -301,6 +301,7 @@ public class ScriptCodePlayer: MonoBehaviour {
         if (!command.Start())
             return;
 
+        AlreadyFindEventInfo.FindEvent(command.Code);
         var list = TutorialInfo.Interpret(command.Code);
         TutorialWindow.Instance.SetTutorial(list);
         StartCoroutine(Wait.WaitAndDo(() => !TutorialWindow.Instance.On, command.EndProcess));
@@ -345,7 +346,10 @@ public class ScriptCodePlayer: MonoBehaviour {
         if (!command.Start())
             return;
 
-        command.EndProcess();
+        LoadButtonOnScriptManger.Instance.TurnOn(command.SubTitle);
+        StartCoroutine(Wait.WaitAndDo(() => !LoadButtonOnScriptManger.Instance.Interactable, () => {
+            command.EndProcess();
+        }));
     }
 
     private void NextEventScript(NextEventScriptCommand command) {

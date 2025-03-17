@@ -6,7 +6,7 @@ public class LoadButtonOnPlayManager: InteractButtonManager {
     private static readonly Color disactive = Color.white;
     private static readonly Color emptySlot = Color.gray;
     [SerializeField] private Cursor cursor;
-    [SerializeField] private GameObject title;
+    [SerializeField] protected GameObject title;
     
     public void TurnOn() {
         Interactable = true;

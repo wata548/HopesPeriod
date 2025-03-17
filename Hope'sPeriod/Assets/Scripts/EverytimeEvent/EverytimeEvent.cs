@@ -20,10 +20,9 @@ public static class EverytimeEvent {
                 continue;
 
             int code = factor.Value.Target;
-            AlreadyFindEventInfo.FindEvent(factor.Key);
             Debug.Log(factor.Key);
-            
-            
+
+            AlreadyFindEventInfo.FindEvent(factor.Key);
             switch (code.ToCodeType()) {
                 case CodeType.Script :
                     ScriptShower.Instance.StartScript(code);
