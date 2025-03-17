@@ -36,6 +36,48 @@ MonoBehaviour:
           \"2\uBC88 \uC120\uD0DD\uC9C0\"] | Title = \"\uC120\uD0DD\"  | NextEvent
           = [6000, 6002]);"
         m_EventTiming: 1
+    - Key: 6005
+      Value:
+      - m_WindowType: 1
+        m_Profile: Default
+        m_Actor: 5002
+        m_Script: "\uBA3C\uC800 \uBB3C\uC744 \uB9C8\uC2DC\uBA70 \uC548\uC815\uC744
+          \uCDE8\uD558\uC790."
+        m_JustEvent: 0
+        m_ClearContext: 0
+        m_Event: 'AddRealPos(Pos = {-1f,0f} | Duraction = 0.3f); '
+        m_EventTiming: 0
+    - Key: 6006
+      Value:
+      - m_WindowType: 1
+        m_Profile: Default
+        m_Actor: 5002
+        m_Script: "\uC544\uBB34 \uAC83\uB3C4 \uC5C6\uB294 \uB4EF\uD558\uB2E4."
+        m_JustEvent: 0
+        m_ClearContext: 0
+        m_Event: 
+        m_EventTiming: 0
+    - Key: 6007
+      Value:
+      - m_WindowType: 1
+        m_Profile: Default
+        m_Actor: 5002
+        m_Script: "\uC5EC\uAE30\uAE4C\uC9C0 \uAD6C\uD604\uB418\uC5C8\uC2B5\uB2C8\uB2E4.\\n\uC774
+          \uC55E\uC5D0\uB294 \uC5EC\uB7EC \uB9F5\uB9CC \uB0A8\uC544\uC788\uC2B5\uB2C8\uB2E4."
+        m_JustEvent: 0
+        m_ClearContext: 0
+        m_Event: 
+        m_EventTiming: 0
+    - Key: 6009
+      Value:
+      - m_WindowType: 1
+        m_Profile: Default
+        m_Actor: 5002
+        m_Script: "\uC544\uC9C1\uAC00\uBCF4\uC9C0 \uB9D0\uC790"
+        m_JustEvent: 0
+        m_ClearContext: 0
+        m_Event: 
+        m_EventTiming: 0
     - Key: 6000
       Value:
       - m_WindowType: 2
@@ -331,9 +373,9 @@ MonoBehaviour:
           SetBackground(Image = "CP1_BossMob3");
 
           Wait(Power
-          = 1f);
+          = 0.4f);
 
-          ClearEffect(Power = 0f);'
+          ClearEffect(Power = 0.6f);'
         m_EventTiming: 0
       - m_WindowType: 1
         m_Profile: None
@@ -418,36 +460,318 @@ MonoBehaviour:
         m_Script: "\uC774\uBD10, \uC800\uAE30... \uC544, \uC9C4\uC9DC...!"
         m_JustEvent: 0
         m_ClearContext: 0
-        m_Event: 
+        m_Event: NextEvent(Code = 6100);
         m_EventTiming: 0
-    - Key: 6005
+    - Key: 6100
       Value:
-      - m_WindowType: 1
-        m_Profile: Default
-        m_Actor: 5002
-        m_Script: "\uBA3C\uC800 \uBB3C\uC744 \uB9C8\uC2DC\uBA70 \uC548\uC815\uC744
-          \uCDE8\uD558\uC790."
+      - m_WindowType: 2
+        m_Profile: None
+        m_Actor: 0
+        m_Script: 
+        m_JustEvent: 1
+        m_ClearContext: 1
+        m_Event: 'SetChapter(Code = 2);
+
+          SetBackground(Image = "Black");
+
+          Wait(Power
+          = 1f);'
+        m_EventTiming: 0
+      - m_WindowType: 2
+        m_Profile: None
+        m_Actor: 5101
+        m_Script: ......
         m_JustEvent: 0
         m_ClearContext: 0
-        m_Event: 'AddRealPos(Pos = {-1f,0f} | Duraction = 0.3f); '
+        m_Event: 
         m_EventTiming: 0
-    - Key: 6006
-      Value:
-      - m_WindowType: 1
-        m_Profile: Default
-        m_Actor: 5002
-        m_Script: "\uC544\uBB34 \uAC83\uB3C4 \uC5C6\uB294 \uB4EF\uD558\uB2E4."
+      - m_WindowType: 2
+        m_Profile: None
+        m_Actor: 5101
+        m_Script: "...\uB798\uC11C, \u25A0\u25A0\uB825\uC774 \uC0DD\u25A0\uB2E4\uACE0?"
         m_JustEvent: 0
         m_ClearContext: 0
         m_Event: 
         m_EventTiming: 0
-    - Key: 6007
+      - m_WindowType: 2
+        m_Profile: None
+        m_Actor: 5002
+        m_Script: "....\uB124."
+        m_JustEvent: 0
+        m_ClearContext: 0
+        m_Event: 
+        m_EventTiming: 0
+      - m_WindowType: 2
+        m_Profile: None
+        m_Actor: 5101
+        m_Script: "\uADF8\u25A0\uACE0, \uB124 \uC774\uB2A5\u25A0 \u25A0\uBB38\uC5D0...
+          \u25A0\u25A0\u25A0 \u25A0\u25A0\u25A0\u25A0 \u25A0\u25A0?"
+        m_JustEvent: 0
+        m_ClearContext: 0
+        m_Event: 
+        m_EventTiming: 0
+      - m_WindowType: 2
+        m_Profile: None
+        m_Actor: 5002
+        m_Script: "......\uB124, \uC81C\uAC00... \uC800 \uB54C\u25A0\uC5D0......"
+        m_JustEvent: 0
+        m_ClearContext: 0
+        m_Event: 
+        m_EventTiming: 0
+      - m_WindowType: 2
+        m_Profile: None
+        m_Actor: 5101
+        m_Script: "......\uC544\uB2C8, \uC544\uB2C8\uC57C. \uAD1C\uCC2E\uC544."
+        m_JustEvent: 0
+        m_ClearContext: 0
+        m_Event: 
+        m_EventTiming: 0
+      - m_WindowType: 2
+        m_Profile: None
+        m_Actor: 5002
+        m_Script: "\uC81C\uAC00, \uC800 \uB54C\uBB38\uC5D0, \uADF8 \u25A0\u25A0\u25A0...!!"
+        m_JustEvent: 0
+        m_ClearContext: 0
+        m_Event: 
+        m_EventTiming: 0
+      - m_WindowType: 2
+        m_Profile: None
+        m_Actor: 5101
+        m_Script: "\uC77C\uC544. \uD574\uC77C."
+        m_JustEvent: 0
+        m_ClearContext: 0
+        m_Event: 
+        m_EventTiming: 0
+      - m_WindowType: 2
+        m_Profile: None
+        m_Actor: 5002
+        m_Script: "\uC73D,"
+        m_JustEvent: 0
+        m_ClearContext: 0
+        m_Event: 
+        m_EventTiming: 0
+      - m_WindowType: 2
+        m_Profile: None
+        m_Actor: 5002
+        m_Script: "...\uC8C4\uC1A1, \uD574\uC694. \uADFC\uB370, \uB3C4\uC800\uD788
+          \uACAC\uB51C \uC218\uAC00, \uC5C6, \uC5B4\uC11C......"
+        m_JustEvent: 0
+        m_ClearContext: 0
+        m_Event: 
+        m_EventTiming: 0
+      - m_WindowType: 2
+        m_Profile: None
+        m_Actor: 5101
+        m_Script: "\uAD1C\uCC2E\uC544. \uAD1C\uCC2E\uC744 \uAC70\uC57C, \uC77C\uC544..."
+        m_JustEvent: 0
+        m_ClearContext: 0
+        m_Event: 
+        m_EventTiming: 0
+      - m_WindowType: 2
+        m_Profile: None
+        m_Actor: 5002
+        m_Script: "\uD558, \uD558\uD544, \uC728\uC774\uB3C4 \uC544\uD50C \uB54C,
+          \uC81C\uAC00 \uC774\uB7EC\uBA74 \uC548 \uB418\uB294 \uAC70\uC796\uC544\uC694...
+          \uC8C4\uC1A1\uD574\uC694. \uC815\uB9D0, \uC815\uB9D0 \uC8C4\uC1A1\uD574\uC694..."
+        m_JustEvent: 0
+        m_ClearContext: 0
+        m_Event: 
+        m_EventTiming: 0
+      - m_WindowType: 2
+        m_Profile: None
+        m_Actor: 5101
+        m_Script: "\uC544\uB2C8\uC57C, \uB124 \uC798\uBABB\uC774 \uC544\uB2C8\uC57C."
+        m_JustEvent: 0
+        m_ClearContext: 0
+        m_Event: 
+        m_EventTiming: 0
+      - m_WindowType: 2
+        m_Profile: None
+        m_Actor: 5101
+        m_Script: "\uADF8\uAC74 \uADF8\uB0E5 \uC2E4\uC218\uC600\uC744 \uBFD0\uC774\uC57C.
+          \uADF8\uB7EC\uB2C8\uAE4C..."
+        m_JustEvent: 0
+        m_ClearContext: 0
+        m_Event: 
+        m_EventTiming: 0
+      - m_WindowType: 2
+        m_Profile: None
+        m_Actor: 5101
+        m_Script: "<size=0%>[Shake:</size><color=#aaaaaa>\uC804\uBD80 \uB9C8\uBC95\uCC98\uB7FC
+          \uC78A\uC5B4\uBC84\uB9AC\uC790.</color><size=0%>]</size>"
+        m_JustEvent: 0
+        m_ClearContext: 0
+        m_Event: 
+        m_EventTiming: 0
+      - m_WindowType: 2
+        m_Profile: None
+        m_Actor: 5101
+        m_Script: "<color=#717171>\uC77C\uC774\uB294 \uC544\uBB34 \uC798\uBABB \uD558\uC9C0
+          \uC54A\uC558\uC5B4. \uAD1C\uCC2E\uC544......</color>"
+        m_JustEvent: 0
+        m_ClearContext: 0
+        m_Event: 
+        m_EventTiming: 0
+      - m_WindowType: 2
+        m_Profile: None
+        m_Actor: 5101
+        m_Script: .........
+        m_JustEvent: 0
+        m_ClearContext: 0
+        m_Event: 
+        m_EventTiming: 0
+      - m_WindowType: 2
+        m_Profile: None
+        m_Actor: 0
+        m_Script: 
+        m_JustEvent: 1
+        m_ClearContext: 1
+        m_Event: 'StartChangeEffect(Roll = false | Power = 0f);
+
+          ClearBackground();
+
+          Wait(Power
+          = 2.5f);
+
+          ClearEffect(Power = 0.5f);
+
+'
+        m_EventTiming: 0
+      - m_WindowType: 1
+        m_Profile: Surprised
+        m_Actor: 5002
+        m_Script: "\uD5C8\uC5B5...!"
+        m_JustEvent: 0
+        m_ClearContext: 0
+        m_Event: 
+        m_EventTiming: 0
+      - m_WindowType: 1
+        m_Profile: Sick
+        m_Actor: 5002
+        m_Script: "\uD558\uC544, \uD558\uC544..."
+        m_JustEvent: 0
+        m_ClearContext: 0
+        m_Event: 
+        m_EventTiming: 0
+      - m_WindowType: 1
+        m_Profile: Default
+        m_Actor: 5003
+        m_Script: "\uC624, \uC77C\uC5B4\uB0AC\uB2E4."
+        m_JustEvent: 0
+        m_ClearContext: 0
+        m_Event: 
+        m_EventTiming: 0
+      - m_WindowType: 1
+        m_Profile: Flustered
+        m_Actor: 5003
+        m_Script: "\uADF8\uB7EC\uB2C8\uAE4C, \uADF8... \uD68C\uC0C9 \uBA38\uB9AC?
+          \uBB50\uB77C\uACE0 \uD574\uC57C \uD558\uB0D0, \uC774\uAC70. \uC774\uB984\uC744
+          \uBAB0\uB77C\uC11C..."
+        m_JustEvent: 0
+        m_ClearContext: 0
+        m_Event: 
+        m_EventTiming: 0
+      - m_WindowType: 1
+        m_Profile: Blink
+        m_Actor: 5003
+        m_Script: "\uC5B4\uCA0C\uB4E0. \uAD1C\uCC2E\uC73C\uC2ED\uB2C8\uAE4C?"
+        m_JustEvent: 0
+        m_ClearContext: 0
+        m_Event: 
+        m_EventTiming: 0
+      - m_WindowType: 1
+        m_Profile: Default
+        m_Actor: 5003
+        m_Script: "\uACE7 \uC8FD\uC73C\uC2E4 \uC5BC\uAD74\uC778\uB370."
+        m_JustEvent: 0
+        m_ClearContext: 0
+        m_Event: 
+        m_EventTiming: 0
+      - m_WindowType: 1
+        m_Profile: Skeptical
+        m_Actor: 5002
+        m_Script: ......
+        m_JustEvent: 0
+        m_ClearContext: 0
+        m_Event: "MakeSelect(Factor=[ \"\uAD1C\uCC2E\uC544\uC694` \uAC10\uC0AC\uD569\uB2C8\uB2E4...\",
+          \"......\", \"\uAD1C\uCC2E\uC544 \uBCF4\uC774\uC138\uC694?\" ] | Title
+          = \"\" | NextEvent = [6101, 6102, 6103] );"
+        m_EventTiming: 0
+    - Key: 6101
       Value:
+      - m_WindowType: 1
+        m_Profile: Blink
+        m_Actor: 5002
+        m_Script: "\uAD1C\uCC2E\uC544\uC694, \uAC10\uC0AC\uD569\uB2C8\uB2E4..."
+        m_JustEvent: 0
+        m_ClearContext: 0
+        m_Event: 'AddLove(Index = 2 | Point = 5);
+
+          NextEvent(Code = 6104);'
+        m_EventTiming: 0
       - m_WindowType: 1
         m_Profile: Default
         m_Actor: 5002
-        m_Script: "\uC5EC\uAE30\uAE4C\uC9C0 \uAD6C\uD604\uB418\uC5C8\uC2B5\uB2C8\uB2E4.\\n\uC774
-          \uC55E\uC5D0\uB294 \uC5EC\uB7EC \uB9F5\uB9CC \uB0A8\uC544\uC788\uC2B5\uB2C8\uB2E4."
+        m_Script: "\uC81C \uC774\uB984\uC740 \uD574\uC77C\uC774\uC5D0\uC694."
+        m_JustEvent: 0
+        m_ClearContext: 0
+        m_Event: 
+        m_EventTiming: 0
+      - m_WindowType: 1
+        m_Profile: Smile
+        m_Actor: 5003
+        m_Script: "\uC624, \uD574\uC77C!"
+        m_JustEvent: 0
+        m_ClearContext: 0
+        m_Event: 
+        m_EventTiming: 0
+      - m_WindowType: 1
+        m_Profile: Joy
+        m_Actor: 5003
+        m_Script: "\uC774\uC81C \uC880 \uC0B4\uB9CC\uD55C \uC5BC\uAD74\uC774\uC2ED\uB2C8\uB2E4? "
+        m_JustEvent: 0
+        m_ClearContext: 0
+        m_Event: 
+        m_EventTiming: 0
+    - Key: 6102
+      Value:
+      - m_WindowType: 1
+        m_Profile: Skeptical
+        m_Actor: 5002
+        m_Script: ......
+        m_JustEvent: 0
+        m_ClearContext: 0
+        m_Event: NextEvent(Code = 6104);
+        m_EventTiming: 0
+      - m_WindowType: 1
+        m_Profile: Flustered
+        m_Actor: 5003
+        m_Script: ......
+        m_JustEvent: 0
+        m_ClearContext: 0
+        m_Event: 
+        m_EventTiming: 0
+      - m_WindowType: 1
+        m_Profile: Default
+        m_Actor: 5003
+        m_Script: "\uC774\uBCF4\uC2ED\uC1FC, \uC8FD\uC5C8\uC2B5\uB2C8\uAE4C?"
+        m_JustEvent: 0
+        m_ClearContext: 0
+        m_Event: 
+        m_EventTiming: 0
+      - m_WindowType: 1
+        m_Profile: Sick2
+        m_Actor: 5002
+        m_Script: "\uC544, \uC544\uB1E8. \uC8C4\uC1A1\uD574\uC694..."
+        m_JustEvent: 0
+        m_ClearContext: 0
+        m_Event: 
+        m_EventTiming: 0
+      - m_WindowType: 1
+        m_Profile: Default
+        m_Actor: 5002
+        m_Script: "\uC81C \uC774\uB984\uC740 \uD574\uC77C\uC774\uC5D0\uC694. \uADF8\uB7EC\uB294
+          \uADF8\uCABD\uC740..."
         m_JustEvent: 0
         m_ClearContext: 0
         m_Event: 
@@ -455,9 +779,105 @@ MonoBehaviour:
     - Key: 6103
       Value:
       - m_WindowType: 1
-        m_Profile: Default
+        m_Profile: Sick2
         m_Actor: 5002
-        m_Script: "\uC544\uC9C1\uAC00\uBCF4\uC9C0 \uB9D0\uC790"
+        m_Script: "\uAD1C\uCC2E\uC544 \uBCF4\uC774\uC138\uC694?"
+        m_JustEvent: 0
+        m_ClearContext: 0
+        m_Event: 'AddLove(Index = 2 | Point = -3);
+
+          NextEvent(Code = 6104);'
+        m_EventTiming: 0
+      - m_WindowType: 1
+        m_Profile: Emberrassed
+        m_Actor: 5003
+        m_Script: ......
+        m_JustEvent: 0
+        m_ClearContext: 0
+        m_Event: 
+        m_EventTiming: 0
+      - m_WindowType: 1
+        m_Profile: Discontent
+        m_Actor: 5003
+        m_Script: "\uC2F8\uAC00\uC9C0\uAC00......"
+        m_JustEvent: 0
+        m_ClearContext: 0
+        m_Event: 
+        m_EventTiming: 0
+      - m_WindowType: 1
+        m_Profile: Skeptical2
+        m_Actor: 5002
+        m_Script: "\uB124?"
+        m_JustEvent: 0
+        m_ClearContext: 0
+        m_Event: 
+        m_EventTiming: 0
+      - m_WindowType: 1
+        m_Profile: Discontent
+        m_Actor: 5003
+        m_Script: "\uC544\uB2D9\uB2C8\uB2E4. \uADF8\uB798\uC11C \uADF8\uCABD \uC774\uB984\uC774
+          \uBB61\uB2C8\uAE4C?"
+        m_JustEvent: 0
+        m_ClearContext: 0
+        m_Event: 
+        m_EventTiming: 0
+      - m_WindowType: 1
+        m_Profile: Flustered
+        m_Actor: 5002
+        m_Script: "\uC544... \uD574\uC77C\uC774\uC5D0\uC694. \uD3B8\uD558\uAC8C \uBD80\uB974\uC138\uC694."
+        m_JustEvent: 0
+        m_ClearContext: 0
+        m_Event: 
+        m_EventTiming: 0
+    - Key: 6104
+      Value:
+      - m_WindowType: 1
+        m_Profile: Default
+        m_Actor: 5003
+        m_Script: "\uCE90\uBE4C\uC785\uB2C8\uB2E4. \uADF8\uCABD\uB3C4 \uC774\uB2A5\uB825\uC790\uC778\uAC00
+          \uBD05\uB2C8\uB2E4?"
+        m_JustEvent: 0
+        m_ClearContext: 0
+        m_Event: 
+        m_EventTiming: 0
+      - m_WindowType: 1
+        m_Profile: Default
+        m_Actor: 5003
+        m_Script: "\uC544\uAE4C \uC2F8\uC6B0\uB294 \uAC78 \uBD24\uC9C0 \uB9D0\uC785\uB2C8\uB2E4.
+          \uB9C9 \uC774\uB807\uAC8C, \uCFE0\uAD81 \uBC88\uCA4D\uBC88\uCA4D \uD558\uBA74\uC11C."
+        m_JustEvent: 0
+        m_ClearContext: 0
+        m_Event: 
+        m_EventTiming: 0
+      - m_WindowType: 1
+        m_Profile: Flustered
+        m_Actor: 5002
+        m_Script: "\uC544, \uB124. \uADF8......"
+        m_JustEvent: 0
+        m_ClearContext: 0
+        m_Event: 
+        m_EventTiming: 0
+      - m_WindowType: 2
+        m_Profile: None
+        m_Actor: 5101
+        m_Script: "\uC77C\uC774\uB294 \uC544\uBB34 \uC798\uBABB \uD558\uC9C0 \uC54A\uC558\uC5B4.
+          \uAD1C\uCC2E\uC544......"
+        m_JustEvent: 0
+        m_ClearContext: 0
+        m_Event: SetBackground(Image = "Black" | FadeTime = 0f | Upper = false );
+        m_EventTiming: 0
+      - m_WindowType: 1
+        m_Profile: Panic
+        m_Actor: 5002
+        m_Script: ......
+        m_JustEvent: 0
+        m_ClearContext: 0
+        m_Event: ClearBackground(Upper = false );
+        m_EventTiming: 0
+      - m_WindowType: 1
+        m_Profile: Flustered
+        m_Actor: 5003
+        m_Script: "...\uD574\uC77C?"
         m_JustEvent: 0
         m_ClearContext: 0
         m_Event: 

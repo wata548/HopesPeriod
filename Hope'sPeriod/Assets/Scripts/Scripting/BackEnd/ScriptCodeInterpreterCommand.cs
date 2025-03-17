@@ -226,6 +226,20 @@ sealed public class AddPlayerScriptCommand : CommandBase {
     public int Index { get; protected set; }
 }
 
+sealed public class NextEventScriptCommand : CommandBase {
+    public int Code { get; protected set; }
+}
+
+sealed public class SaveWindowScriptCommand : CommandBase {
+    public string SubTitle { get; private set; }
+}
+
+sealed public class AddLoveScriptCommand : CommandBase {
+    public int Index { get; protected set; }
+    public int Point { get; protected set; }
+}
+
+
 public enum ScriptCodeKeyword {
     Wait,
     Focus,
@@ -256,6 +270,9 @@ public enum ScriptCodeKeyword {
     ShowTutorial,
     ShowMessage,
     AddPlayer,
+    NextEvent,
+    SaveWindow,
+    AddLove,
     
     IsUseItem,
     IsHaveItem,

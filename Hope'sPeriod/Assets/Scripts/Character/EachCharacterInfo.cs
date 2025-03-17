@@ -33,6 +33,9 @@ public class EachCharacterInfo: MonoBehaviour {
 
     public void ActiveCharacter()
         => Exist = true;
+
+    public void AddLove(int point)
+        => Love += point;
     
     public void SetSkill(int index, int code) {
         if (index >= SkillCountLimit) {

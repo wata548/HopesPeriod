@@ -276,8 +276,10 @@ public static class ScriptCodeInterpreter {
     }
     private static object Parse(Type type, string context) {
 
-        if (type == typeof(string))
-            return context;
+        if (type == typeof(string)) {
+
+            return context.Replace('`', ',');
+        }
 
         if (string.IsNullOrEmpty(context))
             throw new Exception("parse target should not null or empty");

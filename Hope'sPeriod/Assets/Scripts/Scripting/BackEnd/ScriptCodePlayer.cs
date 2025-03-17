@@ -340,6 +340,29 @@ public class ScriptCodePlayer: MonoBehaviour {
         CharacterInfoManager.Characters[command.Index - 1].ActiveCharacter();
         command.EndProcess();
     }
+
+    private void SaveWindowScript(SaveWindowScriptCommand command) {
+        if (!command.Start())
+            return;
+
+        command.EndProcess();
+    }
+
+    private void NextEventScript(NextEventScriptCommand command) {
+        if(!command.Start())
+            return;
+
+        ScriptShower.Instance.ConnectEvent = command.Code;
+        command.EndProcess();
+    }
+
+    private void AddLoveScript(AddLoveScriptCommand command) {
+        if (!command.Start())
+            return;
+
+        CharacterInfoManager.Characters[command.Index - 1].AddLove(command.Point);
+        command.EndProcess();
+    }
     #endregion
     
     public void EndProcess() {

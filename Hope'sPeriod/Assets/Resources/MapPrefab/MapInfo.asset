@@ -316,12 +316,7 @@ MonoBehaviour:
               monsterList: 
               genProbability: 0
               itemList:
-                dataList:
-                - Key: {x: 4, y: 3, z: 0}
-                  Value:
-                    code: 2001
-                    count: 1
-                    condition: 
+                dataList: []
               passiveEventList:
                 dataList: []
               moveEventList:
@@ -435,12 +430,7 @@ MonoBehaviour:
               monsterList: 
               genProbability: 0
               itemList:
-                dataList:
-                - Key: {x: -5, y: 3, z: 0}
-                  Value:
-                    code: 2001
-                    count: 1
-                    condition: 
+                dataList: []
               passiveEventList:
                 dataList: []
               moveEventList:
@@ -462,12 +452,7 @@ MonoBehaviour:
               monsterList: 
               genProbability: 0
               itemList:
-                dataList:
-                - Key: {x: -5, y: 3, z: 0}
-                  Value:
-                    code: 2001
-                    count: 1
-                    condition: 
+                dataList: []
               passiveEventList:
                 dataList: []
               moveEventList:

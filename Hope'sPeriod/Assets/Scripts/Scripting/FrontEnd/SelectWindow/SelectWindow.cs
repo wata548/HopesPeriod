@@ -66,6 +66,12 @@ public class SelectWindow: InteractButtonManager {
 
     public void ShowSelect(List<string> element,List<int> connectEvent, string titleName = "") {
 
+        foreach (var elementData in element)
+            Debug.Log(elementData);
+        foreach (var factor in connectEvent) {
+            Debug.Log(factor);
+        }
+        
         //init
         outline.SetActive(true);
         this.connectEvent = connectEvent;

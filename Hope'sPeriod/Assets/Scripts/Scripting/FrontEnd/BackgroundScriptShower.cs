@@ -7,6 +7,8 @@ public class BackgroundScriptShower: MonoBehaviour {
     [SerializeField] private TMP_Text nameText;
     [SerializeField] private TMP_Text context;
     [SerializeField] private WaveMovementButton skipButton;
+    [SerializeField] private GameObject realSkipButton;
+    
     private const float Interval = 0.07f;
     private const float AutoSkipSecond = 3f;
     private float time;
@@ -22,11 +24,13 @@ public class BackgroundScriptShower: MonoBehaviour {
     public void TurnOn() {
         box.gameObject.SetActive(true);
         skipButton.gameObject.SetActive(true);
+        realSkipButton.SetActive(true);
     }
     
     public void TurnOff() {
         box.gameObject.SetActive(false);
         skipButton.gameObject.SetActive(false);
+        realSkipButton.SetActive(false);
     }
     
     public void Erase() {

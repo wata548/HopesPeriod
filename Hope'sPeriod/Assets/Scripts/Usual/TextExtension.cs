@@ -23,7 +23,7 @@ public static class TextExtension {
     
     private static readonly Dictionary<Effect, Func<float, Vector3>> match = new() {
         { Effect.Flow, index => new Vector3(0, Mathf.Sin(index * 3f + Time.time) * 13f)},
-        { Effect.Shake, index => new Vector3(Random.Range(-0.3f, 0.3f), Random.Range(-0.65f, 0.65f)) * 10},
+        { Effect.Shake, index => new Vector3(Random.Range(-0.3f, 0.3f), Random.Range(-0.65f, 0.65f)) * 5},
     };
     
     public static IEnumerator Typing(this TMP_Text text, string context, float interval, Action callback = null, Func<bool> breakCondition = null) {
@@ -72,6 +72,13 @@ public static class TextExtension {
         yield break;
     }
         
+    /// <summary>
+    /// <p>Format: "(size=0%)[Flow:(/size)sdfsdfsd(size=0%)](/size)"</p>
+    /// <p>(parenthses is braket, but braket is summary's grammer) </p>
+    /// but make by add effect method, privious me was stupid.
+    /// if i was using Regex and preprocessing, It more easier
+    /// </summary>
+    /// <param name="text"></param>
     public static void EffectProcedure(this TMP_Text text) {
         
         
@@ -85,13 +92,11 @@ public static class TextExtension {
         int index = 0;
         bool effect = false;
 
-        string s = "";
         foreach (var character in textInfo.characterInfo) {
         
             if(!character.isVisible) 
                 continue;
 
-            s += character.character;
             //check effectType
             if (isEffectTypeTyping) {
                 if (character.character == ':') {

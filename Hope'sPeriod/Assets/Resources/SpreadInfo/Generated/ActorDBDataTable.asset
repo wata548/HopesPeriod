@@ -38,3 +38,7 @@ MonoBehaviour:
       Value:
         m_Code: 5005
         m_Name: "\uC6D0\uD658"
+    - Key: 5101
+      Value:
+        m_Code: 5101
+        m_Name: "\uC5B4\uBA38\uB2C8"
