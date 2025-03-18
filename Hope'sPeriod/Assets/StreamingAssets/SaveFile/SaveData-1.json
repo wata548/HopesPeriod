@@ -1,5 +1,5 @@
 {
-  "PlayTime": 36.4634,
+  "PlayTime": 27.186821,
   "SaveCharacterInfo": [
     {
       "Exist": true,
@@ -83,7 +83,7 @@
   "SavePos": {
     "Code": 8402,
     "X": -1.9000001,
-    "Y": 16.13,
+    "Y": 15.13,
     "Chapter": 1
   },
   "SaveMonster": [],
@@ -91,7 +91,7 @@
     {
       "Code": 8402,
       "X": -2,
-      "Y": 16,
+      "Y": 15,
       "Z": 0
     }
   ],

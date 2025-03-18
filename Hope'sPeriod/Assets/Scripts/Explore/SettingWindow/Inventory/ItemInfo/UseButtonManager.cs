@@ -12,8 +12,8 @@ public class UseButtonManager: InteractButtonManager {
     [Header("buttonCursor")]
     [SerializeField] private Cursor cursor;
 
+    [Header("Etc")]
     [SerializeField] private InventoryButtonManager itemListManager;
-    
     [SerializeField] private InventoryTargetButtonManager targetButtonManager;
     public InventoryTargetButtonManager TargetButtonManager => targetButtonManager;
     
@@ -29,6 +29,7 @@ public class UseButtonManager: InteractButtonManager {
 
     public void TurnOn() {
         Code = 0;
+        
         SetEmpty();
         keyBoardControlable = false;
         
@@ -38,6 +39,7 @@ public class UseButtonManager: InteractButtonManager {
 
     public void TurnOff() {
         Interactable = false;
+        SettingWindow.SetInteractable(true);
     }
     
     public void SetInfo(int code) {
@@ -56,11 +58,15 @@ public class UseButtonManager: InteractButtonManager {
 
         cursor.gameObject.SetActive(true);
         if (code.ToCodeType() == CodeType.Item) {
+            SettingWindow.SetInteractable(false);
+            
             foreach (var button in buttons) {
                 button.gameObject.SetActive(true);
             }
 
+            before = 0;
             Parse(buttons[0]).Text.color = Active;
+            Parse(buttons[1]).Text.color = Disactive;
         }
     }
 
@@ -142,22 +148,24 @@ public class UseButtonManager: InteractButtonManager {
 
     private void Update() {
         if (!Interactable || !KeyBoardControlable) return;
+        
         if (InputManager.Instance.ClickAndHold(KeyTypes.Left)) {
 
-            
-            SelectOut(buttons[Selecting]);
             PriviousButton();
             SelectIn(buttons[Selecting]);
         }
 
         if (InputManager.Instance.ClickAndHold(KeyTypes.Right)) {
-            SelectOut(buttons[Selecting]);
+            
             NextButton();
             SelectIn(buttons[Selecting]);
         }
 
-        if (InputManager.Instance.Click(KeyTypes.Cancel))
+        if (InputManager.Instance.Click(KeyTypes.Cancel)) {
+
+            Debug.Log("cliclciclciclciclciclick");
             buttons[1].Click();
+        }
         if (InputManager.Instance.Click(KeyTypes.Select))
             buttons[Selecting].Click();
     }

@@ -16,6 +16,7 @@ public class InventoryButtonManager : InteractButtonManager {
     private CodeType category = CodeType.Item;
     private List<InventoryButton> fixButtons;
 
+    public CodeType Category => category;
     public UseButtonManager InfoShower => infoShower;
     public override bool Interactable { get; protected set; } = true;
 
@@ -145,8 +146,6 @@ public class InventoryButtonManager : InteractButtonManager {
 
         if (InputManager.Instance.Click(KeyTypes.Select) && Selecting != -1) {
             buttons[Selecting].Click();
-            if(category == CodeType.Item)
-                InfoShower.SetKeBoardControlable(true);
         }
 
         if (input) {

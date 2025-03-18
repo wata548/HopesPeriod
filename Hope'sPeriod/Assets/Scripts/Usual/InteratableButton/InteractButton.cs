@@ -27,8 +27,6 @@ public abstract class InteractButton: MonoBehaviour, IPointerEnterHandler, IPoin
         if (!Manager.Interactable)
             return;
 
-        Debug.Log("OnPointerEnter");
-        
         IsOn = true;
         Manager.SelectButton(Index);
         isMouseOn = true;

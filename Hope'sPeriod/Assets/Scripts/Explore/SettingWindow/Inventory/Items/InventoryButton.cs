@@ -22,8 +22,13 @@ public class InventoryButton: InteractButtonUI {
         if (beforeIndex != -1) {
             manager.ButtonDisactive(beforeIndex);
         } 
+        
+        
         beforeIndex = Index;
         manager.ButtonActive(Index);
+        
+        if(manager.Category == CodeType.Item)
+            manager.InfoShower.SetKeBoardControlable(true);
         manager.InfoShower.SetInfo(Code);
             
     }

@@ -468,7 +468,8 @@ MonoBehaviour:
         m_Script: 
         m_JustEvent: 1
         m_ClearContext: 1
-        m_Event: Wait(Power = 1f);
+        m_Event: "Wait(Power = 1f);\nSetChapter(Code = 2);\nSaveWindow(SubTitle =\"Chapter2
+          \uC2DC\uC791\");"
         m_EventTiming: 0
     - Key: 6100
       Value:
@@ -478,8 +479,9 @@ MonoBehaviour:
         m_Script: 
         m_JustEvent: 1
         m_ClearContext: 1
-        m_Event: "SetChapter(Code = 2);\nSaveWindow(SubTitle =\"Chapter2 \uC2DC\uC791\");\nSetBackground(Image
-          = \"Black\");\nWait(Power = 1f);"
+        m_Event: 'SetBackground(Image = "Black");
+
+          Wait(Power = 1f);'
         m_EventTiming: 0
       - m_WindowType: 2
         m_Profile: None

@@ -1,5 +1,5 @@
 {
-  "PlayTime": 135.140656,
+  "PlayTime": 169.786209,
   "SaveCharacterInfo": [
     {
       "Exist": true,
@@ -18,9 +18,10 @@
         0
       ],
       "MaximumHp": 100.0,
-      "CurrentHp": 70.0,
+      "CurrentHp": 53.0,
       "MaximumMp": 130.0,
-      "CurrentMp": 70.0
+      "CurrentMp": 40.0,
+      "Love": 0
     },
     {
       "Exist": false,
@@ -41,7 +42,8 @@
       "MaximumHp": 120.0,
       "CurrentHp": 120.0,
       "MaximumMp": 105.0,
-      "CurrentMp": 105.0
+      "CurrentMp": 105.0,
+      "Love": 5
     },
     {
       "Exist": false,
@@ -62,13 +64,26 @@
       "MaximumHp": 95.0,
       "CurrentHp": 95.0,
       "MaximumMp": 140.0,
-      "CurrentMp": 140.0
+      "CurrentMp": 140.0,
+      "Love": 0
     }
   ],
   "SaveItem": [
     {
+      "Code": 2001,
+      "Amount": 1
+    },
+    {
       "Code": 2002,
-      "Amount": 0
+      "Amount": 1
+    },
+    {
+      "Code": 2003,
+      "Amount": 1
+    },
+    {
+      "Code": 2004,
+      "Amount": 1
     }
   ],
   "SaveUseItem": [
@@ -78,10 +93,10 @@
     }
   ],
   "SavePos": {
-    "Code": 8402,
-    "X": -2.0,
-    "Y": 16.0,
-    "Chapter": 1
+    "Code": 8414,
+    "X": 4.24141836,
+    "Y": 1.68524039,
+    "Chapter": 2
   },
   "SaveMonster": [
     {
@@ -91,15 +106,9 @@
   ],
   "SaveFindEvent": [
     {
-      "Code": 8404,
-      "X": -1,
-      "Y": -2,
-      "Z": 0
-    },
-    {
       "Code": 8402,
       "X": -2,
-      "Y": 16,
+      "Y": 15,
       "Z": 0
     }
   ],
@@ -109,12 +118,36 @@
       "X": -4,
       "Y": 2,
       "Z": 0
+    },
+    {
+      "Code": 8403,
+      "X": -4,
+      "Y": 2,
+      "Z": 0
+    },
+    {
+      "Code": 8407,
+      "X": 4,
+      "Y": 3,
+      "Z": 0
+    },
+    {
+      "Code": 8412,
+      "X": -4,
+      "Y": 2,
+      "Z": 0
+    },
+    {
+      "Code": 8414,
+      "X": 4,
+      "Y": 3,
+      "Z": 0
     }
   ],
   "SaveEvent": [
     20002,
     6000,
-    6100,
+    10001,
     20003,
     10002,
     20001,
@@ -122,8 +155,9 @@
     6003,
     20004,
     6004,
-    20005,
-    6102
+    6100,
+    6101,
+    6104
   ],
   "SaveTutorial": [
     10001,

@@ -28,7 +28,60 @@ public class SelectWindow: InteractButtonManager {
 
     public int EndEvent()
         => connectEvent[Select];
+    public void TurnOn(List<string> element,List<int> connectEvent, string titleName = "") {
     
+        //init
+        outline.SetActive(true);
+        this.connectEvent = connectEvent;
+            
+        Interactable = true;
+        foreach (var button in buttons) {
+            Destroy(button.gameObject);
+        }
+    
+        buttons.Clear();
+            
+        //some setting
+        bool useTitle = !string.IsNullOrEmpty(titleName);
+        float yPos = 0;
+        int size = element.Count;
+        float height = size * elementInterval + defaulHeight; 
+            
+        //title setting
+        if (useTitle) {
+    
+            title.gameObject.SetActive(true);
+            title.text = titleName;
+            yPos = -titleInterval;
+    
+            height += titleHeight;
+        }
+        else {
+            title.gameObject.SetActive(false);
+        }
+    
+        //backboard setting
+        background.GetComponent<RectTransform>().sizeDelta = new(backgroundWidth, height);
+        outline.GetComponent<RectTransform>().sizeDelta = new(backgroundWidth + 10, height + 10);
+    
+        //make element
+        for (int i = 0; i < size; i++) {
+    
+            yPos -= elementInterval;
+                
+            var newElement = Instantiate(elementPrefab, background.transform);
+                
+            var button = newElement.GetComponent<SelectWindowButton>();
+            button.SetContext(element[i], new(0, yPos));
+            buttons.Add(button);
+        }
+    
+        //each element's index Setting
+        SetIndex();
+
+        Selecting = 0;
+        SelectIn(buttons[Selecting]);
+    }
     public void TurnOff(int select) {
         cursorTarget = -1;
         
@@ -64,61 +117,25 @@ public class SelectWindow: InteractButtonManager {
         UseSelectSound = true;
     }
 
-    public void ShowSelect(List<string> element,List<int> connectEvent, string titleName = "") {
+    
 
-        foreach (var elementData in element)
-            Debug.Log(elementData);
-        foreach (var factor in connectEvent) {
-            Debug.Log(factor);
-        }
-        
-        //init
-        outline.SetActive(true);
-        this.connectEvent = connectEvent;
-        
-        Interactable = true;
-        foreach (var button in buttons) {
-            Destroy(button.gameObject);
-        }
+    private void Update() {
+        if (!Interactable)
+            return;
 
-        buttons.Clear();
-        
-        //some setting
-        bool useTitle = !string.IsNullOrEmpty(titleName);
-        float yPos = 0;
-        int size = element.Count;
-        float height = size * elementInterval + defaulHeight; 
-        
-        //title setting
-        if (useTitle) {
-
-            title.gameObject.SetActive(true);
-            title.text = titleName;
-            yPos = -titleInterval;
-
-            height += titleHeight;
-        }
-        else {
-            title.gameObject.SetActive(false);
-        }
-
-        //backboard setting
-        background.GetComponent<RectTransform>().sizeDelta = new(backgroundWidth, height);
-        outline.GetComponent<RectTransform>().sizeDelta = new(backgroundWidth + 10, height + 10);
-
-        //make element
-        for (int i = 0; i < size; i++) {
-
-            yPos -= elementInterval;
+        //Keyboard Controle
+        if (InputManager.Instance.ClickAndHold(KeyTypes.Up)) {
             
-            var newElement = Instantiate(elementPrefab, background.transform);
-            
-            var button = newElement.GetComponent<SelectWindowButton>();
-            button.SetContext(element[i], new(0, yPos));
-            buttons.Add(button);
+            PriviousButton();
+            SelectIn(buttons[Selecting]);
         }
-
-        //each element's index Setting
-        SetIndex();
+        else if (InputManager.Instance.ClickAndHold(KeyTypes.Down)) {
+            
+            NextButton();
+            SelectIn(buttons[Selecting]);
+        }
+        else if (InputManager.Instance.Click(KeyTypes.Interaction)) {
+            TurnOff(Selecting);
+        }
     }
 }

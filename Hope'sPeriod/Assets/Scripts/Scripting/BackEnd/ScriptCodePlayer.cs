@@ -326,7 +326,7 @@ public class ScriptCodePlayer: MonoBehaviour {
         if (!command.Start())
             return;
 
-        SelectWindow.Instance.ShowSelect(command.Factor,command.NextEvent, command.Title);
+        SelectWindow.Instance.TurnOn(command.Factor,command.NextEvent, command.Title);
         StartCoroutine(Wait.WaitAndDo(() => !SelectWindow.Instance.Interactable, () => {
             command.EndProcess();
             ScriptShower.Instance.ConnectEvent = SelectWindow.Instance.EndEvent();

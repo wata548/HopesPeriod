@@ -31,6 +31,8 @@ public class UseButton: InteractButtonUI {
                
                 break;
             case 1:
+
+                SettingWindow.SetInteractable(true);
                 manager.SelectOut(this);
                 manager.SetEmpty();
                 manager.SetKeBoardControlable(false);

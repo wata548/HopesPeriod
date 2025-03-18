@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class LoadButtonOnPlayManager: InteractButtonManager {
     public override bool Interactable { get; protected set; }
@@ -49,5 +50,35 @@ public class LoadButtonOnPlayManager: InteractButtonManager {
             throw new TypeMissMatched(button.gameObject, typeof(LoadButton));
 
         return result;
+    }
+    private void Update() {
+        if (!Interactable) 
+            return;
+                    
+        if (InputManager.Instance.Click(KeyTypes.Interaction)) {
+            buttons[Selecting].GetComponent<Button>()
+                .onClick?.Invoke();
+        }
+        else if (InputManager.Instance.ClickAndHold(KeyTypes.Up)) {
+                 
+            if(Selecting != -1 && Selecting != 0)
+                SelectOut(buttons[Selecting]);
+            PriviousButton();
+            
+            if(Selecting == 0)
+                PriviousButton();
+            
+            SelectIn(buttons[Selecting]);
+        }
+        else if (InputManager.Instance.ClickAndHold(KeyTypes.Down)) {
+            if(Selecting != -1 && Selecting != 0)
+                SelectOut(buttons[Selecting]);
+            NextButton();
+            
+            if(Selecting == 0)
+                NextButton();
+            
+            SelectIn(buttons[Selecting]);
+        }
     }
 }
