@@ -14,7 +14,7 @@ public class LinearPattern: BaseEnemy {
         }
     }
     
-    protected float speed = 10;
+    protected float speed = 13;
     private Rigidbody2D rigidbody2D = null;
 
     protected void Start() {

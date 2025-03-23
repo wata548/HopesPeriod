@@ -19,7 +19,7 @@ public class M1001Object4: BaseEnemy {
         }
     }
     
-    private float speed = 10f;
+    private float speed = 13f;
     private Rigidbody2D rigidbody2D = null;
 
     public void SetPos(bool direction) {
