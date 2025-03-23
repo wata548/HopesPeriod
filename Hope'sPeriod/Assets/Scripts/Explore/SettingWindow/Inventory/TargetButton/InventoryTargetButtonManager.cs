@@ -14,6 +14,8 @@ public class InventoryTargetButtonManager: InteractButtonManager {
     public int Code { get; private set; }
 
     public void TurnOn(int code) {
+
+        Selecting = 0;
         
         cursor.TurnOn();
         targetSelectMessage.SetActive(true);

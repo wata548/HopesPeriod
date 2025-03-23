@@ -62,7 +62,7 @@ public class EachCharacterInfo: MonoBehaviour {
 
     public List<int> Skill => skill;
 
-    public void LockOffSkill(int code) {
+    public void AddSkill(int code) {
         if (code.ToCodeType() == CodeType.Skill) {
             if (!HaveSkills.Any(skill => skill == code)) {
                 HaveSkills.Add(code);

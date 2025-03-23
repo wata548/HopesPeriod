@@ -29,7 +29,7 @@ public class M1101Pattern2: EnemyPatternBase {
 
         }
 
-        yield return new WaitForSeconds(0.5f * showTime);
+        yield return new WaitForSeconds(0.7f * showTime);
         Active = false;
     }
     

@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 704fe29f54e42fb4b9b7adb4e943a69a
+guid: 9993b1c95fb55ae4493afa09f53371f4
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 923149725387950864
-    second: Attract_0
+      213: 2432601315843711591
+    second: Provocation_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -51,7 +51,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 32
+  spritePixelsToUnits: 16
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -113,13 +113,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Attract_0
+      name: Provocation_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 32
-        height: 32
+        width: 15
+        height: 15
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 01b8f30c8cfafcc00800000000000000
-      internalID: 923149725387950864
+      spriteID: 762230f120652c120800000000000000
+      internalID: 2432601315843711591
       vertices: []
       indices: 
       edges: []
@@ -148,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Attract_0: 923149725387950864
+      Provocation_0: 2432601315843711591
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

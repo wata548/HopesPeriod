@@ -4,7 +4,7 @@ using UnityEngine;
 public class M1101Object1: BaseEnemy {
     public override CompositeGroupBase MoveComposite { get; protected set; }
     public override ContactStrategy ContactStrategy { get; protected set; }
-    public override float Damage { get; protected set; }
+    public override float Damage { get; protected set; } = 22;
     private Rigidbody2D rigidbody2D = null;
     
     private const float WidthLength = 7.5f;

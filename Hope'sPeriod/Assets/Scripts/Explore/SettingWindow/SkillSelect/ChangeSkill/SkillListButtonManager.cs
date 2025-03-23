@@ -55,6 +55,7 @@ public class SkillListButtonManager: InteractButtonManager {
         Interactable = true;
         list.SetActive(true);
         shower.TurnOn();
+        shower.SetSkill(0);
 
         SetMaxPage();
         currentPage = 0;

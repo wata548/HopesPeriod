@@ -56,8 +56,9 @@ public class LoadButtonOnPlayManager: InteractButtonManager {
             return;
                     
         if (InputManager.Instance.Click(KeyTypes.Interaction)) {
-            buttons[Selecting].GetComponent<Button>()
-                .onClick?.Invoke();
+            if(Selecting != -1)
+                buttons[Selecting].GetComponent<Button>()
+                    .onClick?.Invoke();
         }
         else if (InputManager.Instance.ClickAndHold(KeyTypes.Up)) {
                  

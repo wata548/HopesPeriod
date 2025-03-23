@@ -192,6 +192,7 @@ public abstract class DataParserBase : ScriptableObject {
 
         foreach (var factor in data) {
 
+            
             int code = 0;
             Object row = Activator.CreateInstance(dataType);
             FieldInfo[] fields = dataType.GetFields(BindingFlags.NonPublic | BindingFlags.Instance);

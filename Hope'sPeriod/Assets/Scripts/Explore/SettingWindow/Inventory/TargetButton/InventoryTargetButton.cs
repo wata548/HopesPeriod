@@ -1,3 +1,5 @@
+using UnityEngine;
+
 public class InventoryTargetButton: InteractButton {
     public override void Click() {
 
@@ -6,8 +8,9 @@ public class InventoryTargetButton: InteractButton {
         var manager = Parse(Manager);
         int code = manager.Code;
         var target = CharacterInfoInventory.Instance.GetCharacterInfo(Index).Info;
-        if (!ItemInfo.UseAble(code, target))
+        if (!ItemInfo.UseAble(code, target)) {
             return;
+        }
         
         Inventory.UseItem(code, target);
         CharacterInfoInventory.Instance.UpdateState();

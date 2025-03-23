@@ -24,7 +24,12 @@ public class SkillButtonManager: InteractButtonManager {
     public List<(int code, int selectTarget)> SelectList { get; private set; } = new();
     
     //==================================================||Method 
-    
+
+    public override void SetInteractable(bool interactable) {
+        Before = -1;
+        Interactable = interactable;
+    }
+
     public static void SetFloating(FloatingItemInfo floating) {
         SkillButtonManager.floating = floating;
     }
@@ -81,9 +86,10 @@ public class SkillButtonManager: InteractButtonManager {
         GameFSM.Instance.SkipState();
     } 
     
-    public void NextSelect(int target = 0) {
+    public void NextCharacterSkillSelect(int target = 0) {
 
         SelectList[CharacterIndex] = (Parse(buttons[Selecting]).Code, target);
+        Debug.Log($"{Parse(buttons[Selecting]).Code}+{target}");
         CharacterIndex++;
 
         var characterControler = CharactersInfoBattle.Instance;
@@ -104,7 +110,7 @@ public class SkillButtonManager: InteractButtonManager {
         GameFSM.Instance.SkipState();
     }
 
-    public void PriviousSelect() {
+    public void PriviousCharacterSkillSelect() {
 
         SelectList[CharacterIndex] = (0,0);
         CharacterIndex--;
@@ -206,7 +212,7 @@ public class SkillButtonManager: InteractButtonManager {
         }
         else if (cancel) {
 
-            PriviousSelect();
+            PriviousCharacterSkillSelect();
         }
     }
     

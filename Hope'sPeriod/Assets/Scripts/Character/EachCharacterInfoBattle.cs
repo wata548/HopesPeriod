@@ -36,6 +36,7 @@ public class EachCharacterInfoBattle : MonoBehaviour {
     public float CurrentHp => info.CurrentHp;
     public float MaximumMp => info.MaximumMp;
     public float CurrentMp => info.CurrentMp;
+    public EachCharacterInfo Info => info;
     //public string Name => Regex.Match(info.gameObject.name, @"(.*)Info").Groups[1].Value;
     private Color originColor;
 

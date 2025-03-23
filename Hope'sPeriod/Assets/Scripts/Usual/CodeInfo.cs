@@ -8,6 +8,9 @@ public static class CodeInfo {
     public static CodeType ToCodeType(this int code) {
         return (CodeType)(code / CodeMask); 
     }
+
+    public static int GetTrait(this int code) 
+        => code % 1000 / 100;
     
     public static Sprite LoadImage(int code) {
 

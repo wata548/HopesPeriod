@@ -1,5 +1,5 @@
 {
-  "PlayTime": 141.305725,
+  "PlayTime": 206.556961,
   "SaveCharacterInfo": [
     {
       "Exist": true,
@@ -18,13 +18,13 @@
         0
       ],
       "MaximumHp": 100.0,
-      "CurrentHp": 53.0,
+      "CurrentHp": 9.0,
       "MaximumMp": 130.0,
-      "CurrentMp": 40.0,
+      "CurrentMp": 10.0,
       "Love": 0
     },
     {
-      "Exist": false,
+      "Exist": true,
       "Dead": false,
       "Name": "Cavil",
       "Skill": [
@@ -40,9 +40,9 @@
         0
       ],
       "MaximumHp": 120.0,
-      "CurrentHp": 120.0,
+      "CurrentHp": 66.0,
       "MaximumMp": 105.0,
-      "CurrentMp": 105.0,
+      "CurrentMp": 35.0,
       "Love": 5
     },
     {
@@ -81,14 +81,18 @@
     }
   ],
   "SavePos": {
-    "Code": 8402,
-    "X": -2.0,
-    "Y": 15.0,
+    "Code": 8401,
+    "X": 18.0,
+    "Y": -1.0,
     "Chapter": 2
   },
   "SaveMonster": [
     {
       "Code": 1001,
+      "KillCount": 1
+    },
+    {
+      "Code": 1101,
       "KillCount": 1
     }
   ],
@@ -97,6 +101,12 @@
       "Code": 8402,
       "X": -2,
       "Y": 15,
+      "Z": 0
+    },
+    {
+      "Code": 8401,
+      "X": 14,
+      "Y": 1,
       "Z": 0
     }
   ],
@@ -119,6 +129,7 @@
     6003,
     20004,
     6004,
+    20005,
     6100,
     6101,
     6104

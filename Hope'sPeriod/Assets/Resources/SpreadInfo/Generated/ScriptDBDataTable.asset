@@ -988,5 +988,5 @@ MonoBehaviour:
           \uC544\uB974\uBC14\uC774\uD2B8 \uC2E0\uCCAD\uD558\uC168\uC2B5\uB2C8\uAE4C?"
         m_JustEvent: 0
         m_ClearContext: 0
-        m_Event: 
+        m_Event: AddPlayer(Index = 2);
         m_EventTiming: 0

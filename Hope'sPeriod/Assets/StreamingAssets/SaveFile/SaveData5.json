@@ -1,5 +1,5 @@
 {
-  "PlayTime": 1352.508,
+  "PlayTime": 1406.9353,
   "SaveCharacterInfo": [
     {
       "Exist": true,
@@ -18,9 +18,9 @@
         9104
       ],
       "MaximumHp": 100.0,
-      "CurrentHp": 14.0,
+      "CurrentHp": 82.0,
       "MaximumMp": 130.0,
-      "CurrentMp": 0.0,
+      "CurrentMp": 50.0,
       "Love": 0
     },
     {
@@ -40,7 +40,7 @@
         9204
       ],
       "MaximumHp": 120.0,
-      "CurrentHp": 11.0,
+      "CurrentHp": 80.0,
       "MaximumMp": 105.0,
       "CurrentMp": 10.0,
       "Love": 0
@@ -62,7 +62,7 @@
         9304
       ],
       "MaximumHp": 95.0,
-      "CurrentHp": 2.0,
+      "CurrentHp": 80.0,
       "MaximumMp": 140.0,
       "CurrentMp": 90.0,
       "Love": 0
@@ -79,7 +79,7 @@
     },
     {
       "Code": 2003,
-      "Amount": 7
+      "Amount": 3
     },
     {
       "Code": 2004,
@@ -91,7 +91,7 @@
     },
     {
       "Code": 2006,
-      "Amount": 10
+      "Amount": 9
     }
   ],
   "SaveUseItem": [
@@ -101,7 +101,7 @@
     },
     {
       "Code": 2003,
-      "Count": 13
+      "Count": 17
     },
     {
       "Code": 2005,
@@ -109,13 +109,13 @@
     },
     {
       "Code": 2006,
-      "Count": 1
+      "Count": 2
     }
   ],
   "SavePos": {
-    "Code": 8401,
-    "X": 14.0,
-    "Y": 0.0,
+    "Code": 8418,
+    "X": 1.22929,
+    "Y": -2.34446669,
     "Chapter": 1
   },
   "SaveMonster": [

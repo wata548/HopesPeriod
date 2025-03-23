@@ -23,6 +23,11 @@ public class SkillSelectButtonManager: InteractButtonManager {
             2 => "리피",
             _=> "error"
         };
+
+        foreach (var button in buttons) {
+            Parse(button).Disactive();
+        }
+        list.TurnOff();
     }
 
     public void Refresh() {
@@ -36,9 +41,7 @@ public class SkillSelectButtonManager: InteractButtonManager {
     public void TurnOff() {
         Interactable = false;
         window.SetActive(false);
-        foreach (var button in buttons) {
-            Parse(button).TurnOff();
-        }
+        
     }
     public override void SelectIn(InteractButton target) {
     }

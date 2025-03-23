@@ -62,6 +62,7 @@ public static class ItemInfo {
         
     public static string            Name(int code)              => GetData(code)?.Name          ?? "wait"; 
     public static string            Description(int code)       => GetData(code)?.Description   ?? "wait";
+    public static string            JustEvent(int code)         => GetData(code)?.JustEffect    ?? "wait";
     public static float             HealHp(int code)            => GetData(code)?.HealHP        ?? -1;
     public static float             HealMp(int code)            => GetData(code)?.HealMP        ?? -1;
     public static float             HealsHp(int code)           => GetData(code)?.HealsHP       ?? -1;
@@ -175,6 +176,24 @@ public static class ItemInfo {
         if(user is not null) {
             if(item.HealHP != 0) user.HealHp(item.HealHP, item.Revive);
             if(item.HealMP != 0) user.HealMp(item.HealMP);
+        }
+
+        if (item.GetSkill != 0) {
+
+            int skillCode = item.GetSkill;
+            var target = skillCode.GetTrait();
+            if (target == 4) {
+                foreach (var character in CharacterInfoInventory.Instance.Characterinfos) {
+                    character.Info.AddSkill(skillCode);
+                }
+            }
+            else {
+                CharacterInfoInventory
+                    .Instance
+                    .Characterinfos[target - 1]
+                    .Info
+                    .GetSkill(skillCode);
+            }
         }
     }
 }

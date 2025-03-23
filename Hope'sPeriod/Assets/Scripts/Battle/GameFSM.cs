@@ -120,7 +120,11 @@ public class GameFSM: MonoBehaviour {
         } 
         else if (!end && State == GameState.Run) {
          
-            StartCoroutine(Wait.WaitAndDo(1, () => ScenceControler.Load("PlayMap")));
+            StartCoroutine(Wait.WaitAndDo(1, () => {
+
+                Destroy(Monster.Instance.gameObject);
+                ScenceControler.Load("PlayMap");
+            }));
             SkillButtonManager.Instance.TurnOff();
             end = true;
         }
@@ -184,7 +188,7 @@ public class GameFSM: MonoBehaviour {
             case PlayerTurnState.AttackTarget:
                 int selectIndex = SelectCursor.Instance.Index;
                 SkillButtonManager.Instance.SetInteractable(true);
-                SkillButtonManager.Instance.NextSelect(selectIndex);
+                SkillButtonManager.Instance.NextCharacterSkillSelect(selectIndex);
                 PlayerTurnState = PlayerTurnState.Attack;
                 break;
             
@@ -195,7 +199,7 @@ public class GameFSM: MonoBehaviour {
                 int index = SelectCursor.Instance.Index;
                 var target = CharactersInfoBattle.Instance.CharacterInfo(index);
                 int code = TargetButtonManager.Instance.Code;
-        
+                
                 Inventory.UseItemBattle(code, target);
                 break;
             

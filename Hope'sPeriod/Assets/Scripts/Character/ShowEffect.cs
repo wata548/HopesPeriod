@@ -45,7 +45,7 @@ public class ShowEffect: MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
 
         if (effect is EffectInfo effectinfo) {
             if (effectinfo.Type == EffectType.AttackUp)
-                result = $"{(int)effectinfo.Duration}턴 동안 공격력이 {(int)(effectinfo.Power * 100)}%만큼 상승합니다.";
+                result = $"{(int)effectinfo.Duration}턴 동안 공격력이 {(int)((effectinfo.Power - 1) * 100)}%만큼 상승합니다.";
         }
 
         return result;

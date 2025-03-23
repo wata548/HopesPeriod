@@ -2,6 +2,7 @@ using System;
 using System.Security.Cryptography;
 using Unity.VisualScripting;
 using UnityEditor;
+using UnityEngine;
 
 public class TargetButtonManager : InteractButtonManager {
     
@@ -15,15 +16,28 @@ public class TargetButtonManager : InteractButtonManager {
     //==================================================||Method 
     
     public void TurnOn(int code) {
-            
+
+        Debug.Log(code);
+        
         this.Code = code;
         Interactable = true;
             
+        SkillButtonManager.Instance.SetInteractable(false);
         SelectCursor.Instance.TurnOn();
     }
 
     public void TurnOff() {
 
+        int targetIndex = SelectCursor.Instance.Index;
+        var target = CharactersInfoBattle.Instance.CharacterInfos[targetIndex].Info;
+        if (Code.ToCodeType() == CodeType.Item && !ItemInfo.UseAble(Code, target)) {
+            return;
+        }
+
+        if (Code.ToCodeType() == CodeType.Skill && !SkillInfo.Useable(Code, target)) {
+            return;
+        }
+        
         Interactable = false;
         GameFSM.Instance.AfterSetTarget();
         SelectCursor.Instance.TurnOff();

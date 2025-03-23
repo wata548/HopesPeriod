@@ -111,7 +111,7 @@ public static class SkillInfo {
     public static string            SimpleEffectDescription(int code)   => GetData(code)?.SimpleEffectDescription   ?? "wait";
     
     
-    public static bool Useable(int characterIndex, int code) {
+    public static bool Useable(int code, int characterIndex) {
         
         var character = CharactersInfoBattle.Instance.CharacterInfo(characterIndex);
 
@@ -119,6 +119,10 @@ public static class SkillInfo {
         bool useableMp = UseMp(code) <= character.CurrentMp;
 
         return useableHp && useableMp;
+    }
+
+    public static bool Useable(int code, EachCharacterInfo target) {
+        return ItemInfo.UseAble(ToSkillItem(code), target);
     }
     
     public static string SimpleTag(int code) {

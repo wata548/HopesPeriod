@@ -20,23 +20,21 @@ public class M1101Pattern1: EnemyPatternBase {
     
     private IEnumerator Pattern(float sinDelay, float sinCount, float amplification, float speed, float cycle, Action callback = null) {
 
-        Active = true;
         hRenderer.DOBlink(0.3f, 0.1f, 0.3f)
-            .OnComplete(() => hRenderer.DOBlink(0.3f, 0.1f, 0.3f));
+            .OnComplete(() => hRenderer.DOBlink(0.3f, 0.1f, 0.3f, 0.8f));
         vRenderer.DOBlink(0.3f, 0.1f, 0.3f)
-            .OnComplete(() => vRenderer.DOBlink(0.3f, 0.1f, 0.3f));
+            .OnComplete(() => vRenderer.DOBlink(0.3f, 0.1f, 0.3f, 0.8f));
         yield return new WaitForSeconds(1.5f);
         
-        bool direction = Random.Range(0,1f) > 0.5 ? true : false;
         float x;
         float y;
         
-        x = (direction ? -1 : 1) * WidthLength;
+        x = (BaseEnemy.Player.transform.localPosition.x > 0 ? -1 : 1) * WidthLength;
         y = BaseEnemy.Player.transform.localPosition.y;
         var hPosition = new Vector3(x, y, -1);
         
         x = BaseEnemy.Player.transform.localPosition.x;
-        y = (direction ? -1 : 1) * HeightLength;
+        y = (BaseEnemy.Player.transform.localPosition.y > 0 ? -1 : 1) * HeightLength;
         var vPosition = new Vector3(x, y, -1);
         
         var hTargetPos = hPosition;
@@ -51,7 +49,7 @@ public class M1101Pattern1: EnemyPatternBase {
             Make(vPosition, vTargetPos);
         }
         
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(3);
         callback?.Invoke();
         yield break;
 
@@ -72,6 +70,8 @@ public class M1101Pattern1: EnemyPatternBase {
     private int count = 3;
     private float delay = 3f; 
     public override void StartPattern() {
+        
+        Active = true;
         MapSizeManager.Instance.Default();
 
         hRenderer = hWarnning.GetComponent<SpriteRenderer>();
@@ -86,7 +86,7 @@ public class M1101Pattern1: EnemyPatternBase {
                 pattern = () =>  
                     StartCoroutine(Pattern(0.2f, 15, 4.5f, 6, 2, () => Active = false));
             StartCoroutine(Wait.WaitAndDo(time, pattern));
-            time += delay;
+            time += delay + 0.35f;
         }
     }
 

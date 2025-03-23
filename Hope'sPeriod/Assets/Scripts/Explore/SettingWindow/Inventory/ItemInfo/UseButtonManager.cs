@@ -29,6 +29,7 @@ public class UseButtonManager: InteractButtonManager {
 
     public void TurnOn() {
         Code = 0;
+        Selecting = 0;
         
         SetEmpty();
         keyBoardControlable = false;
@@ -49,6 +50,8 @@ public class UseButtonManager: InteractButtonManager {
             return;
         }
 
+        Selecting = 0;
+        
         Code = code;
         symbol.color = Color.white;
         symbol.sprite = CodeInfo.LoadImage(code);
@@ -67,6 +70,7 @@ public class UseButtonManager: InteractButtonManager {
             before = 0;
             Parse(buttons[0]).Text.color = Active;
             Parse(buttons[1]).Text.color = Disactive;
+            cursor.SetIndex(0);
         }
     }
 

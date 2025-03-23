@@ -44,7 +44,7 @@ public class SkillSelectButton: InteractButtonUI {
         animation = button.transform.DOScale(ActiveSize, ActiveDuraction);
     }
 
-    private void Disactive() {
+    public void Disactive() {
         if (animation != null) animation.Kill();
         animation = button.transform.DOScale(1, 0);
     }

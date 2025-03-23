@@ -101,7 +101,7 @@ public class SkillButton: InteractButtonUI {
             else {
                 textInfo.text = $"{SkillInfo.Name(Code)}\n{SkillInfo.SimpleTag(Code).SetSize(0.9f)}";
 
-                if (SkillInfo.Useable(characterIndex, Code))
+                if (SkillInfo.Useable(Code, characterIndex))
                     textInfo.AddColor(Usable);
                 else
                     textInfo.AddColor(Unusable);
@@ -127,6 +127,8 @@ public class SkillButton: InteractButtonUI {
     } 
 
     public override void Click() {
+        if (!Manager.Interactable)
+            return;
         if (!Show) return;
 
         if (SkillInfo.NeedSelect(Code, out int itemCode)) {
@@ -136,7 +138,7 @@ public class SkillButton: InteractButtonUI {
             Manager.SetInteractable(false);
             return;
         }
-        Parse(Manager).NextSelect();
+        Parse(Manager).NextCharacterSkillSelect();
     }
 
     private static SkillButtonManager Parse(InteractButtonManager manager) {

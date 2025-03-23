@@ -20,7 +20,7 @@ public class SelectWindow: InteractButtonManager {
     private const float titleHeight = 90;
     private const float titleInterval = 68;
     private const float elementInterval = 60;
-    private const float backgroundWidth = 240;
+    private const float backgroundWidth = 435;
     private int cursorTarget = -1;
     public static int Select { get; private set; } = -1;
     
@@ -62,7 +62,7 @@ public class SelectWindow: InteractButtonManager {
     
         //backboard setting
         background.GetComponent<RectTransform>().sizeDelta = new(backgroundWidth, height);
-        outline.GetComponent<RectTransform>().sizeDelta = new(backgroundWidth + 10, height + 10);
+        outline.GetComponent<RectTransform>().sizeDelta = new(backgroundWidth + 15, height + 10);
     
         //make element
         for (int i = 0; i < size; i++) {

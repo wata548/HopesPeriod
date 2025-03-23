@@ -10103,7 +10103,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1247452536}
         m_TargetAssemblyTypeName: ItemListContext, Assembly-CSharp
         m_MethodName: PriviousPage
         m_Mode: 1
@@ -10463,7 +10463,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -9119609629918001555, guid: 890b775ecff895847a408ddb7bac05d7, type: 3}
+  m_Sprite: {fileID: 8719351103588428652, guid: bd24823afb9781842baab76d06ccc043, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_FlipX: 0
   m_FlipY: 0
@@ -12290,8 +12290,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 255
-  m_fontColor: {r: 1, g: 0, b: 0, a: 0}
+    rgba: 12799
+  m_fontColor: {r: 1, g: 0.1922825, b: 0, a: 0}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -12346,7 +12346,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 13.643901, y: 10.445939, z: 1.7731514, w: -8.609292}
+  m_margin: {x: 13.643901, y: 10.822289, z: 1.7919683, w: -8.32703}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   _SortingLayer: 0
@@ -12502,7 +12502,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1247452536}
         m_TargetAssemblyTypeName: ItemListContext, Assembly-CSharp
         m_MethodName: NextPage
         m_Mode: 1

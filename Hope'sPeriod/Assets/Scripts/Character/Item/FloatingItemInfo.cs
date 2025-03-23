@@ -43,7 +43,7 @@ public class FloatingItemInfo : MonoBehaviour
 
         switch (code.ToCodeType()) {
             case CodeType.Item:
-                info.text = ItemInfo.Description(code);
+                info.text = $"{ItemInfo.SimpleTag(code).SetSize(0.8f)}\n{ItemInfo.JustEvent(code)}";
                 break;
             case CodeType.Skill:
                 info.text = SkillInfo.SimpleEffectDescription(code);

@@ -17,7 +17,12 @@ public class ItemListButtonManager: InteractButtonManager {
     public override bool Interactable { get; protected set; } = false;
 
     //==================================================||Method 
-    
+
+    public override void SetInteractable(bool interactable) {
+        Before = -1;
+        Interactable = interactable;
+    }
+
     public static void SetFloating(FloatingItemInfo floating) {
         ItemListButtonManager.floating = floating;
     }

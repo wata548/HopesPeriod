@@ -54,7 +54,7 @@ public class GetItemWindow: MonoBehaviour {
 
     public void TurnOn(GetItemInfo itemInfo) {
 
-        Inventory.AddItem(itemInfo.Code, itemInfo.Count);
+        Inventory.AddItem(itemInfo.Code, itemInfo.Count);  
         
         on = true;
         Sequence appear = DOTween.Sequence(); 
@@ -62,6 +62,7 @@ public class GetItemWindow: MonoBehaviour {
         itemName.text = ItemInfo.Name(itemInfo.Code) + $" ×{itemInfo.Count}".SetSize(0.75f);
         itemDescription.text = ItemInfo.Description(itemInfo.Code);
         
+        //animation
         appear.Join(line.DOFade(1, AppearTime))
             .Join(window.DOFade(0.5f, AppearTime))
             .Join(window.transform.DOLocalMoveY(CompleteAppearPoint, MoveTime)
@@ -73,6 +74,8 @@ public class GetItemWindow: MonoBehaviour {
             .Join(itemImage.DOFade(1, AppearTime))
             .Join(itemName.DOFade(1, AppearTime))
             .Join(itemDescription.DOFade(1, AppearTime));
+        
+        //move limit 
         TilePlayerPhysics.SetMovable(false);
         SettingWindow.SetInteractable(false);
 

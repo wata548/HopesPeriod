@@ -24,6 +24,9 @@ namespace SpreadInfo {
         private string m_Description;
         
         [UnityEngine.SerializeField()]
+        private string m_JustEffect;
+        
+        [UnityEngine.SerializeField()]
         private int m_HealHP;
         
         [UnityEngine.SerializeField()]
@@ -86,6 +89,12 @@ namespace SpreadInfo {
         public string Description {
             get {
                 return this.m_Description;
+            }
+        }
+        
+        public string JustEffect {
+            get {
+                return this.m_JustEffect;
             }
         }
         

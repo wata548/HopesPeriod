@@ -23,7 +23,7 @@ public class ItemListButton : InteractButtonUI {
     private bool needUpdate = false;
     public bool Show { get; private set; } = true;
     
-    private const float AppearTime = 0;
+    private const float AppearTime = 0.15f;
 
     public void TurnOff() {
         onMouse = false;
@@ -124,7 +124,9 @@ public class ItemListButton : InteractButtonUI {
 
     public override void Click() {
         if (!Show) return;
-
+        if (!Manager.Interactable)
+            return;
+        
         if (!ItemInfo.NeedSelect(Code)) {
 
             Inventory.UseItemBattle(Code);

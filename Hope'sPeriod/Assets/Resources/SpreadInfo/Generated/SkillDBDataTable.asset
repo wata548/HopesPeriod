@@ -207,3 +207,32 @@ MonoBehaviour:
         m_ATKCon: 0
         m_SkillItem: 1
         m_SkillItemCon: 1
+    - Key: 9402
+      Value:
+        m_Code: 9402
+        m_Name: "\uBC15\uCE58\uAE30"
+        m_SimpleEffectDescription: "35\uC758 \uB370\uBBF8\uC9C0\uB97C \uC785\uD78C\uB2E4."
+        m_DetailDescription: "\uC0DD\uC874 \uC758\uC9C0 15\uB97C \uC18C\uBAA8\uD574
+          35\uC758 \uB370\uBBF8\uC9C0\uB97C \uC785\uD78C\uB2E4."
+        m_Description: "\uBA38\uB9AC\uB97C \uC774\uC6A9\uD574 \uC801\uC5D0\uAC8C
+          \uAC15\uD558\uAC8C \uB0B4\uB824 \uCC0D\uB294\uB2E4."
+        m_UseHP: 10
+        m_UseMP: 0
+        m_ATK: 35
+        m_ATKCon: 0
+        m_SkillItem: 0
+        m_SkillItemCon: 1
+    - Key: 9403
+      Value:
+        m_Code: 9403
+        m_Name: "\uBAB8\uD1B5\uBC15\uCE58\uAE30"
+        m_SimpleEffectDescription: "45\uC758 \uB370\uBBF8\uC9C0\uB97C \uC785\uD78C\uB2E4."
+        m_DetailDescription: "\uB2E4\uC74C\uD134 \uACF5\uACA9\uB825\uC774 0\uC774
+          \uB418\uB294 \uB300\uC2E0 45\uC758 \uB370\uBBF8\uC9C0\uB97C \uC785\uD78C\uB2E4."
+        m_Description: "\uC804\uC2E0\uC744 \uD798\uAECF \uC801\uC5D0\uAC8C \uB358\uC9C4\uB2E4."
+        m_UseHP: 0
+        m_UseMP: 0
+        m_ATK: 45
+        m_ATKCon: 0
+        m_SkillItem: 1
+        m_SkillItemCon: 1

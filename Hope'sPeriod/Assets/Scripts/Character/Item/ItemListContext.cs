@@ -65,6 +65,9 @@ public class ItemListContext: MonoBehaviour {
             if (item.Key.ToCodeType()!= CodeType.Item)
                 continue;
             
+            if(item.Key.GetTrait() == 2)
+                continue;
+            
             //check count
             if (item.Value <= 0)
                 continue;

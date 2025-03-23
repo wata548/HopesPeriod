@@ -19,6 +19,7 @@ MonoBehaviour:
         m_Code: 2000
         m_Name: empty
         m_Description: Do nothing, It just a Default format
+        m_JustEffect: Empty
         m_HealHP: 0
         m_HealsHP: 0
         m_Revive: 0
@@ -42,6 +43,7 @@ MonoBehaviour:
         m_Description: "\uC9C0\uC800\uBD84\uD558\uC9C0\uB9CC \uC0C1\uCC98\uB97C \uAC10\uC300
           \uC218 \uC788\uC5B4 \uBCF4\uC778\uB2E4.\n\uC0AC\uC6A9 \uC2DC \uC0DD\uC874\uC758\uC9C0\uAC00
           25 \uD68C\uBCF5\uB41C\uB2E4."
+        m_JustEffect: "\uC0DD\uC874\uC758\uC9C0\uAC00 25 \uD68C\uBCF5\uB41C\uB2E4."
         m_HealHP: 25
         m_HealsHP: 0
         m_Revive: 0
@@ -65,6 +67,7 @@ MonoBehaviour:
         m_Description: "\uAE68\uB057\uD55C \uC0DD\uC218 500ml. \n\uB9C8\uC2DC\uBA74
           \uC18D\uAE4C\uC9C0 \uAE68\uB057\uD574\uC9C0\uB294 \uB290\uB08C\uC774\uB2E4.\n\uC0AC\uC6A9
           \uC2DC \uC800\uD56D\uB825\uC774 25 \uD68C\uBCF5\uB41C\uB2E4."
+        m_JustEffect: "\uC800\uD56D\uB825\uC774 25 \uD68C\uBCF5\uB41C\uB2E4."
         m_HealHP: 0
         m_HealsHP: 0
         m_Revive: 0
@@ -88,6 +91,7 @@ MonoBehaviour:
         m_Description: "\uB9CE\uC740 \uC591\uC758 \uB2E4\uC591\uD55C \uCE58\uB8CC
           \uC6A9\uD488\uC774 \uB4E4\uC5B4\uC788\uB2E4. \n\uC0AC\uC6A9 \uC2DC \uC804\uCCB4\uC758
           \uC0DD\uC874\uC758\uC9C0\uAC00 20 \uD68C\uBCF5\uB41C\uB2E4."
+        m_JustEffect: "\uC804\uCCB4\uC758 \uC0DD\uC874\uC758\uC9C0\uAC00 20 \uD68C\uBCF5\uB41C\uB2E4."
         m_HealHP: 0
         m_HealsHP: 20
         m_Revive: 0
@@ -111,6 +115,7 @@ MonoBehaviour:
         m_Description: "\uB179\uC544 \uBB3C\uB801\uD574\uC9C4 \uCD08\uCF5C\uB9BF.
           \n\uB2E4\uD06C\uCD08\uCF5C\uB9BF\uC778\uC9C0 \uC4F4 \uB9DB\uC774 \uB09C\uB2E4.
           \n\uC0AC\uC6A9 \uC2DC \uC804\uCCB4\uC758 \uC800\uD56D\uB825\uC774 20 \uD68C\uBCF5\uB41C\uB2E4."
+        m_JustEffect: "\uC804\uCCB4\uC758 \uC800\uD56D\uB825\uC774 20 \uD68C\uBCF5\uB41C\uB2E4."
         m_HealHP: 0
         m_HealsHP: 0
         m_Revive: 0
@@ -134,6 +139,7 @@ MonoBehaviour:
         m_Description: "\uC57D\uD1B5\uC5D0 \uB2F4\uAE34 \uC9C4\uD1B5\uC81C. \n\uB2E8
           \uD55C \uC54C\uB9CC \uB4E4\uC5B4\uC788\uB2E4. \n\uC0AC\uC6A9 \uC2DC \uC0DD\uC874\uC758\uC9C0\uAC00
           50 \uD68C\uBCF5\uB41C\uB2E4."
+        m_JustEffect: "\uC0DD\uC874\uC758\uC9C0\uAC00 50 \uD68C\uBCF5\uB41C\uB2E4."
         m_HealHP: 50
         m_HealsHP: 0
         m_Revive: 0
@@ -159,6 +165,7 @@ MonoBehaviour:
           \uC5B4\uCA54 \uC218 \uC5C6\uB2E4. \n\uACFC\uB3C4\uD55C \uCE74\uD398\uC778
           \uC12D\uCDE8\uB294 \uB3C5\uC774 \uB429\uB2C8\uB2E4, \uC870\uC2EC! \n\uC0AC\uC6A9
           \uC2DC \uC800\uD56D\uB825\uC774 50 \uD68C\uBCF5\uB41C\uB2E4."
+        m_JustEffect: "\uC800\uD56D\uB825\uC774 50 \uD68C\uBCF5\uB41C\uB2E4."
         m_HealHP: 0
         m_HealsHP: 0
         m_Revive: 0
@@ -180,6 +187,7 @@ MonoBehaviour:
         m_Code: 2103
         m_Name: "\uBE5B\uC758 \uC218\uD638"
         m_Description: "\uBC18\uC0AC"
+        m_JustEffect: 
         m_HealHP: 0
         m_HealsHP: 0
         m_Revive: 0
@@ -201,6 +209,7 @@ MonoBehaviour:
         m_Code: 2104
         m_Name: "\uBE5B"
         m_Description: "\uACF5\uACA9\uB825 \uC99D\uAC00"
+        m_JustEffect: 
         m_HealHP: 0
         m_HealsHP: 0
         m_Revive: 0
@@ -222,6 +231,7 @@ MonoBehaviour:
         m_Code: 2203
         m_Name: "\uACA9\uD22C \uC2DC\uAC04\uC774\uB2E4!!!"
         m_Description: "\uB3C4\uBC1C"
+        m_JustEffect: 
         m_HealHP: 0
         m_HealsHP: 0
         m_Revive: 0
@@ -243,6 +253,7 @@ MonoBehaviour:
         m_Code: 2302
         m_Name: "\uC870\uAC1C"
         m_Description: "\uC2AC\uB85C\uC6B0"
+        m_JustEffect: 
         m_HealHP: 0
         m_HealsHP: 0
         m_Revive: 0
@@ -264,6 +275,7 @@ MonoBehaviour:
         m_Code: 2304
         m_Name: "\uD30C\uB791"
         m_Description: "\uB9C8\uB098 \uD790"
+        m_JustEffect: 
         m_HealHP: 0
         m_HealsHP: 0
         m_Revive: 0
@@ -285,6 +297,7 @@ MonoBehaviour:
         m_Code: 2401
         m_Name: "\uC26C\uAE30"
         m_Description: "\uB9C8\uB098 \uD68C\uBCF5"
+        m_JustEffect: 
         m_HealHP: 0
         m_HealsHP: 0
         m_Revive: 0
@@ -301,6 +314,28 @@ MonoBehaviour:
         m_EffectCon: 0
         m_EffectTarget: 0
         m_GetSkill: 0
+    - Key: 2403
+      Value:
+        m_Code: 2403
+        m_Name: "\uBAB8\uD1B5\uBC15\uCE58\uAE30"
+        m_Description: "\uB2E4\uC74C\uD134 \uACF5\uACA9 \uBD88\uAC00"
+        m_JustEffect: 
+        m_HealHP: 0
+        m_HealsHP: 0
+        m_Revive: 0
+        m_ReviveAll: 0
+        m_HealMP: 0
+        m_HealsMP: 0
+        m_DEFPower: 0
+        m_DEFType: 0
+        m_DEFReflect: 0
+        m_ATR: 0
+        m_ATRCon: 0
+        m_Effect: 2
+        m_EffectPower: 0
+        m_EffectCon: 2
+        m_EffectTarget: 0
+        m_GetSkill: 0
     - Key: 4001
       Value:
         m_Code: 4001
@@ -310,6 +345,7 @@ MonoBehaviour:
           \uCE74\uB4DC\uD0A4\uB85C \uC5F4 \uC218 \uC788\uB2E4. \n\uC774\uAC78 \uC0AC\uC6A9\uD558\uBA74
           \uC9C0\uD558 3\uCE35\uC73C\uB85C \uC62C\uB77C\uAC08 \uC218 \uC788\uC744
           \uAC83 \uAC19\uB2E4."
+        m_JustEffect: 
         m_HealHP: 0
         m_HealsHP: 0
         m_Revive: 0
@@ -334,6 +370,7 @@ MonoBehaviour:
           \uCE74\uB4DC\uD0A4. \n\uC5D8\uB9AC\uBCA0\uC774\uD130\uC5D0 \uD0D1\uC2B9\uD558\uAE30
           \uC704\uD574\uC11C\uB294 \uC774 \uCE74\uB4DC\uD0A4\uAC00 \uD544\uC218\uB85C
           \uD544\uC694\uD558\uB2E4."
+        m_JustEffect: 
         m_HealHP: 0
         m_HealsHP: 0
         m_Revive: 0
@@ -359,6 +396,7 @@ MonoBehaviour:
           \uCE74\uB4DC\uD0A4\uB85C \uC5F4 \uC218 \uC788\uB2E4. \n\uC774\uAC78 \uC0AC\uC6A9\uD574
           \uC9C0\uD558 1\uCE35\uC73C\uB85C \uC62C\uB77C\uAC08 \uC218 \uC788\uC744
           \uAC83 \uAC19\uB2E4."
+        m_JustEffect: 
         m_HealHP: 0
         m_HealsHP: 0
         m_Revive: 0
@@ -383,6 +421,7 @@ MonoBehaviour:
           \uB538\uAE30\uB9DB\uC774 \uB0A0 \uAC83 \uAC19\uB2E4. \n\uD558\uC9C0\uB9CC
           \uB9C8\uC2DC\uB294 \uAC74 \uC5ED\uC2DC \uBD88\uC548\uD558\uB2C8\uAE4C...
           \uC0AC\uC6A9 \uBD88\uAC00."
+        m_JustEffect: 
         m_HealHP: 0
         m_HealsHP: 0
         m_Revive: 0
@@ -399,3 +438,51 @@ MonoBehaviour:
         m_EffectCon: 0
         m_EffectTarget: 3
         m_GetSkill: 0
+    - Key: 2201
+      Value:
+        m_Code: 2201
+        m_Name: "\uC218\uB828\uC11C 1"
+        m_Description: "\uBAB8\uC744 \uB2E4\uB8E8\uB294 \uBC95\uC744 \uC774\uD574\uD558\uAE30
+          \uC27D\uAC8C \uC124\uBA85\uD55C \uCC45\uC758 \uC804\uD3B8\n\uCE90\uB9AD\uD130\uB4E4\uC774
+          '\uBAB8\uD1B5\uBC15\uCE58\uAE30'\uB97C \uBC30\uC6B8 \uC218 \uC788\uB2E4."
+        m_JustEffect: 
+        m_HealHP: 0
+        m_HealsHP: 0
+        m_Revive: 0
+        m_ReviveAll: 0
+        m_HealMP: 0
+        m_HealsMP: 0
+        m_DEFPower: 0
+        m_DEFType: 0
+        m_DEFReflect: 0
+        m_ATR: 0
+        m_ATRCon: 0
+        m_Effect: 0
+        m_EffectPower: 0
+        m_EffectCon: 0
+        m_EffectTarget: 3
+        m_GetSkill: 9403
+    - Key: 2202
+      Value:
+        m_Code: 2202
+        m_Name: "\uC218\uB828\uC11C 2"
+        m_Description: "\uBAB8\uC744 \uB2E4\uB8E8\uB294 \uBC95\uC744 \uC774\uD574\uD558\uAE30
+          \uC27D\uAC8C \uC124\uBA85\uD55C \uCC45\uC758 \uD6C4\uD3B8\n\uCE90\uB9AD\uD130\uB4E4\uC774
+          '\uBC15\uCE58\uAE30'\uB97C \uBC30\uC6B8 \uC218 \uC788\uB2E4."
+        m_JustEffect: 
+        m_HealHP: 0
+        m_HealsHP: 0
+        m_Revive: 0
+        m_ReviveAll: 0
+        m_HealMP: 0
+        m_HealsMP: 0
+        m_DEFPower: 0
+        m_DEFType: 0
+        m_DEFReflect: 0
+        m_ATR: 0
+        m_ATRCon: 0
+        m_Effect: 0
+        m_EffectPower: 0
+        m_EffectCon: 0
+        m_EffectTarget: 3
+        m_GetSkill: 9402

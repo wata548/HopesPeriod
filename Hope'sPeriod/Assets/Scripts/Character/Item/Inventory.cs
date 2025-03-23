@@ -58,7 +58,7 @@ public static class Inventory{
         if (!Use.TryAdd(code, 1)) {
             Use[code]++;
         }
-        
+
         Items[code]--;
         ItemInfo.UseItemBattle(code, target);
         
@@ -72,10 +72,12 @@ public static class Inventory{
             if (!Items.ContainsKey(code))
                 throw new NullReferenceException($"This item is yet added, try add \"{code}\"Item and retry");
     
+            //check usable count
             if (Items[code] <= 0) {
                 return false;
             }
 
+            //check use count
             if (!Use.TryAdd(code, 1)) {
                 Use[code]++;
             }

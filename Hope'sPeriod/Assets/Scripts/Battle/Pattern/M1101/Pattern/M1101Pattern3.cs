@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 //trace trap
@@ -7,26 +8,38 @@ public class M1101Pattern3: EnemyPatternBase {
     [SerializeField] private SpriteRenderer warnning;
     [SerializeField] private GameObject patternObject;
     
+    //1.75 * 9 + 2 = 17.75
     private IEnumerator Pattern(int count, float waitTime) {
         Active = true;
         warnning.gameObject.SetActive(true);
+
+        List<GameObject> generated = new();
         while (count-- != 0) {
 
             warnning
-                .DOBlink(0.3f, 0.1f, 0.3f)
+                .DOBlink(0.3f, 0.1f, 0.3f, 0.8f)
                 .DORepeat(2);
             yield return new WaitForSeconds(1.4f);
             var pos = BaseEnemy.Player.transform.localPosition;
-            yield return new WaitForSeconds(0.1f);
+            yield return new WaitForSeconds(0.35f);
 
             var newObject = Instantiate(patternObject);
             pos.z = -1;
-
+            generated.Add(newObject);
+            
             newObject.transform.localPosition = pos;
-            StartCoroutine(Wait.WaitAndDo(waitTime, () => Destroy(newObject)));
+            StartCoroutine(Wait.WaitAndDo(waitTime, () => {
+                if (newObject is not null) 
+                    Destroy(newObject);
+            }));
         }
 
         warnning.gameObject.SetActive(false);
+        yield return new WaitForSeconds(2);
+        foreach (var newObject in generated) {
+            Destroy(newObject);
+        }
+        
         Active = false;
     }
     
@@ -36,6 +49,6 @@ public class M1101Pattern3: EnemyPatternBase {
     }
 
     public override void GrouptPattern() {
-        StartCoroutine(Pattern(10, 10));
+        StartCoroutine(Pattern(9, 9));
     }
 }
