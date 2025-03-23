@@ -239,6 +239,14 @@ sealed public class AddLoveScriptCommand : CommandBase {
     public int Point { get; protected set; }
 }
 
+sealed public class SetPoseScriptCommand: CommandBase
+{
+    public int Target { get; protected set; }
+    public int Pose { get; private set; }
+}
+
+sealed public class EndScriptCommand : CommandBase {
+}
 
 public enum ScriptCodeKeyword {
     Wait,
@@ -253,6 +261,7 @@ public enum ScriptCodeKeyword {
     
     GeneratePerson,
     SetPersonPos,
+    SetPose,
     SetMap,
     GetItem,
     
@@ -273,6 +282,8 @@ public enum ScriptCodeKeyword {
     NextEvent,
     SaveWindow,
     AddLove,
+    
+    End,
     
     IsUseItem,
     IsHaveItem,

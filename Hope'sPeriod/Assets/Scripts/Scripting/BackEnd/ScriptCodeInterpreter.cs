@@ -35,7 +35,7 @@ public static class ScriptCodeInterpreter {
         { typeof(string), @"""(.*?)""" },
         { typeof(bool), @"^\s*(true|false|t|f|True|False|T|F)" },
         { typeof(int), @"^\s*(-?\d*)" },
-        { typeof(float), @"^\s*(-?\d*\.?\d?)f" },
+        { typeof(float), @"^\s*(-?\d*\.?\d*)f" },
         { typeof(Direction), "(.*)"},
         { typeof(List<>), @"^\s*\[(.*)\]"},
         { typeof(Vector2), @"^\s*\{(.*)\}"},
@@ -164,7 +164,7 @@ public static class ScriptCodeInterpreter {
 
         Match match = Regex.Match(input, keywordPattern);
 
-        Debug.Log($"{match.Groups[0].Value})");
+        Debug.Log($"{match.Groups[0].Value}");
         
         keyword = Enum.Parse<ScriptCodeKeyword>(match.Groups[1].Value);
         List<(Parameter, object)> result = new();

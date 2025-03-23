@@ -53,7 +53,7 @@ public class BackgroundScriptShower: MonoBehaviour {
         
         //script animation
         updateCount++;
-        if (updateCount % 2 == 0) {
+        if (updateCount % 5 == 0) {
             updateCount = 0;
             context.EffectProcedure();
         }

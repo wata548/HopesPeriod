@@ -367,6 +367,21 @@ public class ScriptCodePlayer: MonoBehaviour {
         CharacterInfoManager.Characters[command.Index - 1].AddLove(command.Point);
         command.EndProcess();
     }
+
+    private void SetPoseScript(SetPoseScriptCommand command) {
+        if (!command.Start())
+            return;
+        
+        actors[command.Target].GetComponent<Animator>().SetInteger("Pose", command.Pose);
+        command.EndProcess();
+    }
+
+    private void EndScript(EndScriptCommand command) {
+        if (!command.Start())
+            return;
+        EndProcess();
+        command.EndProcess();
+    }
     #endregion
     
     public void EndProcess() {
@@ -381,6 +396,7 @@ public class ScriptCodePlayer: MonoBehaviour {
         upperBackground.enabled = false;
         
         ShakeCamera.Instance.camera.transform.localPosition = new Vector3(0, 0.7f, -10);
+        ShakeCamera.Instance.camera.orthographicSize = 5;
     }
     
 
