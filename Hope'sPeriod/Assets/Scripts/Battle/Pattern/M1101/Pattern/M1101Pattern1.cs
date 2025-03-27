@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using DG.Tweening;
 using UnityEngine;
 using UnityEngine.Animations;
@@ -10,6 +11,9 @@ public class M1101Pattern1: EnemyPatternBase {
     [SerializeField] private GameObject bullet;
     [SerializeField] private GameObject hWarnning;
     [SerializeField] private GameObject vWarnning;
+    [SerializeField] private List<Sprite> horizon;
+    [SerializeField] private List<Sprite> vertical;
+    
     private SpriteRenderer hRenderer;
     private SpriteRenderer vRenderer;
     
@@ -45,20 +49,31 @@ public class M1101Pattern1: EnemyPatternBase {
         while (sinCount-- != 0) {
 
             yield return new WaitForSeconds(sinDelay);
-            Make(hPosition, hTargetPos);
-            Make(vPosition, vTargetPos);
+            Make(hPosition, hTargetPos, false);
+            Make(vPosition, vTargetPos, true);
         }
         
         yield return new WaitForSeconds(3);
         callback?.Invoke();
         yield break;
 
-        void Make(Vector3 start, Vector3 end) {
+        void Make(Vector3 start, Vector3 end, bool isVertical) {
             var newObject = Instantiate(bullet);
                         
             newObject.transform.localPosition = start;
-            
-            
+
+            if (isVertical) {
+                int index = Random.Range(0, vertical.Count);
+                newObject.GetComponent<SpriteRenderer>().sprite = vertical[index];
+                if(start.y > 0)
+                    newObject.transform.rotation = Quaternion.Euler(0, 0, 180);
+            }
+            else {
+                int index = Random.Range(0, horizon.Count);
+                var renderer = newObject.GetComponent<SpriteRenderer>();
+                renderer.sprite = horizon[index];
+                renderer.flipX = start.x > 0;
+            }
             var @object = newObject.GetComponent<M1101Object1>();
             @object.SetPos(end);
             @object.SetAmplificationPower(amplification);

@@ -25,7 +25,7 @@ public class CompoLinear: MoveComposite {
     }
 
     public CompoLinear SetView() {
-        Owner.transform.rotation = Quaternion.Euler(0, 0, Mathf.Atan2(direction.x, direction.y) * Mathf.Rad2Deg);
+        Owner.transform.rotation = Quaternion.Euler(0, 0, Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg);
         return this;
     }
 
