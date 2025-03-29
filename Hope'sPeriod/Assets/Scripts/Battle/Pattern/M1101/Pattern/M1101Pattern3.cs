@@ -32,7 +32,7 @@ public class M1101Pattern3: EnemyPatternBase {
 
                 if (newObject == null)
                     return;
-                
+                Destroy(newObject?.GetComponent<Collider2D>());
                 newObject?.GetComponent<Animator>()?.SetBool("Dis", true);
                 StartCoroutine(Wait.WaitAndDo(1, () => {
                     if (newObject != null)
