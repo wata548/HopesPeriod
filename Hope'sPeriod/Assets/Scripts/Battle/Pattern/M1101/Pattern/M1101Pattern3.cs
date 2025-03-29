@@ -28,9 +28,16 @@ public class M1101Pattern3: EnemyPatternBase {
             generated.Add(newObject);
             
             newObject.transform.localPosition = pos;
-            StartCoroutine(Wait.WaitAndDo(waitTime, () => {
-                if (newObject is not null) 
-                    Destroy(newObject);
+            StartCoroutine(Wait.WaitAndDo(waitTime - 1, () => {
+
+                if (newObject == null)
+                    return;
+                
+                newObject?.GetComponent<Animator>()?.SetBool("Dis", true);
+                StartCoroutine(Wait.WaitAndDo(1, () => {
+                    if (newObject != null)
+                        Destroy(newObject);
+                }));
             }));
         }
 

@@ -16,14 +16,19 @@ public abstract class EnemyAnimation : MonoBehaviour {
     public abstract bool UseStartEvent { get; }
     private PlayerTurnEnemyAnimationState state = PlayerTurnEnemyAnimationState.Off; 
     private bool isActive = false;
+    private Tween _currentAnimation = null;
 
     public abstract Tween OnAnimaton();
     public abstract Tween StayAnimaton();
     public abstract Tween OutAnimaton();
 
     protected virtual void On() {
-        
+
+        if (_currentAnimation is not null)
+            _currentAnimation.Kill();
         Tween ani = OnAnimaton();
+        _currentAnimation = ani;
+        
         if (ani is null) {
 
             state = PlayerTurnEnemyAnimationState.Default;
@@ -33,7 +38,9 @@ public abstract class EnemyAnimation : MonoBehaviour {
         ani.OnComplete(() => state = PlayerTurnEnemyAnimationState.Default);
     }
     protected virtual void Out() {
-        OutAnimaton();
+        if (_currentAnimation is not null)
+            _currentAnimation.Kill();
+        _currentAnimation = OutAnimaton();
     }
     protected virtual void Stay() {
         StayAnimaton();
