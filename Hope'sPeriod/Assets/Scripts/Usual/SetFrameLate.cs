@@ -15,6 +15,6 @@ public class SetFrameLate : MonoBehaviour {
     }
     private void Awake() {
 
-        Set();
+        //Set();
     }
 }

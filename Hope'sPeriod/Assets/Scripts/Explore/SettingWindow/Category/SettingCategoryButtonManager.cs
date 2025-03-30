@@ -12,6 +12,7 @@ public class SettingCategoryButtonManager: InteractButtonManager {
     [SerializeField] private LoadButtonOnPlayManager save;
     [SerializeField] private TutorialButtonManager tutorial;
     [SerializeField] private SettingWindowManager setting;
+    [SerializeField] private GameObject checkMainScreenWindow;
     
     public override void SetInteractable(bool interactable) {
         base.SetInteractable(interactable);
@@ -46,7 +47,15 @@ public class SettingCategoryButtonManager: InteractButtonManager {
         TurnOff();
         tutorial.TurnOn();
     }
-    private void QuitGame() {
+    private void MainScreen() {
+        checkMainScreenWindow.SetActive(true);
+    }
+
+    public void MainScreenCheckOff() {
+        checkMainScreenWindow.SetActive(false);
+    }
+
+    public void GoTitle() {
         ScenceControler.Load("Title");
     }
 
@@ -57,6 +66,7 @@ public class SettingCategoryButtonManager: InteractButtonManager {
         save.TurnOff();
         tutorial.TurnOff();
         setting.TurnOff();
+        MainScreenCheckOff();
     }
 
     public void Click(int index = 0) {
@@ -68,7 +78,7 @@ public class SettingCategoryButtonManager: InteractButtonManager {
             2 => TurnOnSave,
             3 => TurnOnSetting,
             4 => TurnOnManual,
-            5 => QuitGame
+            5 => MainScreen
         };
                 
         action?.Invoke();

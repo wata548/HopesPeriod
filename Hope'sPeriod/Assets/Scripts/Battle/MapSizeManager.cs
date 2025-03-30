@@ -30,7 +30,7 @@ public class MapSizeManager : MonoBehaviour {
     }
 
     public void Move(float duration = Duration) {
-        Move(Vector3.zero, duration);
+        Move(defaultMapPos, duration);
     }
     
     public void Resize(Vector2 size, float duration = Duration) {

@@ -1,5 +1,5 @@
 {
-  "PlayTime": 206.556961,
+  "PlayTime": 158.887924,
   "SaveCharacterInfo": [
     {
       "Exist": true,
@@ -13,14 +13,12 @@
       ],
       "HaveSkill": [
         9101,
-        9102,
-        0,
-        0
+        9102
       ],
       "MaximumHp": 100.0,
-      "CurrentHp": 9.0,
+      "CurrentHp": 60.0,
       "MaximumMp": 130.0,
-      "CurrentMp": 10.0,
+      "CurrentMp": 40.0,
       "Love": 0
     },
     {
@@ -35,14 +33,12 @@
       ],
       "HaveSkill": [
         9201,
-        9202,
-        0,
-        0
+        9202
       ],
       "MaximumHp": 120.0,
-      "CurrentHp": 66.0,
+      "CurrentHp": 120.0,
       "MaximumMp": 105.0,
-      "CurrentMp": 35.0,
+      "CurrentMp": 105.0,
       "Love": 5
     },
     {
@@ -57,9 +53,7 @@
       ],
       "HaveSkill": [
         9301,
-        9302,
-        0,
-        0
+        9302
       ],
       "MaximumHp": 95.0,
       "CurrentHp": 95.0,
@@ -81,18 +75,14 @@
     }
   ],
   "SavePos": {
-    "Code": 8401,
-    "X": 18.0,
-    "Y": -1.0,
+    "Code": 8402,
+    "X": -0.281285852,
+    "Y": 4.285708,
     "Chapter": 2
   },
   "SaveMonster": [
     {
       "Code": 1001,
-      "KillCount": 1
-    },
-    {
-      "Code": 1101,
       "KillCount": 1
     }
   ],
@@ -101,12 +91,6 @@
       "Code": 8402,
       "X": -2,
       "Y": 15,
-      "Z": 0
-    },
-    {
-      "Code": 8401,
-      "X": 14,
-      "Y": 1,
       "Z": 0
     }
   ],
@@ -129,7 +113,6 @@
     6003,
     20004,
     6004,
-    20005,
     6100,
     6101,
     6104

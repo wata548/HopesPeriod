@@ -61,7 +61,7 @@ MonoBehaviour:
     - {fileID: 8703638451413783976}
   RunRate: 0.3
   <IsBoss>k__BackingField: 0
-  <MaxHP>k__BackingField: 165
+  <MaxHP>k__BackingField: 90
 --- !u!114 &4483678221305937846
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -1,5 +1,5 @@
 {
-  "PlayTime": 169.786209,
+  "PlayTime": 179.9081,
   "SaveCharacterInfo": [
     {
       "Exist": true,
@@ -14,30 +14,28 @@
       "HaveSkill": [
         9101,
         9102,
-        0,
-        0
+        9403
       ],
       "MaximumHp": 100.0,
-      "CurrentHp": 53.0,
+      "CurrentHp": 60.0,
       "MaximumMp": 130.0,
       "CurrentMp": 40.0,
       "Love": 0
     },
     {
-      "Exist": false,
+      "Exist": true,
       "Dead": false,
       "Name": "Cavil",
       "Skill": [
         9201,
         9202,
-        0,
+        9403,
         0
       ],
       "HaveSkill": [
         9201,
         9202,
-        0,
-        0
+        9403
       ],
       "MaximumHp": 120.0,
       "CurrentHp": 120.0,
@@ -58,8 +56,7 @@
       "HaveSkill": [
         9301,
         9302,
-        0,
-        0
+        9403
       ],
       "MaximumHp": 95.0,
       "CurrentHp": 95.0,
@@ -70,32 +67,28 @@
   ],
   "SaveItem": [
     {
-      "Code": 2001,
-      "Amount": 1
-    },
-    {
       "Code": 2002,
-      "Amount": 1
+      "Amount": 0
     },
     {
-      "Code": 2003,
-      "Amount": 1
-    },
-    {
-      "Code": 2004,
-      "Amount": 1
+      "Code": 2201,
+      "Amount": 0
     }
   ],
   "SaveUseItem": [
     {
       "Code": 2002,
       "Count": 1
+    },
+    {
+      "Code": 2201,
+      "Count": 1
     }
   ],
   "SavePos": {
-    "Code": 8414,
-    "X": 4.24141836,
-    "Y": 1.68524039,
+    "Code": 8418,
+    "X": -0.1996378,
+    "Y": -3.10798788,
     "Chapter": 2
   },
   "SaveMonster": [
@@ -120,27 +113,9 @@
       "Z": 0
     },
     {
-      "Code": 8403,
-      "X": -4,
-      "Y": 2,
-      "Z": 0
-    },
-    {
-      "Code": 8407,
-      "X": 4,
-      "Y": 3,
-      "Z": 0
-    },
-    {
-      "Code": 8412,
-      "X": -4,
-      "Y": 2,
-      "Z": 0
-    },
-    {
-      "Code": 8414,
-      "X": 4,
-      "Y": 3,
+      "Code": 8418,
+      "X": 0,
+      "Y": -3,
       "Z": 0
     }
   ],

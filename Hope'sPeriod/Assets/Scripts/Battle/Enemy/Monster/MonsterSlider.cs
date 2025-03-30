@@ -48,14 +48,11 @@ public class MonsterSlider: Slider {
 
     public void Heal(int power) {
 
-        showerText.text = power.ToString();
-        showerText.color = heal;
 
         CurrentHp += power;
         CurrentHp = Mathf.Min(CurrentHp, MaxHp);
 
         UpdateInfo(CurrentHp / MaxHp);
-        showerText.DOBlink(0.2f, 0.2f, 0.2f);
     }
 
     private void Awake() {

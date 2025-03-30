@@ -43,7 +43,7 @@ MonoBehaviour:
                   Value:
                     connectMapCode: 8416
                     connectPos: {x: 1, y: 0}
-                - Key: {x: 12, y: 7}
+                - Key: {x: 12, y: 5}
                   Value:
                     connectMapCode: 8402
                     connectPos: {x: 0, y: 0}
@@ -58,7 +58,7 @@ MonoBehaviour:
                 - Key: {x: 19, y: 5}
                   Value:
                     connectMapCode: 8409
-                    connectPos: {x: 0, y: 0}
+                    connectPos: {x: 1, y: 0}
                 - Key: {x: 31, y: 5}
                   Value:
                     connectMapCode: 8417

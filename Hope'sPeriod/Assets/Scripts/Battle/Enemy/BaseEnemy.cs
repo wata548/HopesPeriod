@@ -14,12 +14,12 @@ public abstract class BaseEnemy: MonoBehaviour, IDamageAble {
     public abstract void Move();
     protected virtual void OnCollisionEnter2D(Collision2D other) {
         
-        ContactStrategy.ColliderContact(other.gameObject);
+        ContactStrategy?.ColliderContact(other.gameObject);
     }
 
     protected virtual void OnTriggerEnter2D(Collider2D other) {
         
-        ContactStrategy.TriggerContact(other.gameObject);
+        ContactStrategy?.TriggerContact(other.gameObject);
     }
 
     private void Update() {

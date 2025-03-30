@@ -132,7 +132,7 @@ public class SaveCharacterInfo {
         Love = playerInfo.Love;
         
         Skill = playerInfo.Skill.ToArray();
-        HaveSkill = playerInfo.Skill.ToArray();
+        HaveSkill = playerInfo.HaveSkills.ToArray();
         MaximumHp = playerInfo.MaximumHp;
         CurrentHp = playerInfo.CurrentHp;
         MaximumMp = playerInfo.MaximumMp;

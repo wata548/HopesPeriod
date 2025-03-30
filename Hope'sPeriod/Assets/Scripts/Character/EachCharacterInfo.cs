@@ -147,7 +147,7 @@ public class EachCharacterInfo: MonoBehaviour {
             skill.Add(0);
         }
         HaveSkills = info.HaveSkill.ToList();
-
+        
         MaximumHp = info.MaximumHp;
         CurrentHp = info.CurrentHp;
         MaximumMp = info.MaximumMp;

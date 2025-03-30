@@ -130,7 +130,9 @@ public class SkillButton: InteractButtonUI {
         if (!Manager.Interactable)
             return;
         if (!Show) return;
-
+        if (!SkillInfo.Useable(Code, Parse(Manager).CharacterIndex)) 
+             return;
+        
         if (SkillInfo.NeedSelect(Code, out int itemCode)) {
 
             OnPointerExitExtra();

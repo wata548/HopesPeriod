@@ -89,6 +89,7 @@ public class SkillListButtonManager: InteractButtonManager {
             availableSkill = info.HaveSkills.ToList();
 
         int startPos = currentPage * ShowCount;
+
         for (int i = 0; i < ShowCount; i++) {
             if (startPos + i >= availableSkill.Count) {
                 Parse(buttons[i]).SetCode(0);

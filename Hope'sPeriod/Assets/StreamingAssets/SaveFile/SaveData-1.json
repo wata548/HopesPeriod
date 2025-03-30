@@ -1,5 +1,5 @@
 {
-  "PlayTime": 33.117775,
+  "PlayTime": 38.69975,
   "SaveCharacterInfo": [
     {
       "Exist": true,
@@ -13,9 +13,7 @@
       ],
       "HaveSkill": [
         9101,
-        9102,
-        0,
-        0
+        9102
       ],
       "MaximumHp": 100.0,
       "CurrentHp": 100.0,
@@ -35,9 +33,7 @@
       ],
       "HaveSkill": [
         9201,
-        9202,
-        0,
-        0
+        9202
       ],
       "MaximumHp": 120.0,
       "CurrentHp": 120.0,
@@ -57,9 +53,7 @@
       ],
       "HaveSkill": [
         9301,
-        9302,
-        0,
-        0
+        9302
       ],
       "MaximumHp": 95.0,
       "CurrentHp": 95.0,
@@ -82,8 +76,8 @@
   ],
   "SavePos": {
     "Code": 8402,
-    "X": -2.0,
-    "Y": 16.13,
+    "X": -1.9000001,
+    "Y": 15.13,
     "Chapter": 1
   },
   "SaveMonster": [],
@@ -91,7 +85,7 @@
     {
       "Code": 8402,
       "X": -2,
-      "Y": 16,
+      "Y": 15,
       "Z": 0
     }
   ],
